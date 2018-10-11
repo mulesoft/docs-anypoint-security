@@ -1,0 +1,13 @@
+= Anypoint Security
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+Anypoint Security is a suite of features designed to protect your deployed applications using TLS/SNI validation for your endpoints, management and secure storage of your secrets such as username/password or keystores, and policies to detect and prevent external threads.
+
+Anypoint Security uses Edge, a high-performance, reliable, and scalable service to enforce policies for DDoS (distributed denial of service), CAP (content attack prevention), and TLS/SNI Termination.
+
+
+== See Also
+
+* xref:index-secrets-manager.adoc[Secrets Manager]
