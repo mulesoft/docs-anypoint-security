@@ -1,0 +1,29 @@
+= Access Control List Policy
+
+The Access Control List Policy (ACL) allows you to create a general whitelist of IPs that will reach your deployed endpoints.
+
+If you have an ACL policy assigned, you need to whitelist all IP addresses that are coming through edge.
+
+[NOTE]
+This source is IP based. If an attacker can spoof his source IP address, these measurements cannot prevent the attack.
+
+== Differences with API Gateway Policies
+
+The ACL policy is a whitelist for all IP addresses that go through your Edge/Ingress endpoint, and this whitelist applies to all applications. You can set up an API Gateway Whitelist policy per API list.
+
+=== Example
+
+You can set up an ACL Policy to allow `a.a.a.a`, `y.y.y.y`, and `z.z.z.z`. +
+Then, API-1 (`/api1`) uses an API Whitelist policy that allows `x.x.x.x`, and API-2 (`/api2`) uses another policy that allows `y.y.y.y` and `z.z.z.z`.
+
+* IP Address `w.w.w.w` is rejected by both APIs, because it's not whitelisted at the ACL Policy.
+* IP Address `y.y.y.y` requesting `/api1`, is allowed at the ACL Policy level, and rejected by the API Whitelist policy at `/api1`.
+* IP Address `y.y.y.y` requestion `/api2`, is allowed at the ACL Policy level, and allowed by the API Whitelist policy at `/api2`.
+
+== Applying ACL Policy
+
+
+
+== See Also
+
+* xref:api-manager::ip-whitelist.adoc[IP Whitelist]

@@ -1,0 +1,14 @@
+= Denial Of Service Policy
+
+The Denial of service (DoS) policy prevents attackers from flooding your network to prevent legitimate network traffic to your APIs. +
+This is a distinctive and critical functionality to secure your application network against DDoS (Distributed Denial of Service) attacks from HTTP clients. Application Layer threats are  gaining more traction and they are harder to detect and mitigate.
+
+[NOTE]
+This source is IP based. If an attacker can spoof his source IP address, these measurements cannot prevent the attack.
+
+
+== Applying DoS Policy
+
+[NOTE]
+The process of applying a DOS Policy has six different screens. +
+For every screen in the process, you need to save the changes. If you leave one screen without saving, you loose your changes on that screen.

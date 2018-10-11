@@ -1,0 +1,13 @@
+= Policies
+
+Anypoint Security allows you enforce policies that are deployed to Edge.
+
+These policies, are applied to all applications under one Ingress endpoint.
+
+//_TODO: It would be nice to have a proper definition for Edge vs Ingress
+
+== See Also
+
+* xref:acl-policy.adoc[ACL Policy]
+* xref:dos-policy.adoc[DoS Policy]
+* xref:cap-policy.adoc[CAP Policy]

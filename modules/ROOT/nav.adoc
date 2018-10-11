@@ -6,3 +6,8 @@
 ** xref:asm-permission-concept.adoc[Permissions]
 ** xref:asm-secret-group-concept.adoc[Secret Groups]
 *** xref:asm-secret-group-creation-task.adoc[Creating a Secret Group (Anypoint Platform)]
+
+* xref:index-policies.adoc[Policies]
+** xref:acl-policy.adoc[ACL Policy]
+** xref:dos-policy.adoc[DoS Policy]
+** xref:cap-policy.adoc[CAP Policy]
