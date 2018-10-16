@@ -11,3 +11,4 @@ Anypoint Security uses Edge, a high-performance, reliable, and scalable service 
 == See Also
 
 * xref:index-secrets-manager.adoc[Secrets Manager]
+* xref:index-policies.adoc[Policies]
