@@ -1,14 +1,114 @@
 = Denial Of Service Policy
 
 The Denial of service (DoS) policy prevents attackers from flooding your network to prevent legitimate network traffic to your APIs. +
-This is a distinctive and critical functionality to secure your application network against DDoS (Distributed Denial of Service) attacks from HTTP clients. Application Layer threats are  gaining more traction and they are harder to detect and mitigate.
+Application Layer threats are  gaining more traction and they are harder to detect and mitigate. This is a distinctive and critical functionality to secure your application network against DDoS (Distributed Denial of Service) attacks from HTTP clients.
 
-[NOTE]
+The DoS policy allows you to configure a time window, and set up conditions for each type of error encountered. If the policy encounters more errors than your tolerated amount coming from the same IP address, the policy blocks further requests from this IP address for the remaining of your configured time interval.
+
 This source is IP based. If an attacker can spoof his source IP address, these measurements cannot prevent the attack.
 
+== Configuring a DoS Policy
 
-== Applying DoS Policy
-
-[NOTE]
+. Navigate to *Anypoint Security*, click the *Create Policy* icon, and select *Denial Of Service*. +
 The process of applying a DOS Policy has six different screens. +
 For every screen in the process, you need to save the changes. If you leave one screen without saving, you loose your changes on that screen.
+. Click *General* on the left navigation bar:
+.. Add a name for your policy in the *Name* field.
+.. Set up a time interval, in seconds, in the *Window1 Time Period*. +
+This time interval is the accepted time that your policy will block other requests if it encounters the amount of errors that you configure for each type of error.
+.. Use the *Max Sources To Monitor* field to set up a maximum amount of IP address to track. +
+The DoS Policy can track up to 50000 IP addresses.
+.. Use the *Reject Message Action* drop-down menu to select the type of response the policy returns when dropping a client connection. You have two options:
+* *Drop Silently*: The policy avoids making the TLS connection and drops silently the tcp packets with source ip address in AWS ELB Proxy Protocol headers, or for source ip address taken from the tcp packet. This is the most efficient way to terminate the client's connection. +
+For source IP headers in the HTTP message such as ‘x-forwarded-for’ or ‘forwarded’, the policy must make the TLS connection and read the HTTP header before applying a DoS action.
+* *Send HTTP 503*: Graceful Rate Limiting Error. The policy terminates the connection and returns a 503 (Service Unavailable) response to the client.
+.. Click *Save*.
+. Now you can configure your policy to take action for:
+* *Protocol Errors*
+* *Routing Errors*
+* *Authentication Errors*
+* *QoS Errors*
+* *Content Errors*
+
+=== Protocol Errors
+
+//_TODO Explain benefits for these errors
+
+=== Configuring Protocol Errors Protection
+
+. Click *Protocol Errors* on the left navigation bar:
+.. Check the *Protocol Errors* checkmark if you want to enable protocol errors protection. +
+You can configure up to 3 windows, and five different actions for each one:
+* *None*: The policy performs no action when encountering the configured amount of protocol errors.
+* *Shape-Interval*: The policy restricts the client's message rate until the end of your configured time window.
+* *Block-Interval*: The policy rejects the client's message requests until the end of your configured time window.
+* *Block-Forever*: The policy rejects all message requests from the client.
+.. Click *Save*.
+
+=== Routing Errors
+
+//_TODO Explain benefits for these errors
+
+==== Configuring Routing Errors Protection
+
+. Click *Routing Errors* on the left navigation bar:
+.. Check the *Routing Errors* checkmark if you want to enable routing errors protection. +
+You can configure up to 3 windows, and five different actions for each one:
+* *None*: The policy performs no action when encountering the configured amount of routing errors.
+* *Shape-Interval*: The policy restricts the client's message rate until the end of your configured time window.
+* *Block-Interval*: The policy rejects the client's message requests until the end of your configured time window.
+* *Block-Forever*: The policy rejects all message requests from the client.
+.. Click *Save*.
+
+=== Authentication Errors
+
+This error detection prevents a client, for example, from trying to infringe a login to your application by force brut. +
+For example, you can configure your policy to permit up to 4 authentication errors within a 5 minute timeframe. If the client attempts a fifth login error, you can assume this IP address is trying to force brut its access, and take action against this. +
+The same would apply for credit card attacks. An attacker might have a full credit card number, and may be trying to brut force credit card's CVC. You can block these malicious attempts before the attacker gets a significant number of correct values.
+
+==== Configuring Authentication Errors Protection
+
+. Click *Authentication Errors* on the left navigation bar:
+.. Check the *Authentication Errors* checkmark if you want to enable authentication errors protection. +
+You can configure up to 3 windows, and five different actions for each one:
+* *None*: The policy performs no action when encountering the configured amount of authentication errors.
+* *Shape-Interval*: The policy restricts the client's message rate until the end of your configured time window.
+* *Block-Interval*: The policy rejects the client's message requests until the end of your configured time window.
+* *Block-Forever*: The policy rejects all message requests from the client.
+.. Click *Save*.
+
+=== QoS Errors
+
+A client may try to force a lot of QoS (quality of service) errors by dropping packets to degrade the TCP service damaging your TCP performance.
+
+==== Configuring QoS Errors Protection
+
+. Click *QoS Errors* on the left navigation bar:
+.. Check the *QoS Errors* checkmark if you want to enable QoS errors protection. +
+You can configure up to 3 windows, and five different actions for each one:
+* *None*: The policy performs no action when encountering the configured amount of QoS errors.
+* *Shape-Interval*: The policy restricts the client's message rate until the end of your configured time window.
+* *Block-Interval*: The policy rejects the client's message requests until the end of your configured time window.
+* *Block-Forever*: The policy rejects all message requests from the client.
+.. Click *Save*.
+
+==== Content Errors
+
+//_TODO Explain benefits for these errors
+
+==== Configuring Content Errors Protection
+
+. Click *Content Errors* on the left navigation bar:
+.. Check the *Content Errors* checkmark if you want to enable content errors protection. +
+A client may try to force a lot of QoS (quality of service) errors by dropping packets to degrade the TCP service damaging your TCP performance.
+You can configure up to 3 windows, and five different actions for each one:
+* *None*: The policy performs no action when encountering the configured amount of content errors.
+* *Shape-Interval*: The policy restricts the client's message rate until the end of your configured time window.
+* *Block-Interval*: The policy rejects the client's message requests until the end of your configured time window.
+* *Block-Forever*: The policy rejects all message requests from the client.
+.. Click *Save*.
+
+== See Also
+
+* xref:acl-policy.adoc[ACL Policy]
+* xref:cap-policy.adoc[CAP Policy]
