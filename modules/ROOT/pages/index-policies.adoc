@@ -18,22 +18,20 @@ You can use these policies to handle all traffic to your Runtime Fabric, and lev
 
 image::index-e9021.png[]
 
-Anypoint Security policies then act as a default firewall/router capability through which all traffic traverses. +
+Anypoint Security policies then act as a default router capability through which all traffic traverses. +
 It provides:
 
-* Firewall Threat Prevention.
-** Content Attack Prevention (Traffic shaping).
+* Threat Prevention.
+** Content Attack Prevention (header and message limits checks).
 ** Denial of Service.
 ** IP Whitelists.
 * Advanced TLS  (e.g. Cert-pinning, CRL).
 * Basic TLS  (e.g. Mutual TLS, SSL Termination).
-* Secrets/Certificate Management.
 
 Additionally, the API policies in front of your applications act as standard set of security policies, and give your the ability to further customize or extend certain limitations you are applying at the general security level. +
 This layer of security provides the same control as any API Manager policy offers. For example:
 
 * Basic TLS (e.g. Mutual TLS, SSL Termination)
-* OWASP CRS Web Application Firewall (WAF)
 * Rate Limiting
 * OAuth & AAA
 
