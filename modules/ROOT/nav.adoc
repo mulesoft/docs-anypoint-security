@@ -1,5 +1,6 @@
 .xref:index.adoc[Anypoint Security]
 * xref:index.adoc[Anypoint Security]
+* xref:index-policies.adoc[Policies]
 ** xref:acl-policy.adoc[ACL Policy]
 ** xref:dos-policy.adoc[DoS Policy]
 ** xref:cap-policy.adoc[CAP Policy]
