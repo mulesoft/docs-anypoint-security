@@ -1,13 +1,10 @@
 .xref:index.adoc[Anypoint Security]
 * xref:index.adoc[Anypoint Security]
-
+** xref:acl-policy.adoc[ACL Policy]
+** xref:dos-policy.adoc[DoS Policy]
+** xref:cap-policy.adoc[CAP Policy]
 * xref:index-secrets-manager.adoc[Secrets Manager]
 ** xref:asm-secret-type-support-reference.adoc[Supported Secret Types Reference]
 ** xref:asm-permission-concept.adoc[Permissions]
 ** xref:asm-secret-group-concept.adoc[Secret Groups]
 *** xref:asm-secret-group-creation-task.adoc[Creating a Secret Group (Anypoint Platform)]
-
-* xref:index-policies.adoc[Policies]
-** xref:acl-policy.adoc[ACL Policy]
-** xref:dos-policy.adoc[DoS Policy]
-** xref:cap-policy.adoc[CAP Policy]
