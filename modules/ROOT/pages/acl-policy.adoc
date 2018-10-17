@@ -2,7 +2,7 @@
 
 The Access Control List Policy (ACL) allows you to create a general whitelist of IPs that will reach your deployed endpoints.
 
-If you have an ACL policy assigned, you need to whitelist all IP addresses that are coming through edge.
+If you have an ACL policy assigned, you need to whitelist all IP addresses that are coming through your exposed endpoint.
 
 ACL Policy violations escalate as authentication errors for the DoS policy.
 
@@ -11,7 +11,7 @@ This source is IP based. If an attacker can spoof his source IP address, these m
 
 == Differences with API Gateway Policies
 
-The ACL policy is a whitelist for all IP addresses that go through your Edge/Ingress endpoint, and this whitelist applies to all applications. You can set up an API Gateway Whitelist policy per API list.
+The ACL policy is a whitelist for all IP addresses that go through your endpoint, and this whitelist applies to all applications. You can set up an API Gateway Whitelist policy per API list.
 
 === Example
 
