@@ -16,12 +16,11 @@ If you have a DoS policy configured, HTTP protocol errors (malicious protocol vi
 
 [%header%autowidth.spread,cols="a,a"]
 |===
-2+^.^| *Anypoint Security Policy*
 | *Violation* | *Escalates as*
+2+^.^| *Anypoint Security Policy*
 | ACL Policy | Authentication Error
 | CAP Policy | Protocol Error
 2+^.^| *API Gateway Provided Policy*
-| *Violation* | *Escalates as*
 | Client ID Enforcement | Authentication Error
 | Mule OAuth 2.0 Access Token | Authentication Error
 | OpenAM OAuth 2.0 Token Enforcement Policy | Authentication Error
