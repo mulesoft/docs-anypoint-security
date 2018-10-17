@@ -1,0 +1,20 @@
+= Applying Policies
+
+== Prerequisites
+
+To apply policies, you need to have the *Manage Runtime Fabrics* permission associated to your user.
+
+Additionally, your account must have associated the *Runtime Fabrics* and *Security Edge Policies* entitlements.
+
+== Procedure
+
+. Go to *Runtime Manager*, click *Runtime Fabric* from the left navigation bar, and select the runtime fabric to which you want to enable Edge policies.
+. Click the *Inbound Traffic* tab, and navigate to *Security Policies*.
+. For each policy, select the name of the policy you want to apply.
+
+== See Also
+
+* xref:index-policies.adoc[Policies]
+* xref:acl-policy.adoc[ACL Policy]
+* xref:dos-policy.adoc[DoS Policy]
+* xref:cap-policy.adoc[CAP Policy]
