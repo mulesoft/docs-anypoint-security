@@ -4,6 +4,8 @@ The Access Control List Policy (ACL) allows you to create a general whitelist of
 
 If you have an ACL policy assigned, you need to whitelist all IP addresses that are coming through edge.
 
+ACL Policy violations escalate as authentication errors for the DoS policy.
+
 [NOTE]
 This source is IP based. If an attacker can spoof his source IP address, these measurements cannot prevent the attack.
 
