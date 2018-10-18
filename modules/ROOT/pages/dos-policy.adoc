@@ -26,8 +26,8 @@ Violations to IP blacklist/whitelist or RAML validation policies in API Manager 
 | Anytime an authentication or authorization failure occurs. +
 This includes when the client sends a bad certificate during a SSL handshake, authentication or authorization failure in an AAA policy, or when a WS-Security Verify policy fails to verify a WS-Security signature.
 
-For example, you can configure your policy to permit up to 4 authentication errors within a 5 minute timeframe. If the client attempts a fifth login error, you can assume this IP address is trying to force brut its access, and take action against this. +
-The same would apply for credit card attacks. An attacker might have a full credit card number, and may be trying to brut force credit card's CVC. You can block these malicious attempts before the attacker gets a significant number of correct values.
+// For example, you can configure your policy to permit up to 4 authentication errors within a 5 minute timeframe. If the client attempts a fifth login error, you can assume this IP address is trying to force brut its access, and take action against this. +
+// The same would apply for credit card attacks. An attacker might have a full credit card number, and may be trying to brut force credit card's CVC. You can block these malicious attempts before the attacker gets a significant number of correct values.
 
 Violations to a LDAP, HTTP, OAuth, OpenAM, or Ping Federate authentication policies in API Manager escalate as authentication errors. +
 ACL policy violations also escalate as authentication errors.
@@ -115,7 +115,7 @@ For every screen in the process, you need to save the changes. If you leave one 
 .. Set up a time interval, in seconds, in the *Window1 Time Period*. +
 This time interval is the accepted time that your policy will block other requests if it encounters the amount of errors that you configure for each type of error.
 .. Use the *Max Sources To Monitor* field to set up a maximum amount of IP address to track. +
-The DoS Policy can track up to 50000 IP addresses.
+The DoS Policy can track up to 500000 IP addresses.
 .. Use the *Reject Message Action* drop-down menu to select the type of response the policy returns when dropping a client connection. You have two options:
 * *Drop Silently*: The policy drops the connection silently and avoids making the TLS handshake altogether. The policy avoids making the connection for the tcp packets with source ip address in AWS ELB Proxy Protocol headers, or for source ip address taken from the tcp packet. This is the most efficient way to terminate the client's connection, as the policy avoids reading the attacker's request.
 * *Send HTTP 503*: The policy terminates the connection and returns a 503 (Service Unavailable) response to the client. This requires for a TLS connection to be made., therefore being quite resource expensive.
