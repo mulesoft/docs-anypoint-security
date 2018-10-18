@@ -4,7 +4,7 @@
 
 To apply policies, you need to have the *Manage Runtime Fabrics* permission associated to your user.
 
-Additionally, your account must have associated the *Runtime Fabrics* and *Security Edge Policies* entitlements.
+Additionally, your account must have associated the *Runtime Fabrics* and *Security Edge Policies* entitlements in addition to API Manager & Analytics.
 
 == Procedure
 

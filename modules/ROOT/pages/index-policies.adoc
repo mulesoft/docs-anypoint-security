@@ -38,7 +38,7 @@ This layer of security provides the same control as any API Manager policy offer
 To apply policies, you need to have the *Manage Runtime Fabrics* permission associated to your user. +
 An administrator for your organization can grant you this permission Access Management.
 
-Additionally, your account must have associated the *Runtime Fabrics* and *Security Edge Policies* entitlements.
+Additionally, your account must have associated the *Runtime Fabrics* and *Security Edge Policies* entitlements in addition to API Manager & Analytics.
 
 == See Also
 
