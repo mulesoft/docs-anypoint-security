@@ -8,9 +8,9 @@ You can protect your APIs using three policies:
 These policies are designed to protect your nodes against malicious clients trying to flood your network to prevent legitimate traffic to your APIs. +
 Learn more about the xref:dos-policy.adoc[DoS Policy].
 * ACL (Access Control List) Policy. +
-This policy lets you whitelist specific range of IP addresses to reach your APIs. +
+This policy checks HTTP proctocol message size and headers. +
 Learn more about the xref:acl-policy.adoc[ACL Policy].
-* CAP (Content Attack Prevenetion) policy. +
+* CAP (Content Attack Prevention) policy. +
 This policy prevents attacks from clients that send large messages that can take up all of your processing bandwidth. +
 Learn more about the xref:cap-policy.adoc[CAP Policy].
 
@@ -28,17 +28,17 @@ It provides:
 * Advanced TLS  (e.g. Cert-pinning, CRL).
 * Basic TLS  (e.g. Mutual TLS, SSL Termination).
 
-Additionally, the API policies in front of your applications act as standard set of security policies, and give your the ability to further customize or extend certain limitations you are applying at the general security level. +
+Additionally, API policies configured in API Manager and running in API gateway give your the ability to further customize or extend certain limitations you are applying at the mule application level. +
 This layer of security provides the same control as any API Manager policy offers. For example:
 
 * Basic TLS (e.g. Mutual TLS, SSL Termination)
 * Rate Limiting
 * OAuth & AAA
 
+Additionally, your account must have associated the *Runtime Fabrics* and *Security Edge Policies* entitlements in addition to API Manager & Analytics.
+
 To apply policies, you need to have the *Manage Runtime Fabrics* permission associated to your user. +
 An administrator for your organization can grant you this permission Access Management.
-
-Additionally, your account must have associated the *Runtime Fabrics* and *Security Edge Policies* entitlements in addition to API Manager & Analytics.
 
 == See Also
 
