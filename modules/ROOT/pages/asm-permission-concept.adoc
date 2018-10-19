@@ -1,0 +1,31 @@
+= Secrets Manager Permissions
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+An administrator for your organization can grant these permissions to any user from Access Management.
+
+== User Permissions
+
+A user needs to have a set of predefined permissions to operate with Secrets Manager:
+
+[%header%autowidth.spread,cols="a,a"]
+|===
+| Name | Description
+| Write secrets
+| Provides the ability to upload, create, and modify secrets in a specific environment.
+
+| Read secrets metadata
+| Provides the ability to browse and read metadata of secrets in a specific environment.
+
+| Grant access to secrets
+| Provides the ability to browse, read metadata, and grant access to secrets in a specific environment.
+
+| Manage secret groups
+| Provides the ability to create, modify and delete secret groups in a specific environment.
+|===
+
+== See Also
+
+* xref:index-secrets-manager.adoc[Secrets Manager]
+* xref:asm-secret-group-concept.adoc[Secret Groups]

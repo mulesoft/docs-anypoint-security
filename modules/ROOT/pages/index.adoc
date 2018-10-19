@@ -1,0 +1,26 @@
+= Anypoint Security
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+Anypoint Security provides a layered approach to secure your application network. These layers work together to protect both the application network and its individual nodes by controlling access to APIs, enforcing policies, and proxying all inbound or outbound traffic to mitigate external threats and/or attacks. +
+These capabilities are optimized for security providing you a dedicated endpoint to detect attacks and validate traffic without taxing your implementations.
+
+image::index-1c19d.png[]
+
+== Policies
+
+Anypoint Security features a high-performance, reliable, and scalable service to enforce policies that apply to all nodes deployed to your Runtime Fabric. +
+Anypoint Security policies then act as a default firewall/router capability through which all traffic traverses.
+
+
+== Secrets Manager
+
+Anypoint Security provides a secure vault for you to store the TLS certificates and keystores used by your deployments. +
+Through this secrets manager, you can store the necessary secrets to set up the TLS context that encrypts inbound traffic to your Runtime Fabric. +
+
+
+== See Also
+
+* xref:index-secrets-manager.adoc[Secrets Manager]
+* xref:index-policies.adoc[Policies]
