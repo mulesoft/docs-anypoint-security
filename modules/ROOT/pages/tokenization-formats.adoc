@@ -11,7 +11,9 @@ Tokenization formats define how the original format of data coming in is convert
 . In the Create Format dialog box, enter the following information: +
 * Name: Name for the tokenization format.
 * Description: Optionally, enter a short description for the tokenization format.
-* Data Domain: Select the data domain. Supported data domains include: +
+* Data Domain: Select the data domain. Supported data domains include:
++
+[%header%autowidth.spread,cols="a,a,a,a,a"]
 |===
 |*Domain
 Type* |*Vaultless
@@ -21,7 +23,7 @@ Encryption* |*Radix1* |*Comment*
 |Credit CardNumber (CCN)| Yes | Yes | 10 |Decimal number with special restrictions on length. Luhn checksum with limited set of lax character allowed; preserve first and last "n" digits; force invalid.
 |Decimal number | Yes | Yes | 10 |Arbitrary length decimal number; preserve first and last "n" digits; force invalid.
 |Lax decimal number | Yes | Yes | 10 | Arbitrary length decimal number with lax characters allowed; preserve first and last "n" digits; force invalid.
-|Phone number | No | Yes | 10 | Another name for lax decimal number. Preserve first and last "n" digits; force invalid.
+// |Phone number | No | Yes | 10 | Another name for lax decimal number. Preserve first and last "n" digits; force invalid.
 
 Only exists to simplify an Application Architect mapping to the desired data domain semantics. A phone number may be encoded with up to four lax characters depending on national conventions, for example, in the U.S. (XXX) XXX­ XXXX while in Europe the format is XXX.XXX.XXXX.
 | Social Security Number (SSN) | Yes | Yes | 10 | Nine­ digit decimal number with special sub­component restrictions; a limited number of lax characters (non­-decimal digits) are allowed. Preserve serial number component; force invalid.
@@ -41,7 +43,6 @@ Only exists to simplify an Application Architect mapping to the desired data dom
 |Octal number | No | Yes | 8 | Arbitrary length octal number.
 | Binary number | No | Yes | 2 | Arbitrary length binary number.
 |===
-
 . When you select the data domain, configuration options appear. The options vary depending on the type of data domain you selected. +
 
 |===
