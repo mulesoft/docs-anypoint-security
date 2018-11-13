@@ -1,1 +1,53 @@
-= Example
+= Example: Using the Tokenization Service
+
+== Set up Tokenization with API Gateway
+
+To use the tokenization service, you need the following platform entities:
+
+* A Runtime Fabric with an ingress configured. See the Runtime Fabric documentation.
+* A Secrets group to store the tokenization table encryption keys. It is possible to reuse the Edge Secrets Group. The tokenization service will create and store its own keys. See xref:asm-secret-group-concept.adoc[Secrets Manager documentation].
+* A Tokenization format: This describes the format of the data to be tokenized and how the data will be tokenized. See xref:tokenization-formats.adoc[Tokenization Formats].
+* A Tokenization Service: This handles the actual tokenization requests and tokenizes and detokenizes the data. For security purposes, an API Gateway must protect this service.
+Api Gateway: This proxies requests to the tokenization service, provides authorization and authentication, and provides JSON protection for the tokenization service.
+
+The reference model for this example tokenization service setup can be seen in the below diagram. In this diagram, a “Sensitive Data - Compliance Zone” is used to segregate the tokenization service from the general Runtime Fabric. This segregation occurs based on security needs. This example will walk you through the setup of data in the "Sensitive Data - Compliance Zone." If sensitive data is arising from a Mule Application serving external traffic (Client -> Edge -> Mule Application), this application might be included in the sensitive data zone.
+
+image:tokenization-setup-example-diagram.png[]
+
+== Prerequisites
+
+=== Entitlements
+
+You must have the following entitlements:
+
+* Access Management
+** Create environments
+** External identity
+** Create sub-organizations (business groups)
+* Runtime Manager
+** Hybrid
+** Hybrid Insight
+** Hybrid auto discover properties
+** Runtime Fabrice
+** Security Edge policies
+** Security tokenization
+
+=== Runtime Fabric with Ingress
+
+This example shows a Runtime Fabric named "rtf231", which has an ingress that is using a certificate and private key in the secret group “alphatoken”.
+
+The image below shows an example Runtime Fabric ingress configuration.
+
+image:tokenization-example-rtf-ingress-config.png
+
+=== Secret Group
+
+Use Secrets Manager in the Anypoint platform Management Center to create and manage secret groups.
+
+Normally, you can view, edit, or create secrets in Secrets Manager. However, the tokenization table keys are a non-editable part of the secret group. You can see the tokenization secrets under shared secret, but you are not allowed to modify them. Actions such as edit, cancel edit, and finish do not apply.
+
+image:tokenization-example-shared-secret.png[]
+
+Click *View* to see the name, type, and expiration of the secret group.
+
+These secrets don't appear until after you create the tokenization services. There is one shared secret per tokenization service. The secret takes the name of the tokenization service and is appended with a numeric suffix.
