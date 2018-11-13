@@ -11,7 +11,8 @@ Tokenization formats define how the original format of data coming in is convert
 . In the Create Format dialog box, enter the following information: +
 * Name: Name for the tokenization format.
 * Description: Optionally, enter a short description for the tokenization format.
-* Data Domain: Select the data domain. Supported data domains include: +
+* Data Domain: Select the data domain. Supported data domains include:
++
 |===
 |*Domain
 Type* |*Vaultless
@@ -41,7 +42,6 @@ Only exists to simplify an Application Architect mapping to the desired data dom
 |Octal number | No | Yes | 8 | Arbitrary length octal number.
 | Binary number | No | Yes | 2 | Arbitrary length binary number.
 |===
-
 . When you select the data domain, configuration options appear. The options vary depending on the type of data domain you selected. +
 
 |===
