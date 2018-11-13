@@ -13,6 +13,7 @@ Tokenization formats define how the original format of data coming in is convert
 * Description: Optionally, enter a short description for the tokenization format.
 * Data Domain: Select the data domain. Supported data domains include:
 +
+[%header%autowidth.spread,cols="a,a,a,a,a"]
 |===
 |*Domain
 Type* |*Vaultless
