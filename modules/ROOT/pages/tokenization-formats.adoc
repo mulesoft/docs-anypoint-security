@@ -1,1 +1,20 @@
 = Tokenization Formats
+
+Tokenization formats define how the original format of data coming in is converted to the format you configure when the token is created.  For example, you can define whether to preserve certain digits, if the token should look like the original data source, or whether to tokenize the whole string of partial string.
+
+== Create a Tokenization Format
+
+. Sign into Anypoint Platform with the Organization Administrators role.
+. Under *Management Center*, click *Anypoint Security*.
+. In the menu on the left, click *Tokenization Format*.
+. Click *Create Format*.
+. In the Create Format dialog box, enter the following information: +
+* Name: Name for the tokenization format.
+* Description: Optionally, enter a short description for the tokenization format.
+* Data Domain: Select the data domain. Supported data domains include: +
+|===
+| Domain Type | Usage Summary | Domain Type| VaultlessTokenization | PIIEncryption |Radix1 | Comment
+
+| Credit CardNumber (CCN)| Yes | Yes | 10 | Decimal number with specialrestrictions on length; Luhnchecksum with limited set of laxcharacter allowed; preserve firstand last "n" digits; force invalid.
+|
+.
