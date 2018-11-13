@@ -13,8 +13,86 @@ Tokenization formats define how the original format of data coming in is convert
 * Description: Optionally, enter a short description for the tokenization format.
 * Data Domain: Select the data domain. Supported data domains include: +
 |===
-| Domain Type | Usage Summary | Domain Type| VaultlessTokenization | PIIEncryption |Radix1 | Comment
+|*Domain
+Type* |*Vaultless
+Tokenization* |*PII
+Encryption* |*Radix1* |*Comment*
 
-| Credit CardNumber (CCN)| Yes | Yes | 10 | Decimal number with specialrestrictions on length; Luhnchecksum with limited set of laxcharacter allowed; preserve firstand last "n" digits; force invalid.
-|
-.
+|Credit CardNumber (CCN)| Yes | Yes | 10 |Decimal number with special restrictions on length. Luhn checksum with limited set of lax character allowed; preserve first and last "n" digits; force invalid.
+|Decimal number | Yes | Yes | 10 |Arbitrary length decimal number; preserve first and last "n" digits; force invalid.
+|Lax decimal number | Yes | Yes | 10 | Arbitrary length decimal number with lax characters allowed; preserve first and last "n" digits; force invalid.
+|Phone number | No | Yes | 10 | Another name for lax decimal number. Preserve first and last "n" digits; force invalid.
+
+Only exists to simplify an Application Architect mapping to the desired data domain semantics. A phone number may be encoded with up to four lax characters depending on national conventions, for example, in the U.S. (XXX) XXX­ XXXX while in Europe the format is XXX.XXX.XXXX.
+| Social Security Number (SSN) | Yes | Yes | 10 | Nine­ digit decimal number with special sub­component restrictions; a limited number of lax characters (non­-decimal digits) are allowed. Preserve serial number component; force invalid.
+| Email address | Yes | Yes | 83
+64 | Complex domain with separate restrictions for local­ part (Radix = 83) and domain (Radix = 64) components.
+| String | Yes | Yes | 95 | Subset of the UTF­8 characters between unicode number (int) 32 through 126 (A­Za­ z0­9, space, double quote) and the following special characters: ``!#$%&'()*+,­./:;<=>?@[\]^_`{}~`` Normal keyboard characters are allowed called Printable ASCII in tokenization. Preserve first and last "n" characters.
+| Name | No | Yes | 115 | Alphanumeric with multi­byte diacritical marks. Clear­text and obfuscated ­text lengths can vary.
+| Address | No | Yes | 116 | Alphanumeric with multi­byte diacritical marks and other special characters. Clear­text and obfuscated­ text lengths can vary.
+| Lax alphanumeric | Yes | Yes | 62 | Uppercase Latin, lowercase Latin, and decimal characters obfuscated but with lax characters allowed; preserve first and last "n" characters.
+|Lax uppercase | No | Yes | 26 | Uppercase Latin characters obfuscated with lax characters allowed.
+|Lax lowercase | No | Yes | 26 | Lowercase Latin characters obfuscated with lax characters allowed.
+|Lax upper, lowercase and decimal preserving | Yes | Yes |26, 26, 10 |Uppercase Latin characters in the clear­text will remain uppercase Latin characters in the obfuscated­ text. Lowercase Latin characters in the clear­text will remain lowercase Latin in the obfuscated­ text. Decimal digits in the clear­text will remain decimal digits in the obfuscated­ text. All other characters will be handled as lax characters. Preserve first and last "n" characters.
+|Lax uppercase and decimal preserving | Yes | No |26, 10 | Uppercase Latin characters in the clear­text will remain uppercase Latin characters in the obfuscated­ text. Decimal digits in the clear­text will remain decimal digits in the obfuscated­ text. All other characters will be handled as lax characters. Preserve first and last "n" characters.
+|Lax lowercase and decimal preserving | Yes | No |26, 10 | Lowercase Latin characters in the clear­text remain lowercase Latin in the obfuscated­ text. Decimal digits in the clear­text remain decimal digits in the obfuscated­ text. All other characters are handled as lax characters. Preserve first and last "n" characters.
+| Base64 with “=” padding | No | Yes | 65 | Cover base64 encoding character set and optional padding character.
+| Hexadecimal number | No | Yes | 16 | Arbitrary length hexadecimal number. Only lowercase Latin af allowed.
+|Octal number | No | Yes | 8 | Arbitrary length octal number.
+| Binary number | No | Yes | 2 | Arbitrary length binary number.
+|===
+
+. When you select the data domain, configuration options appear. The options vary depending on the type of data domain you selected. +
+
+|===
+|Option |Description
+
+|*Preserve characters* | Defines the number of characters from the original string to NOT tokenize. +
+
+First: Enter a value for the number of beginning digits to preserve. For example, `4`.
+
+Last: Enter a value for the number of last digits to preserve. For example, `4`. +
+
+Using the example values of 4 for first and last respectively, means that the first four digits and last four digits of the original string are preserved, and everything in between will be tokenized.
+|*Force token characters in illegal range* |For example, let's say that you have the PAN 1234567890123456 and you have set the Preserve characters option to preserve the last 4 digits and force an invalid 1 digit with an offset of 2 from left. The generated token would look similar to: 54D3210987653456.
+
+A decimal digit will be mapped into the Latin alphabet character range.
+
+[NOTE]
+You are limited to two illegal characters because you really only need one to make the data invalid (such as adding a letter A to a social security number). Adding additional invalid characters results in reducing the data to tokenize.
+|*Luhn digit test* |Use the Luhn checksum formula to validate the digits contained in the original data.
+|*Maximum token length* |Enter a value for the maximum number of digits for the generated token.
+|*Preserve serial number sub-component* |This option is for the social security data domain only.
+|===
+
+
+== Customize Credit Card Formats
+
+You can use the built-in credit card formats, or customize them.
+
+|===
+|Field |Description
+
+|Name |Name of the card customization.
+|Start Prefix |Digits the card prefix starts with, for example `51`.
+|End Prefix | Digits the card number prefix range ends with, for example, 55.
+
+Using the example values of 51 for the start prefix and 55 for the end prefix means that cards beginning with 51 through 55 are valid.
+|Check Digit | Check whether the card conforms to Luhn standard.
+|No. of Digits |Total number of digits the card number should have.
+|===
+
+=== Add Custom Credit Card Formats
+
+. Click *Credit Card Formats*.
+. Click the plus sign *+*.
+. In the *Add Credit Card Format* dialog, enter the information for the customized fields, then click *Done*.
+. Click *Save* in the *Create Format* page.
+
+=== Customize the Fields:
+
+. Click *Credit Card Formats*.
+. Select *Use custom credit card formats*.
+. Click *Edit*.
+. In the *Edit Credit Card Format* dialog, make your changes, then click *Done*.
+. Click *Save* in the *Create Format* page.
