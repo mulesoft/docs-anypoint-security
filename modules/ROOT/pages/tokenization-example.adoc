@@ -96,7 +96,7 @@ The service is available only via HTTPS. The tokenization service is hardcoded t
 
 image:tokenization-example-confirm-rtf-assignment.png[]
 
-=== Create an API from the Tokenization RAML
+== Create an API from the Tokenization RAML
 
 Once you have the information you need to set up a routable tokenization service using an Api Gateway, create an API from the tokenization RAML.
 
@@ -117,7 +117,7 @@ image:tokenization-example-deploy-config.png[]
 .. Select *Actions > Download Proxy*. +
 image:tokenization-example-download-proxy.png[]
 
-=== Configure Security
+== Configure Security
 
 . Go to Anypoint Studio, and import the API Gateway. +
 image:tokenization-example-import-api-gateway-studio.png[]
@@ -130,4 +130,37 @@ image:tokenization-example-set-keystore-info.png[]
 . Now set the HTTPS on the server tab, then configure your keystore on the TLS side to configure the client side. +
 image:tokenization-example-configure-TLS.png[]
 . Save the application and export it. Remember where it is saved so you can upload it in the next step.
-.
+
+== Add the TLS Enabled API Gateway
+
+. In Anypoint Platform, go to the Runtime Manager page and click on the name of the API Gateway application `token2mule`.
+. In the Settings page select *Choose File ­> Upload File* to upload the API Gateway application you modified in Anypoint Studio.
+. Select the *Enable Last­Mile Security* option. Your settings should look similar to the below image. +
+image:tokenization-example-add-tls-enabled-gateway.png[]
+. Click *Deploy*. Once the application has a status of "Running" you are ready to test.
+
+== Test the Tokenization Traffic
+
+Once the application is running, you are ready to send traffic. To try a tokenization, send the following curl command:
+
+`curl ­k ­­resolve token2mule.ic.intel.com:443:10.230.36.230 \https://token2mule.ic.intel.com/tb/v1/tokenization ­X POST ­H "Content­type: application/json" ­­data '[{"data": "683­31­8102", "format": "ssndemo"}]' ­k
+
+HTTP/1.1 200 OK [{"data":"597­74­8102","status":"success"}]``f
+
+== Add Authorization and JSON Threat Protection
+
+The Tokenization Service has no authentication or authorization. The only way to protect it is to only allow access through an Api Gateway with some type of Auth Policy enabled.
+
+This example shows you how to add a basic auth policy to provide a very simple authentication.
+
+. Go to the API Manager page where you created the API Gateway.
+. In the menu on the left, click *Policies*.
+. Create a “Simple Security manager” and add a simple username and password. +
+image:tokenization-example-apply-simple-security.png[]
+. Click *Apply New Policy* and add the “HTTP Basic Authorization” policy.
+. Add the JSON threat protection policy. The below image shows an example. +
+image:tokenization-example-json-threat-protection.png[] +
+The Policies page should look similar to the below example. +
+image:tokenization-example-policies-page.png[]
+
+==

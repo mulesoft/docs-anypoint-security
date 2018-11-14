@@ -8,7 +8,7 @@ Additionally, your account must have associated the *Runtime Fabrics* and *Secur
 
 == Procedure
 
-. Go to *Runtime Manager*, click *Runtime Fabric* from the left navigation bar, and select the runtime fabric to which you want to enable Edge policies.
+. Go to *Runtime Manager*, click *Runtime Fabric* from the left navigation bar, and select the runtime fabric for which to enable Edge policies.
 . Click the *Inbound Traffic* tab, and navigate to *Security Policies*.
 . For each policy, select the name of the policy you want to apply.
 
