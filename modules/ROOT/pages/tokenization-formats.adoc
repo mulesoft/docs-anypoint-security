@@ -8,10 +8,10 @@ Tokenization formats define how the original format of data coming in is convert
 . Under *Management Center*, click *Anypoint Security*.
 . In the menu on the left, click *Tokenization Format*.
 . Click *Create Format*.
-. In the Create Format dialog box, enter the following information: +
-* Name: Name for the tokenization format.
-* Description: Optionally, enter a short description for the tokenization format.
-* Data Domain: Select the data domain. Supported data domains include:
+. In the *Create Format* dialog box, enter the following information: +
+* *Name*: Name for the tokenization format.
+* *Description*: Optionally, enter a short description for the tokenization format.
+* *Data Domain*: Select the data domain. Supported data domains include:
 +
 [%header%autowidth.spread,cols="a,a,a,a,a"]
 |===
@@ -28,7 +28,7 @@ Encryption* |*Radix1* |*Comment*
 Only exists to simplify an Application Architect mapping to the desired data domain semantics. A phone number may be encoded with up to four lax characters depending on national conventions, for example, in the U.S. (XXX) XXX­ XXXX while in Europe the format is XXX.XXX.XXXX.
 | Social Security Number (SSN) | Yes | Yes | 10 | Nine­ digit decimal number with special sub­component restrictions; a limited number of lax characters (non­-decimal digits) are allowed. Preserve serial number component; force invalid.
 | Email address | Yes | Yes | 83, 64 | Complex domain with separate restrictions for local­ part (Radix = 83) and domain (Radix = 64) components.
-| String | Yes | Yes | 95 | Subset of the UTF­8 characters between unicode number (int) 32 through 126 (A­Za­ z0­9, space, double quote) and the following special characters: ``!#$%&'()*+,­./:;<=>?@[\]^_`{}~`` Normal keyboard characters are allowed called Printable ASCII in tokenization. Preserve first and last "n" characters.
+|Printable ASCII | Yes | Yes | 95 | Subset of the UTF­8 characters between unicode number (int) 32 through 126 (A­Za­ z0­9, space, double quote) and the following special characters: ``!#$%&'()*+,­./:;<=>?@[\]^_`{}~`` Normal keyboard characters are allowed called Printable ASCII in tokenization. Preserve first and last "n" characters.
 | Name | No | Yes | 115 | Alphanumeric with multi­byte diacritical marks. Clear­text and obfuscated ­text lengths can vary.
 | Address | No | Yes | 116 | Alphanumeric with multi­byte diacritical marks and other special characters. Clear­text and obfuscated­ text lengths can vary.
 | Lax alphanumeric | Yes | Yes | 62 | Uppercase Latin, lowercase Latin, and decimal characters obfuscated but with lax characters allowed; preserve first and last "n" characters.

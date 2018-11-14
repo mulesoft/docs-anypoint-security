@@ -194,8 +194,48 @@ HTTP/1.1 200 OK [{"data":"597­74­8102­­­­­­­­sdsdsdsdsdsdsdsds","statu
 
 The following is an example of bad tokenization JSON data stopped by Api Gateway protection:
 
-`curl ­v ­k ­­resolve token2mule.ic.intel.com:443:10.230.36.230 https://token2mule.ic.intel.com/tb/v1/detokenization ­X POST ­H "Content­type: application/json" ­­data '[{{{}{{{}]]"data": "597­74­8102­­­­­­­­sdsdsdsdsdsdsdsds", "format": "ssndemo"}]' ­k ­­user test:test
+`curl ­v ­k ­­resolve token2mule.ic.intel.com:443:10.230.36.230 \https://token2mule.ic.intel.com/tb/v1/detokenization ­X POST ­H "Content­type: application/json" ­­data '[{{{}{{{}]]"data": "597­74­8102­­­­­­­­sdsdsdsdsdsdsdsds", "format": "ssndemo"}]' ­k ­­user test:test
 
 HTTP/1.1 400 Bad Request
 { "error": "invalid_json", "description": "Unexpected character ('{' (code 123)): was expecting double­quote to start field name Connection #0 to host token2mule.ic.intel.com left intact
 at [Source: (com.mulesoft.module.threat.RewindableInputStream); line: 1, column: 4]" }``
+
+== Logs
+
+You can use the tokenization summary message that is returned in the logs to determine traffic counts.
+
+The log tag entry is `rtfTokenizationStatistics`, stats are a JSON string and rendered every 5 minutes at forced log entry of RTC `INFO` level (not subject to log level settings).
+
+The following is an example of the tokenization summary message:
+
+`<logEntry>
+<header>
+<time>2018-11-12T14:55:00.009667</time>
+<node>icvlab11401</node>
+<logType>RTC_BASE_MGMT</logType>
+<logLevel>INFO</logLevel>
+<process>WorkflowTest</process>
+<pid>16766</pid>
+<tid>16775</tid>
+<file>cbrsrc/cbrcore/src/rtc/embedded/wfp/WfpTokenizationStatistics.cpp</file>
+<line>98</line>
+</header>
+<body><rtfTokenizationStatistics>{"tokenizationStatistics":{"node":"icvlab11401","timestamp":"2018-11-12T20:55:00.009Z","tokenizeSuccess":2,"deTokenizeSuccess":6,"tokenizedBytes":6,"deTokenizedBytes":32,"tokenizeFailure":2,"deTokenizeFailure":2,"tokenizeFailedBytes":5,"deTokenizeFailedBytes":0}}</rtfTokenizationStatistics></body>+
+</logEntry>
+
+{
+ "tokenizationStatistics":{
+   "node":"icvlab11401",
+   "timestamp":"2018-11-12T20:55:00.009Z",
+   "tokenizeSuccess":2,
+   "deTokenizeSuccess":6,
+   "tokenizedBytes":6,
+   "deTokenizedBytes":32,
+   "tokenizeFailure":2,
+   "deTokenizeFailure":2,
+   "tokenizeFailedBytes":5,
+   "deTokenizeFailedBytes":0
+ }
+}`
+
+Failures are only incremented for actual tokenization and detokenization failures. Other failures, such as protocol errors in the requests, do not count towards the failure statistics. An example of a failure is an unknown token string that can't be detokenized.
