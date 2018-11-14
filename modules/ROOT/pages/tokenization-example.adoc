@@ -100,9 +100,14 @@ image:tokenization-example-confirm-rtf-assignment.png[]
 
 Once you have the information you need to set up a routable tokenization service using an Api Gateway, create an API from the tokenization RAML.
 
-. In Anypoint Platform, go to *Design Center*.
-. Create a new API specification. +
+
+. In Anypoint Platform, go to Exchange, and search for "AMC Tokenization."
+. Download the `AMC Tokenizer` zip file.
+. Go to *Design Center* and select *Create > API Specification*, and name it "AMC Tokenizer". +
 image:tokenization-example-create-api-spec.png[]
+. Next to *File*, select *Import* and upload the `AMC Tokenizer.zip` file you downloaded from Exchange in Step 1. +
+image:tokenization-example-upload-amc-tokenizer.png[]
+. Delete the `amc.tokenizer.rml` and keep the `AnypointSecurityToken.raml` you uploaded.
 . Publish the asset to Anypoint Exchange.
 . Navigate to *API Manager* from the top level Anypoint Platform menu.
 . Select *Manage API > Manage API from Exchange*. +
