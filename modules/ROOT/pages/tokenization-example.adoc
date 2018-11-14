@@ -79,3 +79,55 @@ A mapping table, which contains a large table of randomizations that are used at
 * The tokenization mapping table can take as little as two minutes to build for an SSN only table (< 200 mb in size) and can take up to twenty minutes to build for larger formats such as “lax alphanumeric”. If many or all of the formats are selected, it can take can take a very long time to build the table for the service i.e. 70 minutes. A table with all formats is roughly 2 GB in size. This is a one time action.
 
 image:tokenization-example-create-tokenization-service.png[]
+
+Now that you have created the tokenization service, you need to create an API Gateway to route requests to the tokenization service.
+
+== Creating an API Gateway for the Tokenization Service
+
+Go to the Tokenization Service page in Runtime Manager to get the information you need for the implementation URL.
+
+. In Runtime Manager, click *Tokenization Service* in the menu on the left.
+. Click *Edit* for the tokenization service for which to create the API Gateway. +
+image:tokenization-example-edit-token-service.png[]
+. Confirm the Runtime Fabric assignment. +
+In the below image, the tokenization service name is “mytoken1” and the implementation URL will be: “https://mytoken1­tokenizer:3443”.
+
+The service is available only via HTTPS. The tokenization service is hardcoded to listen on port 3443. The hostname portion is formed by taking the “Service Name” + “tokenizer” to arrive at the Kubernetes service name. The service name in this example is “mytoken1”.
+
+image:tokenization-example-confirm-rtf-assignment.png[]
+
+=== Create an API from the Tokenization RAML
+
+Once you have the information you need to set up a routable tokenization service using an Api Gateway, create an API from the tokenization RAML.
+
+. In Anypoint Platform, go to *Design Center*.
+. Create a new API specification. +
+image:tokenization-example-create-api-spec.png[]
+. Publish the asset to Anypoint Exchange.
+. Navigate to *API Manager* from the top level Anypoint Platform menu.
+. Select *Manage API > Manage API from Exchange*. +
+image:tokenization-example-manage-api-from-exchange.png[]
+. Enter the API configuration information, and click *Save*. The following image shows example values. +
+image:tokenization-example-api-configuration.png[]
+. Go to the Deployment Configuration, select your Runtime Fabric and Mule version, then enter a name for the API Gateway. The following example shows information for an API Gateway named "token2mule". +
+image:tokenization-example-deploy-config.png[]
+. Click *Deploy*. The button changes to *Redeploy* after the first deployment finishes. This deploys the API Gateway application.
+. Download the API Gateway application to configure SSL within it:
+.. In API Manager, go to the *Settings* page for your API.
+.. Select *Actions > Download Proxy*. +
+image:tokenization-example-download-proxy.png[]
+
+=== Configure Security
+
+. Go to Anypoint Studio, and import the API Gateway. +
+image:tokenization-example-import-api-gateway-studio.png[]
+. Go to `src/main/resources` and add the keystore. In this example the keystore is named “tester.jks”. +
+image:tokenization-example-keystore.png[]
+. Add TLS to the listener side so you can later enable the `Last Mile Security` flag. To do this, first set the HTTPS flag. +
+image:tokenization-example-set-https-flag.png[]
+. Set the keystore information. In this example the trust store side is set to *insecure* and the keystore, alias, and password information has been added. +
+image:tokenization-example-set-keystore-info.png[]
+. Now set the HTTPS on the server tab, then configure your keystore on the TLS side to configure the client side. +
+image:tokenization-example-configure-TLS.png[]
+. Save the application and export it. Remember where it is saved so you can upload it in the next step.
+.
