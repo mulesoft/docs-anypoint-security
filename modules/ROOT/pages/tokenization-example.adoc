@@ -202,7 +202,7 @@ at [Source: (com.mulesoft.module.threat.RewindableInputStream); line: 1, column:
 
 == Logs
 
-You can use the tokenization summary message that is returned in the logs to determine traffic counts.
+You can use the tokenization summary message that is returned in the logs to determine traffic counts. To retrieve the logs, follow the instructions in the xref:configure-log-forwarding.adoc[Runtime Fabric documentation] for configuring log forwarding.
 
 The log tag entry is `rtfTokenizationStatistics`, stats are a JSON string and rendered every 5 minutes at forced log entry of RTC `INFO` level (not subject to log level settings).
 
