@@ -89,7 +89,7 @@ Using the example values of 51 for the start prefix and 55 for the end prefix me
 . In the *Add Credit Card Format* dialog, enter the information for the customized fields, then click *Done*.
 . Click *Save* in the *Create Format* page.
 
-=== Customize the Fields:
+=== Customize the Fields
 
 . Click *Credit Card Formats*.
 . Select *Use custom credit card formats*.
