@@ -2,7 +2,7 @@
 
 == Set up Tokenization with API Gateway
 
-To use the tokenization service, you need the following platform entities:
+To use the tokenization service, you need the following:
 
 * A Runtime Fabric with an ingress configured. See the Runtime Fabric documentation.
 * A Secrets group to store the tokenization table encryption keys. It is possible to reuse the Edge Secrets Group. The tokenization service will create and store its own keys. See xref:asm-secret-group-concept.adoc[Secrets Manager documentation].
@@ -38,7 +38,7 @@ This example shows a Runtime Fabric named "rtf231", which has an ingress that is
 
 The image below shows an example Runtime Fabric ingress configuration.
 
-image:tokenization-example-rtf-ingress-config.png
+image:tokenization-example-rtf-ingress-config.png[]
 
 === Secret Group
 
@@ -51,3 +51,31 @@ image:tokenization-example-shared-secret.png[]
 Click *View* to see the name, type, and expiration of the secret group.
 
 These secrets don't appear until after you create the tokenization services. There is one shared secret per tokenization service. The secret takes the name of the tokenization service and is appended with a numeric suffix.
+
+== Create the Tokenization Format
+
+. Sign into Anypoint Platform with the Organization Administrators role.
+. Under *Management Center*, click *Anypoint Security*.
+. In the menu on the left, click *Tokenization Format*.
+. Click *Create Format*. +
+The example below shows a social security data domain format named "sssnonly" with the options checkboxes unchecked.
+
+image:tokenization-example-format.png[]
+
+== Creating the Tokenization Service
+
+. Go to the *Runtime Manager­>Tokenization Service* page to create the service.
+. Click *Create Tokenization Service*. The “Mule Cloud” means “Runtime Fabric Target”. The prerequisites you completed provide the information you need to fill out the form. This example shows the form filled in with the following values: +
+* The Runtime Fabric named `rtf231` is in the *Mule Cloud* drop-down.
+* The tokenization format `sssnonly` you created appears in the *Format* drop-down. You can assign more than one, or all, formats to one tokenization service.
+* The Secret Group `alphatoken` appears in the *Secrets Group* drop-down.
+* Select the number of tokenization service replicas to run. The tokenization service will run on worker nodes in Runtime Fabric.
+* Optionally, you can adjust the logging level for the tokenization service.
+* The tokenization table is created when you click *Deploy*. +
+A mapping table, which contains a large table of randomizations that are used at the core of tokenizing and detokenizing will pre-build. This is not a one-to-one table of mappings--it is used during internal steps to swap in and swap out randomizations in place of the actual data. The actual algorithm consists of these three steps:
+** First stage transformation: Perform AES­FFX[radix] specific domain encryption using first stage symmetric key and tweak. This will redistribute the information contained within the data to be tokenized across all characters of the extracted data.
+** Second stage transformation: Look­up and replace chunks of the clear­text data with the appropriate precomputed randomization in the mapping table.
+** Third stage transformation: Perform AES­FFX[radix] specific domain encryption using third stage symmetric key and tweak. This will redistribute the information mapped by the multiple table look­ups of the preceding step across all of the extracted.
+* The tokenization mapping table can take as little as two minutes to build for an SSN only table (< 200 mb in size) and can take up to twenty minutes to build for larger formats such as “lax alphanumeric”. If many or all of the formats are selected, it can take can take a very long time to build the table for the service i.e. 70 minutes. A table with all formats is roughly 2 GB in size. This is a one time action.
+
+image:tokenization-example-create-tokenization-service.png[]
