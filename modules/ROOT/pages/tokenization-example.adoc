@@ -221,8 +221,9 @@ The following is an example of the tokenization summary message:
 <line>98</line>
 </header>
 <body><rtfTokenizationStatistics>{"tokenizationStatistics":{"node":"icvlab11401","timestamp":"2018-11-12T20:55:00.009Z","tokenizeSuccess":2,"deTokenizeSuccess":6,"tokenizedBytes":6,"deTokenizedBytes":32,"tokenizeFailure":2,"deTokenizeFailure":2,"tokenizeFailedBytes":5,"deTokenizeFailedBytes":0}}</rtfTokenizationStatistics></body>+
-</logEntry>
+</logEntry>`
 
+[source,json,linenums]
 {
  "tokenizationStatistics":{
    "node":"icvlab11401",
@@ -236,6 +237,6 @@ The following is an example of the tokenization summary message:
    "tokenizeFailedBytes":5,
    "deTokenizeFailedBytes":0
  }
-}`
+}
 
 Failures are only incremented for actual tokenization and detokenization failures. Other failures, such as protocol errors in the requests, do not count towards the failure statistics. An example of a failure is an unknown token string that can't be detokenized.
