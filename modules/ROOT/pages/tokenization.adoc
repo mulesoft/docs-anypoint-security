@@ -1,7 +1,8 @@
 = Tokenization Service
 
 Anypoint Security's tokenization service allows you to protect sensitive data from unwanted exposure, by replacing key values, such as a credit card number, with a token. +
-You can determine when to apply this token via a lightweight API policy.
+//You can determine when to apply this token via a lightweight API policy.
+You can determine when to apply this token using a lightweight API through a configured Tokenization Service.
 
 The tokenization service addresses a variety of data security needs:
 
@@ -12,6 +13,7 @@ No downstream application changes needed. Compliance scope reduction (PCI, HIPAA
 
 image::index-a21f8.png[index-a21f8]
 
+////
 == Format Preserving Encryption
 
 Information anonymization. +
@@ -25,6 +27,7 @@ Sensitive data obfuscation. +
 One way process: Cannot get original value back
 
 image::index-346fa.png[index-346fa]
+////
 
 == See Also
 

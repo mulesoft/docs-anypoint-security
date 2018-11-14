@@ -71,7 +71,7 @@ image:tokenization-example-format.png[]
 * The Secret Group `alphatoken` appears in the *Secrets Group* drop-down.
 * Select the number of tokenization service replicas to run. The tokenization service will run on worker nodes in Runtime Fabric.
 * Optionally, you can adjust the logging level for the tokenization service.
-* The tokenization table is created when you click *Deploy*. +
+. Click Deploy to create the tokenization table. +
 A mapping table, which contains a large table of randomizations that are used at the core of tokenizing and detokenizing will pre-build. This is not a one-to-one table of mappings--it is used during internal steps to swap in and swap out randomizations in place of the actual data. The actual algorithm consists of these three steps:
 ** First stage transformation: Perform AES­FFX[radix] specific domain encryption using first stage symmetric key and tweak. This will redistribute the information contained within the data to be tokenized across all characters of the extracted data.
 ** Second stage transformation: Look­up and replace chunks of the clear­text data with the appropriate precomputed randomization in the mapping table.
