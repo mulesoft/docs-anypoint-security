@@ -163,4 +163,39 @@ image:tokenization-example-json-threat-protection.png[] +
 The Policies page should look similar to the below example. +
 image:tokenization-example-policies-page.png[]
 
-==
+== Test Runtime Traffic with Basic Authorization
+
+Run the following curl command to send traffic with the ``--user` flag for basic authorization.
+
+`curl ­k ­­resolve token2mule.ic.intel.com:443:10.230.36.230 \https://token2mule.ic.intel.com/tb/v1/tokenization ­X POST ­H "Content­type: application/json" ­­data '[{"data": "683­31­8102", "format": "ssndemo"}]' ­k ­­user test:test
+
+HTTP/1.1 200 OK [{"data":"597­74­8102","status":"success"}]``
+
+You can take the tokenized SSN from above and send it back into the service. You will receive the original SSN returned. Remember that the token returned is always format preserving.
+
+`curl ­k ­­resolve token2mule.ic.intel.com:443:10.230.36.230 \https://token2mule.ic.intel.com/tb/v1/detokenization ­X POST ­H "Content­type: application/json" ­­data '[{"data": "597­74­8102", "format": "ssndemo"}]' ­k ­­user test:test
+
+HTTP/1.1 200 OK [{"data":"683­31­8102","status":"success"}][root@openstackvm32 pentest­ca]``
+
+[NOTE]
+If you send in bad data to tokenize or detokenize, you will still receive a `200 OK` back. You will be able to see that there is a failure by looking at the body data.
+
+The following is an example of bad tokenization:
+
+`curl ­v ­k ­­resolve token2mule.ic.intel.com:443:10.230.36.230 \https://token2mule.ic.intel.com/tb/v1/tokenization ­X POST ­H "Content­type: application/json" ­­data '[{"data": "597­74­8102­­­­­­­­sdsdsdsdsdsdsdsds", "format": "ssndemo"}]' ­k ­­user test:test
+
+HTTP/1.1 200 OK [{"data":"597­74­8102­­­­­­­­sdsdsdsdsdsdsdsds","status":"failure"}]``
+
+The following is an example of bad detokenization:
+
+`curl ­v ­k ­­resolve token2mule.ic.intel.com:443:10.230.36.230 \https://token2mule.ic.intel.com/tb/v1/detokenization ­X POST ­H "Content­type: application/json" ­­data '[{"data": "597­74­8102­­­­­­­­sdsdsdsdsdsdsdsds", "format": "ssndemo"}]' ­k ­­user test:test
+
+HTTP/1.1 200 OK [{"data":"597­74­8102­­­­­­­­sdsdsdsdsdsdsdsds","status":"failure"}]``
+
+The following is an example of bad tokenization JSON data stopped by Api Gateway protection:
+
+`curl ­v ­k ­­resolve token2mule.ic.intel.com:443:10.230.36.230 https://token2mule.ic.intel.com/tb/v1/detokenization ­X POST ­H "Content­type: application/json" ­­data '[{{{}{{{}]]"data": "597­74­8102­­­­­­­­sdsdsdsdsdsdsdsds", "format": "ssndemo"}]' ­k ­­user test:test
+
+HTTP/1.1 400 Bad Request
+{ "error": "invalid_json", "description": "Unexpected character ('{' (code 123)): was expecting double­quote to start field name Connection #0 to host token2mule.ic.intel.com left intact
+at [Source: (com.mulesoft.module.threat.RewindableInputStream); line: 1, column: 4]" }``
