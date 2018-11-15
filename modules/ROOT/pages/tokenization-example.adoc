@@ -4,13 +4,15 @@
 
 To configure the tokenization service, you need the following:
 
-* A Runtime Fabric with an ingress configured. See xref:runtime-fabric::index.adoc[the Runtime Fabric documentation].
+* A Runtime Fabric with an ingress configured. See xref:1.0@runtime-fabric::index.adoc[the Runtime Fabric documentation].
 * A Secrets group to store the tokenization table encryption keys. It is possible to reuse the Edge Secrets Group. The tokenization service will create and store its own keys. See xref:asm-secret-group-concept.adoc[Secrets Manager documentation].
-* A Tokenization format: This describes the format of the data to be tokenized and how the data will be tokenized. See xref:tokenization-formats.adoc[Tokenization Formats].
-* A Tokenization Service: This handles the actual tokenization requests and tokenizes and detokenizes the data. For security purposes, an API Gateway must protect this service.
-Api Gateway: This proxies requests to the tokenization service, provides authorization and authentication, and provides JSON protection for the tokenization service.
+* A tokenization format: This describes the format of the data to be tokenized and how the data will be tokenized. See xref:tokenization-formats.adoc[Tokenization Formats].
+* A tokenization service: This handles the actual tokenization requests and tokenizes and detokenizes the data. For security purposes, an API Gateway must protect this service.
+* Api Gateway: This proxies requests to the tokenization service, provides authorization and authentication, and provides JSON protection for the tokenization service.
 
-The reference model for this example tokenization service setup can be seen in the below diagram. In this diagram, a “Sensitive Data - Compliance Zone” is used to segregate the tokenization service from the general Runtime Fabric. This segregation occurs based on security needs. This example will walk you through the setup of data in the "Sensitive Data - Compliance Zone." If sensitive data is arising from a Mule Application serving external traffic (Client -> Edge -> Mule Application), this application might be included in the sensitive data zone.
+The reference model for this example tokenization service setup can be seen in the below diagram. In this diagram, a “Sensitive Data - Compliance Zone” is used to segregate the tokenization service from the general Runtime Fabric. This segregation occurs based on security needs.
+
+The steps in this document walk you through the setup of data in the "Sensitive Data - Compliance Zone." If sensitive data is produced from a Mule Application serving external traffic (Client -> Edge -> Mule Application), this application might be included in the sensitive data zone.
 
 image:tokenization-setup-example-diagram.png[]
 
@@ -34,9 +36,11 @@ You must have the following entitlements:
 
 === Runtime Fabric with Ingress
 
-This example shows a Runtime Fabric named "rtf231", which has an ingress that is using a certificate and private key in the secret group “alphatoken”. If you already have a Runtime Fabric and Secrets Group configured, use those names in places of the ones in the example.
+This example shows a Runtime Fabric named "rtf231", which has an ingress that is using a certificate and private key in the secret group “alphatoken”. If you already have a Runtime Fabric and Secret Group configured, use those names in places of the ones in the example.
 
-The image below shows an example xref:runtime-fabric::enable-inbound-traffic.adoc[Runtime Fabric ingress configuration].
+For more information, see xref:1.0@runtime-fabric::enable-inbound-traffic.adoc[Runtime Fabric ingress configuration].
+
+The image below shows an example.
 
 image:tokenization-example-rtf-ingress-config.png[]
 
@@ -70,8 +74,8 @@ image:tokenization-example-format.png[]
 
 == Creating the Tokenization Service
 
-[NOTE]
- You will need to download the automatically generated API Gateway Mule App. You must add TLS manually to the API Gateway Mule application connectors before you can make this service work. Tokenization involves sensitive data, and therefore, it works only with TLS.
+*[NOTE]*
+ *You will need to download the automatically generated API Gateway Mule App. You must add TLS manually to the API Gateway Mule application connectors before you can make this service work. Tokenization involves sensitive data, and therefore, it works only with TLS.*
 
 . Go to the *Runtime Manager­>Tokenization Service* page to create the service.
 . Click *Create Tokenization Service*. The “Mule Cloud” means “Runtime Fabric Target”. The prerequisites you completed provide the information you need to fill out the form. This example shows the form filled in with the following values: +
@@ -80,12 +84,12 @@ image:tokenization-example-format.png[]
 * The Secret Group `alphatoken` appears in the *Secrets Group* drop-down.
 * Select the number of tokenization service replicas to run. The tokenization service will run on worker nodes in Runtime Fabric.
 * Optionally, you can adjust the logging level for the tokenization service.
-. Click Deploy to create the tokenization table. +
+. Click *Deploy* to create the tokenization table. +
 A mapping table, which contains a large table of randomizations that are used at the core of tokenizing and detokenizing will pre-build. This is not a one-to-one table of mappings--it is used during internal steps to swap in and swap out randomizations in place of the actual data. The actual algorithm consists of these three steps:
 ** First stage transformation: Perform AES­FFX[radix] specific domain encryption using first stage symmetric key and tweak. This will redistribute the information contained within the data to be tokenized across all characters of the extracted data.
 ** Second stage transformation: Look­up and replace chunks of the clear­text data with the appropriate precomputed randomization in the mapping table.
-** Third stage transformation: Perform AES­FFX[radix] specific domain encryption using third stage symmetric key and tweak. This will redistribute the information mapped by the multiple table look­ups of the preceding step across all of the extracted.
-* The tokenization mapping table can take as little as two minutes to build for an SSN only table (< 200 mb in size) and can take up to twenty minutes to build for larger formats such as “lax alphanumeric”. If many or all of the formats are selected, it can take can take a very long time to build the table for the service i.e. 70 minutes. A table with all formats is roughly 2 GB in size. This is a one time action.
+** Third stage transformation: Perform AES­FFX[radix] specific domain encryption using third stage symmetric key and tweak. This will redistribute the information mapped by the multiple table look­ups of the preceding step across all of the extracted. +
+The tokenization mapping table can take as little as two minutes to build for an SSN only table (< 200 mb in size) and can take up to twenty minutes to build for larger formats such as “lax alphanumeric”. If many or all of the formats are selected, it can take a very long time to build the table for the service (~70 minutes). A table with all formats is roughly 2 GB in size. This is a one time action.
 
 image:tokenization-example-create-tokenization-service.png[]
 
@@ -164,7 +168,7 @@ An example curl command is provided below. Replace the IP address with your own 
 
 To try a tokenization, send the following curl command:
 
-curl ­-k ­­--resolve token2mule.ic.intel.com:443:10.230.36.230 https://token2mule.ic.intel.com/tb/v1/tokenization -­X POST -­H "Content­type: application/json" ­­--data '[{"data": "683­31­8102", "format": "ssndemo"}]'
+curl ­-k ­­--resolve token2mule.ic.intel.com:443:10.230.36.230 \https://token2mule.ic.intel.com/tb/v1/tokenization -­X POST -­H "Content­type: application/json" ­­--data '[{"data": "683­31­8102", "format": "ssndemo"}]'
 
 HTTP/1.1 200 OK [{"data":"597­74­8102","status":"success"}]``
 
@@ -181,7 +185,8 @@ image:tokenization-example-apply-simple-security.png[]
 . Click *Apply New Policy* and add the “HTTP Basic Authorization” policy.
 . Add the JSON threat protection policy. +
 [NOTE]
-A maximum of 200 tokenization or detokenization items can be included in each tokenization or detokenization request.+
+A maximum of 200 tokenization or detokenization items can be included in each tokenization or detokenization request.
+
 The below image shows an example. +
 image:tokenization-example-json-threat-protection.png[] +
 The Policies page should look similar to the below example. +
