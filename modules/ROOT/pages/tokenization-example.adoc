@@ -122,8 +122,8 @@ image:tokenization-example-upload-amc-tokenizer.png[]
 image:tokenization-example-manage-api-from-exchange.png[]
 . Enter the API configuration information, and click *Save*. The following image shows example values. +
 image:tokenization-example-api-configuration.png[] +
-[NOTE]
-HTTPS in Advanced options is not supported on Runtime Fabric.
+*[NOTE]*
+*HTTPS in Advanced options is not supported on Runtime Fabric.*
 . Go to the Deployment Configuration, select your Runtime Fabric and Mule version, then enter a name for the API Gateway. The following example shows information for an API Gateway named "token2mule". +
 image:tokenization-example-deploy-config.png[]
 . Click *Deploy*. The button changes to *Redeploy* after the first deployment finishes. This deploys the API Gateway application.
@@ -179,7 +179,10 @@ This example shows you how to add a basic auth policy to provide a very simple a
 . Create a “Simple Security manager” and add a simple username and password. +
 image:tokenization-example-apply-simple-security.png[]
 . Click *Apply New Policy* and add the “HTTP Basic Authorization” policy.
-. Add the JSON threat protection policy. The below image shows an example. +
+. Add the JSON threat protection policy. +
+[NOTE]
+A maximum of 200 tokenization or detokenization items can be included in each tokenization or detokenization request.+
+The below image shows an example. +
 image:tokenization-example-json-threat-protection.png[] +
 The Policies page should look similar to the below example. +
 image:tokenization-example-policies-page.png[]
@@ -188,13 +191,13 @@ image:tokenization-example-policies-page.png[]
 
 Run the following curl command to send traffic with the ``--user` flag for basic authorization.
 
-`curl ­k ­­resolve token2mule.ic.intel.com:443:10.230.36.230 \https://token2mule.ic.intel.com/tb/v1/tokenization ­X POST ­H "Content­type: application/json" ­­data '[{"data": "683­31­8102", "format": "ssndemo"}]' ­k ­­user test:test
+`curl ­-k --­­resolve token2mule.ic.intel.com:443:10.230.36.230 \https://token2mule.ic.intel.com/tb/v1/tokenization -­X POST ­-H "Content­type: application/json" ­­data '[{"data": "683­31­8102", "format": "ssndemo"}]' ­-k ­­--user test:test
 
 HTTP/1.1 200 OK [{"data":"597­74­8102","status":"success"}]``
 
 You can take the tokenized SSN from above and send it back into the service. You will receive the original SSN returned. Remember that the token returned is always format preserving.
 
-`curl ­k ­­resolve token2mule.ic.intel.com:443:10.230.36.230 \https://token2mule.ic.intel.com/tb/v1/detokenization ­X POST ­H "Content­type: application/json" ­­data '[{"data": "597­74­8102", "format": "ssndemo"}]' ­k ­­user test:test
+`curl ­-k ­­--resolve token2mule.ic.intel.com:443:10.230.36.230 \https://token2mule.ic.intel.com/tb/v1/detokenization ­-X POST ­-H "Content­type: application/json" ­­data '[{"data": "597­74­8102", "format": "ssndemo"}]' ­-k ­­--user test:test
 
 HTTP/1.1 200 OK [{"data":"683­31­8102","status":"success"}][root@openstackvm32 pentest­ca]``
 
@@ -203,19 +206,19 @@ If you send in bad data to tokenize or detokenize, you will still receive a `200
 
 The following is an example of bad tokenization:
 
-`curl ­v ­k ­­resolve token2mule.ic.intel.com:443:10.230.36.230 \https://token2mule.ic.intel.com/tb/v1/tokenization ­X POST ­H "Content­type: application/json" ­­data '[{"data": "597­74­8102­­­­­­­­sdsdsdsdsdsdsdsds", "format": "ssndemo"}]' ­k ­­user test:test
+`curl ­v ­-k ­­--resolve token2mule.ic.intel.com:443:10.230.36.230 \https://token2mule.ic.intel.com/tb/v1/tokenization -­X POST ­-H "Content­type: application/json" ­­data '[{"data": "597­74­8102­­­­­­­­sdsdsdsdsdsdsdsds", "format": "ssndemo"}]' ­-k ­­--user test:test
 
 HTTP/1.1 200 OK [{"data":"597­74­8102­­­­­­­­sdsdsdsdsdsdsdsds","status":"failure"}]``
 
 The following is an example of bad detokenization:
 
-`curl ­v ­k ­­resolve token2mule.ic.intel.com:443:10.230.36.230 \https://token2mule.ic.intel.com/tb/v1/detokenization ­X POST ­H "Content­type: application/json" ­­data '[{"data": "597­74­8102­­­­­­­­sdsdsdsdsdsdsdsds", "format": "ssndemo"}]' ­k ­­user test:test
+`curl ­v ­-k ­­--resolve token2mule.ic.intel.com:443:10.230.36.230 \https://token2mule.ic.intel.com/tb/v1/detokenization ­-X POST ­-H "Content­type: application/json" ­­data '[{"data": "597­74­8102­­­­­­­­sdsdsdsdsdsdsdsds", "format": "ssndemo"}]' ­-k ­­--user test:test
 
 HTTP/1.1 200 OK [{"data":"597­74­8102­­­­­­­­sdsdsdsdsdsdsdsds","status":"failure"}]``
 
 The following is an example of bad tokenization JSON data stopped by Api Gateway protection:
 
-`curl ­v ­k ­­resolve token2mule.ic.intel.com:443:10.230.36.230 \https://token2mule.ic.intel.com/tb/v1/detokenization ­X POST ­H "Content­type: application/json" ­­data '[{{{}{{{}]]"data": "597­74­8102­­­­­­­­sdsdsdsdsdsdsdsds", "format": "ssndemo"}]' ­k ­­user test:test
+`curl ­v ­-k ­­--resolve token2mule.ic.intel.com:443:10.230.36.230 \https://token2mule.ic.intel.com/tb/v1/detokenization ­-X POST -­H "Content­type: application/json" ­­data '[{{{}{{{}]]"data": "597­74­8102­­­­­­­­sdsdsdsdsdsdsdsds", "format": "ssndemo"}]' ­-k ­­--user test:test
 
 HTTP/1.1 400 Bad Request
 { "error": "invalid_json", "description": "Unexpected character ('{' (code 123)): was expecting double­quote to start field name Connection #0 to host token2mule.ic.intel.com left intact
@@ -260,4 +263,6 @@ The following is an example of the tokenization summary message:
  }
 }
 
-Failures are only incremented for actual tokenization and detokenization failures. Other failures, such as protocol errors in the requests, do not count towards the failure statistics. An example of a failure is an unknown token string that can't be detokenized.
+Failures are only incremented for actual tokenization and detokenization failures. Other failures, such as protocol errors in the requests, do not count towards the failure statistics. An example of a failure is an unknown token string that can't be detokenized. 
+
+Counts are cumulative from the start of each individual pod (replica) until its death.
