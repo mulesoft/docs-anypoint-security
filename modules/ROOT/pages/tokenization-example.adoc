@@ -1,10 +1,10 @@
-= Example: Using the Tokenization Service
+= Configure and Use Tokenization
 
 == Set up Tokenization with API Gateway
 
-To use the tokenization service, you need the following:
+To configure the tokenization service, you need the following:
 
-* A Runtime Fabric with an ingress configured. See the Runtime Fabric documentation.
+* A Runtime Fabric with an ingress configured. See xref:runtime-fabric::index.adoc[the Runtime Fabric documentation].
 * A Secrets group to store the tokenization table encryption keys. It is possible to reuse the Edge Secrets Group. The tokenization service will create and store its own keys. See xref:asm-secret-group-concept.adoc[Secrets Manager documentation].
 * A Tokenization format: This describes the format of the data to be tokenized and how the data will be tokenized. See xref:tokenization-formats.adoc[Tokenization Formats].
 * A Tokenization Service: This handles the actual tokenization requests and tokenizes and detokenizes the data. For security purposes, an API Gateway must protect this service.
@@ -28,15 +28,15 @@ You must have the following entitlements:
 ** Hybrid
 ** Hybrid Insight
 ** Hybrid auto discover properties
-** Runtime Fabrice
+** Runtime Fabric
 ** Security Edge policies
 ** Security tokenization
 
 === Runtime Fabric with Ingress
 
-This example shows a Runtime Fabric named "rtf231", which has an ingress that is using a certificate and private key in the secret group “alphatoken”.
+This example shows a Runtime Fabric named "rtf231", which has an ingress that is using a certificate and private key in the secret group “alphatoken”. If you already have a Runtime Fabric and Secrets Group configured, use those names in places of the ones in the example.
 
-The image below shows an example Runtime Fabric ingress configuration.
+The image below shows an example xref:runtime-fabric::enable-inbound-traffic.adoc[Runtime Fabric ingress configuration].
 
 image:tokenization-example-rtf-ingress-config.png[]
 
@@ -52,7 +52,13 @@ Click *View* to see the name, type, and expiration of the secret group.
 
 These secrets don't appear until after you create the tokenization services. There is one shared secret per tokenization service. The secret takes the name of the tokenization service and is appended with a numeric suffix.
 
+For more information about secret groups, see xref:asm-secret-group-concept.adoc[Secrets Manager documentation].
+
 == Create the Tokenization Format
+
+The tokenization format defines the way incoming data is converted. In this example, the domain type used is social security number (SSN). For more information about the supported tokenization formats see xref:tokenization-formats.adoc[Tokenization Formats].
+
+To create the tokenization format:
 
 . Sign into Anypoint Platform with the Organization Administrators role.
 . Under *Management Center*, click *Anypoint Security*.
@@ -63,6 +69,9 @@ The example below shows a social security data domain format named "sssnonly" wi
 image:tokenization-example-format.png[]
 
 == Creating the Tokenization Service
+
+[NOTE]
+ You will need to download the automatically generated API Gateway Mule App. You must add TLS manually to the API Gateway Mule application connectors before you can make this service work. Tokenization involves sensitive data, and therefore, it works only with TLS.
 
 . Go to the *Runtime Manager­>Tokenization Service* page to create the service.
 . Click *Create Tokenization Service*. The “Mule Cloud” means “Runtime Fabric Target”. The prerequisites you completed provide the information you need to fill out the form. This example shows the form filled in with the following values: +
@@ -101,28 +110,31 @@ image:tokenization-example-confirm-rtf-assignment.png[]
 Once you have the information you need to set up a routable tokenization service using an Api Gateway, create an API from the tokenization RAML.
 
 
-. In Anypoint Platform, go to Exchange, and search for "AMC Tokenization."
+. In Anypoint Platform, go to Exchange, and search for "Tokenization Service API."
 . Download the `AMC Tokenizer` zip file.
-. Go to *Design Center* and select *Create > API Specification*, and name it "AMC Tokenizer". +
+. Go to *Design Center* and select *Create > API Specification*. For this example, the API specification is named "AMC Tokenizer". If you choose a different name, use that in the below steps. +
 image:tokenization-example-create-api-spec.png[]
 . Next to *File*, select *Import* and upload the `AMC Tokenizer.zip` file you downloaded from Exchange in Step 1. +
 image:tokenization-example-upload-amc-tokenizer.png[]
-. Delete the `amc.tokenizer.rml` and keep the `AnypointSecurityToken.raml` you uploaded.
 . Publish the asset to Anypoint Exchange.
 . Navigate to *API Manager* from the top level Anypoint Platform menu.
 . Select *Manage API > Manage API from Exchange*. +
 image:tokenization-example-manage-api-from-exchange.png[]
 . Enter the API configuration information, and click *Save*. The following image shows example values. +
-image:tokenization-example-api-configuration.png[]
+image:tokenization-example-api-configuration.png[] +
+[NOTE]
+HTTPS in Advanced options is not supported on Runtime Fabric.
 . Go to the Deployment Configuration, select your Runtime Fabric and Mule version, then enter a name for the API Gateway. The following example shows information for an API Gateway named "token2mule". +
 image:tokenization-example-deploy-config.png[]
 . Click *Deploy*. The button changes to *Redeploy* after the first deployment finishes. This deploys the API Gateway application.
 . Download the API Gateway application to configure SSL within it:
 .. In API Manager, go to the *Settings* page for your API.
 .. Select *Actions > Download Proxy*. +
-image:tokenization-example-download-proxy.png[]
+image:tokenization-example-download-proxy.png[]+
+[NOTE]
+This last step is necessary to configure TLS.
 
-== Configure Security
+== Configure TLS
 
 . Go to Anypoint Studio, and import the API Gateway. +
 image:tokenization-example-import-api-gateway-studio.png[]
@@ -146,11 +158,15 @@ image:tokenization-example-add-tls-enabled-gateway.png[]
 
 == Test the Tokenization Traffic
 
-Once the application is running, you are ready to send traffic. To try a tokenization, send the following curl command:
+Once the application is running, you are ready to send traffic. It is a good idea to try the service first before you complete the additional steps to fully secure it. You can use POSTMAN or curl to test the service.
 
-`curl ­k ­­resolve token2mule.ic.intel.com:443:10.230.36.230 \https://token2mule.ic.intel.com/tb/v1/tokenization ­X POST ­H "Content­type: application/json" ­­data '[{"data": "683­31­8102", "format": "ssndemo"}]' ­k
+An example curl command is provided below. Replace the IP address with your own IP address. If you have used different names in the example for format, tokenization service, or API name, you will need to modify the example curl command.
 
-HTTP/1.1 200 OK [{"data":"597­74­8102","status":"success"}]``f
+To try a tokenization, send the following curl command:
+
+curl ­-k ­­--resolve token2mule.ic.intel.com:443:10.230.36.230 https://token2mule.ic.intel.com/tb/v1/tokenization -­X POST -­H "Content­type: application/json" ­­--data '[{"data": "683­31­8102", "format": "ssndemo"}]'
+
+HTTP/1.1 200 OK [{"data":"597­74­8102","status":"success"}]``
 
 == Add Authorization and JSON Threat Protection
 
