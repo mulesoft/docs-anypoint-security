@@ -263,6 +263,6 @@ The following is an example of the tokenization summary message:
  }
 }
 
-Failures are only incremented for actual tokenization and detokenization failures. Other failures, such as protocol errors in the requests, do not count towards the failure statistics. An example of a failure is an unknown token string that can't be detokenized. 
+Failures are only incremented for actual tokenization and detokenization failures. Other failures, such as protocol errors in the requests, do not count towards the failure statistics. An example of a failure is an unknown token string that can't be detokenized.
 
 Counts are cumulative from the start of each individual pod (replica) until its death.
