@@ -88,12 +88,13 @@ image:tokenization-example-format.png[]
 A mapping table, which contains a large table of randomizations that are used at the core of tokenizing and detokenizing will pre-build. This is not a one-to-one table of mappings--it is used during internal steps to swap in and swap out randomizations in place of the actual data. The actual algorithm consists of these three steps:
 ** First stage transformation: Perform AES­FFX[radix] specific domain encryption using first stage symmetric key and tweak. This will redistribute the information contained within the data to be tokenized across all characters of the extracted data.
 ** Second stage transformation: Look­up and replace chunks of the clear­text data with the appropriate precomputed randomization in the mapping table.
-** Third stage transformation: Perform AES­FFX[radix] specific domain encryption using third stage symmetric key and tweak. This will redistribute the information mapped by the multiple table look­ups of the preceding step across all of the extracted. +
-The tokenization mapping table can take as little as two minutes to build for an SSN only table (< 200 mb in size) and can take up to twenty minutes to build for larger formats such as “lax alphanumeric”. If many or all of the formats are selected, it can take a very long time to build the table for the service (~70 minutes). A table with all formats is roughly 2 GB in size. This is a one time action.
+** Third stage transformation: Perform AES­FFX[radix] specific domain encryption using third stage symmetric key and tweak. This will redistribute the information mapped by the multiple table look­ups of the preceding step across all of the extracted.
+
+The tokenization mapping table build is a one-time action and can take as little as two minutes to build for an SSN only table (< 200 mb in size) and can take up to twenty minutes to build for larger formats such as “lax alphanumeric”. If many or all of the formats are selected, it can take a very long time to build the table for the service (~70 minutes). A table with all formats is roughly 2 GB in size.
 
 image:tokenization-example-create-tokenization-service.png[]
 
-Now that you have created the tokenization service, you need to create an API Gateway to route requests to the tokenization service.
+Once you create the tokenization service, you need to create an API Gateway to route requests to the tokenization service.
 
 == Creating an API Gateway for the Tokenization Service
 
@@ -116,7 +117,7 @@ Once you have the information you need to set up a routable tokenization service
 
 . In Anypoint Platform, go to Exchange, and search for "Tokenization Service API."
 . Download the `AMC Tokenizer` zip file.
-. Go to *Design Center* and select *Create > API Specification*. For this example, the API specification is named "AMC Tokenizer". If you choose a different name, use that in the below steps. +
+. Go to *Design Center* and select *Create > API Specification*. For this example, the API specification is named "AMC Tokenizer". If you choose a different name, use that one in the below steps. +
 image:tokenization-example-create-api-spec.png[]
 . Next to *File*, select *Import* and upload the `AMC Tokenizer.zip` file you downloaded from Exchange in Step 1. +
 image:tokenization-example-upload-amc-tokenizer.png[]
