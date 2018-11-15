@@ -104,9 +104,9 @@ Go to the Tokenization Service page in Runtime Manager to get the information yo
 . Click *Edit* for the tokenization service for which to create the API Gateway. +
 image:tokenization-example-edit-token-service.png[]
 . Confirm the Runtime Fabric assignment. +
-In the below image, the tokenization service name is “mytoken1” and the implementation URL will be: “https://mytoken1­tokenizer:3443”.
+The tokenization service name is “mytoken1” and the implementation URL will be: “https://mytoken1­tokenizer:3443”.
 
-The service is available only via HTTPS. The tokenization service is hardcoded to listen on port 3443. The hostname portion is formed by taking the “Service Name” + “tokenizer” to arrive at the Kubernetes service name. The service name in this example is “mytoken1”.
+The service is available via HTTPS only. The tokenization service is hardcoded to listen on port 3443. The hostname portion is formed by taking the “Service Name” + “tokenizer” to arrive at the Kubernetes service name. The service name in this example is “mytoken1”.
 
 image:tokenization-example-confirm-rtf-assignment.png[]
 
