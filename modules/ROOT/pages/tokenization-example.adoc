@@ -5,7 +5,7 @@
 To configure the tokenization service, you need the following:
 
 * A Runtime Fabric with an ingress configured. See xref:1.0@runtime-fabric::index.adoc[the Runtime Fabric documentation].
-* A Secrets group to store the tokenization table encryption keys. It is possible to reuse the Edge Secrets Group. The tokenization service will create and store its own keys. See xref:asm-secret-group-concept.adoc[Secrets Manager documentation].
+* A Secrets group to store the tokenization table encryption keys. The tokenization service will create and store its own keys. See xref:asm-secret-group-concept.adoc[Secrets Manager documentation].
 * A tokenization format: This describes the format of the data to be tokenized and how the data will be tokenized. See xref:tokenization-formats.adoc[Tokenization Formats].
 * A tokenization service: This handles the actual tokenization requests and tokenizes and detokenizes the data. For security purposes, an API Gateway must protect this service.
 * Api Gateway: This proxies requests to the tokenization service, provides authorization and authentication, and provides JSON protection for the tokenization service.
@@ -46,7 +46,15 @@ image:tokenization-example-rtf-ingress-config.png[]
 
 === Secret Group
 
-Use Secrets Manager in the Anypoint platform Management Center to create and manage secret groups.
+Use Secrets Manager in the Anypoint platform Management Center to create and manage secret groups. For each tokenization service you create, you should also create a corresponding secret group in Secrets Manager to be used for that tokenization service only. No other tokenization service should use that secret group and no other secrets should be stored in that secret group.
+
+When you delete a tokenization service, you can delete the corresponding secret group.
+
+This is the recommended approach for several reasons:
+
+. Since this secret group should explicitly be used for tokenization service, it will avoid other secrets from being deleted accidentally on delete of secret group. 
+. You can create as many formats as you want and the secret group will never be exhausted. You can change the set of formats assigned to that tokenization service as often as you want and it will not exhaust the secret group.
+. This unique association between the tokenization service and its secret group will prevent running out of the secrets of type VDP Context in a secret group. In the worst case, there will be 10 secrets created of type VDP Context, one for each VDP domain.
 
 Normally, you can view, edit, or create secrets in Secrets Manager. However, the tokenization table keys are a non-editable part of the secret group. You can see the tokenization secrets under shared secret, but you are not allowed to modify them. Actions such as edit, cancel edit, and finish do not apply.
 
@@ -72,7 +80,7 @@ The example below shows a social security data domain format named "sssnonly" wi
 
 image:tokenization-example-format.png[]
 
-== Creating the Tokenization Service
+== Create the Tokenization Service
 
 *[NOTE]*
  *You will need to download the automatically generated API Gateway Mule App. You must add TLS manually to the API Gateway Mule application connectors before you can make this service work. Tokenization involves sensitive data, and therefore, it works only with TLS.*
@@ -207,28 +215,26 @@ You can take the tokenized SSN from above and send it back into the service. You
 
 HTTP/1.1 200 OK [{"data":"683­31­8102","status":"success"}][root@openstackvm32 pentest­ca]``
 
-[NOTE]
-If you send in bad data to tokenize or detokenize, you will still receive a `200 OK` back. You will be able to see that there is a failure by looking at the body data.
-
 The following is an example of bad tokenization:
 
 `curl ­v ­-k ­­--resolve token2mule.ic.intel.com:443:10.230.36.230 \https://token2mule.ic.intel.com/tb/v1/tokenization -­X POST ­-H "Content­type: application/json" ­­data '[{"data": "597­74­8102­­­­­­­­sdsdsdsdsdsdsdsds", "format": "ssndemo"}]' ­-k ­­--user test:test
 
-HTTP/1.1 200 OK [{"data":"597­74­8102­­­­­­­­sdsdsdsdsdsdsdsds","status":"failure"}]``
+HTTP/1.1 422 Unprocessable Entity
+[{"data":"","status":"failure","errorcode":1384,"error":"The social security number is invalid. It contains [26] characters. A social security number must have the format [###-##-####] where [\"#\"] represents a decimal digit."}]``
 
 The following is an example of bad detokenization:
 
 `curl ­v ­-k ­­--resolve token2mule.ic.intel.com:443:10.230.36.230 \https://token2mule.ic.intel.com/tb/v1/detokenization ­-X POST ­-H "Content­type: application/json" ­­data '[{"data": "597­74­8102­­­­­­­­sdsdsdsdsdsdsdsds", "format": "ssndemo"}]' ­-k ­­--user test:test
 
-HTTP/1.1 200 OK [{"data":"597­74­8102­­­­­­­­sdsdsdsdsdsdsdsds","status":"failure"}]``
+HTTP/1.1 422 Unprocessable Entity
+[{"data":"","status":"failure","errorcode":1380,"error":"The social security number is invalid. It contains [26] characters. A social security number must have the format [###-##-####] where [\"#\"] represents a decimal digit."}]``
 
 The following is an example of bad tokenization JSON data stopped by Api Gateway protection:
 
 `curl ­v ­-k ­­--resolve token2mule.ic.intel.com:443:10.230.36.230 \https://token2mule.ic.intel.com/tb/v1/detokenization ­-X POST -­H "Content­type: application/json" ­­data '[{{{}{{{}]]"data": "597­74­8102­­­­­­­­sdsdsdsdsdsdsdsds", "format": "ssndemo"}]' ­-k ­­--user test:test
 
 HTTP/1.1 400 Bad Request
-{ "error": "invalid_json", "description": "Unexpected character ('{' (code 123)): was expecting double­quote to start field name Connection #0 to host token2mule.ic.intel.com left intact
-at [Source: (com.mulesoft.module.threat.RewindableInputStream); line: 1, column: 4]" }``
+{ "errorcode": 1140, "message": "Error while parsing json [line 1 char 3, byte-offset 2]: Expected member name"}``
 
 == Logs
 
