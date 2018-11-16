@@ -18,22 +18,6 @@ image:tokenization-setup-example-diagram.png[]
 
 == Prerequisites
 
-=== Entitlements
-
-You must have the following entitlements:
-
-* Access Management
-** Create environments
-** External identity
-** Create sub-organizations (business groups)
-* Runtime Manager
-** Hybrid
-** Hybrid Insight
-** Hybrid auto discover properties
-** Runtime Fabric
-** Security Edge policies
-** Security tokenization
-
 === Runtime Fabric with Ingress
 
 This example shows a Runtime Fabric named "rtf231", which has an ingress that is using a certificate and private key in the secret group “alphatoken”. If you already have a Runtime Fabric and Secret Group configured, use those names in places of the ones in the example.
@@ -114,7 +98,7 @@ The tokenization service name is “mytoken1” and the implementation URL will 
 
 The service is available via HTTPS only. The tokenization service is hardcoded to listen on port 3443. The hostname portion is formed by taking the “Service Name” + “tokenizer” to arrive at the Kubernetes service name. The service name in this example is “mytoken1”.
 
-image:tokenization-example-confirm-rtf-assignment.png[]
+image:tokenization-example-create-tokenization-service.png[]
 
 == Create an API from the Tokenization RAML
 
