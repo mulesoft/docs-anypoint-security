@@ -62,8 +62,6 @@ image:tokenization-example-shared-secret.png[]
 
 Click *View* to see the name, type, and expiration of the secret group.
 
-These secrets don't appear until after you create the tokenization services. There is one shared secret per tokenization service. The secret takes the name of the tokenization service and is appended with a numeric suffix.
-
 For more information about secret groups, see xref:asm-secret-group-concept.adoc[Secrets Manager documentation].
 
 == Create the Tokenization Format
