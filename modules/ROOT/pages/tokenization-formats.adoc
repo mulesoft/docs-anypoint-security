@@ -2,6 +2,13 @@
 
 Tokenization formats define how the original format of data coming in is converted to the format you configure when the token is created.  For example, you can define whether to preserve certain digits, if the token should look like the original data source, or whether to tokenize the whole string or partial string.
 
+== Format Preserving Tokenization
+
+Application data validation logic work “as is”. +
+No downstream application changes needed. Compliance scope reduction (PCI, HIPAA, GDPR)
+
+image::index-a21f8.png[index-a21f8]
+
 == Create a Tokenization Format
 
 . Sign into Anypoint Platform with the Organization Administrators role.
