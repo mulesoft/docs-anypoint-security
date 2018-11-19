@@ -220,7 +220,7 @@ HTTP/1.1 400 Bad Request
 
 == Logs
 
-You can use the tokenization summary message that is returned in the logs to determine traffic counts. To retrieve the logs, follow the instructions in the xref:configure-log-forwarding.adoc[Runtime Fabric documentation] for configuring log forwarding.
+You can use the tokenization summary message that is returned in the logs to determine traffic counts. To retrieve the logs, follow the instructions in the xref:1.0@runtime-fabric::configure-log-forwarding.adoc[Runtime Fabric documentation] for configuring log forwarding.
 
 The log tag entry is `rtfTokenizationStatistics`, stats are a JSON string and rendered every 5 minutes at forced log entry of RTC `INFO` level (not subject to log level settings).
 
