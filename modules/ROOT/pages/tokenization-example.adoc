@@ -64,8 +64,8 @@ image:tokenization-example-format.png[]
 
 == Create the Tokenization Service
 
-*[NOTE]*
- *You will need to download the automatically generated API Gateway Mule App. You must add TLS manually to the API Gateway Mule application connectors before you can make this service work. Tokenization involves sensitive data, and therefore, it works only with TLS.*
+[NOTE]
+You will need to download the automatically generated API Gateway Mule App. You must add TLS manually to the API Gateway Mule application connectors before you can make this service work. Tokenization involves sensitive data, and therefore, it works only with TLS.
 
 . Go to the *Runtime Manager­>Tokenization Service* page to create the service.
 . Click *Create Tokenization Service*. The “Mule Cloud” means “Runtime Fabric Target”. The prerequisites you completed provide the information you need to fill out the form. This example shows the form filled in with the following values: +
@@ -117,8 +117,9 @@ image:tokenization-example-upload-amc-tokenizer.png[]
 image:tokenization-example-manage-api-from-exchange.png[]
 . Enter the API configuration information, and click *Save*. The following image shows example values. +
 image:tokenization-example-api-configuration.png[] +
-*[NOTE]*
-*HTTPS in Advanced options is not supported on Runtime Fabric.*
+
+[NOTE]
+HTTPS in Advanced options is not supported on Runtime Fabric.
 . Go to the Deployment Configuration, select your Runtime Fabric and Mule version, then enter a name for the API Gateway. The following example shows information for an API Gateway named "token2mule". +
 image:tokenization-example-deploy-config.png[]
 . Click *Deploy*. The button changes to *Redeploy* after the first deployment finishes. This deploys the API Gateway application.
@@ -159,9 +160,9 @@ An example curl command is provided below. Replace the IP address with your own 
 
 To try a tokenization, send the following curl command:
 
-curl ­-k ­­--resolve token2mule.ic.intel.com:443:10.230.36.230 \https://token2mule.ic.intel.com/tb/v1/tokenization -­X POST -­H "Content­type: application/json" ­­--data '[{"data": "683­31­8102", "format": "ssndemo"}]'
+`curl ­-k ­­--resolve token2mule.ic.intel.com:443:10.230.36.230 \https://token2mule.ic.intel.com/tb/v1/tokenization -­X POST -­H "Content­type: application/json" ­­--data '[{"data": "683­31­8102", "format": "ssndemo"}]'`
 
-HTTP/1.1 200 OK [{"data":"597­74­8102","status":"success"}]``
+`HTTP/1.1 200 OK [{"data":"597­74­8102","status":"success"}]`
 
 == Add Authorization and JSON Threat Protection
 
@@ -185,11 +186,11 @@ image:tokenization-example-policies-page.png[]
 
 == Test Runtime Traffic with Basic Authorization
 
-Run the following curl command to send traffic with the ``--user` flag for basic authorization.
+Run the following curl command to send traffic with the `--user` flag for basic authorization.
 
 `curl ­-k --­­resolve token2mule.ic.intel.com:443:10.230.36.230 \https://token2mule.ic.intel.com/tb/v1/tokenization -­X POST ­-H "Content­type: application/json" ­­data '[{"data": "683­31­8102", "format": "ssndemo"}]' ­-k ­­--user test:test
 
-HTTP/1.1 200 OK [{"data":"597­74­8102","status":"success"}]``
+HTTP/1.1 200 OK [{"data":"597­74­8102","status":"success"}]`
 
 You can take the tokenized SSN from above and send it back into the service. You will receive the original SSN returned. Remember that the token returned is always format preserving.
 
@@ -202,21 +203,21 @@ The following is an example of bad tokenization:
 `curl ­v ­-k ­­--resolve token2mule.ic.intel.com:443:10.230.36.230 \https://token2mule.ic.intel.com/tb/v1/tokenization -­X POST ­-H "Content­type: application/json" ­­data '[{"data": "597­74­8102­­­­­­­­sdsdsdsdsdsdsdsds", "format": "ssndemo"}]' ­-k ­­--user test:test
 
 HTTP/1.1 422 Unprocessable Entity
-[{"data":"","status":"failure","errorcode":1384,"error":"The social security number is invalid. It contains [26] characters. A social security number must have the format [###-##-####] where [\"#\"] represents a decimal digit."}]``
+[{"data":"","status":"failure","errorcode":1384,"error":"The social security number is invalid. It contains [26] characters. A social security number must have the format [###-##-####] where [\"#"] represents a decimal digit."}]`
 
 The following is an example of bad detokenization:
 
 `curl ­v ­-k ­­--resolve token2mule.ic.intel.com:443:10.230.36.230 \https://token2mule.ic.intel.com/tb/v1/detokenization ­-X POST ­-H "Content­type: application/json" ­­data '[{"data": "597­74­8102­­­­­­­­sdsdsdsdsdsdsdsds", "format": "ssndemo"}]' ­-k ­­--user test:test
 
 HTTP/1.1 422 Unprocessable Entity
-[{"data":"","status":"failure","errorcode":1380,"error":"The social security number is invalid. It contains [26] characters. A social security number must have the format [###-##-####] where [\"#\"] represents a decimal digit."}]``
+[{"data":"","status":"failure","errorcode":1380,"error":"The social security number is invalid. It contains [26] characters. A social security number must have the format [###-##-####] where [\"#"] represents a decimal digit."}]``
 
 The following is an example of bad tokenization JSON data stopped by Api Gateway protection:
 
 `curl ­v ­-k ­­--resolve token2mule.ic.intel.com:443:10.230.36.230 \https://token2mule.ic.intel.com/tb/v1/detokenization ­-X POST -­H "Content­type: application/json" ­­data '[{{{}{{{}]]"data": "597­74­8102­­­­­­­­sdsdsdsdsdsdsdsds", "format": "ssndemo"}]' ­-k ­­--user test:test
 
 HTTP/1.1 400 Bad Request
-{ "errorcode": 1140, "message": "Error while parsing json [line 1 char 3, byte-offset 2]: Expected member name"}``
+{ "errorcode": 1140, "message": "Error while parsing json [line 1 char 3, byte-offset 2]: Expected member name"}`
 
 == Logs
 
