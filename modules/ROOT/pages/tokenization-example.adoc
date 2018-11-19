@@ -146,14 +146,14 @@ image::tokenization-example-import-api-gateway-studio.png[]
 . Go to `src/main/resources` and add the keystore. In this example the keystore is named “tester.jks”.
 +
 image::tokenization-example-keystore.png[]
-. Add TLS to the listener side so you can later enable the `Last Mile Security` flag. To do this, first set the HTTPS flag. +
-
+. Add TLS to the listener side so you can later enable the `Last Mile Security` flag. To do this, first set the HTTPS flag.
++
 image::tokenization-example-set-https-flag.png[]
-. Set the keystore information. In this example the trust store side is set to *insecure* and the keystore, alias, and password information has been added. +
-
+. Set the keystore information. In this example the trust store side is set to *insecure* and the keystore, alias, and password information has been added.
++
 image::tokenization-example-set-keystore-info.png[]
-. Now set the HTTPS on the server tab, then configure your keystore on the TLS side to configure the client side. +
-
+. Now set the HTTPS on the server tab, then configure your keystore on the TLS side to configure the client side.
++
 image::tokenization-example-configure-TLS.png[]
 . Save the application and export it. Remember where it is saved so you can upload it in the next step.
 
@@ -161,8 +161,8 @@ image::tokenization-example-configure-TLS.png[]
 
 . In Anypoint Platform, go to the Runtime Manager page and click on the name of the API Gateway application `token2mule`.
 . In the Settings page select *Choose File ­> Upload File* to upload the API Gateway application you modified in Anypoint Studio.
-. Select the *Enable Last­Mile Security* option. Your settings should look similar to the below image. +
-
+. Select the *Enable Last­Mile Security* option. Your settings should look similar to the below image.
++
 image::tokenization-example-add-tls-enabled-gateway.png[]
 . Click *Deploy*. Once the application has a status of "Running" you are ready to test.
 
