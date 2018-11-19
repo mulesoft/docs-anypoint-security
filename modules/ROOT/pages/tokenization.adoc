@@ -1,7 +1,7 @@
 = Tokenization Service
-
-Anypoint Security's tokenization service allows you to protect sensitive data from unwanted exposure, by replacing key values, such as a credit card number, with a token. +
-//You can determine when to apply this token via a lightweight API policy.
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
 
 The Anypoint Security tokenization service enables you to substitute a sensitive data element with a non-sensitive equivalent. Anypoint tokenization can create Format Preserving Tokens, which means the output tokens will have the same format as the sensitive data input.
 
