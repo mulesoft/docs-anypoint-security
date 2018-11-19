@@ -9,7 +9,7 @@ Examples of sensitive information that are suitable for tokenization protection 
 
 * Primary Account Number (PAN)
 * Personally Identifiable Information (PII)
-* Protected Health Information (PHI), or any information deemed sensitive.
+* Protected Health Information (PHI), or any information deemed sensitive
 
 Anypoint Security tokenization provides the following benefits:
 

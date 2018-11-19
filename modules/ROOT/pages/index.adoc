@@ -19,7 +19,7 @@ Anypoint Security policies then act as a default firewall/router capability thro
 Anypoint Security provides a secure vault for you to store the TLS certificates and keystores used by your deployments. +
 Through this secrets manager, you can store the necessary secrets to set up the TLS context that encrypts inbound traffic to your Runtime Fabric.
 
-==Tokenization Service
+== Tokenization Service
 
 Anypoint Security's tokenization service allows you to protect sensitive data from unwanted exposure by replacing key values, such as a credit card number, with a token. 
 
