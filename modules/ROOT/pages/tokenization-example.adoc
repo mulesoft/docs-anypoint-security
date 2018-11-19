@@ -214,9 +214,9 @@ HTTP/1.1 422 Unprocessable Entity
 
 The following is an example of bad tokenization JSON data stopped by Api Gateway protection:
 
-`curl ­v ­-k ­­--resolve token2mule.ic.intel.com:443:10.230.36.230 \https://token2mule.ic.intel.com/tb/v1/detokenization ­-X POST -­H "Content­type: application/json" ­­data '[{{{}{{{}]]"data": "597­74­8102­­­­­­­­sdsdsdsdsdsdsdsds", "format": "ssndemo"}]' ­-k ­­--user test:test
+`curl ­v ­-k ­­--resolve token2mule.ic.intel.com:443:10.230.36.230 \https://token2mule.ic.intel.com/tb/v1/detokenization ­-X POST -­H "Content­type: application/json" ­­data '[{{{}{{{}]]"data": "597­74­8102­­­­­­­­sdsdsdsdsdsdsdsds", "format": "ssndemo"}]' ­-k ­­--user test:test`
 
-HTTP/1.1 400 Bad Request
+`HTTP/1.1 400 Bad Request
 { "errorcode": 1140, "message": "Error while parsing json [line 1 char 3, byte-offset 2]: Expected member name"}`
 
 == Logs
@@ -227,7 +227,8 @@ The log tag entry is `rtfTokenizationStatistics`, stats are a JSON string and re
 
 The following is an example of the tokenization summary message:
 
-`<logEntry>
+----
+<logEntry>
 <header>
 <time>2018-11-12T14:55:00.009667</time>
 <node>icvlab11401</node>
@@ -240,7 +241,8 @@ The following is an example of the tokenization summary message:
 <line>98</line>
 </header>
 <body><rtfTokenizationStatistics>{"tokenizationStatistics":{"node":"icvlab11401","timestamp":"2018-11-12T20:55:00.009Z","tokenizeSuccess":2,"deTokenizeSuccess":6,"tokenizedBytes":6,"deTokenizedBytes":32,"tokenizeFailure":2,"deTokenizeFailure":2,"tokenizeFailedBytes":5,"deTokenizeFailedBytes":0}}</rtfTokenizationStatistics></body>+
-</logEntry>`
+</logEntry>
+----
 
 [source,json,linenums]
 {
