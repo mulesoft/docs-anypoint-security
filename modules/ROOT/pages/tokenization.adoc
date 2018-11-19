@@ -1,0 +1,51 @@
+= Tokenization Service
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+The Anypoint Security tokenization service enables you to substitute a sensitive data element with a non-sensitive equivalent.
+
+Examples of sensitive information that are suitable for tokenization protection include:
+
+* Primary Account Number (PAN)
+* Personally Identifiable Information (PII)
+* Protected Health Information (PHI), or any information deemed sensitive
+
+Anypoint Security tokenization provides the following benefits:
+
+* *Vaultless operation*:
+** Ensures sensitive data is not stored in the tokenization deployment.
+** No data growth based on the number of transactions processed or tokens issued, thus removing data-vault management issues.
+* *Increased security*:
+** Protection of sensitive information reduces your sensitive data zones.
+** Reduces or removes the number of systems and applications that process, store, or transmit sensitive information from sensitive data scopes.
+** Negates the chances of a data breach from auxiliary applications and data stores, as the sensitive information stored in them is replaced by tokens.
+** Increases defense in depth for sensitive data and least privilege. Authorization is required to the tokenization service to detokenize the sensitive data back to its actual value. Possession of the token alone provides no extrinsic or exploitable meaning or value.
+* *Flexibility*:
+** Ability to choose a tokenization “scheme” appropriate for your business using inbuilt data domains (PAN, SSN, email, decimal, ascii and so on).
+** Each domain has “configurable” options for preserving portions of the original sensitive data and replacing the rest with token data or replacing the entire information with a token.
+** Operates seamlessly across wide area networks and distributed data centers.
+* *Performance*:
+** High-performance operation ensures low-latency processing.
+** Performance scales linearly on each node with vertical and horizontal scaling for vaultless tokenization provided by the Anypoint Platform.
+
+////
+== Format-Preserving Encryption
+
+Information anonymization. +
+Analytics without exposing sensitive data
+
+image::index-31d6e.png[index-31d6e]
+
+== Data Masking
+
+Sensitive data obfuscation. +
+One way process: Cannot get original value back
+
+image::index-346fa.png[index-346fa]
+////
+
+== See Also
+
+* xref:tokenization-formats.adoc[Tokenization Formats]
+* xref:tokenization-example.adoc[Configure and use Tokenization]
