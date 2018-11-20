@@ -174,7 +174,9 @@ An example curl command is provided below. Replace the IP address with your own 
 
 To try a tokenization, send the following curl command:
 
-`curl ­-k ­­--resolve token2mule.ic.intel.com:443:10.230.36.230 \https://token2mule.ic.intel.com/tb/v1/tokenization -­X POST -­H "Content­type: application/json" ­­--data '[{"data": "683­31­8102", "format": "ssndemo"}]'`
+----
+curl ­-k ­­--resolve token2mule.ic.intel.com:443:10.230.36.230 https://token2mule.ic.intel.com/tb/v1/tokenization -­X POST -­H "Content­type: application/json" ­­--data '[{"data": "683­31­8102", "format": "ssndemo"}]
+----
 
 `HTTP/1.1 200 OK [{"data":"597­74­8102","status":"success"}]`
 
@@ -208,7 +210,7 @@ image::tokenization-example-policies-page.png[]
 Run the following curl command to send traffic with the `--user` flag for basic authorization.
 
 ----
-curl ­-k --­­resolve token2mule.ic.intel.com:443:10.230.36.230 \https://token2mule.ic.intel.com/tb/v1/tokenization -­X POST ­-H "Content­type: application/json" ­­data '[{"data": "683­31­8102", "format": "ssndemo"}]' ­-k ­­--user test:test
+curl ­-k --­­resolve token2mule.ic.intel.com:443:10.230.36.230 https://token2mule.ic.intel.com/tb/v1/tokenization -­X POST ­-H "Content­type: application/json" ­­data '[{"data": "683­31­8102", "format": "ssndemo"}]' ­-k ­­--user test:test
 ----
 
 `HTTP/1.1 200 OK [{"data":"597­74­8102","status":"success"}]`
@@ -216,7 +218,7 @@ curl ­-k --­­resolve token2mule.ic.intel.com:443:10.230.36.230 \https://token
 You can take the tokenized SSN from above and send it back into the service. The original SSN will be returned. Remember that the token returned is always format preserving.
 
 ----
-curl ­-k ­­--resolve token2mule.ic.intel.com:443:10.230.36.230 \https://token2mule.ic.intel.com/tb/v1/detokenization ­-X POST ­-H "Content­type: application/json" ­­data '[{"data": "597­74­8102", "format": "ssndemo"}]' ­-k ­­--user test:test
+curl ­-k ­­--resolve token2mule.ic.intel.com:443:10.230.36.230 https://token2mule.ic.intel.com/tb/v1/detokenization ­-X POST ­-H "Content­type: application/json" ­­data '[{"data": "597­74­8102", "format": "ssndemo"}]' ­-k ­­--user test:test
 ----
 
 `HTTP/1.1 200 OK [{"data":"683­31­8102","status":"success"}][root@openstackvm32 pentest­ca]`
@@ -224,35 +226,40 @@ curl ­-k ­­--resolve token2mule.ic.intel.com:443:10.230.36.230 \https://token
 The following is an example of bad tokenization:
 
 ----
-curl ­v ­-k ­­--resolve token2mule.ic.intel.com:443:10.230.36.230 \https://token2mule.ic.intel.com/tb/v1/tokenization -­X POST ­-H "Content­type: application/json" ­­data '[{"data": "597­74­8102­­­­­­­­sdsdsdsdsdsdsdsds", "format": "ssndemo"}]' ­-k ­­--user test:test
+curl ­v ­-k ­­--resolve token2mule.ic.intel.com:443:10.230.36.230 https://token2mule.ic.intel.com/tb/v1/tokenization -­X POST ­-H "Content­type: application/json" ­­data '[{"data": "597­74­8102­­­­­­­­sdsdsdsdsdsdsdsds", "format": "ssndemo"}]' ­-k ­­--user test:test
 ----
 
 ----
 HTTP/1.1 422 Unprocessable Entity
-[{"data":"","status":"failure","errorcode":1384,"error":"The social security number is invalid. It contains [26] characters. A social security number must have the format ###-##-#### where # represents a decimal digit."}]
+[{"data":"","status":"failure","errorcode":1384,"error":"The social security number is invalid.
+It contains [26] characters.
+A social security number must have the format ###-##-#### where # represents a decimal digit."}]
 ----
 
 The following is an example of bad detokenization:
 
 ----
-curl ­v ­-k ­­--resolve token2mule.ic.intel.com:443:10.230.36.230 \https://token2mule.ic.intel.com/tb/v1/detokenization ­-X POST ­-H "Content­type: application/json" ­­data '[{"data": "597­74­8102­­­­­­­­sdsdsdsdsdsdsdsds", "format": "ssndemo"}]' ­-k ­­--user test:test
+curl ­v ­-k ­­--resolve token2mule.ic.intel.com:443:10.230.36.230 https://token2mule.ic.intel.com/tb/v1/detokenization ­-X POST ­-H "Content­type: application/json" ­­data '[{"data": "597­74­8102­­­­­­­­sdsdsdsdsdsdsdsds", "format": "ssndemo"}]' ­-k ­­--user test:test
 ----
 
 ----
 HTTP/1.1 422 Unprocessable Entity
 [{"data":"","status":"failure","errorcode":1380,"error":
-"The social security number is invalid. It contains [26] characters. 
+"The social security number is invalid. It contains [26] characters.
 A social security number must have the format ###-##-#### where # represents a decimal digit."}]
 ----
 
 The following is an example of bad tokenization JSON data stopped by Api Gateway protection:
 
 ----
-curl ­v ­-k ­­--resolve token2mule.ic.intel.com:443:10.230.36.230 \https://token2mule.ic.intel.com/tb/v1/detokenization ­-X POST -­H "Content­type: application/json" ­­data '[{{{}{{{}]]"data": "597­74­8102­­­­­­­­sdsdsdsdsdsdsdsds", "format": "ssndemo"}]' ­-k ­­--user test:test
+curl ­v ­-k ­­--resolve token2mule.ic.intel.com:443:10.230.36.230 https://token2mule.ic.intel.com/tb/v1/detokenization ­-X POST -­H "Content­type: application/json" ­­data '[{{{}{{{}]]"data": "597­74­8102­­­­­­­­sdsdsdsdsdsdsdsds", "format": "ssndemo"}]' ­-k ­­--user test:test
 ----
 
-`HTTP/1.1 400 Bad Request
-{ "errorcode": 1140, "message": "Error while parsing json [line 1 char 3, byte-offset 2]: Expected member name"}`
+----
+HTTP/1.1 400 Bad Request
+{ "errorcode": 1140, "message": "Error while parsing json [line 1 char 3, byte-offset 2]:
+Expected member name"}
+----
 
 == Logs
 
