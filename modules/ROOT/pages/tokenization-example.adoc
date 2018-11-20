@@ -4,7 +4,7 @@
 
 To configure the tokenization service, you need the following:
 
-* A Runtime Fabric with an ingress configured. See xref:1.0@runtime-fabric::index.adoc[the Runtime Fabric documentation].
+* Runtime Fabric 1.1.153 or later with an ingress configured. See xref:1.0@runtime-fabric::index.adoc[the Runtime Fabric documentation].
 * A Secrets group to store the tokenization table encryption keys. The tokenization service will create and store its own keys. See xref:asm-secret-group-concept.adoc[Secrets Manager documentation].
 * A tokenization format: This describes the format of the data to be tokenized and how the data will be tokenized. See xref:tokenization-formats.adoc[Tokenization Formats].
 * A tokenization service: This handles the actual tokenization requests and tokenizes and detokenizes the data. For security purposes, an API Gateway must protect this service.
@@ -213,7 +213,7 @@ curl ­-k --­­resolve token2mule.ic.intel.com:443:10.230.36.230 \https://token
 
 `HTTP/1.1 200 OK [{"data":"597­74­8102","status":"success"}]`
 
-You can take the tokenized SSN from above and send it back into the service. You will receive the original SSN returned. Remember that the token returned is always format preserving.
+You can take the tokenized SSN from above and send it back into the service. The original SSN will be returned. Remember that the token returned is always format preserving.
 
 ----
 curl ­-k ­­--resolve token2mule.ic.intel.com:443:10.230.36.230 \https://token2mule.ic.intel.com/tb/v1/detokenization ­-X POST ­-H "Content­type: application/json" ­­data '[{"data": "597­74­8102", "format": "ssndemo"}]' ­-k ­­--user test:test
@@ -227,8 +227,10 @@ The following is an example of bad tokenization:
 curl ­v ­-k ­­--resolve token2mule.ic.intel.com:443:10.230.36.230 \https://token2mule.ic.intel.com/tb/v1/tokenization -­X POST ­-H "Content­type: application/json" ­­data '[{"data": "597­74­8102­­­­­­­­sdsdsdsdsdsdsdsds", "format": "ssndemo"}]' ­-k ­­--user test:test
 ----
 
-`HTTP/1.1 422 Unprocessable Entity
-[{"data":"","status":"failure","errorcode":1384,"error":"The social security number is invalid. It contains [26] characters. A social security number must have the format ###-##-#### where # represents a decimal digit."}]`
+----
+HTTP/1.1 422 Unprocessable Entity
+[{"data":"","status":"failure","errorcode":1384,"error":"The social security number is invalid. It contains [26] characters. A social security number must have the format ###-##-#### where # represents a decimal digit."}]
+----
 
 The following is an example of bad detokenization:
 
@@ -236,9 +238,12 @@ The following is an example of bad detokenization:
 curl ­v ­-k ­­--resolve token2mule.ic.intel.com:443:10.230.36.230 \https://token2mule.ic.intel.com/tb/v1/detokenization ­-X POST ­-H "Content­type: application/json" ­­data '[{"data": "597­74­8102­­­­­­­­sdsdsdsdsdsdsdsds", "format": "ssndemo"}]' ­-k ­­--user test:test
 ----
 
-`HTTP/1.1 422 Unprocessable Entity
-[{"data":"","status":"failure","errorcode":1380,"error":"The social security number is invalid. It contains [26] characters. A social security number must have the format ###-##-#### where # represents a decimal digit."}]`
-
+----
+HTTP/1.1 422 Unprocessable Entity
+[{"data":"","status":"failure","errorcode":1380,"error":
+"The social security number is invalid. It contains [26] characters. 
+A social security number must have the format ###-##-#### where # represents a decimal digit."}]
+----
 
 The following is an example of bad tokenization JSON data stopped by Api Gateway protection:
 
