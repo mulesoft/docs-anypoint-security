@@ -20,7 +20,7 @@ image::tokenization-setup-example-diagram.png[]
 
 === Runtime Fabric 1.1.153 or later with Ingress
 
-This example shows a Runtime Fabric named "rtf231", which has an ingress that is using a certificate and private key in the secrets group “alphatoken”. If you already have a Runtime Fabric and secret group configured, use those names in places of the ones in the example.
+This example shows a Runtime Fabric named "rtf231", which has an ingress that is using a certificate and private key in the secrets group “alphatoken”. If you already have a Runtime Fabric and secrets group configured, use those names in places of the ones in the example.
 
 For more information, see xref:1.0@runtime-fabric::enable-inbound-traffic.adoc[Runtime Fabric ingress configuration].
 
@@ -32,7 +32,7 @@ image::tokenization-example-rtf-ingress-config.png[]
 
 Use Secrets Manager in the Anypoint Platform Management Center to create and manage secrets groups. For each tokenization service you create, you must also create a corresponding, dedicated secrets group in Secrets Manager. No other tokenization service should use this secrets group and no secrets outside of this tokenization service should be stored in that secrets group.
 
-When you delete a tokenization service, you can delete the corresponding secret group.
+When you delete a tokenization service, you can delete the corresponding secrets group.
 
 This is the recommended approach for several reasons:
 
@@ -40,11 +40,11 @@ This is the recommended approach for several reasons:
 . You can create as many formats, and change the set of formats assigned to the tokenization service, and the secrets group will never be exhausted.
 . This unique association between the tokenization service and its dedicated secrets group prevents running out of the secrets of the VDP Context type in a secrets group. In the worst case, there will be 10 secrets created of the VDP Context type--one for each VDP domain.
 
-Normally, you can view, edit, or create secrets in Secrets Manager. However, the tokenization table keys are a non-editable part of the secrets group. You can see the tokenization secrets under shared secret, but you are not allowed to modify them. Actions such as edit, cancel edit, and finish do not apply.
+Normally, you can view, edit, or create secrets in Secrets Manager. However, the tokenization table keys are a non-editable part of the secrets group. You can see the tokenization secrets under shared secrets, but you are not allowed to modify them. Actions such as edit, cancel edit, and finish do not apply.
 
 image::tokenization-example-shared-secret.png[]
 
-Click *View* to see the name, type, and expiration of the secret group.
+Click *View* to see the name, type, and expiration of the secrets group.
 
 For more information about secrets groups, see xref:asm-secret-group-concept.adoc[Secrets Manager documentation].
 
