@@ -4,49 +4,48 @@
 
 To configure the tokenization service, you need the following:
 
-* A Runtime Fabric 1.1.153 or later with an ingress configured. See xref:1.0@runtime-fabric::index.adoc[the Runtime Fabric documentation].
-* A secrets group to store the tokenization table encryption keys. The tokenization service creates and stores its own keys. See xref:asm-secret-group-concept.adoc[Secrets Manager documentation].
+* Runtime Fabric 1.1.153 or later with an ingress configured. See xref:1.0@runtime-fabric::index.adoc[the Runtime Fabric documentation].
+* A secret group to store the tokenization table encryption keys. The tokenization service creates and stores its own keys. See xref:asm-secret-group-concept.adoc[Secrets Manager documentation].
 * A tokenization format, which describes the format and how data is tokenized. See xref:tokenization-formats.adoc[Tokenization Formats].
 * A tokenization service that handles the actual tokenization requests and also tokenizes and detokenizes the data. For security purposes, an API Gateway must protect this service.
 * API Gateway, which proxies requests to the tokenization service, provides authorization and authentication, and provides JSON protection for the tokenization service.
 
-The reference model for this example tokenization service setup can be seen in the below diagram. In this diagram, a “Sensitive Data - Compliance Zone” is used to segregate the tokenization service from the general Runtime Fabric. This segregation is based on security needs.
 
-For example, if sensitive data is produced from a Mule Application serving external traffic (Client -> Edge -> Mule Application), this application might be included in the sensitive data zone.
+image::tokenization-setup-example-diagram.png[Tokenization Examples]
 
-image::tokenization-setup-example-diagram.png[]
+In this diagram, a “Sensitive Data - Compliance Zone” is used to segregate the tokenization service from the general Runtime Fabric. This segregation is based on security needs.
+
+For example, if sensitive data is produced from a Mule application serving external traffic (Client -> Edge -> Mule application), this application might be included in the sensitive data zone.
 
 == Prerequisites
 
 === Runtime Fabric 1.1.153 or later with Ingress
 
-This example shows a Runtime Fabric named "rtf231", which has an ingress that is using a certificate and private key in the secrets group “alphatoken”. If you already have a Runtime Fabric and secrets group configured, use those names in places of the ones in the example.
+This example shows a Runtime Fabric named "rtf231", which has an ingress that is using a certificate and private key in the secret group “alphatoken”. If you already have a Runtime Fabric and secret group configured, use those names in places of the ones in the example.
+
+image::tokenization-example-rtf-ingress-config.png[Example Runtime Fabric with Ingress]
 
 For more information, see xref:1.0@runtime-fabric::enable-inbound-traffic.adoc[Runtime Fabric ingress configuration].
 
-The image below shows an example.
+=== Secret Group
 
-image::tokenization-example-rtf-ingress-config.png[]
+Use Secrets Manager in the Anypoint Platform Management Center to create and manage secret groups. For each tokenization service you create, you must also create a corresponding, dedicated secret group in Secrets Manager. No other tokenization service should use this secret group and no secrets outside of this tokenization service should be stored in that secret group.
 
-=== Secrets Group
-
-Use Secrets Manager in the Anypoint Platform Management Center to create and manage secrets groups. For each tokenization service you create, you must also create a corresponding, dedicated secrets group in Secrets Manager. No other tokenization service should use this secrets group and no secrets outside of this tokenization service should be stored in that secrets group.
-
-When you delete a tokenization service, you can delete the corresponding secrets group.
+When you delete a tokenization service, you can delete the corresponding secret group.
 
 This is the recommended approach for several reasons:
 
-. Using a dedicated secrets group for the tokenization service helps avoid other secrets from being deleted accidentally when you delete a secrets group. 
-. You can create as many formats, and change the set of formats assigned to the tokenization service, and the secrets group will never be exhausted.
-. This unique association between the tokenization service and its dedicated secrets group prevents running out of the secrets of the VDP Context type in a secrets group. In the worst case, there will be 10 secrets created of the VDP Context type--one for each VDP domain.
+. Using a dedicated secret group for the tokenization service helps avoid other secret from being deleted accidentally when you delete a secret group. 
+. You can create as many formats as needed and change the set of formats assigned to the tokenization service, and the secret group will never be exhausted.
+. This unique association between the tokenization service and its dedicated secret group prevents running out of the secrets of the VDP Context type in a secret group. In the worst case, there will be 10 secrets created of the VDP Context type--one for each VDP domain.
 
-Normally, you can view, edit, or create secrets in Secrets Manager. However, the tokenization table keys are a non-editable part of the secrets group. You can see the tokenization secrets under shared secrets, but you are not allowed to modify them. Actions such as edit, cancel edit, and finish do not apply.
+Normally, you can view, edit, or create secrets in Secrets Manager. However, the tokenization table keys are a non-editable part of the secret group. You can see the tokenization secrets under shared secrets, but you are not allowed to modify them. Actions such as edit, cancel edit, and finish do not apply.
 
 image::tokenization-example-shared-secret.png[]
 
-Click *View* to see the name, type, and expiration of the secrets group.
+Click *View* to see the name, type, and expiration of the secret group.
 
-For more information about secrets groups, see xref:asm-secret-group-concept.adoc[Secrets Manager documentation].
+For more information about secret groups, see xref:asm-secret-group-concept.adoc[Secrets Manager documentation].
 
 == Create the Tokenization Format
 
@@ -71,7 +70,7 @@ You must download the automatically generated API Gateway Mule application and m
 . Click *Create Tokenization Service*. The “Mule Cloud” means “Runtime Fabric Target”. The prerequisites you completed provide the information you need to fill out the form. This example shows the form filled in with the following values: +
 * The Runtime Fabric named `rtf231` is in the *Mule Cloud* drop-down list.
 * The tokenization format `sssnonly` you created appears in the *Format* drop-down list. You can assign more than one, or all, formats to one tokenization service.
-* The Secrets Group `alphatoken` appears in the *Secrets Group* drop-down list.
+* The secret group `alphatoken` appears in the *Secrets Group* drop-down list.
 * Select the number of tokenization service replicas to run. The tokenization service will run on worker nodes in Runtime Fabric.
 * Optionally, you can adjust the logging level for the tokenization service.
 . Click *Deploy* to create the tokenization table. +
@@ -99,7 +98,7 @@ image::tokenization-example-edit-token-service.png[]
 . Confirm the Runtime Fabric assignment. +
 The tokenization service name is “mytoken1” and the implementation URL will be: “https://mytoken1­tokenizer:3443”.
 
-The service is available through HTTPS only. The tokenization service is hardcoded to listen on port 3443. The hostname portion is formed by taking the “Service Name” + “tokenizer” to arrive at the Kubernetes service name. The service name in this example is “mytoken1”, so the hostname is "mytoken1tokenizer".
+The tokenization service listens on port 3443 and is available through HTTPS only. The hostname portion is formed by taking the “Service Name” + “tokenizer” to arrive at the Kubernetes service name. The service name in this example is “mytoken1”, so the hostname is "mytoken1tokenizer".
 
 image::tokenization-example-create-tokenization-service.png[]
 
@@ -162,7 +161,7 @@ image::tokenization-example-configure-TLS.png[]
 
 . In Anypoint Platform, go to the *Runtime Manager* page and click on the name of the API Gateway application `token2mule`.
 . In the *Settings* page, select *Choose File ­> Upload File* to upload the API Gateway application you modified in Anypoint Studio.
-. Select the *Enable Last­Mile Security* option. Your settings should look similar to the below image.
+. Select the *Enable Last­Mile Security* option. Your settings should look similar to this image.
 +
 image::tokenization-example-add-tls-enabled-gateway.png[]
 . Click *Deploy*. +
@@ -180,7 +179,7 @@ To try tokenizing data, send the following `curl` command:
 curl ­-k ­­--resolve token2mule.ic.intel.com:443:10.230.36.230 https://token2mule.ic.intel.com/tb/v1/tokenization -­X POST -­H "Content­type: application/json" ­­--data '[{"data": "683­31­8102", "format": "ssndemo"}]
 ----
 
-You should get a response similar to:
+You should get a response similar to the following:
 
 `HTTP/1.1 200 OK [{"data":"597­74­8102","status":"success"}]`
 
@@ -188,11 +187,11 @@ You should get a response similar to:
 
 The tokenization service has no authentication or authorization. The only way to protect it is to allow access only through an Api Gateway with some type of authorization policy enabled.
 
-This example shows you how to add a basic authorization policy to provide a very simple authentication.
+This example shows you how to add a basic authorization policy to provide simple authentication.
 
 . Go to the API Manager page where you created the API Gateway.
 . In the menu on the left, click *Policies*.
-. Create a “Simple security manager” and add a simple username and password.
+. Create a *Simple security manager* and add a simple username and password.
 +
 image::tokenization-example-apply-simple-security.png[]
 . Click *Apply New Policy* and add the “HTTP Basic Authorization” policy.
@@ -201,11 +200,11 @@ image::tokenization-example-apply-simple-security.png[]
 [NOTE]
 A maximum of 200 tokenization or detokenization items can be included in each tokenization or detokenization request.
 +
-The below image shows an example.
+The following image shows an example.
 +
 image::tokenization-example-json-threat-protection.png[]
 +
-The Policies page should look similar to the below example.
+The Policies page should look similar to the following example.
 +
 image::tokenization-example-policies-page.png[]
 
@@ -217,7 +216,7 @@ Run the following `curl` command to send traffic with the `--user` flag for basi
 curl ­-k --­­resolve token2mule.ic.intel.com:443:10.230.36.230 https://token2mule.ic.intel.com/tb/v1/tokenization -­X POST ­-H "Content­type: application/json" ­­data '[{"data": "683­31­8102", "format": "ssndemo"}]' ­-k ­­--user test:test
 ----
 
-You should receive a response similar to the below:
+You should receive a response similar to the following:
 
 `HTTP/1.1 200 OK [{"data":"597­74­8102","status":"success"}]`
 
@@ -227,7 +226,7 @@ You can take the tokenized SSN from above and send it back to the service. The o
 curl ­-k ­­--resolve token2mule.ic.intel.com:443:10.230.36.230 https://token2mule.ic.intel.com/tb/v1/detokenization ­-X POST ­-H "Content­type: application/json" ­­data '[{"data": "597­74­8102", "format": "ssndemo"}]' ­-k ­­--user test:test
 ----
 
-You should receive a response similar to the below:
+You should receive a response similar to the following:
 
 ----
 HTTP/1.1 200 OK [{"data":"683­31­8102","status":"success"}][root@openstackvm32 pentest­ca]
@@ -239,7 +238,7 @@ The following is an example of bad tokenization:
 curl ­v ­-k ­­--resolve token2mule.ic.intel.com:443:10.230.36.230 https://token2mule.ic.intel.com/tb/v1/tokenization -­X POST ­-H "Content­type: application/json" ­­data '[{"data": "597­74­8102­­­­­­­­sdsdsdsdsdsdsdsds", "format": "ssndemo"}]' ­-k ­­--user test:test
 ----
 
-You should receive a response similar to the below:
+You should receive a response similar to the following:
 
 ----
 HTTP/1.1 422 Unprocessable Entity
@@ -254,7 +253,7 @@ The following is an example of bad detokenization:
 curl ­v ­-k ­­--resolve token2mule.ic.intel.com:443:10.230.36.230 https://token2mule.ic.intel.com/tb/v1/detokenization ­-X POST ­-H "Content­type: application/json" ­­data '[{"data": "597­74­8102­­­­­­­­sdsdsdsdsdsdsdsds", "format": "ssndemo"}]' ­-k ­­--user test:test
 ----
 
-You should receive a response similar to the below:
+You should receive a response similar to the following:
 
 ----
 HTTP/1.1 422 Unprocessable Entity
@@ -270,7 +269,7 @@ The following is an example of bad tokenization JSON data stopped by Api Gateway
 curl ­v ­-k ­­--resolve token2mule.ic.intel.com:443:10.230.36.230 https://token2mule.ic.intel.com/tb/v1/detokenization ­-X POST -­H "Content­type: application/json" ­­data '[{{{}{{{}]]"data": "597­74­8102­­­­­­­­sdsdsdsdsdsdsdsds", "format": "ssndemo"}]' ­-k ­­--user test:test
 ----
 
-You should receive a response similar to the below:
+You should receive a response similar to the following:
 
 ----
 HTTP/1.1 400 Bad Request
