@@ -198,7 +198,7 @@ image::tokenization-example-apply-simple-security.png[]
 . Add the JSON threat protection policy.
 +
 [NOTE]
-A maximum of 200 tokenization or detokenization items can be included in each tokenization or detokenization request.
+A maximum of 100 tokenization or detokenization items can be included in each tokenization or detokenization request.
 +
 The following image shows an example.
 +
