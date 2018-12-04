@@ -4,15 +4,18 @@ Anypoint Security features a high-performance, reliable, and scalable service to
 
 You can protect your APIs using three policies:
 
-* DoS (Denial of service) policy. +
+* DoS (Denial of service) Policy. +
 These policies are designed to protect your nodes against malicious clients trying to flood your network to prevent legitimate traffic to your APIs. +
-Learn more about the xref:dos-policy.adoc[DoS Policy].
+Learn more about the xref:dos-policy.adoc[DoS policy].
 * ACL (Access Control List) Policy. +
-This policy checks HTTP proctocol message size and headers. +
-Learn more about the xref:acl-policy.adoc[ACL Policy].
-* CAP (Content Attack Prevention) policy. +
+This policy checks HTTP protocol message size and headers. +
+Learn more about the xref:acl-policy.adoc[ACL policy].
+* CAP (Content Attack Prevention) Policy. +
 This policy prevents attacks from clients that send large messages that can take up all of your processing bandwidth. +
-Learn more about the xref:cap-policy.adoc[CAP Policy].
+Learn more about the xref:cap-policy.adoc[CAP policy].
+* WAF (Web Application Security) Policy +
+The WAF policy provides the OWASP Core Rule Set (CRS) for checking requests and responses to detect common Web application attacks. +
+Learn more about the xref:waf-policy[WAF policy]
 
 You can use these policies to handle all traffic to your Runtime Fabric, and leverage API Manager policies for handling specific behaviors to specific APIs.
 
@@ -21,21 +24,21 @@ image::index-e9021.png[]
 Anypoint Security policies then act as a default router capability through which all traffic traverses. +
 It provides:
 
-* Threat Prevention.
+* Threat detection and prevention.
 ** Content Attack Prevention (header and message limits checks).
 ** Denial of Service.
 ** IP Whitelists.
 * Advanced TLS  (e.g. Cert-pinning, CRL).
 * Basic TLS  (e.g. Mutual TLS, SSL Termination).
 
-Additionally, API policies configured in API Manager and running in API gateway give your the ability to further customize or extend certain limitations you are applying at the mule application level. +
+API policies configured in API Manager and running in API gateway give you the ability to further customize or extend certain limitations you are applying at the Mule application level. +
 This layer of security provides the same control as any API Manager policy offers. For example:
 
-* Basic TLS (e.g. Mutual TLS, SSL Termination)
+* Basic TLS (for example, Mutual TLS, SSL Termination)
 * Rate Limiting
 * OAuth & AAA
 
-Additionally, your account must have associated the *Runtime Fabrics* and *Security Edge Policies* entitlements in addition to API Manager & Analytics.
+Your Anypoint Platform account must have the associated *Runtime Fabric* and *Security Edge Policies* entitlements, in addition to API Manager and Analytics.
 
 To apply policies, you need to have the *Manage Runtime Fabrics* permission associated to your user. +
 An administrator for your organization can grant you this permission Access Management.
@@ -45,3 +48,4 @@ An administrator for your organization can grant you this permission Access Mana
 * xref:acl-policy.adoc[ACL Policy]
 * xref:dos-policy.adoc[DoS Policy]
 * xref:cap-policy.adoc[CAP Policy]
+* xref:waf-policy.adoc[WAF Policy]

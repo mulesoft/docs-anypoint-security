@@ -1,0 +1,32 @@
+= Create a WAF Policy
+
+Under the “Anypoint Security”->Security Policies, you will now be able to create a new policy type called, WAF.
+
+. Sign into Anypoint Platform and navigate to Anypoint Security.
+. In the Security Policies page, click *Create Policy* and select *Web Application Firewall (WAF)*.
+. Enter a name for the policy and click *Save*.
+
+== Configure Request Rulesets
+
+. To configure request rulesets:
+. In the menu on the left, click *Request Rulesets*. +
+All the rules are disabled by default. For each rule, you can enable +
+* Detect and allow violations
+* Detect and reject violations
+. In *Advanced performance options*, select any options to apply: +
+* *Disable body scanner*
+* *Disable JSON parser*
+* *Disable XML parser*
+. Click *Save*.
+
+== Configure Response Rulesets
+
+. To configure response rulesets:
+. In the menu on the left, click *Response Rulesets*. +
+All the rulesets are disabled by default. For each rule, you can enable: +
+* Detect and allow violations
+* Detect and reject violations
+. In Advanced Performance Options, you can select *Disable body scanner* to improve performance.
+. Click *Save*.
+
+== Disable Individual Rules
