@@ -13,7 +13,7 @@ To configure the tokenization service, you need the following:
 
 image::tokenization-setup-example-diagram.png[Tokenization Examples]
 
-In this diagram, a “Sensitive Data - Compliance Zone” is used to segregate the tokenization service from the general Runtime Fabric. This segregation is based on security needs.
+In this diagram, a separate zone segregates the tokenization service from the general Runtime Fabric. This segregation is based on security needs.
 
 For example, if sensitive data is produced from a Mule application serving external traffic (Client -> Edge -> Mule application), this application might be included in the sensitive data zone.
 
@@ -220,7 +220,7 @@ You should receive a response similar to the following:
 
 `HTTP/1.1 200 OK [{"data":"597­74­8102","status":"success"}]`
 
-You can take the tokenized SSN from above and send it back to the service. The original SSN will be returned. Remember that the token returned is always format preserving.
+You can take the tokenized SSN from above and send it back to the service. The original SSN will be returned. Remember that the token returned always preserves the format of the input data.
 
 ----
 curl ­-k ­­--resolve token2mule.ic.intel.com:443:10.230.36.230 https://token2mule.ic.intel.com/tb/v1/detokenization ­-X POST ­-H "Content­type: application/json" ­­data '[{"data": "597­74­8102", "format": "ssndemo"}]' ­-k ­­--user test:test
