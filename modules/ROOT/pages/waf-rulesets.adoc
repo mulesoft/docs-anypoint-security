@@ -2,6 +2,9 @@
 
 You can enable rules by threat category for requests and responses--these are called "rulesets." Custom rules or modifications to rules are not currently available. There is an option to disable individual rules within a ruleset if they are causing false positives.
 
+You should enable only the rules that apply to your web application's technology.
+
+[[request_rule_sets]]
 == Request Rule Sets
 
 Request rulesets are divided into ten threat categories, which are called rulesets. There are three actions that can be selected for each ruleset:
@@ -10,7 +13,7 @@ Request rulesets are divided into ten threat categories, which are called rulese
 * Detect and reject violations - When a request is detected that matches one of the rules contained in the ruleset, the request will be rejected with a Response status code of ‘400’ - BAD REQUEST - Web application firewall error. If there is an optional DoS policy configured, this error will be reported to DoS which will threshold the error against the source IP address.
 * Detect and allow-violations - The request is allowed to proceed and the detection is not reported to DoS. A statistics counter per rule ID detected will be incremented, which will then be shown in the WAF summary report (this will be addressed later in this document).
 
-
+[[response_rule_sets]]
 == Response Rule Sets
 
 Response rulesets are similar to request rulesets. Response rulesets check outbound responses from backend servers to look for information that should not be present in responses.
@@ -22,9 +25,9 @@ The disable body scanner also works as explained for the request ruleset, howeve
 * Only the following mime types are evaluated:
 ** text/plain
 ** text/html
-**text/xml
+** text/xml
 ** application/json. +
 Responses messages without these mime types set in the content type header will not be evaluated.
 * For resource usage management, a maximum response size is imposed, which is hard-coded to 512 KB and not configurable. If response rulesets are enabled with the “Disable body scanner” unchecked, a response with a content-length greater than 512 KB will be rejected. +
 [Important]
-Do not enable disable body scanner if responses will exceed 512 KB.
+Do not leave the *Disable body scanner* option unchecked if responses will exceed 512 KB.

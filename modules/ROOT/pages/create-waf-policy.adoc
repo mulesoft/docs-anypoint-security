@@ -8,25 +8,40 @@ Under the “Anypoint Security”->Security Policies, you will now be able to cr
 
 == Configure Request Rulesets
 
-. To configure request rulesets:
+Configure the rules to allow or block request traffic to your Web application. For more information about request rulesets, see xref:waf-rulesets#request_rule_sets[Request rulesets].
+
 . In the menu on the left, click *Request Rulesets*. +
 All the rules are disabled by default. For each rule, you can enable +
 * Detect and allow violations
 * Detect and reject violations
 . In *Advanced performance options*, select any options to apply: +
 * *Disable body scanner*
++
+[NOTE]
+Leaving the *Disable body scanner* option unchecked can be costly in terms of resources (CPU) depending on the size of the request messages. If request body checking is enabled, the CAP policy “Maximum Message Size” should be set to a value no larger than required to prevent attackers from abusing request body checking, and exhausting the resources.
 * *Disable JSON parser*
 * *Disable XML parser*
 . Click *Save*.
 
 == Configure Response Rulesets
 
-. To configure response rulesets:
+Configure the rules to allow or block responses to your Web application. For more information about response rulesets, see xref:waf-rulesets#response_rule_sets[Response rulesets]
+
 . In the menu on the left, click *Response Rulesets*. +
 All the rulesets are disabled by default. For each rule, you can enable: +
 * Detect and allow violations
 * Detect and reject violations
-. In Advanced Performance Options, you can select *Disable body scanner* to improve performance.
+. In *Advanced Performance Options*, you can select *Disable body scanner* to improve performance.
 . Click *Save*.
 
 == Disable Individual Rules
+
+If an individual rule within a ruleset is causing false positives, you can disable it.
+
+. In the *Anypoint Security > Security Policies* page, click *Edit* for the WAF policy for which to disable rules.
+. In the menu on the left, click *Disabled Rule IDs*.
+. Add the individual rule IDs for the rule to disable, separated by commas. +
+When you hover over the i button to the right of each rule, the rule ID range for that rule is displayed.
++
+image::waf-hover-for-rule.png[]
+. Click *Save*.

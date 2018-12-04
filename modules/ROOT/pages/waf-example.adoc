@@ -1,0 +1,7 @@
+= WAF Example
+
+In this example, the WAF policy is configured for JSON, and checks the HTTP headers, URI request, parameters, and the request body.
+
+Leaving the *Disable body scanner* option unchecked can be costly in terms of resources (CPU) depending on the size of the request messages. If request body checking is enabled, the CAP policy “Maximum Message Size” should be set to a value no larger than required to prevent attackers from abusing request body checking, and exhausting the resources. 
+
+Parsing for either JSON or XML will be done based on the mime type set in the content type header in the request. If a request with a content type of “application/json” is sent and the body does not contain valid JSON, the request will be rejected. The “Disable XML parser” has been checked. Additionally, note that the “Disable body scanner” has not been checked.

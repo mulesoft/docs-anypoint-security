@@ -1,6 +1,6 @@
 = Web Application Security Policy
 
-The Web Application Firewall (WAF) security policy is available for Runtime Fabric Ingress. WAF policies provide the OWASP Core Rule Set (CRS) functionality checking for requests and responses. This checking provides a set of detection rules for common web application attacks.
+The Web Application Firewall (WAF) security policy is available for Runtime Fabric Ingress to provide protection at the Web application level. WAF policies provide the OWASP Core Rule Set (CRS) functionality checking for requests and responses, which provides an industry standard security baseline. This checking provides a set of detection rules for common web application attacks.
 
 [NOTE]
 Only the official OWASP CRS rules are supported.
