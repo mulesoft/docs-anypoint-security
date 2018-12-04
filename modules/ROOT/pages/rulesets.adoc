@@ -1,0 +1,17 @@
+= Rule Sets
+
+You can enable rules by threat category for requests and responses, which are called "RuleSets." Custom rules or modifications to rules are not available. There is an option to disable individual rules within a RuleSet if they are causing false positives.
+
+== Request Rule Sets
+
+Request rulesets are divided into ten threat categories, which are called RuleSets. There are three actions that can be selected for each RuleSet:
+
+* Disable ruleset - (Default) Ruleset detection is turned off.
+* Detect and reject violations - When a request is detected that matches one of the rules contained in the ruleset, the request will be rejected with a Response status code of ‘400’ - BAD REQUEST - Web application firewall error. If there is an optional DoS policy configured, this error will be reported to DoS which will threshold the error against the source IP address.
+* Detect and allow-violations - The request is allowed to proceed and the detection is not reported to DoS. A statistics counter per rule ID detected will be incremented, which will then be shown in the WAF summary report (this will be addressed later in this document).
+
+
+
+== Response Rule Sets
+
+Response rulesets are similar to request rulesets. Response rulesets check outbound responses from backend servers to look for information that should not be present in responses.
