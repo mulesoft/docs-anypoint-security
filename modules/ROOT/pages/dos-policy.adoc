@@ -3,9 +3,9 @@
 The Denial of service (DoS) policy prevents attackers from flooding your network to prevent legitimate network traffic to your APIs. +
 Malicious clients, for example, could send huge malicious payloads designed to consume resources and bandwidth.
 
-The DoS policy allows you to configure a time window in which you can catch specific error types, and set up conditions for each type of error encountered. If the policy encounters more errors than your tolerated amount coming from the same IP address, the policy can either drop the connection silently (doesn't attempt the TLS connection), or drop the connection immediately returning a 503 (a TLS connection has to be made in this case).
+The DoS policy allows you to configure a time window in which you can catch specific error types, and set up conditions for each type of error encountered. If the policy encounters more errors than your tolerated amount coming from the same IP address, the policy can either drop the connection silently (doesn't attempt the TLS connection), or drop the connection immediately and return a `503` error (a TLS connection has to be made in this case).
 
-This source is IP based. If an attacker can spoof his source IP address, these measurements cannot prevent the attack.
+This source is IP based. If an attacker can spoof the source IP address, these measurements cannot prevent the attack.
 
 == Error Types
 
@@ -34,7 +34,7 @@ ACL policy violations also escalate as authentication errors.
 
 | *QoS Errors*
 | Whenever a QoS error occurs. +
-For example, a client may try to force a lot of QoS (quality of service) errors by dropping packets to degrade the TCP service damaging your TCP performance.
+For example, a client may try to force a lot of QoS (quality of service) errors by dropping packets to degrade the TCP service, damaging your TCP performance.
 
 Violations to a rate limiting, or SLA based, or Ping Federate policy at the API Manager level escalates as a QoS error.
 
@@ -109,16 +109,16 @@ If you have a DoS policy configured, HTTP protocol errors (malicious protocol vi
 
 . Navigate to *Anypoint Security*, click the *Create Policy* icon, and select *Denial Of Service*. +
 The process of applying a DOS Policy has six different screens. +
-For every screen in the process, you need to save the changes. If you leave one screen without saving, you loose your changes on that screen.
+For every screen in the process, you must save the changes. If you leave one screen without saving, you lose your changes on that screen.
 . Click *General* on the left navigation bar:
 .. Add a name for your policy in the *Name* field.
 .. Set up a time interval, in seconds, in the *Window1 Time Period*. +
 This time interval is the accepted time that your policy will block other requests if it encounters the amount of errors that you configure for each type of error.
-.. Use the *Max Sources To Monitor* field to set up a maximum amount of IP address to track. +
-The DoS Policy can track up to 500000 IP addresses.
+.. Use the *Max Sources To Monitor* field to set up a maximum number of IP address to track. +
+The DoS policy can track up to 500000 IP addresses.
 .. Use the *Reject Message Action* drop-down menu to select the type of response the policy returns when dropping a client connection. You have two options:
-* *Drop Silently*: The policy drops the connection silently and avoids making the TLS handshake altogether. The policy avoids making the connection for the tcp packets with source ip address in AWS ELB Proxy Protocol headers, or for source ip address taken from the tcp packet. This is the most efficient way to terminate the client's connection, as the policy avoids reading the attacker's request.
-* *Send HTTP 503*: The policy terminates the connection and returns a 503 (Service Unavailable) response to the client. This requires for a TLS connection to be made., therefore being quite resource expensive.
+* *Drop Silently*: The policy drops the connection silently and avoids making the TLS handshake altogether. The policy avoids making the connection for the TCP packets with source IP address in AWS ELB Proxy Protocol headers, or for source IP address taken from the TCP packet. This is the most efficient way to terminate the client's connection, as the policy avoids reading the attacker's request.
+* *Send HTTP 503*: The policy terminates the connection and returns a `503 (Service Unavailable)` response to the client. This requires a TLS connection to be made, which is resource expensive.
 +
 [TIP]
 --
