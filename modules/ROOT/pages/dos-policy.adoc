@@ -132,3 +132,4 @@ If your applications are behind an AWS or load balancer, you must use this rejec
 * xref:acl-policy.adoc[ACL Policy]
 * xref:cap-policy.adoc[CAP Policy]
 * xref:waf-policy.adoc [WAF Policy]
+* xref:escalate-waf-to-dos.adoc[Enable DoS for a WAF Policy]
