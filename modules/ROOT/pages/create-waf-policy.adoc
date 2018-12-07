@@ -16,7 +16,7 @@ Configure the rules to allow or block request traffic to your Web application. F
 . In the menu on the left, click *Request Rulesets*. +
 All the rules are disabled by default. For each rule, you can: +
 * *Disable ruleset* - (Default) Ruleset detection is turned off.
-* *Detect and allow violations* - The violation is detected and you will get information in your logs at the INFO level, per incident. They will also be included at the ERROR (default log level for Edge policies) level in a summary report, and you will get counts. If you enable DoS for the WAF policy, the violations will not be reported to DoS.
+* *Detect and allow violations* - The violation is detected and you will get information in your logs at the INFO level, per incident. They will also be included at the ERROR (default log level for Edge policies) level in a summary report. If you enable DoS for the WAF policy, the violations will not be reported to DoS.
 * *Detect and reject violations* - The request is rejected and has a response status of `400 - BAD REQUEST`.
 . In *Advanced performance options*, you can select from the following options: +
 * *Disable body scanner* - If you do not check this option, the request body is scanned.

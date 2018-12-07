@@ -2,7 +2,9 @@
 
 You can enable rules by threat category for requests and responses--these are called "rulesets." Custom rules or modifications to rules are not currently available. There is an option to disable individual rules within a ruleset if they are causing false positives. See xref:create-waf-policy#disable_rules[Disable Individual Rules].
 
-You should enable only the rules that apply to your web application's technology.
+Rules can run on a variety of things, for example, they can run on URIs, headers, arguments, session IDs, cookies, and request and response bodies, to name a few.
+
+For optimal performance, you should enable only the rules that apply to your web application's technology.
 
 [[request_rule_sets]]
 == Request Rulesets
