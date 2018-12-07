@@ -16,18 +16,17 @@ Configure the rules to allow or block request traffic to your Web application. F
 . In the menu on the left, click *Request Rulesets*. +
 All the rules are disabled by default. For each rule, you can: +
 * *Disable ruleset* - (Default) Ruleset detection is turned off.
-* *Detect and allow violations* - The violation is detected and you will get information in your logs at the INFO level, per incident. They will also be included at the ERROR (default log level for Edge policies) level in a summary report. If you enable DoS for the WAF policy, the violations will not be reported to DoS.
+* *Detect and allow violations* - The violation is detected and you will get information in your logs at the INFO level, per incident.
 * *Detect and reject violations* - The request is rejected and has a response status of `400 - BAD REQUEST`.
-. In *Advanced performance options*, you can select from the following options: +
-* *Disable body scanner* - If you do not check this option, the request body is scanned.
++
+When you hover over the `i` button to the right of each rule, the rule ID range for that rule is displayed. This information can be used for testing rulesets and for disabling individual rules.
++
+image::waf-rule-set.png[]
++
+. In *Advanced performance options*, you can select *Disable body scanner*. If you do not check this option, the request body is scanned.
 +
 [NOTE]
 Leaving the *Disable body scanner* option unchecked can be costly in terms of resources (CPU) depending on the size of the request messages. If request body checking is enabled, the CAP policy “Maximum Message Size” should be set to a value no larger than required to prevent attackers from abusing request body checking, and exhausting the resources.
-//* *Disable JSON parser*
-//* *Disable XML parser* +
-When you hover over the `i` button to the right of each rule, the rule ID range for that rule is displayed. This information can be used for testing rulesets and for disabling individual rules.
-+
-image::waf-hover-for-rule.png[]
 . Click *Save*.
 
 == Configure Response Rulesets
@@ -65,7 +64,10 @@ You can examine the WAF summary message in logs to determine which rule IDs are 
 . Add the individual rule IDs for the rules to disable, separated by commas. +
 . Click *Save*.
 
+Once your WAF policy is configured and saved, you can (optionally) edit an existing DoS policy to enable DoS for your WAF policy, then deploy the policies to Runtime Fabric.
+
 == See Also
 
 * xref:apply-policy.adoc[Applying Policies]
 * xref:waf-rulesets.adoc[WAF Rulesets]
+* xref:escalate-waf-to-dos.adoc[Enable DoS for a WAF Policy]

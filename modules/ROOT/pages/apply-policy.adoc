@@ -9,10 +9,11 @@ To apply policies, you must meet the following requirements:
 
 == Procedure
 
-. Go to *Runtime Manager*, click *Runtime Fabric* from the left navigation bar, and select the Runtime Fabric for which to enable Edge policies.
+. Go to *Runtime Manager*, and click *Runtime Fabric* in the left navigation bar.
+. Select the Runtime Fabric for which to enable Edge policies.
 . Click the *Inbound Traffic* tab, and navigate to *Security Policies*.
-. For each policy, select the name of the policy to apply.
-. Click *Deploy* to deploy the policy to Runtime Fabric.
+. For each type of policy to deploy, select the name of the policy from the drop-down list.
+. Click *Deploy* to deploy the policies to Runtime Fabric.
 
 == See Also
 
