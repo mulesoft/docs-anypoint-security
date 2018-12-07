@@ -4,7 +4,10 @@ Under the “Anypoint Security”->Security Policies, you will now be able to cr
 
 . Sign into Anypoint Platform and navigate to Anypoint Security.
 . In the Security Policies page, click *Create Policy* and select *Web Application Firewall (WAF)*.
-. Enter a name for the policy and click *Save*.
+. Enter a name for the policy and click *Save*. +
+The policy appears in the Security Policies list, where you can edit and delete policies.
+
+image::security-policy-list.png[]
 
 == Configure Request Rulesets
 
@@ -50,9 +53,10 @@ Response messages without these MIME types set in the content type header will n
 Do not leave the *Disable body scanner* option unchecked if responses will exceed 512 KB.
 . Click *Save*.
 
+[[disable_rules]]
 == Disable Individual Rules
 
-You can disable individual rules within a ruleset if they are causing false positives. This is useful because if only one rule ID in the ruleset is causing a false positive, it isn't necessary to turn off an entire ruleset such as “Protocol attack." 
+You can disable individual rules within a ruleset if they are causing false positives. This is useful because if only one rule ID in the ruleset is causing a false positive, it isn't necessary to turn off an entire ruleset such as “Protocol attack."
 
 You can examine the WAF summary message in logs to determine which rule IDs are firing. You can also refer to the Edge policies RAML for a complete list of rule IDs.
 

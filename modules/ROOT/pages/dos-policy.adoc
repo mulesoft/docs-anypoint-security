@@ -1,6 +1,6 @@
 = Denial Of Service Policy
 
-The Denial of service (DoS) policy prevents attackers from flooding your network to prevent legitimate network traffic to your APIs. +
+The Denial of Service (DoS) policy prevents attackers from flooding your network to prevent legitimate network traffic to your APIs. +
 Malicious clients, for example, could send huge malicious payloads designed to consume resources and bandwidth.
 
 The DoS policy allows you to configure a time window in which you can catch specific error types, and set up conditions for each type of error encountered. If the policy encounters more errors than your tolerated amount coming from the same IP address, the policy can either drop the connection silently (doesn't attempt the TLS connection), or drop the connection immediately and return a `503` error (a TLS connection has to be made in this case).
@@ -61,16 +61,16 @@ After the interval of your window of time expires, the policy does not enforce s
 Within each window, you can configure the amount of errors that you want to allow, within this time window. This amount of errors is a DoS count. You can configure up to three DoS windows for each type of DoS error. Within each window, the policy can apply one of the DoS actions to the client’s message requests, whenever your configured DoS count is met. +
 For example, you can configure a 60 second window (1 minute interval), and configure the policy so that if 2 protocol error happens within that time window ("2" is then your DoS count), reject all further requests from this client (apply a Block-Forever action).
 
-You can configure up to three different windows. Each window corresponds to escalation levels. Window 1 is the lowest escalation level and Window 3 is the highest. +
-When configuring a window higher than window 1 (window 2 and additionally window 3) you can set up the interval for those windows based on the interval of the preceding window (window 1 for window 2, and window 2 for window 3). +
-Following the example above, you can set up window 2 to be two intervals of window 1. Window 1 having an interval of 60 seconds, then window 2 will have a 120 seconds interval. +
+You can configure up to three different windows. Each window corresponds to escalation levels. *Window 1* is the lowest escalation level and *Window 3* is the highest. +
+When configuring a window higher than *Window 1*, you can set up the interval for those windows based on the interval of the preceding window (Window 1 for Window 2, and Window 2 for Window 3). +
+Following the example above, you can set up Window 2 to be two intervals of Window 1, which means that if Window 1 has an interval of 60 seconds, then Window 2 will have a 120 seconds interval. +
 Additionally, you can configure a different DoS count for each window, which introduces the concept of thresholds. +
 Each window has a different threshold:
 
 * For Window 1, the threshold is the value of the DoS count when a DoS action is applied within Window 1.
 * For Window 2, the threshold is the value of the Window 2 DoS count when a DoS action is applied in Window 2. +
 Keep in mind, that a Window 2 DoS count is the number of Window 1 DoS actions taken within that Window 2.
-* For Window 3, the threshold is the value of the Window 3 DoS count when a DoS action is applied in Window 3. Also considering that a Window 3 DoS count is the number of Window 2 DoS actions taken within that Window 3.  
+* For Window 3, the threshold is the value of the Window 3 DoS count when a DoS action is applied in Window 3, and also that a Window 3 DoS count is the number of Window 2 DoS actions taken within that Window 3.
 
 Based on this, window escalation occurs when a DoS threshold is violated.
 
@@ -107,7 +107,7 @@ If you have a DoS policy configured, HTTP protocol errors (malicious protocol vi
 
 == Configuring a DoS Policy
 
-. Navigate to *Anypoint Security*, click the *Create Policy* icon, and select *Denial Of Service*. +
+. Navigate to *Anypoint Security*, click *Create Policy*, and select *Denial Of Service*. +
 The process of applying a DOS Policy has six different screens. +
 For every screen in the process, you must save the changes. If you leave one screen without saving, you lose your changes on that screen.
 . Click *General* on the left navigation bar:
@@ -122,7 +122,7 @@ The DoS policy can track up to 500000 IP addresses.
 +
 [TIP]
 --
-If your applications are behind a AWS or load balancer, you must use this reject action, as the policy needs to read the attacker's request to identify the source IP headers in the HTTP message such as ‘x-forwarded-for’ or ‘forwarded’, before applying a DoS action.
+If your applications are behind an AWS or load balancer, you must use this reject action, as the policy needs to read the attacker's request to identify the source IP headers in the HTTP message such as ‘x-forwarded-for’ or ‘forwarded’, before applying a DoS action.
 --
 . Now you can configure your policy to take action for the different error types.
 
@@ -131,3 +131,4 @@ If your applications are behind a AWS or load balancer, you must use this reject
 
 * xref:acl-policy.adoc[ACL Policy]
 * xref:cap-policy.adoc[CAP Policy]
+* xref:waf-policy.adoc [WAF Policy]
