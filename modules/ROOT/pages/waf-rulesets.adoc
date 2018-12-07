@@ -1,11 +1,11 @@
 = WAF Rulesets
 
-You can enable rules by threat category for requests and responses--these are called "rulesets." Custom rules or modifications to rules are not currently available. There is an option to disable individual rules within a ruleset if they are causing false positives.
+You can enable rules by threat category for requests and responses--these are called "rulesets." Custom rules or modifications to rules are not currently available. There is an option to disable individual rules within a ruleset if they are causing false positives. See xref:create-waf-policy#disable_rules[Disable Individual Rules].
 
 You should enable only the rules that apply to your web application's technology.
 
 [[request_rule_sets]]
-== Request Rule Sets
+== Request Rulesets
 
 Request rulesets are divided into ten threat categories, which are called rulesets. There are three actions that can be selected for each ruleset:
 
@@ -25,6 +25,10 @@ The ten threat categories include the following:
 * *Cross-site scripting*
 * *SQL injection*
 * *Session fixation*
+
+The following image shows an example WAF policy ruleset.
+
+image::waf-rule-set.png[]
 
 [[response_rule_sets]]
 == Response Rule Sets
