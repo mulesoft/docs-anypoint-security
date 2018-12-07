@@ -70,7 +70,7 @@ Each window has a different threshold:
 * For Window 1, the threshold is the value of the DoS count when a DoS action is applied within Window 1.
 * For Window 2, the threshold is the value of the Window 2 DoS count when a DoS action is applied in Window 2. +
 Keep in mind, that a Window 2 DoS count is the number of Window 1 DoS actions taken within that Window 2.
-* For Window 3, the threshold is the value of the Window 3 DoS count when a DoS action is applied in Window 3. Also considering that a Window 3 DoS count is the number of Window 2 DoS actions taken within that Window 3.
+* For Window 3, the threshold is the value of the Window 3 DoS count when a DoS action is applied in Window 3. Also considering that a Window 3 DoS count is the number of Window 2 DoS actions taken within that Window 3.  
 
 Based on this, window escalation occurs when a DoS threshold is violated.
 
