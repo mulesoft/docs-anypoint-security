@@ -26,6 +26,8 @@ The ten threat categories include the following:
 * *SQL injection*
 * *Session fixation*
 
+You can hover over the "i" icon on the right side of each ruleset to see which rule IDs are included in that ruleset.
+
 The following image shows an example WAF policy ruleset.
 
 image::waf-rule-set.png[]

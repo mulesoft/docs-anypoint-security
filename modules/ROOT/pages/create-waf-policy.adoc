@@ -1,6 +1,6 @@
 = Create a WAF Policy
 
-You can create a WAF policy in *Anypoint Security > Security Policies* to implement security for your web applications. WAF violation detection policies can also be escalated to DoS. 
+You can create a WAF policy in *Anypoint Security > Security Policies* to implement security for your web applications. WAF violation detection policies can also be escalated to DoS.
 
 . Sign into Anypoint Platform and navigate to Anypoint Security.
 . In the Security Policies page, click *Create Policy* and select *Web Application Firewall (WAF)*.
@@ -16,7 +16,7 @@ Configure the rules to allow or block request traffic to your Web application. F
 . In the menu on the left, click *Request Rulesets*. +
 All the rules are disabled by default. For each rule, you can: +
 * *Disable ruleset* - (Default) Ruleset detection is turned off.
-* *Detect and allow violations* - The violation is detected but not reported to DoS.
+* *Detect and allow violations* - The violation is detected and you will get information in your logs at the INFO level, per incident. They will also be included at the ERROR (default log level for Edge policies) level in a summary report, and you will get counts. If you enable DoS for the WAF policy, the violations will not be reported to DoS.
 * *Detect and reject violations* - The request is rejected and has a response status of `400 - BAD REQUEST`.
 . In *Advanced performance options*, you can select from the following options: +
 * *Disable body scanner* - If you do not check this option, the request body is scanned.
@@ -25,7 +25,7 @@ All the rules are disabled by default. For each rule, you can: +
 Leaving the *Disable body scanner* option unchecked can be costly in terms of resources (CPU) depending on the size of the request messages. If request body checking is enabled, the CAP policy “Maximum Message Size” should be set to a value no larger than required to prevent attackers from abusing request body checking, and exhausting the resources.
 //* *Disable JSON parser*
 //* *Disable XML parser* +
-When you hover over the `i` button to the right of each rule, the rule ID range for that rule is displayed.
+When you hover over the `i` button to the right of each rule, the rule ID range for that rule is displayed. This information can be used for testing rulesets and for disabling individual rules.
 +
 image::waf-hover-for-rule.png[]
 . Click *Save*.
@@ -56,7 +56,7 @@ Do not leave the *Disable body scanner* option unchecked if responses will excee
 [[disable_rules]]
 == Disable Individual Rules
 
-You can disable individual rules within a ruleset if they are causing false positives. This is useful because if only one rule ID in the ruleset is causing a false positive, it isn't necessary to turn off an entire ruleset such as “Protocol attack."
+You can disable individual rules within a ruleset if they are causing false positives. This is useful because if only one rule in the ruleset is causing a false positive, it isn't necessary to turn off an entire ruleset such as “Protocol attack."
 
 You can examine the WAF summary message in logs to determine which rule IDs are firing. You can also refer to the Edge policies RAML for a complete list of rule IDs.
 
