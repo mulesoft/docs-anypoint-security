@@ -20,8 +20,8 @@ All the rules are disabled by default. For each rule, you can: +
 +
 [NOTE]
 Leaving the *Disable body scanner* option unchecked can be costly in terms of resources (CPU) depending on the size of the request messages. If request body checking is enabled, the CAP policy “Maximum Message Size” should be set to a value no larger than required to prevent attackers from abusing request body checking, and exhausting the resources.
-* *Disable JSON parser*
-* *Disable XML parser* +
+//* *Disable JSON parser*
+//* *Disable XML parser* +
 When you hover over the `i` button to the right of each rule, the rule ID range for that rule is displayed.
 +
 image::waf-hover-for-rule.png[]
@@ -39,12 +39,12 @@ All the rulesets are disabled by default. For each rule, you can: +
 . In *Advanced Performance Options*, select *Disable body scanner* to improve performance. +
 The *Disable body scanner* works as explained for the request ruleset, however, there are some important caveats:
 
-* Only the following mime types are evaluated:
+* Only the following MIME types are evaluated:
 ** text/plain
 ** text/html
 ** text/xml
-** application/json. +
-Response messages without these mime types set in the content type header will not be evaluated.
+** application/json +
+Response messages without these MIME types set in the content type header will not be evaluated.
 * For resource usage management, a maximum response size is imposed, which is hard-coded to 512 KB and not configurable. If response rulesets are enabled with the “Disable body scanner” unchecked, a response with a content-length greater than 512 KB will be rejected. +
 [Important]
 Do not leave the *Disable body scanner* option unchecked if responses will exceed 512 KB.
@@ -52,7 +52,7 @@ Do not leave the *Disable body scanner* option unchecked if responses will excee
 
 == Disable Individual Rules
 
-If an individual rule within a ruleset is causing false positives, you can disable it. You can examine the WAF summary message in logs to determine which rule IDs are firing.
+You can disable individual rules within a ruleset if they are causing false positives. You can examine the WAF summary message in logs to determine which rule IDs are firing.
 
 . In the *Anypoint Security > Security Policies* page, click *Edit* for the WAF policy for which to disable rules.
 . In the menu on the left, click *Disabled Rule IDs*.

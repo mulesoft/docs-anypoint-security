@@ -76,7 +76,7 @@ Based on this, window escalation occurs when a DoS threshold is violated.
 
 == Escalating Policy Violations as Errors
 
-If you have a DoS policy configured, HTTP protocol errors (malicious protocol violation attempts), and ACL and CAP policy violations escalate directly to DoS. Additionally, Some API Gateway provided policies escalate directly to DoS as well. See the table below for a specific mapping of violations and error escalations:
+If you have a DoS policy configured, HTTP protocol errors (malicious protocol violation attempts), ACL, WAF, and CAP policy violations escalate directly to DoS. Additionally, Some API Gateway provided policies escalate directly to DoS as well. See the table below for a specific mapping of violations and error escalations:
 
 [%header%autowidth.spread,cols="a,a"]
 |===
