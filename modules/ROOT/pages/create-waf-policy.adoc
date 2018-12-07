@@ -52,7 +52,9 @@ Do not leave the *Disable body scanner* option unchecked if responses will excee
 
 == Disable Individual Rules
 
-You can disable individual rules within a ruleset if they are causing false positives. You can examine the WAF summary message in logs to determine which rule IDs are firing.
+You can disable individual rules within a ruleset if they are causing false positives. This is useful because if only one rule ID in the ruleset is causing a false positive, it isn't necessary to turn off an entire ruleset such as “Protocol attack." 
+
+You can examine the WAF summary message in logs to determine which rule IDs are firing. You can also refer to the Edge policies RAML for a complete list of rule IDs.
 
 . In the *Anypoint Security > Security Policies* page, click *Edit* for the WAF policy for which to disable rules.
 . In the menu on the left, click *Disabled Rule IDs*.

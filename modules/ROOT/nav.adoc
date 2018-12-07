@@ -9,6 +9,7 @@
   *** xref:create-waf-policy.adoc[Create a WAF Policy]
   *** xref:waf-rulesets.adoc[WAF Rule Sets]
   *** xref:escalate-waf-to-dos.adoc[Enable DoS for a WAF Policy]
+  *** xref:test-waf-policy.adoc[Testing a WAF Policy]
 * xref:tokenization.adoc[Tokenization Service]
 ** xref:tokenization-formats.adoc[Tokenization Formats]
 ** xref:tokenization-example.adoc[Configure and Use Tokenization]
