@@ -40,16 +40,16 @@ All the rulesets are disabled by default. For each rule, you can: +
 * *Detect and reject violations* - The request is rejected and has a response status of `400 - BAD REQUEST`.
 . In *Advanced Performance Options*, select *Disable body scanner* to improve performance. +
 The *Disable body scanner* works as explained for the request ruleset, however, there are some important caveats:
-
-* Only the following MIME types are evaluated:
++
+[NOTE]
+Do not leave the *Disable body scanner* option unchecked if responses will exceed 512 KB.
++
+* For resource usage management, a maximum response size is imposed, which is hard-coded to 512 KB and not configurable. If response rulesets are enabled with the “Disable body scanner” unchecked, a response with a content-length greater than 512 KB will be rejected.
+* Response messages without the following MIME types set in the content type header will not be evaluated:
 ** text/plain
 ** text/html
 ** text/xml
-** application/json +
-Response messages without these MIME types set in the content type header will not be evaluated.
-* For resource usage management, a maximum response size is imposed, which is hard-coded to 512 KB and not configurable. If response rulesets are enabled with the “Disable body scanner” unchecked, a response with a content-length greater than 512 KB will be rejected. +
-[Important]
-Do not leave the *Disable body scanner* option unchecked if responses will exceed 512 KB.
+** application/json
 . Click *Save*.
 
 [[disable_rules]]

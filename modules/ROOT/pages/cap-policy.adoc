@@ -1,6 +1,6 @@
 = Content Attack Prevention Policy
 
-The Content Attack Prevenetion (CAP) policy prevents an attacker to take up all your bandwith by sending large messages. +
+The Content Attack Prevention (CAP) policy prevents an attacker to take up all your bandwidth by sending large messages. +
 This policy checks TCP protocol message sizes and headers. This policy does not check content.
 
 The default allowed message size is large. You need to tune the message size allowed by your policy based on your application needs. +
@@ -8,7 +8,7 @@ It's recommended to set up size limits with which all of your APIs can handle.
 
 Violations to this policy escalate as *protocol errors* when configuring a DoS policy.
 
-This policy applies to all your APIs behind your Edge/Ingress endpoint. You can apply API Gateway policies to each API to enforce other API specific policies, such as throttling, JSON Threat Protection.
+This policy applies to all your APIs behind your Edge/Inbound endpoint. You can apply API Gateway policies to each API to enforce other API specific policies, such as throttling, JSON Threat Protection.
 
 == Configuring CAP Policy
 

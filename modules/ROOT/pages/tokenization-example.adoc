@@ -4,7 +4,7 @@
 
 To configure the tokenization service, you need the following:
 
-* Runtime Fabric 1.1.153 or later with an ingress configured. See xref:1.0@runtime-fabric::index.adoc[the Runtime Fabric documentation].
+* Runtime Fabric 1.1.153 or later with inbound traffic configured. See xref:1.0@runtime-fabric::index.adoc[the Runtime Fabric documentation].
 * A secret group to store the tokenization table encryption keys. The tokenization service creates and stores its own keys. See xref:asm-secret-group-concept.adoc[Secrets Manager documentation].
 * A tokenization format, which describes the format and how data is tokenized. See xref:tokenization-formats.adoc[Tokenization Formats].
 * A tokenization service that handles the actual tokenization requests and also tokenizes and detokenizes the data. For security purposes, an API Gateway must protect this service.
@@ -19,13 +19,13 @@ For example, if sensitive data is produced from a Mule application serving exter
 
 == Prerequisites
 
-=== Runtime Fabric 1.1.153 or later with Ingress
+=== Runtime Fabric 1.1.153 or later with Inbound Traffic
 
-This example shows a Runtime Fabric named "rtf231", which has an ingress that is using a certificate and private key in the secret group “alphatoken”. If you already have a Runtime Fabric and secret group configured, use those names in places of the ones in the example.
+This example shows a Runtime Fabric named "rtf231", which has inbound traffic that is using a certificate and private key in the secret group “alphatoken”. If you already have a Runtime Fabric and secret group configured, use those names in places of the ones in the example.
 
-image::tokenization-example-rtf-ingress-config.png[Example Runtime Fabric with Ingress]
+image::tokenization-example-rtf-ingress-config.png[Example Runtime Fabric with Inbound Traffic]
 
-For more information, see xref:1.0@runtime-fabric::enable-inbound-traffic.adoc[Runtime Fabric ingress configuration].
+For more information, see xref:1.0@runtime-fabric::enable-inbound-traffic.adoc[Runtime Fabric Inbound Traffic Configuration].
 
 === Secret Group
 
@@ -176,7 +176,7 @@ An example `curl` command is provided below. Replace the IP address with your ow
 To try tokenizing data, send the following `curl` command:
 
 ----
-curl ­-k ­­--resolve token2mule.ic.intel.com:443:10.230.36.230 https://token2mule.ic.intel.com/tb/v1/tokenization -­X POST -­H "Content­type: application/json" ­­--data '[{"data": "683­31­8102", "format": "ssndemo"}]
+curl ­-k ­­--resolve token2mule.ic.example.com:443:192.168.2.1 https://token2mule.ic.example.com/tb/v1/tokenization -­X POST -­H "Content­type: application/json" ­­--data '[{"data": "683­31­8102", "format": "ssndemo"}]
 ----
 
 You should get a response similar to the following:
@@ -213,7 +213,7 @@ image::tokenization-example-policies-page.png[]
 Run the following `curl` command to send traffic with the `--user` flag for basic authorization.
 
 ----
-curl ­-k --­­resolve token2mule.ic.intel.com:443:10.230.36.230 https://token2mule.ic.intel.com/tb/v1/tokenization -­X POST ­-H "Content­type: application/json" ­­data '[{"data": "683­31­8102", "format": "ssndemo"}]' ­-k ­­--user test:test
+curl ­-k --­­resolve token2mule.ic.example.com:443:192.168.2.1 https://token2mule.ic.example.com/tb/v1/tokenization -­X POST ­-H "Content­type: application/json" ­­data '[{"data": "683­31­8102", "format": "ssndemo"}]' ­-k ­­--user test:test
 ----
 
 You should receive a response similar to the following:
@@ -223,7 +223,7 @@ You should receive a response similar to the following:
 You can take the tokenized SSN from above and send it back to the service. The original SSN will be returned. Remember that the token returned is always format preserving.
 
 ----
-curl ­-k ­­--resolve token2mule.ic.intel.com:443:10.230.36.230 https://token2mule.ic.intel.com/tb/v1/detokenization ­-X POST ­-H "Content­type: application/json" ­­data '[{"data": "597­74­8102", "format": "ssndemo"}]' ­-k ­­--user test:test
+curl ­-k ­­--resolve token2mule.ic.example.com:443:192.168.2.1 https://token2mule.ic.example.com/tb/v1/detokenization ­-X POST ­-H "Content­type: application/json" ­­data '[{"data": "597­74­8102", "format": "ssndemo"}]' ­-k ­­--user test:test
 ----
 
 You should receive a response similar to the following:
@@ -235,7 +235,7 @@ HTTP/1.1 200 OK [{"data":"683­31­8102","status":"success"}][root@openstackvm32
 The following is an example of bad tokenization:
 
 ----
-curl ­v ­-k ­­--resolve token2mule.ic.intel.com:443:10.230.36.230 https://token2mule.ic.intel.com/tb/v1/tokenization -­X POST ­-H "Content­type: application/json" ­­data '[{"data": "597­74­8102­­­­­­­­sdsdsdsdsdsdsdsds", "format": "ssndemo"}]' ­-k ­­--user test:test
+curl ­v ­-k ­­--resolve token2mule.ic.example.com:443:192.168.2.1 https://token2mule.ic.example.com/tb/v1/tokenization -­X POST ­-H "Content­type: application/json" ­­data '[{"data": "597­74­8102­­­­­­­­sdsdsdsdsdsdsdsds", "format": "ssndemo"}]' ­-k ­­--user test:test
 ----
 
 You should receive a response similar to the following:
@@ -250,7 +250,7 @@ A social security number must have the format ###-##-#### where # represents a d
 The following is an example of bad detokenization:
 
 ----
-curl ­v ­-k ­­--resolve token2mule.ic.intel.com:443:10.230.36.230 https://token2mule.ic.intel.com/tb/v1/detokenization ­-X POST ­-H "Content­type: application/json" ­­data '[{"data": "597­74­8102­­­­­­­­sdsdsdsdsdsdsdsds", "format": "ssndemo"}]' ­-k ­­--user test:test
+curl ­v ­-k ­­--resolve token2mule.ic.example.com:443:192.168.2.1 https://token2mule.ic.example.com/tb/v1/detokenization ­-X POST ­-H "Content­type: application/json" ­­data '[{"data": "597­74­8102­­­­­­­­sdsdsdsdsdsdsdsds", "format": "ssndemo"}]' ­-k ­­--user test:test
 ----
 
 You should receive a response similar to the following:
@@ -266,7 +266,7 @@ A social security number must have the format ###-##-#### where # represents a d
 The following is an example of bad tokenization JSON data stopped by Api Gateway protection:
 
 ----
-curl ­v ­-k ­­--resolve token2mule.ic.intel.com:443:10.230.36.230 https://token2mule.ic.intel.com/tb/v1/detokenization ­-X POST -­H "Content­type: application/json" ­­data '[{{{}{{{}]]"data": "597­74­8102­­­­­­­­sdsdsdsdsdsdsdsds", "format": "ssndemo"}]' ­-k ­­--user test:test
+curl ­v ­-k ­­--resolve token2mule.ic.example.com:443:192.168.2.1 https://token2mule.ic.example.com/tb/v1/detokenization ­-X POST -­H "Content­type: application/json" ­­data '[{{{}{{{}]]"data": "597­74­8102­­­­­­­­sdsdsdsdsdsdsdsds", "format": "ssndemo"}]' ­-k ­­--user test:test
 ----
 
 You should receive a response similar to the following:

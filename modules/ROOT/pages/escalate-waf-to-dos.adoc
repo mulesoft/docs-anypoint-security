@@ -12,7 +12,7 @@ When a blocked IP address attempts to connect, the request will be rejected base
 
 == Escalate a WAF Policy to DoS
 
-To escalate a WAF policy to DoS, you must first have a DoS policy defined. See xref:dos-policy.adoc[] for information about configuring a DoS policy.
+To escalate a WAF policy to DoS, you must first have a DoS policy defined. See xref:dos-policy.adoc[Denial of Service Policy] for information about configuring a DoS policy.
 
 . In *Security Policies*, click *Edit* for the DoS policy for which to configure WAF errors.
 . In the left menu, click *WAF Errors*.
