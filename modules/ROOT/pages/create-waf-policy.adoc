@@ -1,6 +1,6 @@
-= Create a WAF Policy
+= Create a Web Application Firewall Policy
 
-You can create a WAF policy in *Anypoint Security > Security Policies* to implement security for your web applications. WAF violation detection policies can also be escalated to DoS.
+You can create a Web Application (WAF) policy in *Anypoint Security > Security Policies* to implement firewall security policy enforcement between your web application and client endpoint. WAF violation detection policies can also be escalated to Denial of Service (DoS) so that IPs and connections can be blocked.
 
 . Sign into Anypoint Platform and navigate to Anypoint Security.
 . In the Security Policies page, click *Create Policy* and select *Web Application Firewall (WAF)*.
@@ -16,10 +16,10 @@ Configure the rules to allow or block request traffic to your Web application. F
 . In the menu on the left, click *Request Rulesets*. +
 All the rules are disabled by default. For each rule, you can: +
 * *Disable ruleset* - (Default) Ruleset detection is turned off.
-* *Detect and allow violations* - The violation is detected and you will get information in your logs at the INFO level, per incident.
-* *Detect and reject violations* - The request is rejected and has a response status of `400 - BAD REQUEST`.
+* *Detect and allow violations* - The violation is detected and you will get information in your log at the INFO level, per incident.
+* *Detect and reject violations* - The request is rejected and returns a response status of `400 - BAD REQUEST`.
 +
-When you hover over the `i` button to the right of each rule, the rule ID range for that rule is displayed. This information can be used for testing rulesets and for disabling individual rules.
+When you hover over the `i` to the right of each rule, the rule ID range for that rule is displayed. This information can be used for testing rulesets and for disabling individual rules.
 +
 image::waf-rule-set.png[]
 +
@@ -36,16 +36,20 @@ Configure the rules to allow or block responses to your Web application. For mor
 . In the menu on the left, click *Response Rulesets*. +
 All the rulesets are disabled by default. For each rule, you can: +
 * *Disable ruleset* - (Default) Ruleset detection is turned off.
-* *Detect and allow violations* - The violation is detected but not reported to DoS.
-* *Detect and reject violations* - The request is rejected and has a response status of `400 - BAD REQUEST`.
+* *Detect and allow violations* - The violation is detected and you will get information in your log at the INFO level, per incident.
+* *Detect and reject violations* - The request is rejected and returns a response status of `400 - BAD REQUEST`.
 . In *Advanced Performance Options*, select *Disable body scanner* to improve performance. +
-The *Disable body scanner* works as explained for the request ruleset, however, there are some important caveats:
++
+[NOTE]
+Leaving the *Disable body scanner* option unchecked can be costly in terms of resources (CPU) depending on the size of the request messages. If request body checking is enabled, the CAP policy “Maximum Message Size” should be set to a value no larger than required to prevent attackers from abusing request body checking, and exhausting the resources.
++
+The *Disable body scanner* works the same as it does for the request ruleset, however, there are some additional important caveats:
 +
 [NOTE]
 Do not leave the *Disable body scanner* option unchecked if responses will exceed 512 KB.
 +
-* For resource usage management, a maximum response size is imposed, which is hard-coded to 512 KB and not configurable. If response rulesets are enabled with the “Disable body scanner” unchecked, a response with a content-length greater than 512 KB will be rejected.
-* Response messages without the following MIME types set in the content type header will not be evaluated:
+* For resource usage management, a maximum response size of 512 KB is imposed and is not configurable. If response rulesets are enabled with the “Disable body scanner” unchecked, a response with a content-length greater than 512 KB will be rejected.
+* Response messages must have one of the following MIME types in the content type header, or they will not be evaluated:
 ** text/plain
 ** text/html
 ** text/xml
@@ -55,11 +59,11 @@ Do not leave the *Disable body scanner* option unchecked if responses will excee
 [[disable_rules]]
 == Disable Individual Rules
 
-You can disable individual rules within a ruleset if they are causing false positives. This is useful because if only one rule in the ruleset is causing a false positive, it isn't necessary to turn off an entire ruleset such as “Protocol attack."
+If individual rules cause false positives, you can disable them. This is useful because if only one rule in the ruleset is causing a false positive, it isn't necessary to turn off an entire ruleset such as “Protocol attack."
 
-You can examine the WAF summary message in logs to determine which rule IDs are firing. You can also refer to the Edge policies RAML for a complete list of rule IDs.
+You can examine the WAF summary message in logs to determine which rule IDs are firing. You can also refer to the Edge policy's RAML for a complete list of rule IDs.
 
-. In the *Anypoint Security > Security Policies* page, click *Edit* for the WAF policy for which to disable rules.
+. In the *Anypoint Security > Security Policies* page, click *Edit* for the WAF policy to disable rules.
 . In the menu on the left, click *Disabled Rule IDs*.
 . Add the individual rule IDs for the rules to disable, separated by commas. +
 . Click *Save*.

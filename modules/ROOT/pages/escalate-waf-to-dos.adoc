@@ -1,28 +1,28 @@
 = Enable DoS for a WAF Policy
 
-You can, optionally, edit a DoS policy to escalate a WAF policy to DoS.
+You can configure actions in an existing DoS policy to apply to WAF errors, for example, blocking an IP address for a specified time interval. In a WAF policy, WAF errors are rejected and a status code of `400` is returned, so you may want to add WAF errors to an existing DoS policy to protect resource usage.
 
-There are a couple of reasons why you may want DoS thresholding even though individual WAF errors are already rejected with a status code of 400.
+If you don't apply DoS thresholding for WAF errors, parsing request bodies can consume a large share of CPU. If you receive many requests, just detecting errors will consume a large share of CPU.
+If DoS thresholding is implemented, when the threshold for DoS is exceeded, it ceases to parse request bodies. 
 
-* Without DoS thresholding applied, parsing request bodies can be expensive in terms of CPU. If you continue to get a high rate of these requests, it will consume a lot of resources just to detect the errors.
-If DoS thresholding is implemented, when the threshold for DoS is exceeded, it will cease to parse request bodies. +
-When a blocked IP address attempts to connect, the request will be rejected based solely on the IP address. This is extremely efficient. If “Drop Silently” is enabled for DoS, resources will not even be wasted to complete the TLS connection.
-* Malicious source IP addresses may be attempting many other requests other than those triggering WAF. Some of these requests may look valid. When the DoS threshold is exceeded, all requests, good or bad, will be dropped for the identified IP address.
+When a blocked IP address attempts to connect, the request will be rejected based solely on the IP address. This is extremely efficient. If "Drop Silently" is enabled for DoS, the TLS connection isn't attempted, which saves more resources.
+
+IP addresses coming from a malicious source may be attempting many other requests other than those triggering WAF. Some of these requests may look valid. When the DoS threshold is exceeded, all requests, good or bad, will be dropped for the identified IP address.
 
 
 == Escalate a WAF Policy to DoS
 
-To escalate a WAF policy to DoS, you must first have a DoS policy defined. See xref:dos-policy.adoc[Denial of Service Policy] for information about configuring a DoS policy.
+To escalate a WAF policy to DoS, verify that the xref:dos-policy.adoc[Denial of Service Policy]  exists.
 
-. In *Security Policies*, click *Edit* for the DoS policy for which to configure WAF errors.
+. In *Security Policies*, click *Edit* to configure WAF errors for the selected DoS policy.
 . In the left menu, click *WAF Errors*.
 . Configure the WAF errors, and click *Save*. +
 All WAF errors are thresholded in this error bucket.
 +
 image::waf-edit-dos-policy.png[Example WAF Errors]
 +
-In the example shown in the image, for *Window 1*, all requests for the Source IP address are blocked if more than 10 WAF errors are received within a 60-second time interval. (The default is 60 seconds, but this value can be changed in the *General* tab for the DoS policy.)
+In the example shown in the image, for *Window 1*, all requests for the source IP address are blocked if more than 10 WAF errors are received within a 60-second time interval. (The default is 60 seconds, but this value can be changed in the *General* tab for the DoS policy.)
 
-In *Window 2*, the settings mean that if this WAF error occurs three times in a period of 5 *Window 1* intervals (5 60-second intervals in this case), the IP address is blocked forever.
+In *Window 2*, the settings shown will block an IP address forever if it causes the specified WAF error three times in a period of five *Window 1* intervals (5 60-second intervals in this case), and the IP address is blocked forever.
 
 For more information about configuring DoS policies, see xref:dos-policy.adoc[Denial of Service Policy]

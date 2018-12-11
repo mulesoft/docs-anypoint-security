@@ -281,7 +281,7 @@ echo "QHBtRnJvbUZpbGUgc2Nhbm5lcnMtdXNlci1hZ2VudHMuZGF0YQo=" | base64 -d
 @pmFromFile scanners-user-agents.data
 ----
 
-The RAML will contain the file `scanners-user-agents.data`. The following is a short piece from the top of the file:
+The RAML contains the file `scanners-user-agents.data`. The following is a short piece from the top of the file:
 
 ----
 # Vulnerability scanners, bruteforce password crackers and exploitation tools

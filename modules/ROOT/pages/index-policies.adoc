@@ -5,16 +5,16 @@ Anypoint Security features a high-performance, reliable, and scalable service to
 You can protect your APIs using three policies:
 
 * DoS (Denial of service) Policy. +
-These policies are designed to protect your nodes against malicious clients trying to flood your network to prevent legitimate traffic to your APIs. +
+These policies are designed to protect your network nodes against malicious clients trying to flood your network to prevent legitimate traffic to your APIs. +
 Learn more about the xref:dos-policy.adoc[DoS policy].
 * ACL (Access Control List) Policy. +
-This policy checks HTTP protocol message size and headers. +
+These policies check HTTP protocol message size and headers. +
 Learn more about the xref:acl-policy.adoc[ACL policy].
 * CAP (Content Attack Prevention) Policy. +
-This policy prevents attacks from clients that send large messages that can take up all of your processing bandwidth. +
+These policies prevent attacks from clients that send large messages that can consume all of your processing bandwidth. +
 Learn more about the xref:cap-policy.adoc[CAP policy].
 * WAF (Web Application Security) Policy +
-The WAF policy provides the OWASP Core Rule Set (CRS) for checking requests and responses to detect common Web application attacks. +
+These policies provide the OWASP Core Rule Set (CRS) for checking requests and responses to detect common Web application attacks. +
 Learn more about the xref:waf-policy[WAF policy]
 
 You can use these policies to handle all traffic to your Runtime Fabric, and leverage API Manager policies for handling specific behaviors to specific APIs.

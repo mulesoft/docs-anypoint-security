@@ -4,12 +4,12 @@ You can enable rules by threat category for requests and responses--these are ca
 
 Rules can run on a variety of things, for example, they can run on URIs, headers, arguments, session IDs, cookies, and request and response bodies, to name a few.
 
-For optimal performance, you should enable only the rules that apply to your web application's technology.
+For optimal performance, enable only the rules that apply to your web application's technology.
 
 [[request_rule_sets]]
 == Request Rulesets
 
-Request rulesets are divided into ten threat categories, which are called rulesets. There are three actions that can be selected for each ruleset:
+Request rulesets are divided into ten threat categories, which are called rulesets. You can apply one of three actions for each ruleset:
 
 * *Disable ruleset* - (Default) Ruleset detection is turned off.
 * *Detect and allow violations* - The violation is detected and you will get information in your logs at the INFO level, per incident. +
@@ -17,7 +17,7 @@ They will also be included at the ERROR (default log level for Edge policies) le
 See xref:1.0@runtime-fabric::enable-inbound-traffic#logs[the Runtime Fabric documentation].
 * *Detect and reject violations* - The request is rejected and has a response status of `400 - BAD REQUEST`.
 
-The ten threat categories include the following:
+The ten threat categories include:
 
 * *Scanner detection*
 * *Protocol enforcement*
@@ -47,7 +47,7 @@ The threat categories for the response ruleset include:
 
 == View Rules in RAML
 
-You can understand the regular expressions that make up each rule by viewing the rules in the Security Fabric RAML (`security-fabric-policies-api-<version>.raml`). Not all OWASP CRS rules for each category are enabled for the WAF policy. A very small number of them are not included for various reasons. View the RAML for the exact contents and rule IDs that are included.
+You can understand the regular expressions that make up each rule by viewing the rules in the Security Fabric RAML (`security-fabric-policies-api-<version>.raml`). Not all OWASP CRS rules for each category are enabled for the WAF policy. A very small number of rules are not included for various reasons. View the RAML for the exact contents and rule IDs that are included.
 
 . Go to Anypoint Exchange.
 . Search for "security-fabric-policies-api" and download the `security-fabric-policies-api-<version>raml.zip`.
