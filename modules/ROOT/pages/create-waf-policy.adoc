@@ -2,7 +2,7 @@
 
 You can create a Web Application (WAF) policy in *Anypoint Security > Security Policies* to implement firewall security policy enforcement between your web application and client endpoint. WAF violation detection policies can also be escalated to Denial of Service (DoS) so that IPs and connections can be blocked.
 
-. Sign into Anypoint Platform and navigate to Anypoint Security.
+. Sign into Anypoint Platform and navigate to *Anypoint Security*.
 . In the Security Policies page, click *Create Policy* and select *Web Application Firewall (WAF)*.
 . Enter a name for the policy and click *Save*. +
 The policy appears in the Security Policies list, where you can edit and delete policies.
@@ -41,15 +41,14 @@ All the rulesets are disabled by default. For each rule, you can: +
 * *Detect and reject violations* - The request is rejected and returns a response status of `HTTP/1.1 400 BAD REQUEST - web application firewall` and information about the violation is also sent to the log at INFO level per incident.
 . In *Advanced Performance Options*, select *Disable body scanner* to improve performance. +
 +
-[NOTE]
-Leaving the *Disable body scanner* option unchecked can be costly in terms of resources (CPU) depending on the size of the response messages. If response body checking is enabled, the CAP policy “Maximum Message Size” should be set to a value no larger than required to prevent attackers from abusing response body checking, and exhausting the resources.
+The *Disable body scanner* option works the same as it does for the request ruleset, however, there are some additional important caveats:
 +
-The *Disable body scanner* works the same as it does for the request ruleset, however, there are some additional important caveats:
+[IMPORTANT]
+====
+Check the *Disable body scanner* options if responses will exceed 512 KB.
+====
 +
-[NOTE]
-Check the *Disable body scanner* options if responses will exceed 512 KB..
-+
-* For resource usage management, a maximum response size of 512 KB is imposed and is not configurable. If response rulesets are enabled with the “Disable body scanner” unchecked, a response with a content-length greater than 512 KB will be rejected.
+* For resource usage management, a maximum response size of 512 KB is imposed and is not configurable. If response rulesets are enabled with the *Disable body scanner* unchecked, a response with a content-length greater than 512 KB are rejected.
 * Response messages must have one of the following MIME types in the content type header, or the WAF rules will not be evaluated:
 ** text/plain
 ** text/html
@@ -62,11 +61,11 @@ Check the *Disable body scanner* options if responses will exceed 512 KB..
 
 If individual rules cause false positives, you can disable them. This is useful because if only one rule in the ruleset is causing a false positive, it isn't necessary to turn off an entire ruleset such as “Protocol attack."
 
-You can examine the WAF summary message in logs to determine which rule IDs are firing. You can also refer to the Edge policy's RAML for a complete list of rule IDs.
+You can examine the WAF summary message in logs to determine which rule IDs are firing. You can also check the Anypoint Security policy's RAML for a complete list of rule IDs.
 
 . In the *Anypoint Security > Security Policies* page, click *Edit* for the WAF policy to disable rules.
 . In the menu on the left, click *Disabled Rule IDs*.
-. Add the individual rule IDs for the rules to disable, separated by commas. +
+. Add the individual rule IDs for the rules to disable, separated by commas.
 . Click *Save*.
 
 Once your WAF policy is configured and saved, you can (optionally) edit an existing DoS policy to enable DoS for your WAF policy, then deploy the policies to Runtime Fabric.

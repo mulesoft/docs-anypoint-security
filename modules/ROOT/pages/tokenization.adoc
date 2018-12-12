@@ -1,9 +1,9 @@
-= Anypoint Tokenization Service
+= Tokenization Service
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-The Anypoint Security tokenization service enables you to substitute a sensitive data element with a non-sensitive equivalent.
+The tokenization service enables you to substitute a sensitive data element with a non-sensitive equivalent.
 
 Examples of sensitive information that are suitable for tokenization protection include:
 
@@ -11,7 +11,7 @@ Examples of sensitive information that are suitable for tokenization protection 
 * Personally Identifiable Information (PII)
 * Protected Health Information (PHI), or any information deemed sensitive
 
-Anypoint Security tokenization provides the following benefits:
+The tokenization service provides the following benefits:
 
 * *Vaultless operation*:
 ** Ensures sensitive data is not stored in the tokenization deployment.

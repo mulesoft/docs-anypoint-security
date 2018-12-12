@@ -53,9 +53,9 @@ The threat categories for the response ruleset include:
 You can understand the regular expressions that make up each rule by viewing the rules in the Anypoint Security RAML (`security-fabric-policies-api-<version>.raml`). Not all OWASP CRS rules for each category are enabled for the WAF policy. A very small number of rules are not included for various reasons. View the RAML for the exact contents and rule IDs that are included.
 
 . Go to Anypoint Exchange.
-. Search for "security-fabric-policies-api" and download the `security-fabric-policies-api-<version>raml.zip`.
+. Search for "Anypoint Security Policies API" and download the RAML.
 . Extract the ZIP files.
-. Navigate to `<Download_location>/security-fabric-policies-api-<version>-raml 3/dataTypes/policies/WafRules/Rulesets.json`.
+. Navigate to `<Download_location>/anypoint-security-policies-api-<version>-raml 3/dataTypes/policies/WafRules/Rulesets.json`.
 
 == Runtime Fabric Policy Summary
 
@@ -65,7 +65,7 @@ For example:
 
 image::waf-summary-log-raw.png[]
 
-If you format the raw data in JSON, from this example, you can see that rule 920210 has fired 63,193 times and that rule 920310 has fired one time.
+If you format the raw data in JSON, from this example, you can see that rule 920210 has fired 63,193 times and that rule 920310 has fired one time, which indicates that rule 920210 is causing false positives.
 
 ----
 ...
