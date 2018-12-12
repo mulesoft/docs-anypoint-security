@@ -2,8 +2,8 @@
 
 You can configure actions in an existing DoS policy to apply to WAF errors, for example, blocking an IP address for a specified time interval. In a WAF policy, WAF errors are rejected and a status code of `400` is returned, so you may want to add WAF errors to an existing DoS policy to protect resource usage.
 
-If you don't apply DoS thresholding for WAF errors, parsing request bodies can consume a large share of CPU. If you receive many requests, just detecting errors will consume a large share of CPU.
-If DoS thresholding is implemented, when the threshold for DoS is exceeded, it ceases to parse request bodies. 
+If you don't configure your DoS policy (apply DoS thresholding) for WAF errors, parsing request bodies can consume a large share of CPU. If you receive many requests, just detecting errors will consume a large share of CPU.
+If DoS thresholding is implemented, when the threshold for DoS is exceeded, it ceases to parse request bodies.
 
 When a blocked IP address attempts to connect, the request will be rejected based solely on the IP address. This is extremely efficient. If "Drop Silently" is enabled for DoS, the TLS connection isn't attempted, which saves more resources.
 
@@ -17,7 +17,7 @@ To escalate a WAF policy to DoS, verify that the xref:dos-policy.adoc[Denial of 
 . In *Security Policies*, click *Edit* to configure WAF errors for the selected DoS policy.
 . In the left menu, click *WAF Errors*.
 . Configure the WAF errors, and click *Save*. +
-All WAF errors are thresholded in this error bucket.
+All WAF errors will be handled by the thresholds you configured. 
 +
 image::waf-edit-dos-policy.png[Example WAF Errors]
 +

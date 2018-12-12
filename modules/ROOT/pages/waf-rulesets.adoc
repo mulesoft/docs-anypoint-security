@@ -1,8 +1,8 @@
 = WAF Rulesets
 
-You can enable rules by threat category for requests and responses--these are called "rulesets." Custom rules or modifications to rules are not currently available. There is an option to disable individual rules within a ruleset if they are causing false positives. See xref:create-waf-policy#disable_rules[Disable Individual Rules].
+You can enable rules by threat category for requests and responses--these are called "rulesets." There is an option to disable individual rules within a ruleset if they are causing false positives. See xref:create-waf-policy#disable_rules[Disable Individual Rules].
 
-Rules can run on a variety of things, for example, they can run on URIs, headers, arguments, session IDs, cookies, and request and response bodies, to name a few.
+Rules can run on a variety of sources, for example, they can run on URIs, headers, arguments, session IDs, cookies, and request and response bodies, to name a few.
 
 For optimal performance, enable only the rules that apply to your web application's technology.
 
@@ -15,7 +15,10 @@ Request rulesets are divided into ten threat categories, which are called rulese
 * *Detect and allow violations* - The violation is detected and you will get information in your logs at the INFO level, per incident. +
 They will also be included at the ERROR (default log level for Edge policies) level in a summary report. +
 See xref:1.0@runtime-fabric::enable-inbound-traffic#logs[the Runtime Fabric documentation].
-* *Detect and reject violations* - The request is rejected and has a response status of `400 - BAD REQUEST`.
+* *Detect and reject violations* - The request is rejected and returns a response status of `HTTP/1.1 400 BAD REQUEST - web application firewall`.
++
+For request rulesets, DoS is notified that a rule was triggered. If xref:escalate-waf-to-dos.adoc[DoS has been configured for WAF Errors], DoS will update its WAF-related counters and take action, if necessary. If DoS isn't configured for WAF Errors, it ignores the notification it receives from WAF. +
+For both request and response rulesets, information about the violation is also sent to the log at INFO level per incident.
 
 The ten threat categories include:
 
@@ -35,7 +38,7 @@ The ten threat categories include:
 
 Response rulesets are similar to request rulesets. Response rulesets check outbound responses from backend servers to look for information that should not be present in responses.
 
-The response rulesets are again divided into threat categories. The same actions apply as with the request ruleset--disable ruleset, disable and reject violations, and disable and allow violations. These have the same meaning as they do in the request ruleset.
+The response rulesets are again divided into threat categories. The same actions apply as with the request ruleset--disable ruleset, disable and reject violations, and disable and allow violations. These have the same meaning as they do in the request ruleset, except DoS is not notified for response rulesets.
 
 The threat categories for the response ruleset include:
 

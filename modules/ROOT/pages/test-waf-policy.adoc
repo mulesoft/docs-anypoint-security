@@ -1,16 +1,16 @@
-= Test the WAF Policy
+= Example: Test the WAF Policy
 
-If the following request is sent in when the WAF policy shown in the “Request RuleSets” has been deployed, the bad JSON in this request will generate a WAF error. The closing double quote for the textField value has been omitted.
+If the following request is sent in when the WAF policy shown in the “Request RuleSets” has been deployed, the "scanner detected" in this request will generate a WAF error. The closing double quote for the textField value has been omitted.
 
 ----
 curl -v -k -X POST  --resolve choice-waf14.example.com:443:192.168.2.1  https://choice-waf14.example.com:443/ -H "Content-Type: text/plain" -H "SOAPAction: 'http://example.org/soapformat/Example'" -H "User-Agent: (hydra)" -H "Content-Length: 10" -d 'hello'
 ----
 
-The response would be:
+The response:
 
 `HTTP/1.1 400 BAD REQUEST - web application firewall error`
 
-The bad request, Scanner detected, triggers rule "920130" to be detected. If you wait five minutes, you will see the following data in the RTF Security Policy Summary:
+The bad request, Scanner detected, triggers detection for rule "920130". If you wait a few minutes, you will see the following data in the RTF Security Policy Summary:
 
 ----
 "wafSummary": {
@@ -236,9 +236,9 @@ The bad request, Scanner detected, triggers rule "920130" to be detected. If you
  }
 ----
 
-Notice that in the `wafSummary`, the rule IDs and counts are broken down by the rulesets.
+Notice that in `wafSummary`, the rule IDs and counts are broken down by the rulesets.
 
-You can enable the TRACE logs for your testing source IP address by modifying the Log rules and clicking *Deploy* for the Runtime Fabric inbound traffic. In this case, an IP filter was added for source IP address `192.168.0.1`. Do not do this for all IP addresses and do not do this for an IP address with a high volume of requests.
+You can enable the TRACE logs for your testing source IP address by modifying the Log rules and clicking *Deploy* for the Runtime Fabric inbound traffic. In this case, an IP filter was added for source IP address `192.168.0.1`. Do not add a filter for all IP addresses and do not do this for an IP address with a high volume of requests.
 
 image::test-waf-rtf-advanced.png[]
 
@@ -248,7 +248,7 @@ If you send the `curl` message again, you can find the WAF detection log message
 <logEntry><header><time>2018-12-05T22:09:56.108387</time><node>openstackvm14.example.com</node><logType>INPUT_SERVER</logType><logLevel>INFO</logLevel><process>securityfabric-edge-runtime</process><pid>13038</pid><tid>13065</tid><file>/edge/cbrcore/src/rtc/embedded/src/ModSecTransaction.cpp</file><line>121</line><transId>517251501406932</transId></header><body><rtfWafEvent>{"requestInfo":{"timestamp":"2018-12-05T22:09:56.048Z","node":"vm14.example.com","transactionId":517251501406932,"correlationId":"616045b7-4af2-4eb5-9bd9-356119a0d7ae","clientIpAddr":"192.168.2.1","clientPort":51918,"protocol":"HTTP/1.1","method":"POST","uri":"/","serverIpAddr":"192.168.39.168","serverPort":443},"ruleMatch":[{"ruleId":913100,"ruleVersion":"OWASP_CRS/3.0.0","severity":2,"phase":1,"message":"Found User-Agent associated with security scanner","tags":["application-multi","language-multi","platform-multi","attack-reputation-scanner","OWASP_CRS/AUTOMATION/SECURITY_SCANNER","WASCTC/WASC-21","OWASP_TOP_10/A7","PCI/6.5.10"]}]}</rtfWafEvent></body></logEntry>
 ----
 
-This message shows which rule, and additional details about the detection and rule. The rules can be viewed in the RAML. Here is rule ID `913100`:
+The WAF detection log message shows additional details about the detection and rule. The rules can be viewed in the RAML. Here is rule ID `913100`:
 
 ----
 "ruleIdList": [
@@ -269,7 +269,7 @@ This message shows which rule, and additional details about the detection and ru
          ],
          "msg": "Found User-Agent associated with security scanner",
          "operator": "QHBtRnJvbUZpbGUgc2Nhbm5lcnMtdXNlci1hZ2VudHMuZGF0YQo=",
-         "paranoia": 0,
+         "paranoia": 1,
          "chain": "no"
        },
 ----

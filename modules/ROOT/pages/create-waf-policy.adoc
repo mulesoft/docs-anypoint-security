@@ -17,9 +17,10 @@ Configure the rules to allow or block request traffic to your Web application. F
 All the rules are disabled by default. For each rule, you can: +
 * *Disable ruleset* - (Default) Ruleset detection is turned off.
 * *Detect and allow violations* - The violation is detected and you will get information in your log at the INFO level, per incident.
-* *Detect and reject violations* - The request is rejected and returns a response status of `400 - BAD REQUEST`.
+* *Detect and reject violations* - The request is rejected and returns a response status of `HTTP/1.1 400 BAD REQUEST - web application firewall` and DoS is notified that a rule was triggered. If xref:escalate-waf-to-dos.adoc[DoS has been configured for WAF Errors], DoS will update its WAF-related counters and take action, if necessary. If DoS isn't configured for WAF Errors, it ignores the notification it receives from WAF. +
+Information about the violation is also sent to the log at INFO level per incident.
 +
-When you hover over the `i` to the right of each rule, the rule ID range for that rule is displayed. This information can be used for testing rulesets and for disabling individual rules.
+When you hover over the `i` to the right of each rule, the rule ID range for that ruleset is displayed. This information can be used for testing rulesets.
 +
 image::waf-rule-set.png[]
 +
@@ -31,22 +32,22 @@ Leaving the *Disable body scanner* option unchecked can be costly in terms of re
 
 == Configure Response Rulesets
 
-Configure the rules to allow or block responses to your Web application. For more information about response rulesets, see xref:waf-rulesets#response_rule_sets[Response rulesets]
+Configure the rules to allow or block responses to your web application. For more information about response rulesets, see xref:waf-rulesets#response_rule_sets[Response rulesets]
 
 . In the menu on the left, click *Response Rulesets*. +
 All the rulesets are disabled by default. For each rule, you can: +
 * *Disable ruleset* - (Default) Ruleset detection is turned off.
 * *Detect and allow violations* - The violation is detected and you will get information in your log at the INFO level, per incident.
-* *Detect and reject violations* - The request is rejected and returns a response status of `400 - BAD REQUEST`.
+* *Detect and reject violations* - The request is rejected and returns a response status of `HTTP/1.1 400 BAD REQUEST - web application firewall` and information about the violation is also sent to the log at INFO level per incident.
 . In *Advanced Performance Options*, select *Disable body scanner* to improve performance. +
 +
 [NOTE]
-Leaving the *Disable body scanner* option unchecked can be costly in terms of resources (CPU) depending on the size of the request messages. If request body checking is enabled, the CAP policy “Maximum Message Size” should be set to a value no larger than required to prevent attackers from abusing request body checking, and exhausting the resources.
+Leaving the *Disable body scanner* option unchecked can be costly in terms of resources (CPU) depending on the size of the response messages. If response body checking is enabled, the CAP policy “Maximum Message Size” should be set to a value no larger than required to prevent attackers from abusing response body checking, and exhausting the resources.
 +
 The *Disable body scanner* works the same as it does for the request ruleset, however, there are some additional important caveats:
 +
 [NOTE]
-Do not leave the *Disable body scanner* option unchecked if responses will exceed 512 KB.
+Check the *Disable body scanner* options if responses will exceed 512 KB..
 +
 * For resource usage management, a maximum response size of 512 KB is imposed and is not configurable. If response rulesets are enabled with the “Disable body scanner” unchecked, a response with a content-length greater than 512 KB will be rejected.
 * Response messages must have one of the following MIME types in the content type header, or they will not be evaluated:
