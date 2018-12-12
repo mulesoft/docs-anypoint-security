@@ -1,6 +1,6 @@
 = Web Application Firewall Security Policy
 
-The Web Application Firewall (WAF) security policy is available for request and response traffic to provide protection at the Web application level. xref:https://www.owasp.org/index.php/Category:OWASP_ModSecurity_Core_Rule_Set_Project[OWASP Core Rule Set (CRS)] rules as enumerated in the RAML xxxxx are supported. Policies are grouped into the major threat categories for requests and responses.
+The Web Application Firewall (WAF) security policy is available for request and response traffic to provide protection at the Web application level. xref:https://www.owasp.org/index.php/Category:OWASP_ModSecurity_Core_Rule_Set_Project[OWASP Core Rule Set (CRS)] rules as enumerated in the security policies RAML are supported. Policies are grouped into the major threat categories for requests and responses.
 
 [NOTE]
 Only the official OWASP CRS rules are supported.

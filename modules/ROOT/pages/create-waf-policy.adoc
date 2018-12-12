@@ -50,7 +50,7 @@ The *Disable body scanner* works the same as it does for the request ruleset, ho
 Check the *Disable body scanner* options if responses will exceed 512 KB..
 +
 * For resource usage management, a maximum response size of 512 KB is imposed and is not configurable. If response rulesets are enabled with the “Disable body scanner” unchecked, a response with a content-length greater than 512 KB will be rejected.
-* Response messages must have one of the following MIME types in the content type header, or they will not be evaluated:
+* Response messages must have one of the following MIME types in the content type header, or the WAF rules will not be evaluated:
 ** text/plain
 ** text/html
 ** text/xml
