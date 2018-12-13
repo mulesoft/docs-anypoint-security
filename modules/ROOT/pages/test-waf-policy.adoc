@@ -1,0 +1,299 @@
+= Example: Test the WAF Policy
+
+If the following request is sent in when the WAF policy shown in the “Request RuleSets” has been deployed, the "scanner detected" in this request will generate a WAF error. The closing double quote for the textField value has been omitted.
+
+----
+curl -v -k -X POST  --resolve choice-waf14.example.com:443:192.168.2.1  https://choice-waf14.example.com:443/ -H "Content-Type: text/plain" -H "SOAPAction: 'http://example.org/soapformat/Example'" -H "User-Agent: (hydra)" -H "Content-Length: 10" -d 'hello'
+----
+
+The response:
+
+`HTTP/1.1 400 BAD REQUEST - web application firewall error`
+
+The bad request, Scanner detected, triggers detection for rule "920130". If you wait a few minutes, you will see the following data in the RTF Security Policy Summary:
+
+----
+"wafSummary": {
+   "ruleTriggerCounts": {
+     "requestScannerDetection": {
+       "913100": 3,
+       "913101": 0,
+       "913102": 0,
+       "913110": 0,
+       "913120": 0
+     },
+     "requestProtocolEnforcement": {
+       "920100": 0,
+       "920120": 0,
+       "920121": 0,
+       "920130": 0,
+       "920140": 0,
+       "920160": 0,
+       "920170": 0,
+       "920180": 0,
+       "920190": 0,
+       "920200": 0,
+       "920201": 0,
+       "920202": 0,
+       "920210": 0,
+       "920220": 0,
+       "920230": 0,
+       "920240": 0,
+       "920250": 0,
+       "920260": 0,
+       "920270": 0,
+       "920271": 0,
+       "920272": 0,
+       "920273": 0,
+       "920274": 0,
+       "920280": 0,
+       "920290": 0,
+       "920300": 0,
+       "920310": 0,
+       "920311": 0,
+       "920320": 0,
+       "920330": 0,
+       "920340": 0,
+       "920350": 0,
+       "920360": 0,
+       "920370": 0,
+       "920380": 0,
+       "920390": 0,
+       "920400": 0,
+       "920410": 0,
+       "920420": 0,
+       "920430": 0,
+       "920440": 0,
+       "920450": 0,
+       "920460": 0
+     },
+     "requestProtocolAttack": {
+       "921100": 0,
+       "921110": 0,
+       "921120": 0,
+       "921130": 0,
+       "921140": 0,
+       "921150": 0,
+       "921151": 0,
+       "921160": 0,
+       "921180": 0
+     },
+     "requestApplicationAttackLfi": {
+       "930100": 0,
+       "930110": 0,
+       "930120": 0,
+       "930130": 0
+     },
+     "requestApplicationAttackRfi": {
+       "931100": 0,
+       "931110": 0,
+       "931120": 0,
+       "931130": 0
+     },
+     "requestApplicationAttackRce": {
+       "932100": 0,
+       "932105": 0,
+       "932110": 0,
+       "932115": 0,
+       "932120": 0,
+       "932130": 0,
+       "932140": 0,
+       "932150": 0,
+       "932160": 0,
+       "932170": 0,
+       "932171": 0
+     },
+     "requestApplicationAttackPhp": {
+       "933100": 0,
+       "933110": 0,
+       "933111": 0,
+       "933120": 0,
+       "933130": 0,
+       "933131": 0,
+       "933140": 0,
+       "933150": 0,
+       "933151": 0,
+       "933160": 0,
+       "933161": 0,
+       "933170": 0,
+       "933180": 0
+     },
+     "requestApplicationAttackXss": {
+       "941100": 0,
+       "941101": 0,
+       "941110": 0,
+       "941120": 0,
+       "941130": 0,
+       "941140": 0,
+       "941150": 0,
+       "941160": 0,
+       "941170": 0,
+       "941180": 0,
+       "941190": 0,
+       "941200": 0,
+       "941210": 0,
+       "941220": 0,
+       "941230": 0,
+       "941240": 0,
+       "941250": 0,
+       "941260": 0,
+       "941270": 0,
+       "941280": 0,
+       "941290": 0,
+       "941300": 0,
+       "941310": 0,
+       "941320": 0,
+       "941330": 0,
+       "941340": 0,
+       "941350": 0
+     },
+     "requestApplicationAttackSqli": {
+       "942100": 0,
+       "942110": 0,
+       "942120": 0,
+       "942130": 0,
+       "942140": 0,
+       "942150": 0,
+       "942160": 0,
+       "942170": 0,
+       "942180": 0,
+       "942190": 0,
+       "942200": 0,
+       "942210": 0,
+       "942220": 0,
+       "942230": 0,
+       "942240": 0,
+       "942250": 0,
+       "942251": 0,
+       "942260": 0,
+       "942270": 0,
+       "942280": 0,
+       "942290": 0,
+       "942300": 0,
+       "942310": 0,
+       "942320": 0,
+       "942330": 0,
+       "942340": 0,
+       "942350": 0,
+       "942360": 0,
+       "942370": 0,
+       "942380": 0,
+       "942390": 0,
+       "942400": 0,
+       "942410": 0,
+       "942420": 0,
+       "942421": 0,
+       "942430": 0,
+       "942431": 0,
+       "942432": 0,
+       "942440": 0,
+       "942450": 0,
+       "942460": 0
+     },
+     "requestApplicationAttackSessionFixation": {
+       "943100": 0,
+       "943110": 0,
+       "943120": 0
+     },
+     "responseDataLeakages": {
+       "950100": 0,
+       "950130": 0
+     },
+     "responseDataLeakagesSql": {
+       "951110": 0,
+       "951120": 0,
+       "951130": 0,
+       "951140": 0,
+       "951150": 0,
+       "951160": 0,
+       "951170": 0,
+       "951180": 0,
+       "951190": 0,
+       "951200": 0,
+       "951210": 0,
+       "951220": 0,
+       "951230": 0,
+       "951240": 0,
+       "951250": 0,
+       "951260": 0
+     },
+     "responseDataLeakagesJava": {
+       "952100": 0,
+       "952110": 0
+     },
+     "responseDataLeakagesPhp": {
+       "953100": 0,
+       "953110": 0,
+       "953120": 0
+     },
+     "responseDataLeakagesIis": {
+       "954100": 0,
+       "954110": 0,
+       "954120": 0,
+       "954130": 0
+     }
+   }
+ }
+----
+
+Notice that in `wafSummary`, the rule IDs and counts are broken down by the rulesets.
+
+You can enable the TRACE logs for your testing source IP address by modifying the Log rules and clicking *Deploy* for the Runtime Fabric inbound traffic. In this case, an IP filter was added for source IP address `192.168.0.1`. Do not add a filter for all IP addresses and do not do this for an IP address with a high volume of requests.
+
+image::test-waf-rtf-advanced.png[]
+
+If you send the `curl` message again, you can find the WAF detection log message:
+
+----
+<logEntry><header><time>2018-12-05T22:09:56.108387</time><node>openstackvm14.example.com</node><logType>INPUT_SERVER</logType><logLevel>INFO</logLevel><process>securityfabric-edge-runtime</process><pid>13038</pid><tid>13065</tid><file>/edge/cbrcore/src/rtc/embedded/src/ModSecTransaction.cpp</file><line>121</line><transId>517251501406932</transId></header><body><rtfWafEvent>{"requestInfo":{"timestamp":"2018-12-05T22:09:56.048Z","node":"vm14.example.com","transactionId":517251501406932,"correlationId":"616045b7-4af2-4eb5-9bd9-356119a0d7ae","clientIpAddr":"192.168.2.1","clientPort":51918,"protocol":"HTTP/1.1","method":"POST","uri":"/","serverIpAddr":"192.168.39.168","serverPort":443},"ruleMatch":[{"ruleId":913100,"ruleVersion":"OWASP_CRS/3.0.0","severity":2,"phase":1,"message":"Found User-Agent associated with security scanner","tags":["application-multi","language-multi","platform-multi","attack-reputation-scanner","OWASP_CRS/AUTOMATION/SECURITY_SCANNER","WASCTC/WASC-21","OWASP_TOP_10/A7","PCI/6.5.10"]}]}</rtfWafEvent></body></logEntry>
+----
+
+The WAF detection log message shows additional details about the detection and rule. The rules can be viewed in the RAML. Here is rule ID `913100`:
+
+----
+"ruleIdList": [
+       {
+         "id": 913100,
+         "ver": "OWASP_CRS/3.0.0",
+         "rev": "2",
+         "phase": "request",
+         "severity": "CRITICAL",
+         "accuracy": "9",
+         "maturity": "9",
+         "taglist": [
+           "attack-reputation-scanner",
+           "OWASP_CRS/AUTOMATION/SECURITY_SCANNER",
+           "WASCTC/WASC-21",
+           "OWASP_TOP_10/A7",
+           "PCI/6.5.10"
+         ],
+         "msg": "Found User-Agent associated with security scanner",
+         "operator": "QHBtRnJvbUZpbGUgc2Nhbm5lcnMtdXNlci1hZ2VudHMuZGF0YQo=",
+         "paranoia": 1,
+         "chain": "no"
+       },
+----
+
+To view the regular expression, you can do a base64 decode on the `operator` field:
+
+----
+echo "QHBtRnJvbUZpbGUgc2Nhbm5lcnMtdXNlci1hZ2VudHMuZGF0YQo=" | base64 -d
+@pmFromFile scanners-user-agents.data
+----
+
+The RAML contains the file `scanners-user-agents.data`. The following is a short piece from the top of the file:
+
+----
+# Vulnerability scanners, bruteforce password crackers and exploitation tools
+
+# password cracker
+# http://sectools.org/tool/hydra/
+(hydra)
+# vuln scanner
+# http://virtualblueness.net/nasl.html
+.nasl
+# sql injection
+# https://sourceforge.net/projects/absinthe/
+absinthe
+# email harvesting
+----

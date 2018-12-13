@@ -1,0 +1,118 @@
+= WAF Rulesets
+
+You can enable rules by threat category for requests and responses--these are called "rulesets." There is an option to disable individual rules within a ruleset if they are causing false positives. See xref:create-waf-policy#disable_rules[Disable Individual Rules].
+
+Rules can run on a variety of sources, for example, they can run on URIs, headers, arguments, session IDs, cookies, and request and response bodies, to name a few.
+
+For optimal performance, enable only the rules that apply to your web application's technology.
+
+[[request_rule_sets]]
+== Request Rulesets
+
+Request rulesets are divided into ten threat categories, which are called rulesets. You can apply one of three actions for each ruleset:
+
+* *Disable ruleset* - (Default) Ruleset detection is turned off.
+* *Detect and allow violations* - The violation is detected and you will get information in your logs at the INFO level, per incident. +
+They will also be included at the ERROR (default log level for Edge policies) level in a summary report. +
+See xref:1.0@runtime-fabric::enable-inbound-traffic#logs[the Runtime Fabric documentation].
+* *Detect and reject violations* - The request is rejected and returns a response status of `HTTP/1.1 400 BAD REQUEST - web application firewall`.
++
+For request rulesets, DoS is notified that a rule was triggered. If xref:escalate-waf-to-dos.adoc[DoS has been configured for WAF Errors], DoS will update its WAF-related counters and take action, if necessary. If DoS isn't configured for WAF Errors, it ignores the notification it receives from WAF. +
+For both request and response rulesets, information about the violation is also sent to the log at INFO level per incident.
+
+The ten threat categories include:
+
+* *Scanner detection*
+* *Protocol enforcement*
+* *Protocol attack*
+* *Local file inclusion*
+* *Remote file inclusion*
+* *Remote code execution*
+* *PHP injection*
+* *Cross-site scripting*
+* *SQL injection*
+* *Session fixation*
+
+[[response_rule_sets]]
+== Response Rule Sets
+
+Response rulesets are similar to request rulesets. Response rulesets check responses from backend servers to look for information that should not be present in responses.
+
+The response rulesets are again divided into threat categories. The same actions apply as with the request ruleset--disable ruleset, disable and reject violations, and disable and allow violations. These have the same meaning as they do in the request ruleset, except DoS is not notified for response rulesets.
+
+The threat categories for the response ruleset include:
+
+* *Data leakages*
+* *SQL data leakages*
+* *Java data leakages*
+* *PHP data leakages*
+* *IIS data leakages*
+
+== View Rules in RAML
+
+You can understand the regular expressions that make up each rule by viewing the rules in the Anypoint Security RAML (`security-fabric-policies-api-<version>.raml`). Not all OWASP CRS rules for each category are enabled for the WAF policy. A very small number of rules are not included for various reasons. View the RAML for the exact contents and rule IDs that are included.
+
+. Go to Anypoint Exchange.
+. Search for "Anypoint Security Policies API" and download the RAML.
+. Extract the ZIP files.
+. Navigate to `<Download_location>/anypoint-security-policies-api-<version>-raml 3/dataTypes/policies/WafRules/Rulesets.json`.
+
+== Runtime Fabric Policy Summary
+
+The Runtime Fabric policy summary includes the WAF summary. A WAF summary log message is generated every five minutes. See xref:1.0@runtime-fabric::configure-log-forwarding[Configure Log Forwarding on Runtime Fabric]. The contents in the raw log message include WAF and DoS summary statistics.
+
+For example:
+
+image::waf-summary-log-raw.png[]
+
+If you format the raw data in JSON, from this example, you can see that rule 920210 has fired 63,193 times and that rule 920310 has fired one time, which indicates that rule 920210 is causing false positives.
+
+----
+...
+"requestProtocolEnforcement": {
+  "920100": 0,
+  "920120": 0,
+  "920121": 0,
+  "920130": 0,
+  "920140": 0,
+  "920160": 0,
+  "920170": 0,
+  "920180": 0,
+  "920190": 0,
+  "920200": 0,
+  "920201": 0,
+  "920202": 0,
+  "920210": 63193,
+  "920220": 0,
+  "920230": 0,
+  "920240": 0,
+  "920250": 0,
+  "920260": 0,
+  "920270": 0,
+  "920271": 0,
+  "920272": 0,
+  "920273": 0,
+  "920274": 0,
+  "920280": 0,
+  "920290": 0,
+  "920300": 0,
+  "920310": 1,
+  "920311": 0,
+  "920320": 0,
+  "920330": 0,
+  "920340": 0,
+  "920350": 0,
+  "920360": 0,
+  "920370": 0,
+  "920380": 0,
+  "920390": 0,
+  "920400": 0,
+  "920410": 0,
+  "920420": 0,
+  "920430": 0,
+  "920440": 0,
+  "920450": 0,
+  "920460": 0
+},
+...
+----

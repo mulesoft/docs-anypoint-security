@@ -1,11 +1,11 @@
 = Denial Of Service Policy
 
-The Denial of service (DoS) policy prevents attackers from flooding your network to prevent legitimate network traffic to your APIs. +
+The Denial of Service (DoS) policy prevents attackers from flooding your network to prevent legitimate network traffic to your APIs. +
 Malicious clients, for example, could send huge malicious payloads designed to consume resources and bandwidth.
 
-The DoS policy allows you to configure a time window in which you can catch specific error types, and set up conditions for each type of error encountered. If the policy encounters more errors than your tolerated amount coming from the same IP address, the policy can either drop the connection silently (doesn't attempt the TLS connection), or drop the connection immediately returning a 503 (a TLS connection has to be made in this case).
+The DoS policy allows you to configure a time span in which you can catch specific error types, and set up the action to take for each type of error encountered. If the policy encounters more errors than your configured threshold coming from the same IP address, the policy can either drop the connection silently (doesn't attempt the TLS connection), or drop the connection immediately and return a `503` error.
 
-This source is IP based. If an attacker can spoof his source IP address, these measurements cannot prevent the attack.
+This source is IP based. If an attacker spoofs the source IP address, these measurements cannot prevent the attack.
 
 == Error Types
 
@@ -33,8 +33,8 @@ Violations to a LDAP, HTTP, OAuth, OpenAM, or Ping Federate authentication polic
 ACL policy violations also escalate as authentication errors.
 
 | *QoS Errors*
-| Whenever a QoS error occurs. +
-For example, a client may try to force a lot of QoS (quality of service) errors by dropping packets to degrade the TCP service damaging your TCP performance.
+| Whenever a Quality of Service (QoS) error occurs. +
+For example, a client may try to force a lot of QoS errors by dropping packets to degrade the TCP service, damaging your TCP performance.
 
 Violations to a rate limiting, or SLA based, or Ping Federate policy at the API Manager level escalates as a QoS error.
 
@@ -49,7 +49,7 @@ Violations to a JSON or XML threat protection policy at the API Manager level es
 To understand how to configure a DoS policy, you need to understand _when_ and _why_ a client's message is filtered by your DoS policy. +
 The _when_ is determined by the window you configure. The _why_ is determined by the DoS threshold.
 
-You can configure a window when configuring the different errors that you can catch for your DoS policy. This window is a time interval (measured in seconds) that determines, after receiving an error alert, that a DoS attack is taking place and applies your configured action to the attacker's message. +
+You can configure a time interval window when you configure the different errors to catch for your DoS policy. The time interval is measured in seconds and determines, after receiving an error alert, that a DoS attack is taking place and applies your configured action to the attacker's message. +
 The DoS actions that you can configure are:
 
 * *None*: The policy performs no action when encountering the configured amount of protocol errors.
@@ -58,25 +58,25 @@ The DoS actions that you can configure are:
 * *Block-Forever*: The policy rejects all message requests from the client.
 
 After the interval of your window of time expires, the policy does not enforce shape-interval nor block-interval. +
-Within each window, you can configure the amount of errors that you want to allow, within this time window. This amount of errors is a DoS count. You can configure up to three DoS windows for each type of DoS error. Within each window, the policy can apply one of the DoS actions to the client’s message requests, whenever your configured DoS count is met. +
+Within each window, you can configure the number of errors that you want to allow, within this time window. This number of errors is a DoS count. You can configure up to three DoS windows for each type of DoS error. Within each window, the policy can apply one of the DoS actions to the client’s message requests, whenever your configured DoS count is met. +
 For example, you can configure a 60 second window (1 minute interval), and configure the policy so that if 2 protocol error happens within that time window ("2" is then your DoS count), reject all further requests from this client (apply a Block-Forever action).
 
-You can configure up to three different windows. Each window corresponds to escalation levels. Window 1 is the lowest escalation level and Window 3 is the highest. +
-When configuring a window higher than window 1 (window 2 and additionally window 3) you can set up the interval for those windows based on the interval of the preceding window (window 1 for window 2, and window 2 for window 3). +
-Following the example above, you can set up window 2 to be two intervals of window 1. Window 1 having an interval of 60 seconds, then window 2 will have a 120 seconds interval. +
+You can configure up to three different windows. Each window corresponds to escalation levels. *Window 1* is the lowest escalation level and *Window 3* is the highest. +
+When configuring a window higher than *Window 1*, you can set up the interval for those windows based on the interval of the preceding window (Window 1 for Window 2, and Window 2 for Window 3). +
+Following the example above, you can set up Window 2 to be two intervals of Window 1, which means that if Window 1 has an interval of 60 seconds, then Window 2 will have a 120 seconds interval. +
 Additionally, you can configure a different DoS count for each window, which introduces the concept of thresholds. +
 Each window has a different threshold:
 
-* For Window 1, the threshold is the value of the DoS count when a DoS action is applied within Window 1.
-* For Window 2, the threshold is the value of the Window 2 DoS count when a DoS action is applied in Window 2. +
-Keep in mind, that a Window 2 DoS count is the number of Window 1 DoS actions taken within that Window 2.
-* For Window 3, the threshold is the value of the Window 3 DoS count when a DoS action is applied in Window 3. Also considering that a Window 3 DoS count is the number of Window 2 DoS actions taken within that Window 3.
+* For *Window 1*, the threshold is the value of the DoS count when a DoS action is applied within *Window 1*.
+* For *Window 2*, the threshold is the value of the *Window 2* DoS count when a DoS action is applied in *Window 2*. +
+Keep in mind, that a *Window 2* DoS count is the number of *Window 1* DoS actions taken within that *Window 2*.
+* For *Window 3*, the threshold is the value of the *Window 3* DoS count when a DoS action is applied in *Window 3*, and also that a *Window 3* DoS count is the number of *Window 2* DoS actions taken within that *Window 3*.
 
 Based on this, window escalation occurs when a DoS threshold is violated.
 
 == Escalating Policy Violations as Errors
 
-If you have a DoS policy configured, HTTP protocol errors (malicious protocol violation attempts), and ACL and CAP policy violations escalate directly to DoS. Additionally, Some API Gateway provided policies escalate directly to DoS as well. See the table below for a specific mapping of violations and error escalations:
+If you have a DoS policy configured, HTTP protocol errors (malicious protocol violation attempts), ACL, WAF, and CAP policy violations escalate to DoS. Some policies provided by API Gateway escalate to DoS as well. See the table below for a specific mapping of violations and error escalations:
 
 [%header%autowidth.spread,cols="a,a"]
 |===
@@ -107,22 +107,22 @@ If you have a DoS policy configured, HTTP protocol errors (malicious protocol vi
 
 == Configuring a DoS Policy
 
-. Navigate to *Anypoint Security*, click the *Create Policy* icon, and select *Denial Of Service*. +
+. Navigate to *Anypoint Security*, click *Create Policy*, and select *Denial Of Service*. +
 The process of applying a DOS Policy has six different screens. +
-For every screen in the process, you need to save the changes. If you leave one screen without saving, you loose your changes on that screen.
+Save every screen before leaving it, or you lose your changes on that screen.
 . Click *General* on the left navigation bar:
 .. Add a name for your policy in the *Name* field.
 .. Set up a time interval, in seconds, in the *Window1 Time Period*. +
 This time interval is the accepted time that your policy will block other requests if it encounters the amount of errors that you configure for each type of error.
-.. Use the *Max Sources To Monitor* field to set up a maximum amount of IP address to track. +
-The DoS Policy can track up to 500000 IP addresses.
+.. Use the *Max Sources To Monitor* field to set up a maximum number of IP address to track. +
+The DoS policy can be configured to track up to 500000 IP addresses.
 .. Use the *Reject Message Action* drop-down menu to select the type of response the policy returns when dropping a client connection. You have two options:
-* *Drop Silently*: The policy drops the connection silently and avoids making the TLS handshake altogether. The policy avoids making the connection for the tcp packets with source ip address in AWS ELB Proxy Protocol headers, or for source ip address taken from the tcp packet. This is the most efficient way to terminate the client's connection, as the policy avoids reading the attacker's request.
-* *Send HTTP 503*: The policy terminates the connection and returns a 503 (Service Unavailable) response to the client. This requires for a TLS connection to be made., therefore being quite resource expensive.
+* *Drop Silently*: The policy drops the connection silently and avoids making the TLS handshake altogether. The policy avoids making the connection for the TCP packets with source IP address in AWS ELB Proxy Protocol headers, or for source IP address taken from the TCP packet. This is the most efficient way to terminate the client's connection, as the policy avoids reading the attacker's request.
+* *Send HTTP 503*: The policy terminates the connection and returns a `503 (Service Unavailable)` response to the client. This requires a TLS connection to be made, which is resource expensive.
 +
 [TIP]
 --
-If your applications are behind a AWS or load balancer, you must use this reject action, as the policy needs to read the attacker's request to identify the source IP headers in the HTTP message such as ‘x-forwarded-for’ or ‘forwarded’, before applying a DoS action.
+If your applications are behind a load balancer (other than an AWS ELB supporting Proxy Protocol V1 or AWS NLB), it is necessary for the DoS policy (regardless of the specified Drop action) to connect and read the source IP headers in the HTTP message, such as ‘x-forwarded-for’ or ‘forwarded’, before applying a DoS action. 
 --
 . Now you can configure your policy to take action for the different error types.
 
@@ -131,3 +131,5 @@ If your applications are behind a AWS or load balancer, you must use this reject
 
 * xref:acl-policy.adoc[ACL Policy]
 * xref:cap-policy.adoc[CAP Policy]
+* xref:waf-policy.adoc [WAF Policy]
+* xref:escalate-waf-to-dos.adoc[Enable DoS for a WAF Policy]

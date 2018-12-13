@@ -1,16 +1,24 @@
-= Applying Policies
+= Deploy Security Policies to Runtime Fabric
 
 == Prerequisites
 
-To apply policies, you need to have the *Manage Runtime Fabrics* permission associated to your user.
+To deploy policies, you must meet the following requirements:
 
-Additionally, your account must have associated the *Runtime Fabrics* and *Security Edge Policies* entitlements in addition to API Manager & Analytics.
+* Have the *Manage Runtime Fabrics* permission associated to your user.
+* Your account must have the following entitlements:
+** *Runtime Fabrics*
+** *Security Edge Policies*
+** *API Manager*
+** *Analytics*
 
-== Procedure
+== Deploy Policies
 
-. Go to *Runtime Manager*, click *Runtime Fabric* from the left navigation bar, and select the runtime fabric for which to enable Edge policies.
+. Go to *Runtime Manager*, and click *Runtime Fabric* in the left navigation bar.
+. Select the Runtime Fabric where you want to enable Edge policies.
 . Click the *Inbound Traffic* tab, and navigate to *Security Policies*.
-. For each policy, select the name of the policy you want to apply.
+. For each policy to deploy, select the name of the policy from the drop-down list, then click *Deploy*. +
+The policy is deployed to Runtime Fabric.
+
 
 == See Also
 
@@ -18,3 +26,4 @@ Additionally, your account must have associated the *Runtime Fabrics* and *Secur
 * xref:acl-policy.adoc[ACL Policy]
 * xref:dos-policy.adoc[DoS Policy]
 * xref:cap-policy.adoc[CAP Policy]
+* xref:waf-policy.adoc[WAF Policy]
