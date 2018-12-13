@@ -7,6 +7,6 @@ Only the official OWASP CRS rules are supported.
 
 WAF policies are fully integrated with the existing Anypoint Security policy DoS (Denial of Service). When the WAF policy detects errors, it triggers the thresholds configured in the DoS, which can be optionally configured to take actions such as shaping or blocking traffic for an IP address from a malicious source.
 
-== See Also
+=== See Also
 
 xref:waf-rulesets.adoc[WAF Rulesets]

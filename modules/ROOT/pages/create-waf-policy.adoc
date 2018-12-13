@@ -27,7 +27,7 @@ image::waf-rule-set.png[]
 . In *Advanced performance options*, you can select *Disable body scanner*. If you do not check this option, the request body is scanned.
 +
 [NOTE]
-Leaving the *Disable body scanner* option unchecked can be costly in terms of resources (CPU) depending on the size of the request messages. If request body checking is enabled, the CAP policy “Maximum Message Size” should be set to a value no larger than required to prevent attackers from abusing request body checking, and exhausting the resources.
+The *Disable body scanner* option must be checked if any valid responses will exceed 512 KB. If request body checking is enabled, the CAP policy “Maximum Message Size” should be set to a value no larger than required to prevent attackers from abusing request body checking, and exhausting the resources.
 . Click *Save*.
 
 == Configure Response Rulesets
@@ -45,7 +45,7 @@ The *Disable body scanner* option works the same as it does for the request rule
 +
 [IMPORTANT]
 ====
-Check the *Disable body scanner* options if responses will exceed 512 KB.
+*Check the "Disable body scanner" option if responses will exceed 512 KB.*
 ====
 +
 * For resource usage management, a maximum response size of 512 KB is imposed and is not configurable. If response rulesets are enabled with the *Disable body scanner* unchecked, a response with a content-length greater than 512 KB are rejected.
