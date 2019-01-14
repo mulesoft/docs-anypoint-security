@@ -1,39 +1,39 @@
-= Access Control List Policy
+= IP Whitelist List Policy
 
-The Access Control List Policy (ACL) allows you to create a general whitelist of IPs that will reach your deployed endpoints.
+The IP Whitelist policy allows you to create a general whitelist of IPs that will reach your deployed endpoints.
 
-If you have an ACL policy assigned, you need to whitelist all IP addresses that are coming through your exposed endpoint.
+If you have an IP Whitelist policy assigned, you need to whitelist all IP addresses that are coming through your exposed endpoint.
 
-ACL Policy violations escalate as authentication errors for the DoS policy.
+IP Whitelist Policy violations escalate as authentication errors for the DoS policy.
 
 [NOTE]
 This source is IP based. If an attacker can spoof his source IP address, these measurements cannot prevent the attack.
 
 == Differences with API Gateway Policies
 
-The ACL policy is a whitelist for all IP addresses that go through your endpoint, and this whitelist applies to all applications. You can set up an API Gateway Whitelist policy per API list.
+The IP Whitelist policy is a whitelist for all IP addresses that go through your endpoint, and this whitelist applies to all applications. You can set up an API Gateway Whitelist policy per API list.
 
 === Example
 
-You can set up an ACL Policy to allow `a.a.a.a`, `y.y.y.y`, and `z.z.z.z`. +
+You can set up an IP Whitelist Policy to allow `a.a.a.a`, `y.y.y.y`, and `z.z.z.z`. +
 Then, API-1 (`/api1`) uses an API Whitelist policy that allows `x.x.x.x`, and API-2 (`/api2`) uses another policy that allows `y.y.y.y` and `z.z.z.z`.
 
-* IP Address `w.w.w.w` is rejected by both APIs, because it's not whitelisted at the ACL Policy.
-* IP Address `y.y.y.y` requesting `/api1`, is allowed at the ACL Policy level, and rejected by the API Whitelist policy at `/api1`.
-* IP Address `y.y.y.y` requestion `/api2`, is allowed at the ACL Policy level, and allowed by the API Whitelist policy at `/api2`.
+* IP Address `w.w.w.w` is rejected by both APIs, because it's not whitelisted at the IP Whitelist policy.
+* IP Address `y.y.y.y` requesting `/api1`, is allowed at the IP Whitelist policy level, and rejected by the API Whitelist policy at `/api1`.
+* IP Address `y.y.y.y` requestion `/api2`, is allowed at the IP Whitelist policy level, and allowed by the API Whitelist policy at `/api2`.
 
-== Configuring ACL Policy
+== Configuring IP Whitelist Policy
 
-. Navigate to *Anypoint Security*, click the *Create Policy* icon, and select *Access Control List*.
+. Navigate to *Anypoint Security*, click *Create Policy*, and select *IP Whitelist*.
 . Add a name for your policy in the *Name* field.
-. Under *IP White List*, click the *Add IP* button.
-. Insert your IP address to whitelist. You must use CIDR notation for a range of IP addresses. +
+. Under *IP White List*, click *Add IP*.
+. Insert the range of IP addresses to whitelist. You must use the CIDR format for a range of IP addresses. +
 For example, using the IP address 10.111.0.0/24, whitelists the addresses from `10.111.0.0` to `10.111.0.255`. +
-To add more ranges of IP address, click the *Add IP* button again
-. Click *Save*.
+To add more ranges of IP address, click *Add IP* again.
+. Click *Save Policy*.
 
 == See Also
 
 * xref:api-manager::ip-whitelist.adoc[IP Whitelist]
-* xref:cap-policy.adoc[CAP Policy]
+* xref:cap-policy.adoc[HTTP Limits Policy]
 * xref:dos-policy.adoc[DoS Policy]

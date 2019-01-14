@@ -5,24 +5,24 @@ You can configure actions in an existing DoS policy to apply to WAF errors, for 
 If you don't configure your DoS policy (apply DoS thresholding) for WAF errors, parsing request bodies can consume a large share of CPU. If you receive many requests, just detecting errors will consume a large share of CPU.
 If DoS thresholding is implemented, when the threshold for DoS is exceeded, it ceases to parse request bodies.
 
-When a blocked IP address attempts to connect, the request will be rejected based solely on the IP address. This is extremely efficient. If "Drop Silently" is enabled for DoS, the TLS connection isn't attempted, which saves more resources.
+When a blocked IP address attempts to connect, the request will be rejected based solely on the IP address. This is extremely efficient. If *Drop Silently* is enabled for DoS, the TLS connection isn't attempted, which saves more resources.
 
-IP addresses coming from a malicious source may be attempting many other requests other than those triggering WAF. Some of these requests may look valid. When the DoS threshold is exceeded, all requests, good or bad, will be dropped for the identified IP address.
+IP addresses coming from a malicious source may be attempting many other requests other than those triggering WAF. Some of these requests may look valid. When the DoS threshold is exceeded, all requests, good or bad, are dropped for the identified IP address.
 
 
 == Escalate a WAF Policy to DoS
 
 To escalate a WAF policy to DoS, verify that the xref:dos-policy.adoc[Denial of Service Policy]  exists.
 
-. In *Security Policies*, click *Edit* to configure WAF errors for the selected DoS policy.
+. In *Security Policies*, select the DoS policy in the list and click *Edit*.
 . In the left menu, click *WAF Errors*.
-. Configure the WAF errors, and click *Save*. +
-All WAF errors will be handled by the thresholds you configured.
+. Configure the WAF errors, and click *Save Policy*. +
+All WAF errors will be handled by the thresholds you configure in the DoS policy.
 +
 image::waf-edit-dos-policy.png[Example WAF Errors]
 +
-In the example shown in the image, for *Window 1*, all requests for the source IP address are blocked if more than 10 WAF errors are received within a 60-second time interval. (The default is 60 seconds, but this value can be changed in the *General* tab for the DoS policy.)
+In this example, for *Rule A*, all requests for the source IP address are limited if more than 10 WAF errors are received within a 60-second time interval. (The default is 60 seconds, but you can change this value in the *General* tab for the DoS policy.)
 
-In *Window 2*, the settings shown will block an IP address forever if it causes the specified WAF error three times in a period of five *Window 1* intervals (5 60-second intervals in this case), and the IP address is blocked forever.
+In *Rule B*, the settings shown will block an IP address indefinitely if it causes the specified WAF error three times in a period of five *Rule A* intervals (5 60-second intervals in this case), and the IP address is blocked indefinitely.
 
 For more information about configuring DoS policies, see xref:dos-policy.adoc[Denial of Service Policy]

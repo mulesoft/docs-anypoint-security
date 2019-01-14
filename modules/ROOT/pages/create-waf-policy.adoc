@@ -4,7 +4,7 @@ You can create a Web Application (WAF) policy in *Anypoint Security > Security P
 
 . Sign into Anypoint Platform and navigate to *Anypoint Security*.
 . In the Security Policies page, click *Create Policy* and select *Web Application Firewall (WAF)*.
-. Enter a name for the policy and click *Save*. +
+. Enter a name for the policy and click *Save Policy*. +
 The policy appears in the Security Policies list, where you can edit and delete policies.
 
 image::security-policy-list.png[]
@@ -27,8 +27,8 @@ image::waf-rule-set.png[]
 . In *Advanced performance options*, you can select *Disable body scanner*. If you do not check this option, the request body is scanned.
 +
 [NOTE]
-The *Disable body scanner* option must be checked if any valid responses will exceed 512 KB. If request body checking is enabled, the CAP policy “Maximum Message Size” should be set to a value no larger than required to prevent attackers from abusing request body checking, and exhausting the resources.
-. Click *Save*.
+The *Disable body scanner* option must be checked if any valid responses will exceed 512 KB. If request body checking is enabled, the HTTP Limits policy “Maximum Message Size” should be set to a value no larger than required to prevent attackers from abusing request body checking, and exhausting the resources.
+. Click *Save Policy*.
 
 == Configure Response Rulesets
 
@@ -54,7 +54,7 @@ The *Disable body scanner* option works the same as it does for the request rule
 ** text/html
 ** text/xml
 ** application/json
-. Click *Save*.
+. Click *Save Policy*.
 
 [[disable_rules]]
 == Disable Individual Rules
@@ -66,7 +66,7 @@ You can examine the WAF summary message in logs to determine which rule IDs are 
 . In the *Anypoint Security > Security Policies* page, click *Edit* for the WAF policy to disable rules.
 . In the menu on the left, click *Disabled Rule IDs*.
 . Add the individual rule IDs for the rules to disable, separated by commas.
-. Click *Save*.
+. Click *Save Policy*.
 
 Once your WAF policy is configured and saved, you can (optionally) edit an existing DoS policy to enable DoS for your WAF policy, then deploy the policies to Runtime Fabric.
 
