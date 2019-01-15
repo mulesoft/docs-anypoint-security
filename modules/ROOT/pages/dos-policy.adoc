@@ -1,17 +1,16 @@
 = Denial Of Service Policy
 
-The Denial of Service (DoS) policy prevents attackers from flooding your network to prevent legitimate network traffic to your APIs. +
-For example, malicious clients could send huge payloads designed to consume resources and bandwidth to your network.
+The Denial of Service (DoS) policy prevents attackers from flooding your network to prevent legitimate network traffic to your APIs. For example, malicious clients could send huge payloads designed to consume resources and bandwidth to your network.
 
-The DoS policy allows you to configure a time span in which you can catch specific error types, and set up the action to take for each type of error encountered. If the policy encounters more errors than your configured threshold coming from the same IP address, the policy can either drop the connection silently (doesn't attempt the TLS connection), or drop the connection immediately and return a `503` error.
+The DoS policy allows you to configure a time span in which to catch specific error types and set up the action to take for each type of error encountered. If the policy encounters more errors than your configured threshold coming from the same IP address, the policy can either drop the connection silently (doesn't attempt the TLS connection), or drop the connection immediately and return a `503` error.
 
 The DoS policy determines the source of the request in the following three ways:
 
-* TCP Message - source IP address. 
+* TCP Message - source IP address 
 * Source IP address header field
 * Proxy Protocol IP address
 
-If an an attacker spoofs the source IP address, the DoS Policy cannot prevent the attack.
+Since the source of the request is based on the IP address, if an an attacker spoofs the source IP address, the DoS Policy cannot prevent the attack.
 
 == Error Types
 
@@ -53,28 +52,27 @@ Violations to a JSON or XML threat protection policy at the API Manager level es
 | Configure actions to apply to WAF errors, for example, blocking an IP address for a specified time interval. 
 |===
 
-== Understanding Windows, Thresholds, and Escalations
+== Understanding Rules, Thresholds, and Escalations
 
 To understand how to configure a DoS policy, you need to understand _when_ and _why_ a client's message is filtered by your DoS policy. +
 The _when_ is determined by the window you configure. The _why_ is determined by the DoS threshold.
 
-You can configure a time interval window when you configure the different errors to catch for your DoS policy. The time interval is measured in seconds and determines, after receiving an error alert, that a DoS attack is taking place and applies your configured action to the attacker's message. +
+You can configure a time interval window when you configure the different errors for your DoS policy. The time interval is measured in seconds and determines, after receiving an error alert, that a DoS attack is taking place and applies your configured action to the attacker's message. +
 The DoS actions that you can configure are:
 
-* *None*: The policy performs no action when encountering the configured amount of protocol errors.
-* *Shape-Interval*: The policy restricts the client's message rate until the end of your configured time window.
-* *Block-Interval*: The policy rejects the client's message requests until the end of your configured time window.
-* *Block-Forever*: The policy rejects all message requests from the client.
+* *None*: If you do not create rules, no action is taken.
+* *Limit its messages*: This rule restricts the specified client's message rate until the end of the time window you configure (for the rest of the specified time window or indefinitely).
+* *Block all messages*: The policy rejects all the client's message requests until the end of the time window you configure (for the rest of the specified time window or indefinitely).
 
 After the specified interval of time expires, the policy does not enforce shape- or block-interval. +
-Within each window, you can configure the number of errors that you want to allow, within the time window. This number of errors is a DoS count. You can configure up to three DoS windows for each type of DoS error. Within each window, the policy can apply one of the DoS actions to the client’s message requests, whenever your configured DoS count is met. +
-For example, you can configure a 60 second window (1 minute interval), and configure the policy so that if 2 protocol error happens within that time window ("2" is then your DoS count), reject all further requests from this client (apply a Block-Forever action).
+Within each window, you can configure the number of errors that you want to allow within the time window. This number of errors is a DoS count. You can configure up to three DoS windows for each type of DoS error. Within each window, the policy can apply one of the DoS actions to the client’s message requests whenever your configured DoS count is met. +
+For example, you can configure a 60 second window (1 minute interval), and configure the policy so that if 2 protocol errors happen within that time window ("2" is then your DoS count), all further requests from the client are rejected (apply a Block-Forever action).
 
-You can configure up to three different rules for each error. Each rule corresponds to escalation levels. *Rule A* is the lowest escalation level and *Rule C* is the highest. +
-When configuring a window higher than *Rule A*, you can set up the interval for those windows based on the interval of the preceding window (Rule A for Rule B, and Rule B for Rule C). +
-Following the example above, you can set up Rule B to be two intervals of Rule A, which means that if Rule A has an interval of 60 seconds, then Rule B will have a 120 seconds interval. +
-Additionally, you can configure a different DoS count for each window, which introduces the concept of thresholds. +
-Each window has a different threshold:
+You can configure up to three different rules for each error. Each rule corresponds to escalation levels. *Rule A* is the lowest escalation level and *Rule C* is the highest escalation level. +
+When configuring a rule with a higher escalation level than *Rule A*, you can set up the interval for those rules based on the interval of the preceding rule (Rule A for Rule B, and Rule B for Rule C). +
+For example, you can set up *Rule B* to be two intervals of *Rule A*, which means that if *Rule A* has an interval of 60 seconds, then *Rule B* will have a 120 seconds interval. +
+Additionally, you can configure a different DoS count for each rule, which introduces the concept of thresholds. +
+Each rule has a different threshold:
 
 * For *Rule A*, the threshold is the value of the DoS count when a DoS action is applied within *Rule A*.
 * For *Rule B*, the threshold is the value of the *Rule B* DoS count when a DoS action is applied in *Rule B*. +
