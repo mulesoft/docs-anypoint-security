@@ -23,6 +23,6 @@ image::waf-edit-dos-policy.png[Example WAF Errors]
 +
 In this example, for *Rule A*, all requests for the source IP address are limited if more than 10 WAF errors are received within a 60-second time interval. (The default is 60 seconds, but you can change this value in the *General* tab for the DoS policy.)
 
-In *Rule B*, the settings shown will block an IP address indefinitely if it causes the specified WAF error three times in a period of five *Rule A* intervals (5 60-second intervals in this case), and the IP address is blocked indefinitely.
+In *Rule B*, the settings shown will block an IP address indefinitely if it causes the specified WAF error three times in a period of five *Rule A* intervals (5 60-second intervals in this case).
 
 For more information about configuring DoS policies, see xref:dos-policy.adoc[Denial of Service Policy]

@@ -44,7 +44,7 @@ IP Whitelist policy violations also escalate as authentication errors.
 | Whenever a Quality of Service (QoS) error occurs. +
 For example, a client may try to force a lot of QoS errors by dropping packets to degrade the TCP service, damaging your TCP performance.
 
-Violations to a rate limiting, or SLA based, or Ping Federate policy at the API Manager level are escalated to the DoS policy as *QoS errors*.
+Violations to a rate limiting, or SLA based, or Ping Federate policy at the API Manager level are escalated to the DoS policy as *QoS Errors*.
 
 | *Content Errors*
 | Content errors happen when the client sends corrupt data that doesn’t conform to a schema and/or violates a Content Attack Prevention policy.
@@ -136,7 +136,12 @@ The DoS policy can be configured to track up to 500000 IP addresses.
 +
 [TIP]
 --
-If your applications are behind a load balancer (other than an AWS ELB supporting Proxy Protocol V1 or AWS NLB), the DoS policy (regardless of whether you specified Drop Silently for the *Reject Message Action*) must connect and read the source IP headers in the HTTP message, such as ‘x-forwarded-for’ or ‘forwarded’, before applying a DoS action. 
+The DoS policy must connect and read the source IP headers in the HTTP message, such as ‘x-forwarded-for’ or ‘forwarded’, before applying a DoS action, if the following is true:
+
+* Your applications are behind a load balancer.
+* The load balancer is not AWS ELB supporting Proxy Protocol V1 or AWS NLB.
+
+This is true whether or not you specified *Drop Silently* for the *Reject Message Action*. 
 --
 . Now you can configure your policy to take action for the different error types.
 

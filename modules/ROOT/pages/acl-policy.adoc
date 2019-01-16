@@ -1,17 +1,17 @@
 = IP Whitelist Policy
 
-The IP Whitelist policy allows you to create a general whitelist of IPs to reach your deployed endpoints.
+The IP Whitelist policy allows you to create an explicit list of IPs that can access your deployed endpoints. IP addresses that aren't on this white list are rejected. 
 
 If you have an IP Whitelist policy assigned, you need to whitelist all IP addresses that are coming through your exposed endpoint.
 
-IP Whitelist Policy violations escalate to authentication errors for the DoS policy.
+IP Whitelist policy violations escalate to authentication errors for the DoS policy.
 
 [NOTE]
-This source is IP based. If an attacker can spoof his source IP address, these measurements cannot prevent the attack.
+This source is IP based. If an attacker can spoof his source IP address, these measures cannot prevent the attack.
 
 == Differences with API Gateway Policies
 
-The IP Whitelist policy is a whitelist for all IP addresses that go through your endpoint, and this whitelist applies to all applications. You can set up an API Gateway Whitelist policy per API list.
+The IP Whitelist policy is a list of all IP addresses allowed to connect to your endpoint, and this whitelist applies to all applications. You can set up an API Gateway Whitelist policy per API list.
 
 === Example
 
