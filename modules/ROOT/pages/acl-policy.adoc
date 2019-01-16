@@ -1,10 +1,10 @@
-= IP Whitelist List Policy
+= IP Whitelist Policy
 
-The IP Whitelist policy allows you to create a general whitelist of IPs that will reach your deployed endpoints.
+The IP Whitelist policy allows you to create a general whitelist of IPs to reach your deployed endpoints.
 
 If you have an IP Whitelist policy assigned, you need to whitelist all IP addresses that are coming through your exposed endpoint.
 
-IP Whitelist Policy violations escalate as authentication errors for the DoS policy.
+IP Whitelist Policy violations escalate to authentication errors for the DoS policy.
 
 [NOTE]
 This source is IP based. If an attacker can spoof his source IP address, these measurements cannot prevent the attack.
@@ -15,20 +15,20 @@ The IP Whitelist policy is a whitelist for all IP addresses that go through your
 
 === Example
 
-You can set up an IP Whitelist Policy to allow `a.a.a.a`, `y.y.y.y`, and `z.z.z.z`. +
+You can set up an IP Whitelist policy to allow `a.a.a.a`, `y.y.y.y`, and `z.z.z.z`. +
 Then, API-1 (`/api1`) uses an API Whitelist policy that allows `x.x.x.x`, and API-2 (`/api2`) uses another policy that allows `y.y.y.y` and `z.z.z.z`.
 
 * IP Address `w.w.w.w` is rejected by both APIs, because it's not whitelisted at the IP Whitelist policy.
 * IP Address `y.y.y.y` requesting `/api1`, is allowed at the IP Whitelist policy level, and rejected by the API Whitelist policy at `/api1`.
 * IP Address `y.y.y.y` requestion `/api2`, is allowed at the IP Whitelist policy level, and allowed by the API Whitelist policy at `/api2`.
 
-== Configuring IP Whitelist Policy
+== Configure IP Whitelist Policy
 
 . Navigate to *Anypoint Security*, click *Create Policy*, and select *IP Whitelist*.
 . Add a name for your policy in the *Name* field.
 . Under *IP White List*, click *Add IP*.
 . Insert the range of IP addresses to whitelist. You must use the CIDR format for a range of IP addresses. +
-For example, using the IP address 10.111.0.0/24, whitelists the addresses from `10.111.0.0` to `10.111.0.255`. +
+For example, using the IP address 10.111.0.0/24, whitelists the addresses from `10.111.0.0` to `10.111.0.254`. +
 To add more ranges of IP address, click *Add IP* again.
 . Click *Save Policy*.
 
