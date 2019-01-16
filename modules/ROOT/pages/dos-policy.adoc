@@ -15,7 +15,7 @@ Since the source of the request is based on the IP address, if an an attacker sp
 [[error_types]]
 == Error Types
 
-When you configure the DoS policy, you can configure different error types, which correspond to existing security policies. For example, the *Protocol Errors* correspond to HTTP Limits policy violations.  When you configure the different error types, you are configuring the threshold at which policy violations are sent (escalated) to the DoS policy for evaluation. See <<dos_thresholds_and_escalations,Rules, Thresholds, and Escalations>>. The way you configure the errors determines what action is taken when the configured threshold is met.  
+When you configure the DoS policy, you can configure different error types, which correspond to existing security policies. For example, the *Protocol Errors* correspond to HTTP Limits policy violations.  When you configure the different error types, you are configuring the threshold at which policy violations are sent (escalated) to the DoS policy for action. See <<dos_thresholds_and_escalations,Rules, Thresholds, and Escalations>>. The way you configure the errors determines what action is taken when the configured threshold is met.  
 
 [%header%autowidth.spread,cols="a,a"]
 |===
