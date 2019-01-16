@@ -1,6 +1,6 @@
 = WAF Rulesets
 
-You can enable rules by threat category for requests and responses--these are called "rulesets." There is an option to disable individual rules within a ruleset if they are causing false positives. See xref:create-waf-policy#disable_rules[Disable Individual Rules].
+You can enable rules by threat category for requests and responses -- these are called "rulesets." There is an option to disable individual rules within a ruleset if they are causing false positives. See xref:create-waf-policy#disable_rules[Disable Individual Rules].
 
 Rules can run on a variety of sources, for example, they can run on URIs, headers, arguments, session IDs, cookies, and request and response bodies, to name a few.
 
@@ -38,7 +38,7 @@ The ten threat categories include:
 
 Response rulesets are similar to request rulesets. Response rulesets check responses from backend servers to look for information that should not be present in responses.
 
-The response rulesets are again divided into threat categories. The same actions apply as with the request ruleset--disable ruleset, disable and reject violations, and disable and allow violations. These have the same meaning as they do in the request ruleset, except DoS is not notified for response rulesets.
+The response rulesets are again divided into threat categories. The same actions apply as with the request ruleset -- disable ruleset, disable and reject violations, and disable and allow violations. These have the same meaning as they do in the request ruleset, except DoS is not notified for response rulesets.
 
 The threat categories for the response ruleset include:
 

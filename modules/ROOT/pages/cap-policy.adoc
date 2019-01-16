@@ -1,16 +1,17 @@
-= Content Attack Prevention Policy
+= HTTP Limits Policy
 
-The Content Attack Prevention (CAP) policy prevents an attacker from consuming all your bandwidth by sending large messages. +
+The HTTP Limits policy prevents an attacker from sending large messages that consume all your bandwidth. +
 This policy checks TCP protocol message sizes and headers. This policy does not check content.
 
 The default allowed message size is large. You need to tune the message size allowed by your policy based on your application needs. +
-It's recommended to set the size limits to what all of your APIs can handle.
+[NOTE]
+Set the size limits to what all of your APIs can handle.
 
 Violations to this policy escalate as *protocol errors* when configuring a DoS policy.
 
 This policy applies to all your APIs behind your Edge/Inbound endpoint. You can apply API Gateway policies to each API to enforce other API specific policies, such as throttling and JSON Threat Protection.
 
-== Configure a CAP Policy
+== Configure an HTTP Limit Policy
 
 . Navigate to *Anypoint Security*, click the *Create Policy* icon, and select *Content Attack Prevention*.
 . Add a name for your policy in the *Name* field.
@@ -27,9 +28,9 @@ This policy applies to all your APIs behind your Edge/Inbound endpoint. You can 
 |===
 . If you want to filter specific HTTP methods, configure them in the *Allowed HTTP Request Methods* field. +
 Allowed methods are: GET, POST, PATCH, HEAD, TRACE, OPTIONS, DELETE, and PUT.
-. Click *Save*.
+. Click *Save Policy*.
 
 == See Also
 
-* xref:acl-policy.adoc[ACL Policy]
+* xref:acl-policy.adoc[IP Whitelist Policy]
 * xref:dos-policy.adoc[DoS Policy]

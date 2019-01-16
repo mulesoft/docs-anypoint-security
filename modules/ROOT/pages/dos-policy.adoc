@@ -1,13 +1,21 @@
 = Denial Of Service Policy
 
-The Denial of Service (DoS) policy prevents attackers from flooding your network to prevent legitimate network traffic to your APIs. +
-Malicious clients, for example, could send huge malicious payloads designed to consume resources and bandwidth.
+The Denial of Service (DoS) policy prevents attackers from flooding your network to prevent legitimate network traffic to your APIs. For example, malicious clients could send huge payloads designed to consume resources and bandwidth to your network.
 
-The DoS policy allows you to configure a time span in which you can catch specific error types, and set up the action to take for each type of error encountered. If the policy encounters more errors than your configured threshold coming from the same IP address, the policy can either drop the connection silently (doesn't attempt the TLS connection), or drop the connection immediately and return a `503` error.
+When you create a DoS policy, you configure a time span and action to take when the <<error_types,error types>> you configure are encountered. If the policy encounters more errors than your configured threshold coming from the same IP address, the policy can either drop the connection silently (doesn't attempt the TLS connection), or drop the connection immediately and return a `503` error.
 
-This source is IP based. If an attacker spoofs the source IP address, these measurements cannot prevent the attack.
+The DoS policy determines the source of the request in the following three ways:
 
+* TCP Message - source IP address 
+* Source IP address header field
+* Proxy Protocol IP address
+
+Since the source of the request is based on the IP address, if an an attacker spoofs the source IP address, the DoS Policy cannot prevent the attack.
+
+[[error_types]]
 == Error Types
+
+When you configure the DoS policy, you can configure different error types, which correspond to existing security policies. For example, the *Protocol Errors* correspond to HTTP Limits policy violations.  When you configure the different error types, you are configuring the threshold at which policy violations are sent (escalated) to the DoS policy for action. See <<dos_thresholds_and_escalations,Rules, Thresholds, and Escalations>>. The way you configure the errors determines what action is taken when the configured threshold is met.  
 
 [%header%autowidth.spread,cols="a,a"]
 |===
@@ -15,75 +23,80 @@ This source is IP based. If an attacker spoofs the source IP address, these meas
 | *Protocol Errors*
 | When a client sends malformed protocol messages.
 
-A CAP policy violation escalates directly as a protocol error.
+An HTTP Limits policy violation is escalated to the DoS policy as *Protocol Errors*.
 
 | *Routing Errors*
 | When a client sends a message request which cannot be successfully routed to an application.
 
-Violations to IP blacklist/whitelist or RAML validation policies in API Manager escalate as routing errors.
+Violations to IP blacklist/whitelist or RAML validation policies in API Manager are escalated to the DoS policy as *Routing Errors*.
 
 | *Authentication Errors*
 | Anytime an authentication or authorization failure occurs. +
-This includes when the client sends a bad certificate during a SSL handshake, authentication or authorization failure in an AAA policy, or when a WS-Security Verify policy fails to verify a WS-Security signature.
+This includes when the client sends a bad certificate during an SSL handshake, authentication or authorization failure in an AAA policy, or when a WS-Security Verify policy fails to verify a WS-Security signature.
 
 // For example, you can configure your policy to permit up to 4 authentication errors within a 5 minute timeframe. If the client attempts a fifth login error, you can assume this IP address is trying to force brut its access, and take action against this. +
 // The same would apply for credit card attacks. An attacker might have a full credit card number, and may be trying to brut force credit card's CVC. You can block these malicious attempts before the attacker gets a significant number of correct values.
 
-Violations to a LDAP, HTTP, OAuth, OpenAM, or Ping Federate authentication policies in API Manager escalate as authentication errors. +
-ACL policy violations also escalate as authentication errors.
+Violations to LDAP, HTTP, OAuth, OpenAM, or Ping Federate authentication policies in API Manager are escalated to the DoS policy as *Authentication Errors*. +
+IP Whitelist policy violations also escalate as authentication errors.
 
 | *QoS Errors*
 | Whenever a Quality of Service (QoS) error occurs. +
 For example, a client may try to force a lot of QoS errors by dropping packets to degrade the TCP service, damaging your TCP performance.
 
-Violations to a rate limiting, or SLA based, or Ping Federate policy at the API Manager level escalates as a QoS error.
+Violations to a rate limiting, or SLA based, or Ping Federate policy at the API Manager level are escalated to the DoS policy as *QoS Errors*.
 
 | *Content Errors*
-| Client sends corrupt data that doesn’t conform to a schema and/or violates a Content Attack Prevention policy.
+| Content errors happen when the client sends corrupt data that doesn’t conform to a schema and/or violates a Content Attack Prevention policy.
 
-Violations to a JSON or XML threat protection policy at the API Manager level escalates as a content error.
+Violations to a JSON or XML threat protection policy at the API Manager level are escalated to DoS as *Content Errors*.
+
+| *WAF Errors*
+| Configure actions to apply to WAF errors, for example, blocking an IP address for a specified time interval. 
+
+Violations to response or request rulesets are escalated to DoS as *WAF Errors*.
 |===
 
-== Understanding Windows, Thresholds, and Escalations
+[[dos_thresholds_and_escalations]]
+== Rules, Thresholds, and Escalations
 
-To understand how to configure a DoS policy, you need to understand _when_ and _why_ a client's message is filtered by your DoS policy. +
-The _when_ is determined by the window you configure. The _why_ is determined by the DoS threshold.
+To understand how to configure a DoS policy, you need to understand when and why a client's message is filtered by your DoS policy. +
+The _when_ is determined by the window you configure, and the _why_ is determined by the DoS threshold.
 
-You can configure a time interval window when you configure the different errors to catch for your DoS policy. The time interval is measured in seconds and determines, after receiving an error alert, that a DoS attack is taking place and applies your configured action to the attacker's message. +
+You can configure a time interval window when you configure the different errors for your DoS policy. The time interval is measured in seconds and determines, after receiving an error alert, that a DoS attack is taking place and applies your configured action to the attacker's message. +
 The DoS actions that you can configure are:
 
-* *None*: The policy performs no action when encountering the configured amount of protocol errors.
-* *Shape-Interval*: The policy restricts the client's message rate until the end of your configured time window.
-* *Block-Interval*: The policy rejects the client's message requests until the end of your configured time window.
-* *Block-Forever*: The policy rejects all message requests from the client.
+* *None*: If you do not create rules, no action is taken.
+* *Limit its messages*: This rule restricts the specified client's message rate until the end of the time window you configure (for the rest of the specified time window or indefinitely).
+* *Block all messages*: The policy rejects all the client's message requests until the end of the time window you configure (for the rest of the specified time window or indefinitely).
 
-After the interval of your window of time expires, the policy does not enforce shape-interval nor block-interval. +
-Within each window, you can configure the number of errors that you want to allow, within this time window. This number of errors is a DoS count. You can configure up to three DoS windows for each type of DoS error. Within each window, the policy can apply one of the DoS actions to the client’s message requests, whenever your configured DoS count is met. +
-For example, you can configure a 60 second window (1 minute interval), and configure the policy so that if 2 protocol error happens within that time window ("2" is then your DoS count), reject all further requests from this client (apply a Block-Forever action).
+After the specified interval of time expires, the policy does not enforce shape- or block-interval. +
+Within each window, you can configure the number of errors that you want to allow within the time window. This number of errors is a DoS count. You can configure up to three DoS windows for each type of DoS error. Within each window, the policy can apply one of the DoS actions to the client’s message requests whenever your configured DoS count is met. +
+For example, you can configure a 60 second window (1 minute interval), and configure the policy so that if 2 protocol errors happen within that time window ("2" is then your DoS count), all further requests from the client are rejected (apply a Block-Forever action).
 
-You can configure up to three different windows. Each window corresponds to escalation levels. *Window 1* is the lowest escalation level and *Window 3* is the highest. +
-When configuring a window higher than *Window 1*, you can set up the interval for those windows based on the interval of the preceding window (Window 1 for Window 2, and Window 2 for Window 3). +
-Following the example above, you can set up Window 2 to be two intervals of Window 1, which means that if Window 1 has an interval of 60 seconds, then Window 2 will have a 120 seconds interval. +
-Additionally, you can configure a different DoS count for each window, which introduces the concept of thresholds. +
-Each window has a different threshold:
+You can configure up to three different rules for each error. Each rule corresponds to escalation levels. *Rule A* is the lowest escalation level and *Rule C* is the highest escalation level. +
+When configuring a rule with a higher escalation level than *Rule A*, you can set up the interval for those rules based on the interval of the preceding rule (Rule A for Rule B, and Rule B for Rule C). +
+For example, you can set *Rule B* to be two intervals of *Rule A*, which means that if *Rule A* has an interval of 60 seconds, then *Rule B* will have a 120 seconds interval. +
+Additionally, you can configure a different DoS count for each rule, which introduces the concept of thresholds. +
+Each rule has a different threshold:
 
-* For *Window 1*, the threshold is the value of the DoS count when a DoS action is applied within *Window 1*.
-* For *Window 2*, the threshold is the value of the *Window 2* DoS count when a DoS action is applied in *Window 2*. +
-Keep in mind, that a *Window 2* DoS count is the number of *Window 1* DoS actions taken within that *Window 2*.
-* For *Window 3*, the threshold is the value of the *Window 3* DoS count when a DoS action is applied in *Window 3*, and also that a *Window 3* DoS count is the number of *Window 2* DoS actions taken within that *Window 3*.
+* For *Rule A*, the threshold is the value of the DoS count when a DoS action is applied within *Rule A*.
+* For *Rule B*, the threshold is the value of the *Rule B* DoS count when a DoS action is applied in *Rule B*. +
+Keep in mind, that a *Rule B* DoS count is the number of *Rule A* DoS actions taken within that *Rule B*.
+* For *Rule C*, the threshold is the value of the *Rule C* DoS count when a DoS action is applied in *Rule C*, and also that a *Rule C* DoS count is the number of *Rule B* DoS actions taken within that *Rule C*.
 
 Based on this, window escalation occurs when a DoS threshold is violated.
 
 == Escalating Policy Violations as Errors
 
-If you have a DoS policy configured, HTTP protocol errors (malicious protocol violation attempts), ACL, WAF, and CAP policy violations escalate to DoS. Some policies provided by API Gateway escalate to DoS as well. See the table below for a specific mapping of violations and error escalations:
+If you have a DoS policy configured, HTTP protocol errors (malicious protocol violation attempts), IP Whitelist, WAF, and HTTP Limits policy violations escalate to DoS. Some policies provided by API Gateway escalate to DoS as well. See the table below for a specific mapping of violations and error escalations:
 
 [%header%autowidth.spread,cols="a,a"]
 |===
 | *Violation* | *Escalates as*
 2+^.^| *Anypoint Security Policy*
-| ACL Policy | Authentication Error
-| CAP Policy | Protocol Error
+| IP Whitelist Policy | Authentication Error
+| HTTP Limits Policy | Protocol Error
 2+^.^| *Errors at the Endpoint Level*
 | HTTP Protocol Errors at endpoint | Protocol Errors
 | TLS Handshake Errors at endpoint | Protocol Errors
@@ -109,11 +122,12 @@ If you have a DoS policy configured, HTTP protocol errors (malicious protocol vi
 
 . Navigate to *Anypoint Security*, click *Create Policy*, and select *Denial Of Service*. +
 The process of applying a DOS Policy has six different screens. +
+[NOTE]
 Save every screen before leaving it, or you lose your changes on that screen.
 . Click *General* on the left navigation bar:
 .. Add a name for your policy in the *Name* field.
-.. Set up a time interval, in seconds, in the *Window1 Time Period*. +
-This time interval is the accepted time that your policy will block other requests if it encounters the amount of errors that you configure for each type of error.
+.. Set up a time interval, in seconds, in *Rule A Time Period*. +
+This time interval is the threshold at which your policy begins to block requests if it encounters the number of errors that you configure for each type of error.
 .. Use the *Max Sources To Monitor* field to set up a maximum number of IP address to track. +
 The DoS policy can be configured to track up to 500000 IP addresses.
 .. Use the *Reject Message Action* drop-down menu to select the type of response the policy returns when dropping a client connection. You have two options:
@@ -122,14 +136,19 @@ The DoS policy can be configured to track up to 500000 IP addresses.
 +
 [TIP]
 --
-If your applications are behind a load balancer (other than an AWS ELB supporting Proxy Protocol V1 or AWS NLB), it is necessary for the DoS policy (regardless of the specified Drop action) to connect and read the source IP headers in the HTTP message, such as ‘x-forwarded-for’ or ‘forwarded’, before applying a DoS action. 
+The DoS policy must connect and read the source IP headers in the HTTP message, such as ‘x-forwarded-for’ or ‘forwarded’, before applying a DoS action, if the following is true:
+
+* Your applications are behind a load balancer.
+* The load balancer is not AWS ELB supporting Proxy Protocol V1 or AWS NLB.
+
+This is true whether or not you specified *Drop Silently* for the *Reject Message Action*. 
 --
 . Now you can configure your policy to take action for the different error types.
 
 
 == See Also
 
-* xref:acl-policy.adoc[ACL Policy]
-* xref:cap-policy.adoc[CAP Policy]
-* xref:waf-policy.adoc [WAF Policy]
+* xref:acl-policy.adoc[IP Whitelist Policy]
+* xref:cap-policy.adoc[HTTP Limits Policy]
+* xref:waf-policy.adoc[WAF Policy]
 * xref:escalate-waf-to-dos.adoc[Enable DoS for a WAF Policy]
