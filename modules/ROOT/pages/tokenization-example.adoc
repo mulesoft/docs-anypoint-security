@@ -29,7 +29,7 @@ For more information, see xref:1.0@runtime-fabric::enable-inbound-traffic.adoc[R
 
 === Secret Group
 
-Use Secrets Manager in the Anypoint Platform Management Center to create and manage secret groups. For each tokenization service you create, you must also create a corresponding, dedicated secret group in Secrets Manager. No other tokenization service should use this secret group and no secrets outside of this tokenization service should be stored in that secret group.
+Use Secrets Manager xref:asm-secret-group-creation-task.adoc[to create and manage secret groups]. For each tokenization service you create, you must also create a corresponding, dedicated secret group in Secrets Manager. No other tokenization service should use this secret group and no secrets outside of this tokenization service should be stored in that secret group.
 
 When you delete a tokenization service, you can delete the corresponding secret group.
 
