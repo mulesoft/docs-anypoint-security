@@ -54,7 +54,7 @@ First: Enter a value for the number of beginning digits to preserve. For example
 Last: Enter a value for the number of last digits to preserve. For example, `4`. +
 
 Using the example values of `4` for first and last respectively, means that the first four digits and last four digits of the original string are preserved, and everything in between will be tokenized.
-|*Force token characters in illegal range* |For example, let's say that you have the CCN 1234567890123456 and you have set the *Preserve characters* option to preserve the last four digits and force an invalid one digit with an offset of two from left. The generated token would look similar to: 54D3210987653456.
+|*Force token characters in illegal range* |For example, if you have the CCN 1234567890123456 and you set the *Preserve characters* option to preserve the last four digits and force an invalid one digit with an offset of two from left. The generated token would look similar to: 54D3210987653456.
 
 A decimal digit will be mapped into the Latin alphabet character range.
 
