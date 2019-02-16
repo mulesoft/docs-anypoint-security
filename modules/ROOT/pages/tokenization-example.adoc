@@ -4,7 +4,7 @@
 
 To configure the tokenization service, you need the following:
 
-* Runtime Fabric 1.1.153 or later with inbound traffic configured. See xref:1.0@runtime-fabric::index.adoc[the Runtime Fabric documentation].
+* Runtime Fabric 1.1.153 or later with inbound traffic configured. See xref:1.2@runtime-fabric::index.adoc[the Runtime Fabric documentation].
 * A secret group to store the tokenization table encryption keys. The tokenization service creates and stores its own keys. See xref:asm-secret-group-concept.adoc[Secrets Manager documentation].
 * A tokenization format, which describes the format and how data is tokenized. See xref:tokenization-formats.adoc[Tokenization Formats].
 * A tokenization service that handles the actual tokenization requests and also tokenizes and detokenizes the data. For security purposes, an API Gateway must protect this service.
@@ -19,13 +19,13 @@ For example, if sensitive data is produced from a Mule application serving exter
 
 == Prerequisites
 
-=== Runtime Fabric 1.1.153 or later with Inbound Traffic
+=== Runtime Fabric 1.1.153 or Later with Inbound Traffic
 
 This example shows a Runtime Fabric named "rtf231", which has inbound traffic that is using a certificate and private key in the secret group “alphatoken”. If you already have a Runtime Fabric and secret group configured, use those names in places of the ones in the example.
 
 image::tokenization-example-rtf-ingress-config.png[Example Runtime Fabric with Inbound Traffic]
 
-For more information, see xref:1.0@runtime-fabric::enable-inbound-traffic.adoc[Runtime Fabric Inbound Traffic Configuration].
+For more information, see xref:1.2@runtime-fabric::enable-inbound-traffic.adoc[Runtime Fabric Inbound Traffic Configuration].
 
 === Secret Group
 
