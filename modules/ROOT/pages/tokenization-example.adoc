@@ -19,7 +19,7 @@ For example, if sensitive data is produced from a Mule application serving exter
 
 == Prerequisites
 
-=== Runtime Fabric 1.1.153 or later with Inbound Traffic
+=== Runtime Fabric 1.1.153 or Later with Inbound Traffic
 
 This example shows a Runtime Fabric named "rtf231", which has inbound traffic that is using a certificate and private key in the secret group “alphatoken”. If you already have a Runtime Fabric and secret group configured, use those names in places of the ones in the example.
 
