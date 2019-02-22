@@ -15,7 +15,7 @@ These policies prevent attacks from clients that send large messages that can co
 Learn more about the xref:cap-policy.adoc[HTTP Limits policy].
 * WAF (Web Application Firewall Policy +
 These policies provide the Open Web Application Security Project (OWASP) Core Rule Set (CRS) for checking requests and responses to detect common Web application attacks. +
-Learn more about the xref:waf-policy[WAF policy]
+Learn more about the xref:waf-policy.adoc[WAF policy]
 
 You can use these policies to handle all traffic to your Runtime Fabric, and leverage API Manager policies for handling specific behaviors to specific APIs.
 
@@ -27,7 +27,7 @@ It provides:
 * Threat detection and prevention.
 ** Content attack prevention (HTTP header and message limits checks)
 ** Denial of Service
-** IP whitelists.
+** IP whitelists
 * Advanced TLS  (for example, Cert-pinning, CRL)
 * Basic TLS  (for example, Mutual TLS, SSL Termination)
 
