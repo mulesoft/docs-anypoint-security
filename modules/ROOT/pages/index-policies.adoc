@@ -8,7 +8,7 @@ You can protect your APIs using these policies:
 These policies are designed to protect your network nodes against malicious clients trying to flood your network to prevent legitimate traffic to your APIs. +
 Learn more about the xref:dos-policy.adoc[DoS policy].
 * IP Whitelist +
-These policies check HTTP protocol message size and headers. +
+Create an explicit list of IPs that can access your deployed endpoints. +
 Learn more about the xref:acl-policy.adoc[IP Whitelist].
 * HTTP Limits +
 These policies prevent attacks from clients that send large messages that can consume all of your processing bandwidth. +
