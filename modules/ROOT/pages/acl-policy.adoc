@@ -42,7 +42,7 @@ You can log a list of blocked IP addresses and unblock IP addresses in Runtime F
 . Select the *Inbound Traffic* tab. 
 . In the *Security Policies* section, click *Manage blocked IPs*.
 . In the *Manage blocked IPs* dialog box, you can download a list of blocked IP addresses into a log file or unblock IP addresses. 
-.. To generate a log of blocked IP addresses, click *Log blocked IPs*. +
+.. To generate a list of blocked IP addresses, click *Log blocked IPs*. +
 A spinner is displayed until the blocked IP addresses are successfully logged and a `Logged` message appears. 
 .. To unblock IP addresses, enter the IP addresses to unblock in the field, then click *Unblock IPs*. +
 You can enter individual or a range of IP addresses. For example, to unblock a range of IP addresses, enter: `192.0.2.0–192.0.2.255` +
