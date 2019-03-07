@@ -32,6 +32,23 @@ For example, using the IP address 10.111.0.0/24, whitelists the addresses from `
 To add more ranges of IP address, click *Add IP* again.
 . Click *Save Policy*.
 
+== Manage Blocked IP Addresses
+
+You can log a list of blocked IP addresses and unblock IP addresses in Runtime Fabric. Make sure you verify that all issues that caused the IP address to be blocked are resolved before you unblock the IP address. 
+
+. In Anypoint Platform go to *Management Center > Runtime Manager*.
+. In the left navigation menu, click *Runtime Fabrics*.  
+. Select the Runtime Fabric to manage the blocked IP addresses for. 
+. Select the *Inbound Traffic* tab. 
+. In the *Security Policies* section, click *Manage blocked IPs*.
+. In the *Manage blocked IPs* dialog box, you can download a list of blocked IP addresses into a log file or unblock IP addresses. 
+.. To generate a log of blocked IP addresses, click *Log blocked IPs*. +
+A spinner is displayed until the blocked IP addresses are successfully logged and a `Logged` message appears. 
+.. To unblock IP addresses, enter the IP addresses to unblock in the field, then click *Unblock IPs*. +
+You can enter individual or a range of IP addresses. For example, to unblock a range of IP addresses, enter: `192.0.2.0–192.0.2.255` +
+A spinner is displayed until the IP addresses are successfully unblocked and an `Unblocked` message displays. 
+
+
 == See Also
 
 * xref:api-manager::ip-whitelist.adoc[IP Whitelist]
