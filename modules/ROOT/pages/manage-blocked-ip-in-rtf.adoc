@@ -21,7 +21,7 @@ To manage blocked IP addresses in Runtime Fabric you must:
 . In the *Security Policies* section, click *Manage blocked IPs*.
 . In the *Manage blocked IPs* dialog box, you can download a list of blocked IP addresses into a log file or unblock IP addresses. 
 
-== Unblock Blocked IP Addresses
+== Unblock IP Addresses
 
 . In the *Manage blocked IPs* dialog, to unblock an IP address or range of IP addresses, enter an IP address and CIDR in the *Unblock an IP Address* field.  +
 For example, to unblock a single IP address, enter: `192.0.2.0/32`. +
