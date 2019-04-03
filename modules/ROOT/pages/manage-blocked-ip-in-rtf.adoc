@@ -1,0 +1,81 @@
+= Manage Blocked IP Addresses in Runtime Fabric
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+In the Runtime Fabric *Inbound Traffic > Security Policies* interface, you can unblock IP addresses and generate a list of blocked IP addresses, which you can view in Runtime Fabric logs. 
+
+[NOTE]
+You must have a DoS policy configured to manage IP addresses in Runtime Fabric. See xref:dos-policy.adoc[Denial of Service Policy]
+
+. In Anypoint Platform go to *Management Center > Runtime Manager*.
+. In the left navigation menu, click *Runtime Fabrics*.  
+. Select the Runtime Fabric for which to manage the blocked IP addresses. 
+. Select the *Inbound Traffic* tab. 
+. In the *Security Policies* section, click *Manage blocked IPs*.
+. In the *Manage blocked IPs* dialog box, you can download a list of blocked IP addresses into a log file or unblock IP addresses. 
+
+== Unblock Blocked IP Addresses
+
+. To unblock IP addresses, enter the IP addresses to unblock in the field, then click *Unblock IPs*. +
+. In the *Unblock an IP Address* field, enter an individual or a range of IP addresses. +
+For example, to unblock a range of IP addresses, enter: `192.0.2.0–192.0.2.255` +
+When the IP addresses are successfully unblocked, an `Unblocked` message displays.
+
+== Log Blocked IP Addresses
+
+. To generate a list of blocked IP addresses, click *Log blocked IPs*. +
+When the blocked IP addresses are successfully logged, a `Logged` message appears. 
+. To view the logs, follow the instructions in the xref:1.2@runtime-fabric::runtime-fabric-logs.adoc[View and Configure Logging] for configuring log forwarding. +
+The logs look similar to this: +
+
+[json]
+----
+{
+	"body": [{
+		"action": "BlockForever",
+		"ip": "172.31.104.239",
+		"category": "RoutingError"
+	}, {
+		"action": "BlockForever",
+		"ip": "172.31.104.240",
+		"category": "RoutingError"
+	}, {
+		"action": "BlockForever",
+		"ip": "172.31.106.88",
+		"category": "RoutingError"
+	}, {
+		"action": "BlockForever",
+		"ip": "172.31.106.89",
+		"category": "RoutingError"
+	}, {
+		"action": "BlockForever",
+		"ip": "172.31.106.90",
+		"category": "RoutingError"
+	}, {
+		"action": "BlockForever",
+		"ip": "172.31.106.91",
+		"category": "RoutingError"
+	}, {
+		"action": "BlockForever",
+		"ip": "172.31.106.92",
+		"category": "RoutingError"
+	}, {
+		"action": "BlockForever",
+		"ip": "172.31.106.107",
+		"category": "RoutingError"
+	}],
+	"hdr": {
+		"logType": "EdgeJSON",
+		"name": "doSActionsView",
+		"time:": "2019-03-29 18:38:48"
+	}
+}
+----
+
+== See Also
+
+* xref:api-manager::ip-whitelist.adoc[IP Whitelist]
+* xref:cap-policy.adoc[HTTP Limits Policy]
+* xref:dos-policy.adoc[DoS Policy]
+* xref:1.2@runtime-fabric::runtime-fabric-logs.adoc[View and Configure Logging]
