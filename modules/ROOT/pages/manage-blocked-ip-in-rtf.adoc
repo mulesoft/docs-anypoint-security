@@ -3,10 +3,16 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-In the Runtime Fabric *Inbound Traffic > Security Policies* interface, you can unblock IP addresses and generate a list of blocked IP addresses, which you can view in Runtime Fabric logs. 
+In a Runtime Fabric with Anypoint Security enabled, you can unblock IP addresses and generate a list of blocked IP addresses, which you can view in Runtime Fabric logs. 
 
-[NOTE]
-You must have a DoS policy configured to manage IP addresses in Runtime Fabric. See xref:dos-policy.adoc[Denial of Service Policy]
+== Prerequisites
+
+To manage blocked IP addresses in Runtime Fabric you must:
+
+* Have a running Runtime Fabric
+* Have a xref:dos-policy.adoc[DoS policy configured] and deployed to Runtime Fabric
+
+== Manage Blocked IP Addresses
 
 . In Anypoint Platform go to *Management Center > Runtime Manager*.
 . In the left navigation menu, click *Runtime Fabrics*.  
@@ -17,10 +23,11 @@ You must have a DoS policy configured to manage IP addresses in Runtime Fabric. 
 
 == Unblock Blocked IP Addresses
 
-. To unblock IP addresses, enter the IP addresses to unblock in the field, then click *Unblock IPs*. +
-. In the *Unblock an IP Address* field, enter an individual or a range of IP addresses. +
-For example, to unblock a range of IP addresses, enter: `192.0.2.0–192.0.2.255` +
-When the IP addresses are successfully unblocked, an `Unblocked` message displays.
+. In the *Manage blocked IPs* dialog, to unblock an IP address or range of IP addresses, enter an IP address and CIDR in the *Unblock an IP Address* field.  +
+For example, to unblock a single IP address, enter: `192.0.2.0/32`. +
+To unblock a range of IP addresses, enter: `192.0.2.0/24`. 
+. Click *Done*. +
+When the IP addresses are successfully unblocked, an `Unblocked` message appears.
 
 == Log Blocked IP Addresses
 
