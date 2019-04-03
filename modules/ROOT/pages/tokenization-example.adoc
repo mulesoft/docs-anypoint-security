@@ -81,7 +81,7 @@ A mapping table, which contains a large table of randomizations that are used at
 
 The tokenization mapping table build is a one-time action and can take as little as two minutes to build, or up to twenty minutes, depending on the size of the tokenization format. For example, an SSN-only table less than 200 MB in size can build in two minutes, but a larger format such as “lax alphanumeric” can take up to 20 minutes to build.
 
-If many, or all, of the formats are selected, it can take a very long time to build the table for the service (approximately 70 minutes), as a table with all formats is approximately 2 GB in size.
+If many, or all, of the formats are selected, it can take about 70 minutes to build the table for the service, as a table with all formats is approximately 2 GB in size.
 
 image::tokenization-example-create-tokenization-service.png[]
 
