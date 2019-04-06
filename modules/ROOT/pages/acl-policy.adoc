@@ -4,7 +4,7 @@ The IP Whitelist policy allows you to create an explicit list of IPs that can ac
 
 If you have an IP Whitelist policy assigned, you need to whitelist all IP addresses that are coming through your exposed endpoint.
 
-IP Whitelist policy violations escalate to authentication errors for the DoS policy.
+IP Whitelist policy violations escalate to authentication errors for the DoS policy. You can configure the way protocol errors are handled in a xref:dos-policy.adoc[DoS policy]. 
 
 [NOTE]
 This source is IP based. If an attacker can spoof his source IP address, these measures cannot prevent the attack.
@@ -31,6 +31,7 @@ Then, API-1 (`/api1`) uses an API Whitelist policy that allows `x.x.x.x`, and AP
 For example, using the IP address 10.111.0.0/24, whitelists the addresses from `10.111.0.0` to `10.111.0.254`. +
 To add more ranges of IP address, click *Add IP* again.
 . Click *Save Policy*.
+
 
 == See Also
 

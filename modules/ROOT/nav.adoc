@@ -10,6 +10,7 @@
  *** xref:escalate-waf-to-dos.adoc[Enable DoS for a WAF Policy]
  *** xref:test-waf-policy.adoc[Test a WAF Policy]
 ** xref:apply-policy.adoc[Deploy Security Policies to Runtime Fabric]
+** xref:manage-blocked-ip-in-rtf.adoc[Manage Blocked IP Addresses in Runtime Fabric]
 * xref:tokenization.adoc[Tokenization Service]
 ** xref:tokenization-formats.adoc[Tokenization Formats]
 ** xref:tokenization-example.adoc[Configure and Use Tokenization]
