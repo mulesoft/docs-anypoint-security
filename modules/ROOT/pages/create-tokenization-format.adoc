@@ -1,1 +1,14 @@
-= Creating the Tokenization Service
+= Creating the Tokenization Format
+
+
+The tokenization format defines the way incoming data is converted. In this example, the domain type used is social security number (SSN). For more information about the supported tokenization formats see xref:tokenization-formats.adoc[Tokenization Formats].
+
+To create the tokenization format:
+
+. Sign into Anypoint Platform with the Organization Administrators role.
+. Under *Management Center*, click *Anypoint Security*.
+. In the menu on the left, click *Tokenization Format*.
+. Click *Create Format*. +
+The example below shows a social security data domain format named "sssnonly" with none of the options selected.
+
+image::tokenization-example-format.png[]
