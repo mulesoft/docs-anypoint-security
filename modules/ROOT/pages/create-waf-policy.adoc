@@ -28,7 +28,7 @@ image::waf-rule-set.png[]
 * *Disable body scanner*. If you do not check this option, the request body is scanned.
 +
 [NOTE]
-The *Disable body scanner* option must be selected if any valid responses will exceed 512 KB. If request body checking is enabled, the HTTP Limits policy *Maximum Message Size* should be set to a value no larger than required to prevent attackers from abusing request body checking, and exhausting resources.
+If a body is larger than 1 MB, the scan is skipped. If request body checking is enabled, the HTTP Limits policy *Maximum Message Size* should be set to a value no larger than required to prevent attackers from abusing request body checking, and exhausting resources.
 * *Detect sensitive information* - You can select this option only if the *Disable body scanner* option is not selected. +
 If you select this option, the request body is scanned for sensitive information, and when you apply the WAF policy to the Runtime Fabric, the log summary (`rtfWafSecurityPolicySummary`) records the count and number (rule ID) of the sensitive information pattern that is detected. +
 An `rtfSidSummary` log is also generated, which contains the API, rule, direction, and count for instances of sensitive information.
@@ -48,7 +48,7 @@ All the rulesets are disabled by default. For each rule, you can: +
 +
 [IMPORTANT]
 ====
-*Check the "Disable body scanner" option if responses will exceed 512 KB.*
+If a body is larger than 1 MB, the body scan is skipped. 
 ====
 +
 * For resource usage management, a maximum response size of 512 KB is imposed and is not configurable. If response rulesets are enabled with the *Disable body scanner* unchecked, a response with a content-length greater than 512 KB are rejected.

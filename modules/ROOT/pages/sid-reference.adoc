@@ -11,7 +11,7 @@ These are some common scenarios where implementing SID can help you keep sensiti
 
 == WAF Security Policy Summary Log
 
-When you apply the WAF policy to the Runtime Fabric, a `rtfWafSecurityPolicySummary` log is generated, which shows the WAF category, rule ID, and count for how many times the violation was detected. 
+When you apply the WAF policy to the Runtime Fabric, a `rtfWafSecurityPolicySummary` log is generated, which shows the WAF category, rule ID, and count for how many times the violation was detected during the last collection interval. 
 For example:
 
 [json]
@@ -97,7 +97,7 @@ For example:
 
 == SID Summary Log
 
-When you apply the WAF policy to the Runtime Fabric, a `rtfSidSummary` log is generated, which shows the WAF category, rule ID, and count for how many times the violation was detected. 
+When you apply the WAF policy to the Runtime Fabric, a `rtfSidSummary` log is generated, which shows the offending API, rule description, direction, and count for the number of times the SID rule was triggered. 
 For example:
 
 [json]
@@ -119,101 +119,126 @@ For example:
 
 This table lists the rule categories and rule IDs for SID that are returned in the logs.
 
-[%header%autowidth.spread,cols="a,a,a"]
+[%header%autowidth.spread,cols="a,a,a,a"]
 |===
-|Rule |Rule Category | RuleId
+|Rule |Rule Category |RuleId (Request) |RuleId (Response) 
 |TAXID	
 |PII-Core	
 |600100
+|600500
 
 |SSN	
 |PII-Core	
 |600110
+|600510
 
 |SSN VALUE	
 |PII-Core	
 |600120
+|600520
 
 |Social Security Number key value pair	
 |PII-Core	
 |600130
+|600530
 
 |DOB	
 |PII-Core	
 |600140
+|600540
 
 |FIRST NAME	
 |PII-Core	
 |600150
+|600550
 
 |LAST NAME	
 |PII-Core	
 |600160
+|600560
 
 |CONTACT_NUMBER	
 |PII-Enhanced	
 |600200
+|600600
 
 |EADDRESS	
 |PII-Enhanced	
 |600210
+|600610
 
 |USER NAME	
 |PII-Enhanced	
 |600220
+|600620
 
 |PASSPORT	
 |PII-Enhanced	
 |600230
+|600630
 
 |DRIVER LICENSE	
 |PII-Enhanced	
 |600240
+|600640
 
 |DOMESTIC PHONE NUMBER	
 |PII-Enhanced	
 |600250
+|600650
 
 |INTERNATIONAL PHONE NUMBER	
 |PII-Enhanced	
 |600260
+|600660
 
 |ACCOUNT NUMBER	
 |PCI	
 |600300
+|600700
 
 |BANK CARD	
 |PCI	
 |600310
+|600710
 
 |VISA CARD	
 |PCI	
 |600320
+|600720
 
 |MASTER CARD	
 |PCI	
 |600330
+|600730
 
 |AMX CARD	
 |PCI	
 |600340
+|600740
 
 |DISCOVER CARD	
 |PCI	
 |600350
+|600750
 
-|DINERSCLUD CARD	
+|DINERSCLUB CARD	
 |PCI	
 |600360
+|600760
 
 |JCB CARD	
 |PCI	
 |600370
+|600770
 
 |Credit Card number key value pair	
-|PCI	|600380
+|PCI	
+|600380
+|600780
 
 |MEDICAL CARD	
 |PHI	
 |600400
+|600800
 |===
