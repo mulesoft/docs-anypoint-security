@@ -14,7 +14,7 @@ Request rulesets are divided into ten threat categories, which are called rulese
 * *Disable ruleset* - (Default) Ruleset detection is turned off.
 * *Detect and allow violations* - The violation is detected and you will get information in your logs at the INFO level, per incident. +
 They will also be included at the ERROR (default log level for Edge policies) level in a summary report. +
-See xref:1.0@runtime-fabric::enable-inbound-traffic#logs[the Runtime Fabric documentation].
+See xref:runtime-fabric::enable-inbound-traffic#logs[the Runtime Fabric documentation].
 * *Detect and reject violations* - The request is rejected and returns a response status of `HTTP/1.1 400 BAD REQUEST - web application firewall`.
 +
 For request rulesets, DoS is notified that a rule was triggered. If xref:escalate-waf-to-dos.adoc[DoS has been configured for WAF Errors], DoS will update its WAF-related counters and take action, if necessary. If DoS isn't configured for WAF Errors, it ignores the notification it receives from WAF. +
@@ -59,7 +59,7 @@ You can understand the regular expressions that make up each rule by viewing the
 
 == Runtime Fabric Policy Summary
 
-The Runtime Fabric policy summary includes the WAF summary. A WAF summary log message is generated every five minutes. See xref:1.0@runtime-fabric::configure-log-forwarding[Configure Log Forwarding on Runtime Fabric]. The contents in the raw log message include WAF and DoS summary statistics.
+The Runtime Fabric policy summary includes the WAF summary. A WAF summary log message is generated every five minutes. See xref:runtime-fabric::configure-log-forwarding[Configure Log Forwarding on Runtime Fabric]. The contents in the raw log message include WAF and DoS summary statistics.
 
 For example:
 
