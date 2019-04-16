@@ -2,13 +2,6 @@
 
 Sensitive Information Detection (SID) allows you to identify where you have potential leakage of sensitive information.
 
-These are some common scenarios where implementing SID can help you keep sensitive data more secure: 
-
-* Developers use sensitive information when they build apps. If developers aren’t aware of what is sensitive information and what is not, they can inadvertently cause leakage by exposing the sensitive information.
-* Developers build test APIs, or add testing parameters to existing APIs, that return sensitive information. These APIs or parameters were not documented, and the developer forgets to remove the sensitive information from the API.  
-* Data is received from partners that may contain sensitive information, which should be cleansed.
-
-
 == WAF Security Policy Summary Log
 
 When you apply the WAF policy to the Runtime Fabric, a `rtfWafSecurityPolicySummary` log is generated, which shows the WAF category, rule ID, and count for how many times the violation was detected during the last collection interval. 
