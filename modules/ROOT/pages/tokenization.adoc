@@ -31,9 +31,10 @@ The Tokenization service provides the following benefits:
 
 == Tokenization Service Use Cases
 
-The way you configure and use the Tokenization service varies according to your implementation. For example, you can add the Tokenization service policy as one of the provided policies for the API Gateway, or, where extra data processing is required, you can expose the Tokenization endpoint through a Mule app.
+The way you configure and use the Tokenization service varies according to your implementation. For example:
 
-See xref:apply-tokenization-policy-to-api.adoc[Apply a Tokenization Policy to the API Gateway] and xref:tokenization-example.adoc[Use the Tokenization Service on the Edge]
+* You can add the Tokenization service policy as one of the provided policies for the API Gateway. For more information, see xref:apply-tokenization-policy-to-api.adoc[Apply a Tokenization Policy to the API Gateway].
+* When extra data processing is required, you can expose the Tokenization endpoint through a Mule app. For more information, see xref:tokenization-example.adoc[Use the Tokenization Service on the Edge].
 
 ////
 == Format-Preserving Encryption
