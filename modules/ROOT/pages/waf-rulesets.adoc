@@ -59,7 +59,7 @@ You can understand the regular expressions that make up each rule by viewing the
 
 == Runtime Fabric Policy Summary
 
-The Runtime Fabric policy summary includes the WAF summary. A WAF summary log message is generated every one minute. See xref:1.2@runtime-fabric::runtime-fabric-logs.adoc[Configure Log Forwarding on Runtime Fabric]. The contents in the raw log message include WAF and DoS summary statistics.
+The Runtime Fabric policy summary includes the WAF summary. A WAF summary log message is generated every minute. See xref:1.2@runtime-fabric::runtime-fabric-logs.adoc[Configure Log Forwarding on Runtime Fabric]. The contents in the raw log message include WAF and DoS summary statistics.
 
 For example:
 
