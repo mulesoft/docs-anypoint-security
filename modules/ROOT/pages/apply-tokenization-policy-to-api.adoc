@@ -1,8 +1,8 @@
 = Apply a Tokenization Policy to the API Gateway
 
-In this scenario, apply the tokenization policy to the API gateway, which serves as the intermediary between the Edge and the Mule application. The tokenization service in this case is implicit and made available through internal integration with the API gateway. 
+In this scenario, you apply the tokenization policy to the API gateway, which serves as the intermediary between the Edge and the Mule application. The tokenization service in this case is implicit and made available through internal integration with the API gateway. 
 
-=== Prerequisites
+== Prerequisites
 
 To apply a tokenization policy to the API Gateway, you must meet these requirements:
 
@@ -10,9 +10,11 @@ To apply a tokenization policy to the API Gateway, you must meet these requireme
  ** Manage Policies
 * The API must be managed in Mule 4 or later
 
-=== High Level Steps
+== Apply a Tokenization Policy to an API Gateway
 
 When the tokenization service is applied directly to the API gateway, you don't need to use the tokenization RAML to expose the Tokenization service. You only need to set up the API gateway for the Mule app to serve as the proxy.
+
+These are the high level steps:
 
 . xref:1.2@runtime-fabric::install-create-rtf-arm.adoc[Install Runtime Fabric].
 . xref:1.2@runtime-fabric::enable-inbound-traffic.adoc[Enable inbound traffic] on Runtime Fabric

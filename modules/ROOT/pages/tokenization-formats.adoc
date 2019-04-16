@@ -34,7 +34,7 @@ image::index-a21f8.png[index-a21f8]
 Only exists to simplify an Application Architect mapping to the desired data domain semantics. A phone number may be encoded with up to four lax characters depending on national conventions, for example, in the U.S. (XXX) XXX­ XXXX while in Europe the format is XXX.XXX.XXXX.
 | Social Security Number (SSN) |Nine­ digit decimal number with special sub­component restrictions; a limited number of lax characters (non­-decimal digits) are allowed. Preserve serial number component; force invalid.
 | Email address |Complex domain with separate restrictions for local­ part (Radix = 83) and domain (Radix = 64) components.
-|Printable ASCII |Subset of the UTF­8 characters between unicode number (int) 32 through 126 (A­Za­ z0­9, space, double quote) and the following special characters: !#$%&'()*+,­./:;<=>?@[\]^_`{}~ Normal keyboard characters are allowed (called Printable ASCII in tokenization). Preserve first and last "n" characters.
+|Printable ASCII |Subset of the UTF­8 characters between unicode number (int) 32 through 126 (A­Za­ z0­9, space, double quote) and the following special characters: ! # $ % & '( ) * + ,­ . / : ; < = > ? @ [ \ ] &#94; _ &#96; { } &#126; Normal keyboard characters are allowed (called Printable ASCII in tokenization). Preserve first and last "n" characters.
 | Name |Use Lax Alphanumeric to tokenize this type of data.
 | Address |Use Lax Alphanumeric to tokenize this type of data.
 | Lax alphanumeric |Uppercase Latin, lowercase Latin, and decimal characters obfuscated but with lax characters allowed; preserve first and last "n" characters.

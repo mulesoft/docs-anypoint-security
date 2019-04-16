@@ -16,6 +16,7 @@
  ** xref:create-tokenization-service.adoc[Create a Tokenization Service]
  ** xref:apply-tokenization-policy-to-api.adoc[Apply a Tokenization Policy to the API Gateway]
  ** xref:tokenization-example.adoc[Configure and Use Tokenization]
+ ** xref:tokenization-logs.adoc[Tokenization Service Logs]
 * xref:index-secrets-manager.adoc[Secrets Manager]
  ** xref:asm-secret-type-support-reference.adoc[Supported Secret Types Reference]
  ** xref:asm-permission-concept.adoc[Permissions]
