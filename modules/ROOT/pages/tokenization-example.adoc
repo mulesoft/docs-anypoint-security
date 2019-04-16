@@ -1,4 +1,6 @@
-= Configure and Use Tokenization
+= Use the Tokenization Service on the Edge
+
+The first use case covers the scenario of a Mule application using the tokenization service to tokenize and de-tokenize request/response payloads. Sometimes the user might have more complicated data wrangling which needs to take place before the traffic hitting the tokenization or de-tokenization service. In this case, the user can set up a Mule application to which the Edge would route the traffic. Within the Mule application, the user has the flexibility to process the traffic and then send to the Tokenization service. The Mule application can also do nothing and expose the tokenization service as a pass-through. Because the tokenization service only accepts TLS traffic thus the use needs to configure TLS for the Mule application and enable the LastMile security. 
 
 == Set up Tokenization with API Gateway
 

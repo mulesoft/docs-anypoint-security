@@ -22,8 +22,8 @@ The Tokenization service provides the following benefits:
 ** Negates the chances of a data breach from auxiliary applications and data stores, as the sensitive information stored in them is replaced by tokens.
 ** Increases defense in depth for sensitive data and least privilege. Authorization is required for the tokenization service to detokenize the sensitive data back to its actual value. Possession of the token alone provides no extrinsic or exploitable meaning or value.
 * *Flexibility*:
-** Ability to choose a tokenization “scheme” appropriate for your business using inbuilt data domains (PAN, SSN, email, decimal, ascii and so on).
-** Each domain has “configurable” options for preserving portions of the original sensitive data and replacing the rest with token data or replacing the entire information with a token.
+** Ability to choose a tokenization strategy appropriate for your business using inbuilt data domains such as PAN, SSN, email, decimal, ascii and so on.
+** Each domain has configurable options for preserving portions of the original sensitive data and replacing the rest with token data or replacing the entire information with a token.
 ** Operates seamlessly across wide area networks and distributed data centers.
 * *Performance*:
 ** High-performance operation ensures low-latency processing.
@@ -31,9 +31,9 @@ The Tokenization service provides the following benefits:
 
 == Tokenization Service Use Cases
 
-The way you configure and use the Tokenization service varies according to your implementation. For example, in one scenario, you can add the Tokenization service policy as one of the provided policies for the API Gateway. In another scenario, where extra data processing is required, you can expose the Tokenization endpoint through a Mule app.
+The way you configure and use the Tokenization service varies according to your implementation. For example, you can add the Tokenization service policy as one of the provided policies for the API Gateway, or, where extra data processing is required, you can expose the Tokenization endpoint through a Mule app.
 
-=== Apply a Tokenization Policy to the API Gateway
+See xref:apply-tokenization-policy-to-api.adoc[Apply a Tokenization Policy to the API Gateway] and xref:tokenization-example.adoc[Use the Tokenization Service on the Edge]
 
 ////
 == Format-Preserving Encryption
