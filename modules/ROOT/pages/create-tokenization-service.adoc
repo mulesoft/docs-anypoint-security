@@ -1,10 +1,10 @@
 = Create a Tokenization Service
 
-The Tokenization service enables you to substitute a sensitive data element with a non-sensitive equivalent.
+The tokenization service enables you to substitute a sensitive data element with a non-sensitive equivalent.
 
 == Prerequisites
 
-To configure and use the Tokenization service, you need the following:
+To configure and use the tokenization service, you need the following:
 
 * Runtime Fabric 1.1.153 or later with inbound traffic configured. See xref:1.2@runtime-fabric::index.adoc[the Runtime Fabric documentation].
 * A secret group to store the tokenization table encryption keys. The tokenization service creates and stores its own keys. See xref:asm-secret-group-concept.adoc[Secrets Manager documentation].
@@ -14,11 +14,11 @@ To configure and use the Tokenization service, you need the following:
 
 . Go to the *Runtime Manager­>Tokenization Service* page to create the service.
 . Click *Create Tokenization Service*. The prerequisites you completed provide the information you need to fill out the form. This example shows the form filled in with the following values: +
-  * In the *Runtime fabric* drop-down list, select the Runtime Fabric to deploy the Tokenization service to.
+  * In the *Runtime fabric* drop-down list, select the Runtime Fabric to deploy the tokenization service to.
   * Select the tokenization format from the *Formats* drop-down list. You can assign more than one, or all, formats to one tokenization service.
   * Select the secret group from the *Secret Group* drop-down list.
-  * Select the number of tokenization service replicas to run. The Tokenization service runs on worker nodes in Runtime Fabric.
-  * Optionally, you can adjust the logging level for the Tokenization service.
+  * Select the number of tokenization service replicas to run. The tokenization service runs on worker nodes in Runtime Fabric.
+  * Optionally, you can adjust the logging level for the tokenization service.
 . Click *Build and Deploy* to create the tokenization table. +
 A mapping table, which contains a large table of randomizations that are used at the core of tokenizing and detokenizing pre-builds. This is not a one-to-one table of mappings--it is used during internal steps to swap in and swap out randomizations in place of the actual data. The actual algorithm consists of these three steps:
   ** First stage transformation: Perform AES­FFX[radix] specific domain encryption using first stage symmetric key and tweak. This will redistribute the information contained within the data to be tokenized across all characters of the extracted data.
@@ -31,7 +31,7 @@ If many, or all, of the formats are selected, it takes much longer, as a table w
 
 == API Gateway
 
-You must have an API Gateway to protect the Tokenization service. An API Gateway, proxies requests to the tokenization service, provides authorization and authentication, and provides JSON protection for the tokenization service.
+You must have an API Gateway to protect the tokenization service. An API Gateway, proxies requests to the tokenization service, provides authorization and authentication, and provides JSON protection for the tokenization service.
 
 In API Manager, xref:2.x@api-manager::getting-started-proxy.adoc[set up the API gateway] for the Mule app to serve as the proxy.
 

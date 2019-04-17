@@ -12,16 +12,16 @@ To apply a tokenization policy to the API Gateway, you must meet these requireme
 
 == Apply a Tokenization Policy to an API Gateway
 
-When the tokenization service is applied directly to the API gateway, you don't need to use the tokenization RAML to expose the Tokenization service. You only need to set up the API gateway for the Mule app to serve as the proxy.
+When the tokenization service is applied directly to the API gateway, you don't need to use the tokenization RAML to expose the tokenization service. You only need to set up the API gateway for the Mule app to serve as the proxy.
 
 These are the high level steps:
 
 . xref:1.2@runtime-fabric::install-create-rtf-arm.adoc[Install Runtime Fabric].
 . xref:1.2@runtime-fabric::enable-inbound-traffic.adoc[Enable inbound traffic] on Runtime Fabric
 . xref:tokenization-formats.adoc[Create a tokenization format].
-. xref:create-tokenization-service.adoc[Create a Tokenization service].
+. xref:create-tokenization-service.adoc[Create a tokenization service].
 . In API Manager, xref:2.x@api-manager::getting-started-proxy.adoc[set up the API gateway] for the Mule app to serve as the proxy.
-. Click *Apply New Policy* and select the Tokenization service policy to apply. +
-Available Tokenization service policies appear in *Policies > Tokenization*.
+. Click *Apply New Policy* and select the tokenization service policy to apply. +
+Available tokenization service policies appear in *Policies > Tokenization*.
 
-You can now use the Tokenization service to tokenize and de-tokenize request and response payloads. 
+You can now use the tokenization service to tokenize and de-tokenize request and response payloads. 
