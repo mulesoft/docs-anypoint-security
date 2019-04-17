@@ -4,9 +4,9 @@ Sensitive Information Detection (SID) allows you to identify where you have pote
 
 == WAF Security Policy Summary Log
 
-When you apply a WAF policy to Runtime Fabric, a `rtfWafSecurityPolicySummary` log is generated, which shows the WAF category, rule ID, and count for how many times the violation was detected during the last collection interval.
+When you apply a WAF policy to Runtime Fabric, a `rtfWafSecurityPolicySummary` log is generated. This log contains the WAF categories and also shows the SID related categories. For SID, if any rules within the SID related categories are triggered, you see the rule ID and count for how many times the violation was detected during the last collection interval.
 
-This is an example of the log, which shows one violation was detected in the collection interval:
+This is an example of the log, which shows one violation was detected in the collection interval, which triggered the `requestSidPiiCore` category:
 
 [json]
 ----
@@ -89,6 +89,7 @@ This is an example of the log, which shows one violation was detected in the col
 }
 ----
 
+////
 == SID Summary Log
 
 When you apply the WAF policy to Runtime Fabric, a `rtfSidSummary` log is generated, which shows the offending API, rule description, direction, and count for the number of times the SID rule was triggered. 
@@ -108,6 +109,8 @@ This is an example of the log:
 	}
 }
 ----
+ 
+////
 
 == View Rule Categories and IDs in RAML
 
