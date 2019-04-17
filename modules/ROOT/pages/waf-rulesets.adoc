@@ -53,13 +53,13 @@ The threat categories for the response ruleset include:
 You can understand the regular expressions that make up each rule by viewing the rules in the Anypoint Security RAML (`security-fabric-policies-api-<version>.raml`). Not all OWASP CRS rules for each category are enabled for the WAF policy. A very small number of rules are not included for various reasons. View the RAML for the exact contents and rule IDs that are included.
 
 . Go to Anypoint Exchange.
-. Search for "Anypoint Security Policies API" and download the RAML.
+. Search for "Security Fabric Policies API" and download the RAML.
 . Extract the ZIP files.
-. Navigate to `<Download_location>/anypoint-security-policies-api-<version>-raml 3/dataTypes/policies/WafRules/Rulesets.json`.
+. Navigate to `<Download_location>/security-fabric-policies-api-<version>-raml/dataTypes/policies/WafRules/Rulesets.json`.
 
 == Runtime Fabric Policy Summary
 
-The Runtime Fabric policy summary includes the WAF summary. A WAF summary log message is generated every minute. See xref:1.2@runtime-fabric::runtime-fabric-logs.adoc[Configure Log Forwarding on Runtime Fabric]. The contents in the raw log message include WAF and DoS summary statistics.
+The Runtime Fabric policy summary includes the WAF summary. A WAF summary log message is generated every minute. See xref:1.2@runtime-fabric::runtime-fabric-logs.adoc[View and Configure Logging in Runtime Fabric]. The contents in the raw log message include WAF and DoS summary statistics.
 
 For example:
 

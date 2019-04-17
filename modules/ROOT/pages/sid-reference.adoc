@@ -114,6 +114,6 @@ This is an example of the log:
 You can view the the SID categories and rule IDs in the Anypoint Security RAML (`security-fabric-policies-api-<version>.raml`). 
 
 . Go to Anypoint Exchange.
-. Search for "Anypoint Security Policies API" and download the RAML.
+. Search for "Security Fabric Policies API" and download the RAML.
 . Extract the ZIP files.
-. Navigate to `<Download_location>/anypoint-security-policies-api-<version>-raml 3/dataTypes/policies/WafRules/Rulesets.json`.
+. Navigate to `<Download_location>/security-fabric-policies-api-<version>-raml/dataTypes/policies/WafRules/Rulesets.json`.
