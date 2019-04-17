@@ -1,4 +1,4 @@
-= Use the Tokenization Service on the Edge
+= Expose Tokenization as a Service Directly to Mule Applications
 
 For some use cases, for example, if a lot of complex data processing needs to take place before traffic gets to the tokenization/de-tokenization service, it makes sense to set up a Mule app to which Edge can route the traffic. In this scenario, the Mule app allows the flexibility to process the data and then send the traffic to the Tokenization service. 
 
@@ -56,7 +56,7 @@ Click *View* to see the name, type, and expiration of the secret group.
 
 For more information about secret groups, see xref:asm-secret-group-concept.adoc[Secrets Manager documentation].
 
-== Steps
+== Set up the API Gateway
 
 . xref:tokenization-formats.adoc[Create the tokenization format] to define the way incoming data is converted.  
 . xref:create-tokenization-service.adoc[Create the Tokenization service]. +
@@ -64,13 +64,13 @@ For more information about secret groups, see xref:asm-secret-group-concept.adoc
 [NOTE]
 You must download the automatically generated API Gateway Mule application and manually add TLS to the API Gateway Mule application connectors before you can make this service work. Tokenization involves sensitive data, and therefore, works only with TLS. +
 Once you create the tokenization service, you need to create an API Gateway to route requests to the tokenization service.
-. Create an API Gateway for the Tokenization service. 
- .. Go to the *Tokenization Service* page in Runtime Manager to get the information you need for the implementation URL.
- .. In Runtime Manager, click *Tokenization Service* in the menu on the left.
+. In API Manager, xref:2.x@api-manager::getting-started-proxy.adoc[set up the API gateway] for the Mule app to serve as the proxy. 
+.. Go to the *Tokenization Service* page in Runtime Manager to get the information you need for the implementation URL.
+.. In Runtime Manager, click *Tokenization Service* in the menu on the left.
 . Click *Edit* for the tokenization service for which to create the API Gateway.
 +
 image::tokenization-example-edit-token-service.png[]
- .. Confirm the Runtime Fabric assignment. +
+.. Confirm the Runtime Fabric assignment. +
 +
 The Tokenization service listens on port 3443 and is available through HTTPS only. The hostname portion is formed by taking the “Service Name” + “tokenizer” to arrive at the service name. For example, if the Tokenization service name is “mytoken1” the implementation URL will be: “https://mytoken1­tokenizer:3443”. 
  

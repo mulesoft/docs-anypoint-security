@@ -1,4 +1,4 @@
-= Apply a Tokenization Policy to the API Gateway
+= Use Tokenization and Detokenization as API Gateway Policies
 
 In this scenario, you apply the tokenization policy to the API gateway, which serves as the intermediary between the Edge and the Mule application. The tokenization service in this case is implicit and made available through internal integration with the API gateway. 
 

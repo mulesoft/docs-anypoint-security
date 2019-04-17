@@ -9,8 +9,8 @@ To configure and use the Tokenization service, you need the following:
 * Runtime Fabric 1.1.153 or later with inbound traffic configured. See xref:1.2@runtime-fabric::index.adoc[the Runtime Fabric documentation].
 * A secret group to store the tokenization table encryption keys. The tokenization service creates and stores its own keys. See xref:asm-secret-group-concept.adoc[Secrets Manager documentation].
 * A tokenization format, which describes the format and how data is tokenized. See xref:tokenization-formats.adoc[Tokenization Formats].
-* A tokenization service that handles the actual tokenization requests and also tokenizes and detokenizes the data. For security purposes, an API Gateway must protect this service.
-* API Gateway, which proxies requests to the tokenization service, provides authorization and authentication, and provides JSON protection for the tokenization service.
+
+== Create the Tokenization Service
 
 . Go to the *Runtime Manager­>Tokenization Service* page to create the service.
 . Click *Create Tokenization Service*. The prerequisites you completed provide the information you need to fill out the form. This example shows the form filled in with the following values: +
@@ -28,4 +28,10 @@ A mapping table, which contains a large table of randomizations that are used at
 The tokenization mapping table build is a one-time action and can take awhile to build, depending on the size of the tokenization format. For example, an SSN-only table less than 200 MB in size can build in two minutes, but a larger format such as “lax alphanumeric” might take up to 20 minutes to build.
 
 If many, or all, of the formats are selected, it takes much longer, as a table with all formats is approximately 2 GB in size.
+
+== API Gateway
+
+You must have an API Gateway to protect the Tokenization service. An API Gateway, proxies requests to the tokenization service, provides authorization and authentication, and provides JSON protection for the tokenization service.
+
+In API Manager, xref:2.x@api-manager::getting-started-proxy.adoc[set up the API gateway] for the Mule app to serve as the proxy.
 
