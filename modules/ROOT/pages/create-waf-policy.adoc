@@ -28,7 +28,7 @@ image::waf-rule-set.png[]
 * *Disable body scanner*. If you do not check this option, the request body is scanned.
 +
 [NOTE]
-If a body is larger than 1 MB, the scan is skipped, even if you do not select *Disable body scanner*. If request body checking is enabled (default), the HTTP Limits policy *Maximum Message Size* should be set to a value no larger than required to prevent attackers from abusing request body checking, and exhausting resources.
+If a body is larger than 1 MB, the scan is skipped, even if you do not select *Disable body scanner*. 
 * *Detect sensitive information* - You can select this option only if the *Disable body scanner* option is not selected. +
 If you select this option, the request body is scanned for sensitive information, and when you apply the WAF policy to Runtime Fabric, the log summary (`rtfWafSecurityPolicySummary`) records the count and number (rule ID) of the sensitive information pattern that is detected. +
 //An `rtfSidSummary` log is also generated, which contains the API, rule, direction, and count for instances of sensitive information.
@@ -49,7 +49,6 @@ All the rulesets are disabled by default. For each rule, you can: +
 [IMPORTANT]
 If a body is larger than 1 MB, the body scan is skipped, even if you selected *Disable body scanner*. 
 +
-* For resource usage management, a maximum response size of 512 KB is imposed and is not configurable. If response rulesets are enabled with the *Disable body scanner* unchecked, a response with a content-length greater than 512 KB are rejected.
 * Response messages must have one of the following MIME types in the content type header, or the WAF rules will not be evaluated:
 ** text/plain
 ** text/html
@@ -80,4 +79,4 @@ Once your WAF policy is configured and saved, you can (optionally) edit an exist
 * xref:apply-policy.adoc[Applying Policies]
 * xref:waf-rulesets.adoc[WAF Rulesets]
 * xref:escalate-waf-to-dos.adoc[Enable DoS for a WAF Policy]
-* xref:sid-reference.adoc[Sensitive Information Detection Reference]
+* xref:sid-reference.adoc[Sensitive Information Detection]
