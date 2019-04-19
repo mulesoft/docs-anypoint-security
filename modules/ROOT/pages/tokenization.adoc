@@ -11,7 +11,7 @@ Examples of sensitive information that are suitable for tokenization protection 
 * Personally Identifiable Information (PII)
 * Protected Health Information (PHI), or any information deemed sensitive
 
-The Tokenization service provides the following benefits:
+The Tokenization service provides these benefits:
 
 * *Vaultless operation*:
 ** Ensures sensitive data is not stored in the tokenization deployment.

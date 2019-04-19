@@ -1,11 +1,11 @@
 = Expose Tokenization as a Service Directly to Mule Applications
 
-For some use cases, for example, if a lot of complex data processing needs to take place before traffic gets to the tokenization/de-tokenization service, it makes sense to set up a Mule app to which Edge can route the traffic. In this scenario, the Mule app allows the flexibility to process the data and then send the traffic to the tokenization service. 
+In some cases, for example, if a lot of complex data processing needs to take place before traffic gets to the tokenization/de-tokenization service, it makes sense to set up a Mule app to which Edge can route the traffic. In this scenario, the Mule app allows the flexibility to process the data and then send the traffic to the tokenization service. 
 
-The Mule application can also do nothing other than expose the tokenization service as a pass-through. 
+The Mule app can also do nothing other than expose the tokenization service as a pass-through. 
 
 [NOTE]
-Because the tokenization service only accepts TLS traffic, you must configure TLS for the Mule app and enable the LastMile security. 
+Because the tokenization service accepts only TLS traffic, you must configure TLS for the Mule app and enable the LastMile security. 
 
 == Prerequisites
 
@@ -15,11 +15,11 @@ To configure the tokenization service, you need the following:
 * A secret group to store the tokenization table encryption keys. The tokenization service creates and stores its own keys. See xref:asm-secret-group-concept.adoc[Secrets Manager documentation].
 * A tokenization format, which describes the format and how data is tokenized. See xref:tokenization-formats.adoc[Tokenization Formats].
 
-image::tokenization-setup-example-diagram.png[Tokenization Examples]
+//image::tokenization-setup-example-diagram.png[Tokenization Examples]
 
-In this diagram, a separate zone segregates the tokenization service from the general Runtime Fabric. This segregation is based on security needs.
+//In this diagram, a separate zone segregates the tokenization service from the general Runtime Fabric. This segregation is based on security needs.
 
-For example, if sensitive data is produced from a Mule app serving external traffic (Client -> Edge -> Mule application), this app might be included in the sensitive data zone.
+//For example, if sensitive data is produced from a Mule app serving external traffic (Client -> Edge -> Mule application), this app might be included in the sensitive data zone.
 
 ////
 == Runtime Fabric 1.1.153 or Later with Inbound Traffic
@@ -61,8 +61,8 @@ The API Gateway proxies requests to the tokenization service, provides authoriza
 . xref:create-tokenization-service.adoc[Create the Tokenization service]. +
 
 [NOTE]
-You must download the automatically generated API Gateway Mule application and manually add TLS to the API Gateway Mule application connectors before the tokenization service will work. Tokenization involves sensitive data, and therefore, works only with TLS. +
-Once you create the tokenization service, you need to create an API Gateway to route requests to the tokenization service.
+Tokenization involves sensitive data, and therefore, works only with TLS. You must download the automatically generated API gateway Mule app and manually add TLS to the API gateway Mule app connectors before the tokenization service will work. +
+Once you create the tokenization service, you need to create an API gateway to route requests to the tokenization service.
 . In API Manager, xref:2.x@api-manager::getting-started-proxy.adoc[set up the API gateway] for the Mule app to serve as the proxy. 
 .. Go to the *Tokenization Service* page in Runtime Manager to get the information you need for the implementation URL.
 .. In Runtime Manager, click *Tokenization Service* in the menu on the left.
@@ -111,7 +111,7 @@ This last step is necessary to configure TLS.
 
 == Configure TLS
 
-. Go to Anypoint Studio, and import the API Gateway.
+. Go to Anypoint Studio, and import the API gateway Mule app.
 +
 image::tokenization-example-import-api-gateway-studio.png[]
 . Go to `src/main/resources` and add the keystore. In this example the keystore is named `tester.jks`.

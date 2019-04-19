@@ -33,5 +33,5 @@ If many, or all, of the formats are selected, it takes much longer, as a table w
 
 You must have an API Gateway to protect the tokenization service. An API Gateway, proxies requests to the tokenization service, provides authorization and authentication, and provides JSON protection for the tokenization service.
 
-In API Manager, xref:2.x@api-manager::getting-started-proxy.adoc[set up the API gateway] for the Mule app to serve as the proxy.
+In API Manager, xref:2.x@api-manager::getting-started-proxy.adoc[set up the API gateway Mule app] for the Mule app to serve as the proxy.
 
