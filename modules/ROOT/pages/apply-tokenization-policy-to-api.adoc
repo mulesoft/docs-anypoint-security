@@ -8,7 +8,7 @@ To apply a tokenization policy to the API Gateway, you must meet these requireme
 
 * You must have the following Anypoint permissions:
  ** Manage Policies
-* The API must be managed in Mule 4 or later
+* The API gateway must be version 4.0 or later. The Mule app implementing the API can be any version. 
 
 == Apply a Tokenization Policy to an API Gateway
 
@@ -20,7 +20,7 @@ These are the high level steps:
 . xref:1.2@runtime-fabric::enable-inbound-traffic.adoc[Enable inbound traffic] on Runtime Fabric
 . xref:tokenization-formats.adoc[Create a tokenization format].
 . xref:create-tokenization-service.adoc[Create a tokenization service].
-. In API Manager, xref:2.x@api-manager::getting-started-proxy.adoc[set up the API gateway] for the Mule app to serve as the proxy.
+. In API Manager, xref:2.x@api-manager::getting-started-proxy.adoc[set up the API gateway] for the Mule app to serve as the proxy. 
 . Click *Apply New Policy* and select the tokenization service policy to apply. +
 Available tokenization service policies appear in *Policies > Tokenization*.
 

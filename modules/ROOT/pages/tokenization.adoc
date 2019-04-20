@@ -11,6 +11,12 @@ Examples of sensitive information that are suitable for tokenization protection 
 * Personally Identifiable Information (PII)
 * Protected Health Information (PHI), or any information deemed sensitive
 
+Anypoint tokenization can create format-preserving tokens, which means the output tokens will have the same format as the sensitive data input. Format-preserving tokenization ensures that no changes are required to existing enterprise data flows or data stores, as the tokens generated conform to the existing data structure and validations. Changes to existing applications are minimized compared to point-to-point encryption, which requires data protection implementation at each "hop."
+
+image::index-a21f8.png[index-a21f8]
+
+== Tokenization Service Benefits
+
 The Tokenization service provides these benefits:
 
 * *Vaultless operation*:
@@ -29,12 +35,6 @@ The Tokenization service provides these benefits:
 ** High-performance operation ensures low-latency processing.
 ** Performance scales linearly on each node with vertical and horizontal scaling for vaultless tokenization provided by the Anypoint Platform.
 
-== Tokenization Service Use Cases
-
-The way you configure and use the Tokenization service varies according to your implementation. For example:
-
-* You can add the Tokenization service policy as one of the provided policies for the API Gateway. For more information, see xref:apply-tokenization-policy-to-api.adoc[Apply a Tokenization Policy to the API Gateway].
-* When extra data processing is required, you can expose the Tokenization endpoint through a Mule app. For more information, see xref:tokenization-example.adoc[Use the Tokenization Service on the Edge].
 
 ////
 == Format-Preserving Encryption

@@ -5,7 +5,7 @@ In some cases, for example, if a lot of complex data processing needs to take pl
 The Mule app can also do nothing other than expose the tokenization service as a pass-through. 
 
 [NOTE]
-Because the tokenization service accepts only TLS traffic, you must configure TLS for the Mule app and enable the LastMile security. 
+Because the tokenization service accepts only TLS traffic, you must enable TLS for the Mule HTTP outbound, and enable LastMile security when deploying the Mule app to Runtime Fabric so the edge to Mule app connection uses TLS.
 
 == Prerequisites
 
@@ -14,6 +14,7 @@ To configure the tokenization service, you need the following:
 * Runtime Fabric 1.1.153 or later with inbound traffic configured. See xref:1.2@runtime-fabric::index.adoc[the Runtime Fabric documentation].
 * A secret group to store the tokenization table encryption keys. The tokenization service creates and stores its own keys. See xref:asm-secret-group-concept.adoc[Secrets Manager documentation].
 * A tokenization format, which describes the format and how data is tokenized. See xref:tokenization-formats.adoc[Tokenization Formats].
+* A tokenization service. See xref:create-tokenization-service.adoc[Create a Tokenization Service]
 
 //image::tokenization-setup-example-diagram.png[Tokenization Examples]
 
@@ -30,88 +31,34 @@ image::tokenization-example-rtf-ingress-config.png[Example Runtime Fabric with I
 
 For more information, see xref:1.2@runtime-fabric::enable-inbound-traffic.adoc[Runtime Fabric Inbound Traffic Configuration].
 ////
-
-=== What to Know About Secret Groups and Tokenization
-
-Each tokenization service you create must have a corresponding, dedicated secret group in Secrets Manager. No other tokenization service should use this secret group and no secrets outside of this tokenization service should be stored in that secret group.
-
-Use Secrets Manager xref:asm-secret-group-creation-task.adoc[to create and manage secret groups]. 
-
-When you delete a tokenization service, you can delete the corresponding secret group.
-
-This is the recommended approach for several reasons:
-
-. Using a dedicated secret group for the tokenization service helps avoid other secret groups from being deleted accidentally when you delete a secret group. 
-. You can create as many formats as needed and change the set of formats assigned to the tokenization service, and the secret group will never be exhausted.
-. This unique association between the tokenization service and its dedicated secret group prevents running out of the secrets of the VDP Context type in a secret group. In the worst case, there will be 10 secrets created of the VDP Context type--one for each VDP domain.
-
-Normally, you can view, edit, or create secrets in Secrets Manager. However, the tokenization table keys are a non-editable part of the secret group. You can see the tokenization secrets under shared secrets, but you are not allowed to modify them. Actions such as edit, cancel edit, and finish do not apply.
-
-image::tokenization-example-shared-secret.png[]
-
-Click *View* to see the name, type, and expiration of the secret group.
-
-For more information about secret groups, see xref:asm-secret-group-concept.adoc[Secrets Manager documentation].
-
-== Set up the API Gateway
-
-The API Gateway proxies requests to the tokenization service, provides authorization and authentication, and provides JSON protection for the tokenization service.
-
-. xref:tokenization-formats.adoc[Create the tokenization format] to define the way incoming data is converted.  
-. xref:create-tokenization-service.adoc[Create the Tokenization service]. +
-
-[NOTE]
-Tokenization involves sensitive data, and therefore, works only with TLS. You must download the automatically generated API gateway Mule app and manually add TLS to the API gateway Mule app connectors before the tokenization service will work. +
-Once you create the tokenization service, you need to create an API gateway to route requests to the tokenization service.
-. In API Manager, xref:2.x@api-manager::getting-started-proxy.adoc[set up the API gateway] for the Mule app to serve as the proxy. 
-.. Go to the *Tokenization Service* page in Runtime Manager to get the information you need for the implementation URL.
-.. In Runtime Manager, click *Tokenization Service* in the menu on the left.
-. Click *Edit* for the tokenization service for which to create the API Gateway.
-+
-image::tokenization-example-edit-token-service.png[]
-.. Confirm the Runtime Fabric assignment. +
-+
-The tokenization service listens on port 3443 and is available through HTTPS only. The hostname portion is formed by taking the “Service Name” + “tokenizer” to arrive at the service name. For example, if the tokenization service name is “mytoken1” the implementation URL will be: “https://mytoken1­tokenizer:3443”. 
  
 == Create an API from the Tokenization RAML
 
 Once you have the information you need to set up a routable tokenization service using an API Gateway, create an API from the tokenization RAML.
 
-. In Anypoint Platform, go to Exchange, and search for "Tokenization Service API."
-. Download the `AMC Tokenizer.zip` file.
-. Go to *Design Center* and select *Create > API Specification*. For this example, the API specification is named "AMC Tokenizer". If you choose a different name, use that one in the below steps.
-+
-image::tokenization-example-create-api-spec.png[]
-. Next to *File*, select *Import* and upload the `AMC Tokenizer.zip` file you downloaded from Exchange in Step 1.
-+
-image::tokenization-example-upload-amc-tokenizer.png[]
-. Publish the asset to Anypoint Exchange.
-. Navigate to *API Manager* from the top level Anypoint Platform menu.
-. Select *Manage API > Manage API from Exchange*.
-+
-image::tokenization-example-manage-api-from-exchange.png[]
-. Enter the API configuration information, and click *Save*. The following image shows example values.
-+
-image::tokenization-example-api-configuration.png[]
-+
-[NOTE]
-Do not use *Advanced* options, as HTTPS is not supported on Runtime Fabric.
- .. Go to the *Deployment Configuration*, select your Runtime Fabric and Mule version, then enter a name for the API Gateway. The following example shows information for an API Gateway named "token2mule".
-+
-image::tokenization-example-deploy-config.png[]
-. Click *Deploy*. The button changes to *Redeploy* after the first deployment finishes. This deploys the API Gateway application.
-. Download the API Gateway application to configure SSL within it:
-.. In API Manager, go to the *Settings* page for your API.
-.. Select *Actions > Download Proxy*.
-+
-image::tokenization-example-download-proxy.png[]
-+
-[NOTE]
-This last step is necessary to configure TLS.
+. Go to the Anypoint Developer portal at Exchange, and search for "Tokenization API."
+. Download the RAML as a ZIP.
+. Go to your Exchange portal, and click *New asset*. 
+. Set the *Name* as `Tokenization API` and the *Type* as `REST API - RAML`.
+. Select the ZIP file you downloaded, and click *Publish*.
+. In Studio or Design Center, create an HTTP outbound connection based on the `Ttokenization API` RAML. +
+The tokenization service in Runtime Fabric listens on port 3443 and is available through HTTPS only. +
+The hostname portion is formed by taking the “Service Name” + “-tokenizer” to arrive at the service name. For example, if the tokenization service name is “mytoken1”, the outbound URL will be: `https://mytoken1-­tokenizer:3443`.
+. Before the HTTP outbound, use a Datawave transform step to convert your input data into the `TokenizationServiceRequest` data type defined in the `Tokenization API` RAML. +
+The request is an array of items, and a single example is: `{"format" : "ssnonly", "data" : "333-33-3333"}`.
+The value of `format` matches a tokenization format that is defined on the service.  The `data` value is what is to be tokenized or detokenized.
+The `array` should be 100 items long at most. If it is any longer than 100 items, break it up into multiple requests to the tokenization service.
+. Set the HTTP Listener in the Mule application to HTTPS. See <<Configure TLS>>. 
+. Export the Mule app.
+. In Runtime Manager, deploy the application to Runtime Fabric, and select the `Last mile security` checkbox to enable TLS between the edge and the Mule app.
+. (Optional) For improved security and protection of the Mule app, you should add some method of authentication.
 
+[configure_TLS]
 == Configure TLS
 
-. Go to Anypoint Studio, and import the API gateway Mule app.
+This is an example of how to configure TLS for Mule apps in Studio.
+
+. Go to Anypoint Studio, and open the project for your Mule app.
 +
 image::tokenization-example-import-api-gateway-studio.png[]
 . Go to `src/main/resources` and add the keystore. In this example the keystore is named `tester.jks`.
@@ -128,6 +75,8 @@ image::tokenization-example-set-keystore-info.png[]
 image::tokenization-example-configure-TLS.png[]
 . Save the application and export it. Remember where it is saved so you can upload it in the next step.
 
+
+////
 == Add the TLS Enabled API Gateway
 
 . In Anypoint Platform, go to the *Runtime Manager* page and click on the name of the API Gateway application `token2mule`.
@@ -138,7 +87,7 @@ image::tokenization-example-add-tls-enabled-gateway.png[]
 . Click *Deploy*. +
 Once the application has a status of "Running" you are ready to test.
 
-//// 
+
 == Test the Tokenization Traffic
 
 Once the application is running, you are ready to send traffic. To fully secure the service, it is a good idea to test the service before you complete the additional steps. You can use POSTMAN or `curl` to test the service.
@@ -154,7 +103,7 @@ curl ­-k ­­--resolve token2mule.ic.example.com:443:192.168.2.1 https://token2
 You should get a response similar to the following:
 
 `HTTP/1.1 200 OK [{"data":"597­74­8102","status":"success"}]`
-//// 
+
 
 == Add Authorization and JSON Threat Protection
 
@@ -181,7 +130,7 @@ The *Policies* page should look similar to the following example.
 +
 image::tokenization-example-policies-page.png[]
 
-//// 
+
 == Test Runtime Traffic with Basic Authorization
 
 Run the following `curl` command to send traffic with the `--user` flag for basic authorization.

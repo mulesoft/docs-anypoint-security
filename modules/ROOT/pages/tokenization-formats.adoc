@@ -5,64 +5,125 @@ endif::[]
 
 Tokenization formats define how the original format of data coming in is converted to the format you configure when the token is created.  For example, you can define whether to preserve certain digits, if the token should look like the original data source, or whether to tokenize the whole string or partial string.
 
-== Format-Preserving Tokenization
-
-Anypoint tokenization can create format-preserving tokens, which means the output tokens will have the same format as the sensitive data input. Format-preserving tokenization ensures that no changes are required to existing enterprise data flows or data stores, as the tokens generated conform to the existing data structure and validations. Changes to existing applications are minimized compared to point-to-point encryption, which requires data protection implementation at each "hop."
-
-image::index-a21f8.png[index-a21f8]
 
 == Create a Tokenization Format
 
-. Sign into Anypoint Platform with the Organization Administrators role.
+. Sign into Anypoint Platform.
 . Under *Management Center*, click *Anypoint Security*.
 . In the menu on the left, click *Tokenization Format*.
 . Click *Create Format*.
 . In the *Create Format* dialog box, enter the following information: +
 * *Name*: Name for the tokenization format.
 * *Description*: Optionally, enter a short description for the tokenization format.
-* *Data Domain*: Select the data domain. Supported data domains include:
-+
+* *Data Domain*: Select the data domain, and click *Save*. +
+When you select the data domain, configuration options appear. The options vary depending on the type of data domain you selected. 
 
+== Supported Data Domains
+
+[%header%autowidth.spread,cols="a,a"]
 |===
-|*Domain Type* |*Description*
+|*Data Domain* |*Description*
+|*Credit card number*
+|Decimal number with special restrictions on length. Luhn checksum with limited set of lax character allowed; preserve first and last "n" digits; force invalid.
 
-|Credit CardNumber (CCN)|Decimal number with special restrictions on length. Luhn checksum with limited set of lax character allowed; preserve first and last "n" digits; force invalid.
-|Decimal number |Arbitrary length decimal number; preserve first and last "n" digits; force invalid.
-|Lax decimal number |Arbitrary length decimal number with lax characters allowed; preserve first and last "n" digits; force invalid.
-|Phone number |Use Lax decimal format to tokenize this type of data.
+|*Decimal* 
+|Arbitrary length decimal number; preserve first and last "n" digits; force invalid.
 
-Only exists to simplify an Application Architect mapping to the desired data domain semantics. A phone number may be encoded with up to four lax characters depending on national conventions, for example, in the U.S. (XXX) XXX­ XXXX while in Europe the format is XXX.XXX.XXXX.
-| Social Security Number (SSN) |Nine­ digit decimal number with special sub­component restrictions; a limited number of lax characters (non­-decimal digits) are allowed. Preserve serial number component; force invalid.
-| Email address |Complex domain with separate restrictions for local­ part (Radix = 83) and domain (Radix = 64) components.
-|Printable ASCII |Subset of the UTF­8 characters between unicode number (int) 32 through 126 (A­Za­ z0­9, space, double quote) and the following special characters: ! # $ % & '( ) * + ,­ . / : ; < = > ? @ [ \ ] &#94; _ &#96; { } &#126; Normal keyboard characters are allowed (called Printable ASCII in tokenization). Preserve first and last "n" characters.
-| Name |Use Lax Alphanumeric to tokenize this type of data.
-| Address |Use Lax Alphanumeric to tokenize this type of data.
-| Lax alphanumeric |Uppercase Latin, lowercase Latin, and decimal characters obfuscated but with lax characters allowed; preserve first and last "n" characters.
-|Lax upper, lowercase and decimal preserving |Uppercase Latin characters in the clear­text will remain uppercase Latin characters in the obfuscated­ text. Lowercase Latin characters in the clear­text will remain lowercase Latin in the obfuscated­ text. Decimal digits in the clear­text will remain decimal digits in the obfuscated­ text. All other characters will be handled as lax characters. Preserve first and last "n" characters.
-|Lax uppercase and decimal preserving |Uppercase Latin characters in the clear­text will remain uppercase Latin characters in the obfuscated­ text. Decimal digits in the clear­text will remain decimal digits in the obfuscated­ text. All other characters will be handled as lax characters. Preserve first and last "n" characters.
-|Lax lowercase and decimal preserving |Lowercase Latin characters in the clear­text remain lowercase Latin in the obfuscated­ text. Decimal digits in the clear­text remain decimal digits in the obfuscated­ text. All other characters are handled as lax characters. Preserve first and last "n" characters.
+|*Lax decimal* 
+|Arbitrary length decimal number with lax characters allowed; preserve first and last "n" digits; force invalid.
+
+//|Phone number 
+//|Use Lax decimal format to tokenize this type of data.
+//
+//Only exists to simplify an Application Architect mapping to the desired data domain semantics. A phone number may be encoded with up to four lax characters depending on national conventions, for example, in the U.S. (XXX) XXX­ XXXX while in Europe the format is XXX.XXX.XXXX.
+
+| *Social security number*
+|Nine­ digit decimal number with special sub­component restrictions; a limited number of lax characters (non­-decimal digits) are allowed. Preserve serial number component; force invalid.
+
+| *Email address* 
+|Complex domain with separate restrictions for local­ part (Radix = 83) and domain (Radix = 64) components.
+
+|*Printable ASCII* 
+|Subset of the UTF­8 characters between unicode number (int) 32 through 126 (A­Za­ z0­9, space, double quote) and the following special characters: ! # $ % & '( ) * + ,­ . / : ; < = > ? @ [ \ ] &#94; _ &#96; { } &#126; Normal keyboard characters are allowed (called Printable ASCII in tokenization). Preserve first and last "n" characters.
+
+|*Lax alphanumeric* 
+|Uppercase Latin, lowercase Latin, and decimal characters obfuscated but with lax characters allowed; preserve first and last "n" characters.
+
+|*Lax uppercase/lowercase/decimal - Preserving* 
+|Uppercase Latin characters in the clear­text will remain uppercase Latin characters in the obfuscated­ text. Lowercase Latin characters in the clear­text will remain lowercase Latin in the obfuscated­ text. Decimal digits in the clear­text will remain decimal digits in the obfuscated­ text. All other characters will be handled as lax characters. Preserve first and last "n" characters.
+
+|*Lax uppercase/decimal - Preserving* 
+|Uppercase Latin characters in the clear­text will remain uppercase Latin characters in the obfuscated­ text. Decimal digits in the clear­text will remain decimal digits in the obfuscated­ text. All other characters will be handled as lax characters. Preserve first and last "n" characters.
+
+|*Lax lowercase/decimal - Preserving* 
+|Lowercase Latin characters in the clear­text remain lowercase Latin in the obfuscated­ text. Decimal digits in the clear­text remain decimal digits in the obfuscated­ text. All other characters are handled as lax characters. Preserve first and last "n" characters.
 |===
-. When you select the data domain, configuration options appear. The options vary depending on the type of data domain you selected. +
 
+== Data Domain Configuration Options
+
+[%header%autowidth.spread,cols="a,a,a"]
 |===
-|Option |Description
+|Option |Description |Data Domain
 
-|*Preserve characters* | Defines the number of characters from the original string to NOT tokenize. +
+|*Preserve first characters* 
+| Defines the number of characters from the original string to NOT tokenize. Enter a value for the number of beginning digits to preserve. For example, `4`.
+a| * Credit card
+* Decimal
+* Lax decimal
+* Lax alphanumeric
+* Printable ASCII
+* Lax uppercase/lowercase/decimal - Preserving
+* Lax uppercase/decimal - Preserving
+* Lax lowercase/decimal - Preserving
 
-First: Enter a value for the number of beginning digits to preserve. For example, `4`.
-
-Last: Enter a value for the number of last digits to preserve. For example, `4`. +
+|*Preserve last characters*
+|Enter a value for the number of last digits to preserve. For example, `4`. +
+a| * Credit card number
+* Decimal
+* Lax decimal
+* Lax alphanumeric
+* Printable ASCII
+* Lax uppercase/lowercase/decimal - Preserving
+* Lax uppercase/decimal - Preserving
+* Lax lowercase/decimal - Preserving
 
 Using the example values of `4` for first and last respectively, means that the first four digits and last four digits of the original string are preserved, and everything in between will be tokenized.
-|*Force token characters in illegal range* |For example, if you have the CCN 1234567890123456 and you set the *Preserve characters* option to preserve the last four digits and force an invalid one digit with an offset of two from left. The generated token would look similar to: 54D3210987653456.
+
+|*Force token characters in illegal range* 
+a|For example, if you have the CCN 1234567890123456 and you set the *Preserve characters* option to preserve the last four digits and force an invalid one digit with an offset of two from left. The generated token would look similar to: 54D3210987653456.
 
 A decimal digit will be mapped into the Latin alphabet character range.
 
 [NOTE]
 You are limited to two illegal characters because you really need only one to make the data invalid (such as adding a letter A to a social security number). Adding additional invalid characters results in reducing the number of digits that can be used to randomize the data that is being tokenized.
-|*Luhn digit test* |This option is for the Credit card number data domain only. Use the Luhn checksum formula to validate the digits contained in the original data.
-|*Maximum token length* |Enter a value for the maximum number of digits for the generated token.
-|*Preserve serial number sub-component* |This option is for the social security data domain only.
+
+a| * Credit card number
+* Decimal
+* Social security number
+
+|*Luhn digit test* 
+a|This option is for the Credit card number data domain only. Use the Luhn checksum formula to validate the digits contained in the original data. The options are: +
+* *Disabled*
+* *Generated token must pass Luhn test*
+* *Generated token must fail Luhn test*
+
+|Credit card number
+
+|*Maximum token length* 
+|Enter a value for the maximum number of digits for the generated token.
+a| * Decimal
+* Lax decimal
+* Email address
+* Lax alphanumeric
+* Printable ASCII
+* Lax uppercase/lowercase/decimal - Preserving
+* Lax uppercase/decimal - Preserving
+* Lax lowercase/decimal - Preserving
+
+
+|*Preserve serial number sub-component* 
+|This option is for the social security data domain only.
+|Social security number
 |===
 
 
@@ -70,24 +131,22 @@ You are limited to two illegal characters because you really need only one to ma
 
 You can use the built-in credit card formats, or customize them.
 
+. Select *Use custom credit card formats*, and click *Add Format*.  +
+You can also click *Edit* next to an existing credit card format to change the format. 
+. In the *Add Credit Card Format* dialog, enter the information for the customized fields, then click *Done*. +
 |===
 |Field |Description
 
 |Name |Name of the card customization.
 |Start Prefix |Digits the card prefix starts with, for example `51`.
-|End Prefix | Digits the card number prefix range ends with, for example, 55.
+|End Prefix | Digits the card number prefix range ends with, for example, `55`.
 
 Using the example values of 51 for the start prefix and 55 for the end prefix means that cards beginning with 51 through 55 are valid.
-|Check Digit | Check whether the card conforms to Luhn standard.
-|No. of Digits |Total number of digits the card number should have.
+|Luhn Check Digit | Select the *Include* checkbox if you want to verify the card conforms to the Luhn standard. +
+All formats must have *Check Digit* set to *Luhn* or *None*. A separate format is required if you need some for luhn and some for none.
+|Number of Digits |Enter the total number of digits the card number should have.
 |===
-
-=== Add Custom Credit Card Formats
-
-. Click *Credit Card Formats*.
-. Click the plus sign *+*.
-. In the *Add Credit Card Format* dialog, enter the information for the customized fields, then click *Done*.
-. Click *Save* in the *Create Format* page.
+. Click *Save*.
 
 === Customize the Fields
 
