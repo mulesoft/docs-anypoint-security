@@ -11,7 +11,8 @@ Because the tokenization service accepts only TLS traffic, you must enable TLS f
 
 To configure the tokenization service, you need the following:
 
-* Runtime Fabric 1.1.153 or later with inbound traffic configured. See xref:1.2@runtime-fabric::index.adoc[the Runtime Fabric documentation].
+. xref:1.2@runtime-fabric::install-create-rtf-arm.adoc[Install Runtime Fabric].
+. xref:1.2@runtime-fabric::enable-inbound-traffic.adoc[Enable inbound traffic] on Runtime Fabric. 
 * A secret group to store the tokenization table encryption keys. The tokenization service creates and stores its own keys. See xref:asm-secret-group-concept.adoc[Secrets Manager documentation].
 * A tokenization format, which describes the format and how data is tokenized. See xref:tokenization-formats.adoc[Tokenization Formats].
 * A tokenization service. See xref:create-tokenization-service.adoc[Create a Tokenization Service]
