@@ -3,31 +3,35 @@
 You can create a Web Application (WAF) policy in *Anypoint Security > Security Policies* to implement firewall security policy enforcement between your web application and client endpoint. WAF violation detection policies can also be escalated to Denial of Service (DoS) so that IPs and connections can be blocked.
 
 . Sign into Anypoint Platform and navigate to *Anypoint Security*.
-. In the Security Policies page, click *Create Policy* and select *Web Application Firewall (WAF)*.
-. Enter a name for the policy and click *Save Policy*. +
-The policy appears in the Security Policies list, where you can edit and delete policies.
+. In the *Security Policies* page, click *Create Policy* and select *Web Application Firewall (WAF)*.
+. Enter a *Name* for the policy and click *Save Policy*. +
+The policy appears in the *Security Policies* list, where you can edit and delete policies.
 
 image::security-policy-list.png[]
 
 == Configure Request Rulesets
 
-Configure the rules to allow or block request traffic to your Web application. For more information about request rulesets, see xref:waf-rulesets#request_rule_sets[Request rulesets].
+Configure the rules to allow or block request traffic to your web application. For more information about request rulesets, see xref:waf-rulesets#request_rule_sets[Request rulesets].
 
 . In the menu on the left, click *Request Rulesets*. +
 All the rules are disabled by default. For each rule, you can: +
 * *Disable ruleset* - (Default) Ruleset detection is turned off.
-* *Detect and allow violations* - The violation is detected and you will get information in your log at the INFO level, per incident.
-* *Detect and reject violations* - The request is rejected and returns a response status of `HTTP/1.1 400 BAD REQUEST - web application firewall` and DoS is notified that a rule was triggered. If xref:escalate-waf-to-dos.adoc[DoS has been configured for WAF Errors], DoS will update its WAF-related counters and take action, if necessary. If DoS isn't configured for WAF Errors, it ignores the notification it receives from WAF. +
-Information about the violation is also sent to the log at INFO level per incident.
+* *Detect and allow violations* - The violation is detected and you will get information, per incident, in your log at the `INFO` level.
+* *Detect and reject violations* - The request is rejected and returns a response status of `HTTP/1.1 400 BAD REQUEST - web application firewall`, and DoS is notified that a rule was triggered. If xref:escalate-waf-to-dos.adoc[DoS has been configured for WAF Errors], DoS updates its WAF-related counters and takes action, if necessary. If DoS isn't configured for WAF Errors, it ignores the notification it receives from WAF. +
+Information about the violation is also sent to the log, per incident, at `INFO` level.
 +
-When you hover over the `i` to the right of each rule, the rule ID range for that ruleset is displayed. This information can be used for testing rulesets.
+When you hover over the `i` to the right of each rule, the rule ID range for that ruleset is displayed. You can use this information for testing rulesets.
 +
 image::waf-rule-set.png[]
 +
-. In *Advanced performance options*, you can select *Disable body scanner*. If you do not check this option, the request body is scanned.
+. In *Advanced performance options*, select from the following options: +
+* *Disable body scanner*. If you do not check this option, the request body is scanned.
 +
 [NOTE]
-The *Disable body scanner* option must be checked if any valid responses will exceed 512 KB. If request body checking is enabled, the HTTP Limits policy “Maximum Message Size” should be set to a value no larger than required to prevent attackers from abusing request body checking, and exhausting the resources.
+If a body is larger than 1 MB, the scan is skipped, even if you do not select *Disable body scanner*. 
+* *Detect sensitive information* - You can select this option only if the *Disable body scanner* option is not selected. +
+If you select this option, the request body is scanned for sensitive information, and when you apply the WAF policy to Runtime Fabric, the log summary (`rtfWafSecurityPolicySummary`) records the count and number (rule ID) of the sensitive information pattern that is detected. +
+//An `rtfSidSummary` log is also generated, which contains the API, rule, direction, and count for instances of sensitive information.
 . Click *Save Policy*.
 
 == Configure Response Rulesets
@@ -37,23 +41,23 @@ Configure the rules to allow or block responses to your web application. For mor
 . In the menu on the left, click *Response Rulesets*. +
 All the rulesets are disabled by default. For each rule, you can: +
 * *Disable ruleset* - (Default) Ruleset detection is turned off.
-* *Detect and allow violations* - The violation is detected and you will get information in your log at the INFO level, per incident.
+* *Detect and allow violations* - The violation is detected and you will get information, per incident, in your log at the `INFO` level.
 * *Detect and reject violations* - The request is rejected and returns a response status of `HTTP/1.1 400 BAD REQUEST - web application firewall` and information about the violation is also sent to the log at INFO level per incident.
-. In *Advanced Performance Options*, select *Disable body scanner* to improve performance. +
-+
-The *Disable body scanner* option works the same as it does for the request ruleset, however, there are some additional important caveats:
+. In *Advanced Performance Options*, select from the following options: +
+* *Disable body scanner* - This option works the same as it does for the request ruleset, however, there are some additional important caveats:
 +
 [IMPORTANT]
-====
-*Check the "Disable body scanner" option if responses will exceed 512 KB.*
-====
+If a body is larger than 1 MB, the body scan is skipped, even if you selected *Disable body scanner*. 
 +
-* For resource usage management, a maximum response size of 512 KB is imposed and is not configurable. If response rulesets are enabled with the *Disable body scanner* unchecked, a response with a content-length greater than 512 KB are rejected.
 * Response messages must have one of the following MIME types in the content type header, or the WAF rules will not be evaluated:
 ** text/plain
 ** text/html
 ** text/xml
 ** application/json
++
+* *Detect sensitive information* - You can select this option only if the *Disable body scanner* option is not selected. +
+If you select this option, the response body is scanned for sensitive information, and when you apply the WAF policy to Runtime Fabric, the log summary (`rtfWafSecurityPolicySummary`) records the count and number (rule ID) of the sensitive information pattern that is detected. +
+//An `rtfSidSummary` log is also generated, which contains the API, rule, direction, and count for instances of sensitive information.
 . Click *Save Policy*.
 
 [[disable_rules]]
@@ -75,3 +79,4 @@ Once your WAF policy is configured and saved, you can (optionally) edit an exist
 * xref:apply-policy.adoc[Applying Policies]
 * xref:waf-rulesets.adoc[WAF Rulesets]
 * xref:escalate-waf-to-dos.adoc[Enable DoS for a WAF Policy]
+* xref:sid-reference.adoc[Sensitive Information Detection]

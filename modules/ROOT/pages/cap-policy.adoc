@@ -20,7 +20,7 @@ This policy applies to all your APIs behind your Edge/Inbound endpoint. You can 
 [%header%autowidth.spread,cols="a,a"]
 |===
 |Value |Description
-|*Maximum Message Size* | Maximum tolerated message size, in bytes, for your policy.
+|*Maximum Message Size* | Maximum tolerated message size, in bytes, for your policy. If request body scanning is enabled, this value should be set no larger than required to prevent attackers from abusing request body checking and exhausting resources
 |*Maximum Path Length* | Maximum tolerated path size, in bytes, for your policy.
 |*Maximum Length Of a Single Header* | The maximum tolerated length of a header for your policy.
 |*Maximum Length Of a Single Trailer* | The maximum tolerated length of a trailer for your policy.
@@ -34,3 +34,4 @@ Allowed methods are: GET, POST, PATCH, HEAD, TRACE, OPTIONS, DELETE, and PUT.
 
 * xref:acl-policy.adoc[IP Whitelist Policy]
 * xref:dos-policy.adoc[DoS Policy]
+* xref:create-waf-policy.adoc[Create a WAF Policy]

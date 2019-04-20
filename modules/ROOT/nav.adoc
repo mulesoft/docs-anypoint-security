@@ -7,6 +7,7 @@
 ** xref:waf-policy.adoc[Web Application Firewall Policy]
  *** xref:create-waf-policy.adoc[Create a WAF Policy]
  *** xref:waf-rulesets.adoc[WAF Rule Sets]
+ *** xref:sid-reference.adoc[Sensitive Information Detection Reference]
  *** xref:escalate-waf-to-dos.adoc[Enable DoS for a WAF Policy]
  *** xref:test-waf-policy.adoc[Test a WAF Policy]
 ** xref:apply-policy.adoc[Deploy Security Policies to Runtime Fabric]
