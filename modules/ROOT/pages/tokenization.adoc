@@ -11,6 +11,12 @@ Examples of sensitive information that are suitable for tokenization protection 
 * Personally Identifiable Information (PII)
 * Protected Health Information (PHI), or any information deemed sensitive
 
+Three basic steps occur during the tokenization process:
+
+. A token is created.
+. The token and original data are stored together in the token database.
+. The token is returned to the Mule app that calls it.
+
 Anypoint tokenization can create format-preserving tokens, which means the output tokens will have the same format as the sensitive data input. Format-preserving tokenization ensures that no changes are required to existing enterprise data flows or data stores, as the tokens generated conform to the existing data structure and validations. Changes to existing applications are minimized compared to point-to-point encryption, which requires data protection implementation at each "hop."
 
 image::index-a21f8.png[index-a21f8]
@@ -34,6 +40,18 @@ The Tokenization service provides these benefits:
 * *Performance*:
 ** High-performance operation ensures low-latency processing.
 ** Performance scales linearly on each node with vertical and horizontal scaling for vaultless tokenization provided by the Anypoint Platform.
+
+== Prerequisites
+
+To configure and use the tokenization service, you need the following:
+
+. xref:1.2@runtime-fabric::install-create-rtf-arm.adoc[Runtime Fabric installation].
+. xref:1.2@runtime-fabric::enable-inbound-traffic.adoc[Inbound traffic enabled] on Runtime Fabric. 
+* A secret group to store the tokenization table encryption keys. The tokenization service creates and stores its own keys. See xref:asm-secret-group-concept.adoc[Secrets Manager documentation].
+* You must have the following permissions: 
+** API Manager *Manage Policies*
+** Tokenization *Manage Tokenization Services* + 
+See xref:2.x@api-manager::environment-permission-task.adoc[Granting Permission to Access an Environment]
 
 
 ////

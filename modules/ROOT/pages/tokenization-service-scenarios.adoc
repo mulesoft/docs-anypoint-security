@@ -1,20 +1,7 @@
 = Tokenization Service Scenarios
 
 
-The way you configure and use the Tokenization service varies according to your implementation.
-
-
-== Prerequisites
-
-To configure the tokenization service, you need to:
-
-. xref:1.2@runtime-fabric::install-create-rtf-arm.adoc[Install Runtime Fabric].
-. xref:1.2@runtime-fabric::enable-inbound-traffic.adoc[Enable inbound traffic] on Runtime Fabric. 
-* A secret group to store the tokenization table encryption keys. The tokenization service creates and stores its own keys. See xref:asm-secret-group-concept.adoc[Secrets Manager documentation].
-* You must have the following permissions: 
-** API Manager *Manage Policies*
-** Tokenization *Manage Tokenization Services* + 
-See xref:2.x@api-manager::environment-permission-task.adoc[Granting Permission to Access an Environment]
+The way you configure and use the Tokenization service depends on your Mule implementation.
 
 == Configure Tokenization Using an API Gateway Policy
 
@@ -26,6 +13,7 @@ This is the high level workflow for this scenario:
 . xref:tokenization-formats.adoc[Create a tokenization format].
 . xref:create-tokenization-service.adoc[Create a tokenization service].
 . In API Manager, xref:2.x@api-manager::getting-started-proxy.adoc[set up the API gateway] for the Mule app to serve as the proxy. 
+. Apply xref:2.x@api-manager::policy-mule4-tokenization.adoc[the tokenization policy] to the API gateway.
 
 == Configure Tokenization Using a Mule App
 

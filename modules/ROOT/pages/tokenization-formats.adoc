@@ -7,19 +7,6 @@ Tokenization formats define how the original format of data coming in is convert
 
 When you xref:create-tokenization-format.adoc[create a tokenization format] and select the data domain, you are given <<data_domain_config_options,configuration options>>. 
 
-
-== Create a Tokenization Format
-
-. Sign into Anypoint Platform.
-. Under *Management Center*, click *Anypoint Security*.
-. In the menu on the left, click *Tokenization Format*.
-. Click *Create Format*.
-. In the *Create Format* dialog box, enter the following information: +
-* *Name*: Name for the tokenization format.
-* *Description*: Optionally, enter a short description for the tokenization format.
-* *Data Domain*: When you select the data domain, configuration options appear. The options vary depending on the type of data domain you selected. 
-. Click *Save*.
-
 == Supported Data Domains
 
 [%header%autowidth.spread,cols="a,a"]

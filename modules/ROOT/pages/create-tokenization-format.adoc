@@ -1,9 +1,10 @@
 = Create, Update, and Delete a Tokenization Format
 
 
-The tokenization format defines the way incoming data is converted. In this example, the domain type used is social security number (SSN). For more information about the supported tokenization formats see xref:tokenization-formats.adoc[Tokenization Formats].
+The tokenization format defines the way incoming data is converted. The format of the token needs to match the format of the original data. For example, if you are using a credit card format, the number of digits defined for the format should match the number of digits for the original credit card.  
 
-To create the tokenization format:
+For more information about the supported tokenization formats see xref:tokenization-formats.adoc[Tokenization Formats].
+
 
 == Create a Tokenization Format
 
