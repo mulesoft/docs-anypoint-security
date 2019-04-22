@@ -1,14 +1,37 @@
-= Creating the Tokenization Format
+= Create, Update, and Delete a Tokenization Format
 
 
 The tokenization format defines the way incoming data is converted. In this example, the domain type used is social security number (SSN). For more information about the supported tokenization formats see xref:tokenization-formats.adoc[Tokenization Formats].
 
 To create the tokenization format:
 
-. Sign into Anypoint Platform with the Organization Administrators role.
+== Create a Tokenization Format
+
+. Sign into Anypoint Platform.
 . Under *Management Center*, click *Anypoint Security*.
 . In the menu on the left, click *Tokenization Format*.
-. Click *Create Format*. +
-The example below shows a social security data domain format named "sssnonly" with none of the options selected.
+. Click *Create Format*.
+. In the *Create Format* dialog box, enter the following information: +
+* *Name*: Name for the tokenization format.
+* *Description*: Optionally, enter a short description for the tokenization format.
+* *Data Domain*: When you select the data domain, configuration options appear. The options vary depending on the type of data domain you selected. For information about the supported data domains and configuration options, see xref:tokenization-formats.adoc[Tokenization Formats]
+. Click *Save*.
 
 image::tokenization-example-format.png[]
+
+== Update a Tokenization Format
+
+You can update a format anytime. 
+
+. In Anypoint Security, click *Tokenization Formats* in the menu on the left. 
+. From the list, click the tokenization format to update. 
+. Make your changes, and click *Save*.
+
+== Delete a Tokenization Format
+
+Before you delete a tokenization format, you should verify it is not being used 
+
+. In Anypoint Security, click *Tokenization Formats* in the menu on the left. 
+. From the list, click the tokenization format to delete.
+. Click *Delete* in the upper right corner.
+. In the *Confirm Delete* confirmation dialog, click *Delete*.

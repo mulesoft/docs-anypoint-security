@@ -6,7 +6,7 @@ The way you configure and use the Tokenization service varies according to your 
 
 == Prerequisites
 
-To configure the tokenization service, you need the following:
+To configure the tokenization service, you need to:
 
 . xref:1.2@runtime-fabric::install-create-rtf-arm.adoc[Install Runtime Fabric].
 . xref:1.2@runtime-fabric::enable-inbound-traffic.adoc[Enable inbound traffic] on Runtime Fabric. 

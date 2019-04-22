@@ -16,6 +16,8 @@
   *** xref:apply-tokenization-policy-to-api.adoc[Use Tokenization and Detokenization as API Gateway Policies]
   *** xref:tokenization-example.adoc[Expose Tokenization as a Service Directly to Mule Applications]
  ** xref:tokenization-formats.adoc[Tokenization Formats]
+  *** xref:create-tokenization-format.adoc[Create, Update, and Delete Tokenization Formats]
+  *** xref:credit-card-formats.adoc[Credit Card Formats]
  ** xref:create-tokenization-service.adoc[Create a Tokenization Service]
  ** xref:tokenization-logs.adoc[Tokenization Service Logs]
 * xref:index-secrets-manager.adoc[Secrets Manager]
