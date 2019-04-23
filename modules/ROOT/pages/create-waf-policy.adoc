@@ -27,9 +27,9 @@ image::waf-rule-set.png[]
 . In *Advanced performance options*, select from the following options: +
 * *Disable body scanner*. By default, the request body is scanned unless the body is larger than 1 MB, in which case the scan is skipped. +
 Check this option if request body scanning isn't needed, or to reduce CPU consumption. +
-
 [NOTE]
 If a body is larger than 1 MB, the scan is skipped, even if you do not select *Disable body scanner*. 
++
 * *Detect sensitive information* - If you select this option, the request body is scanned for sensitive information, and when you apply the WAF policy to Runtime Fabric, the log summary (`rtfWafSecurityPolicySummary`) records the count and number (rule ID) of the sensitive information pattern that is detected. +
 [NOTE]
 This option is not allowed if *Disable Body Scanner* is selected.  
@@ -49,9 +49,6 @@ All the rulesets are disabled by default. For each rule, you can: +
 * *Disable body scanner* - By default, the response body is scanned unless the body is larger than 1 MB, in which case the scan is skipped. +
 Check this option if response body scanning isn't needed, or to reduce CPU consumption. +
 This option works the same as it does for the request ruleset with some additional important caveats:
-+
-[IMPORTANT]
-If a body is larger than 1 MB, the body scan is skipped, even if you do not select *Disable body scanner*. 
 +
 * Response messages must have one of the following MIME types in the content type header, or the WAF rules will not be evaluated:
 ** text/plain
