@@ -73,4 +73,4 @@ image::index-346fa.png[index-346fa]
 == See Also
 
 * xref:tokenization-formats.adoc[Use Tokenization and Detokenization as API Gateway Policies]
-* xref:tokenization-example.adoc[Expose Tokenization as a Service Directly to Mule Applications]
+* xref:tokenization-from-a-mule.adoc[Expose Tokenization as a Service Directly to Mule Applications]
