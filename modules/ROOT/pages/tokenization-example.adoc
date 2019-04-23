@@ -5,7 +5,7 @@ In some cases, for example, if a lot of complex data processing needs to take pl
 The Mule app can also do nothing other than expose the tokenization service as a pass-through. 
 
 [NOTE]
-Because the tokenization service accepts only TLS traffic, you must enable TLS for the Mule HTTP outbound, and enable LastMile security when deploying the Mule app to Runtime Fabric so the edge to Mule app connection uses TLS.
+Because the tokenization service accepts only TLS traffic, you must enable TLS for the Mule HTTP outbound, and enable Las-tMile security when deploying the Mule app to Runtime Fabric so the edge to Mule app connection uses TLS.
 
 == Prerequisites
 
@@ -42,7 +42,7 @@ Once you have the information you need to set up a routable tokenization service
 . Go to your Exchange portal, and click *New asset*. 
 . Set the *Name* as `Tokenization API` and the *Type* as `REST API - RAML`.
 . Select the ZIP file you downloaded, and click *Publish*.
-. In Studio or Design Center, create an HTTP outbound connection based on the `Ttokenization API` RAML. +
+. In Studio or Design Center, create an HTTP outbound connection based on the `Tokenization API` RAML. +
 The tokenization service in Runtime Fabric listens on port 3443 and is available through HTTPS only. +
 The hostname portion is formed by taking the “Service Name” + “-tokenizer” to arrive at the service name. For example, if the tokenization service name is “mytoken1”, the outbound URL will be: `https://mytoken1-­tokenizer:3443`.
 . Before the HTTP outbound, use a Datawave transform step to convert your input data into the `TokenizationServiceRequest` data type defined in the `Tokenization API` RAML. +
@@ -74,7 +74,10 @@ image::tokenization-example-set-keystore-info.png[]
 . Now set the HTTPS on the *Server* tab, then configure your keystore on the TLS side to configure the client side.
 +
 image::tokenization-example-configure-TLS.png[]
-. Save the application and export it. Remember where it is saved so you can upload it in the next step.
+. Save the application and export it. 
+. In Anypoint Platform, go to the *Runtime Manager* page and click on the name of the API Gateway application.
+. In the *Settings* page, select *Choose File ­> Upload File* to upload the API Gateway application you modified in Anypoint Studio.
+. In *Ingress*, select the *Enable Last­Mile Security* option.
 
 
 ////

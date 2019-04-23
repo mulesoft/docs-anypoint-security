@@ -5,7 +5,7 @@ The way you configure and use the Tokenization service depends on your Mule impl
 
 == Configure Tokenization Using an API Gateway Policy
 
-You can add the Tokenization service policy as one of the provided policies for the API Gateway. For more information, see xref:apply-tokenization-policy-to-api.adoc[Use Tokenization and Detokenization as API Gateway Policies].
+You can use the tokenization service as the core engine for the tokenization and detokenization provided policies in API Manager. For more information, see xref:apply-tokenization-policy-to-api.adoc[Use Tokenization and Detokenization as API Gateway Policies].
 
 This is the high level workflow for this scenario:
 

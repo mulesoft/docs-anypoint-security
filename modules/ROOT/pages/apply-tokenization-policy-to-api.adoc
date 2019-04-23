@@ -4,11 +4,12 @@ In this scenario, you apply the tokenization policy to the API gateway, which se
 
 == Prerequisites
 
-To apply a tokenization policy to the API Gateway, you must meet these requirements:
+To apply a tokenization policy to the API Gateway, you must:
 
-* You must have the following Anypoint permissions:
- ** Manage Policies
-* The API gateway must be version 4.0 or later. The Mule app implementing the API can be any version. 
+* Have the following Anypoint permissions:
+ ** API Manager *Manage Policies*
+ ** Tokenization *Manage Tokenization Services* 
+* Use API gateway version 4.0 or later. The Mule app implementing the API can be any version. 
 
 == Apply a Tokenization Policy to an API Gateway
 
@@ -20,8 +21,10 @@ These are the high level steps:
 . xref:1.2@runtime-fabric::enable-inbound-traffic.adoc[Enable inbound traffic] on Runtime Fabric
 . xref:tokenization-formats.adoc[Create a tokenization format].
 . xref:create-tokenization-service.adoc[Create a tokenization service].
-. In API Manager, xref:2.x@api-manager::getting-started-proxy.adoc[set up the API gateway] for the Mule app to serve as the proxy. 
-. Click *Apply New Policy* and select the tokenization service policy to apply. +
+. In API Manager, xref:2.x@api-manager::configure-autodiscovery-4-task.adoc[set up the API gateway] for the Mule app to serve as the proxy. +
+When you use the the gateway capabilities of Mule, you need to configure the `api-autodiscovery` element in your app flows to match the application endpoints to the paths defined in your API definition in API Manager. +
+Alternatively, if you don't have access to the Mule app's code, you can set up an auto-generated proxy (API Proxy) to link the paths from your Mule flows to the paths in your API definition in API Manager. +
+. Once you have the API gateway configured, in API Manager, click *Apply New Policy* and select the tokenization service policy to apply. +
 Available tokenization service policies appear in *Policies > Tokenization*.
 
 You can now use the tokenization service to tokenize and de-tokenize request and response payloads. 
