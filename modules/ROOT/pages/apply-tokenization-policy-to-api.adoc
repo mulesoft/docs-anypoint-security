@@ -1,19 +1,13 @@
-= Use Tokenization and Detokenization as API Gateway Policies
+= Apply a Tokenization Policy to the API Gateway
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
 
-In this scenario, you apply the tokenization policy to the API gateway, which serves as the intermediary between the Edge and the Mule app. The tokenization service in this case is implicit and made available through internal integration with the API gateway. 
+In this tokenization implementation, you apply the tokenization policy to the API gateway capability of Mule 4, which serves as the intermediary between the Edge and the Mule app. The tokenization service in this case is implicit and made available through internal integration with the API gateway. 
 
-== Prerequisites
+== Apply the Tokenization Policy
 
-To apply a tokenization policy to the API Gateway, you must:
-
-* Have the following Anypoint permissions:
- ** API Manager *Manage Policies*
- ** Tokenization *Manage Tokenization Services* 
-* Use API gateway version 4.0 or later. The Mule app implementing the API can be any version. 
-
-== Apply a Tokenization Policy to an API Gateway
-
-When the tokenization service is applied directly to the API gateway, you don't need to use the tokenization RAML to expose the tokenization service. You only need to set up the API gateway for the Mule app to serve as the proxy.
+When the tokenization service policy is applied directly to the API gateway, you don't need to use the tokenization RAML to expose the tokenization service. You only need to set up the API gateway for the Mule app to serve as the proxy.
 
 These are the high level steps:
 
@@ -22,9 +16,14 @@ These are the high level steps:
 . xref:tokenization-formats.adoc[Create a tokenization format].
 . xref:create-tokenization-service.adoc[Create a tokenization service].
 . In API Manager, xref:2.x@api-manager::configure-autodiscovery-4-task.adoc[set up the API gateway] for the Mule app to serve as the proxy. +
-When you use the the gateway capabilities of Mule, you need to configure the `api-autodiscovery` element in your app flows to match the application endpoints to the paths defined in your API definition in API Manager. +
-Alternatively, if you don't have access to the Mule app's code, you can set up an auto-generated proxy (API Proxy) to link the paths from your Mule flows to the paths in your API definition in API Manager. +
+[NOTE]
+You must use the API gateway version 4.0 or later. The Mule app that implements the API can be any version. 
 . Once you have the API gateway configured, in API Manager, click *Apply New Policy* and select the tokenization service policy to apply. +
 Available tokenization service policies appear in *Policies > Tokenization*.
 
 You can now use the tokenization service to tokenize and de-tokenize request and response payloads. 
+
+== See Also
+
+xref:tokenization.adoc[Tokenization]
+xref:tokenization-example.adoc[Tokenization Service Configurations]

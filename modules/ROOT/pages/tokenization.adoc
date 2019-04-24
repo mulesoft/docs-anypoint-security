@@ -1,4 +1,4 @@
-= Tokenization Service
+= Tokenization
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -11,66 +11,9 @@ Examples of sensitive information that are suitable for tokenization protection 
 * Personally Identifiable Information (PII)
 * Protected Health Information (PHI), or any information deemed sensitive
 
-Three basic steps occur during the tokenization process:
-
-. A token is created.
-. The token and original data are stored together in the token database.
-. The token is returned to the Mule app that calls it.
-
 Anypoint tokenization can create format-preserving tokens, which means the output tokens will have the same format as the sensitive data input. Format-preserving tokenization ensures that no changes are required to existing enterprise data flows or data stores, as the tokens generated conform to the existing data structure and validations. Changes to existing applications are minimized compared to point-to-point encryption, which requires data protection implementation at each "hop."
-
-image::index-a21f8.png[index-a21f8]
-
-== Tokenization Service Benefits
-
-The Tokenization service provides these benefits:
-
-* *Vaultless operation*:
-** Ensures sensitive data is not stored in the tokenization deployment.
-** No data growth based on the number of transactions processed or tokens issued, thus removing data-vault management issues.
-* *Increased security*:
-** Protection of sensitive information reduces your sensitive data zones.
-** Reduces or removes the number of systems and applications that process, store, or transmit sensitive information from sensitive data scopes.
-** Negates the chances of a data breach from auxiliary applications and data stores, as the sensitive information stored in them is replaced by tokens.
-** Increases defense in depth for sensitive data and least privilege. Authorization is required for the tokenization service to detokenize the sensitive data back to its actual value. Possession of the token alone provides no extrinsic or exploitable meaning or value.
-* *Flexibility*:
-** Ability to choose a tokenization strategy appropriate for your business using inbuilt data domains such as PAN, SSN, email, decimal, ascii and so on.
-** Each domain has configurable options for preserving portions of the original sensitive data and replacing the rest with token data or replacing the entire information with a token.
-** Operates seamlessly across wide area networks and distributed data centers.
-* *Performance*:
-** High-performance operation ensures low-latency processing.
-** Performance scales linearly on each node with vertical and horizontal scaling for vaultless tokenization provided by the Anypoint Platform.
-
-== Prerequisites
-
-To configure and use the tokenization service, you need the following:
-
-. xref:1.2@runtime-fabric::install-create-rtf-arm.adoc[Runtime Fabric installation].
-. xref:1.2@runtime-fabric::enable-inbound-traffic.adoc[Inbound traffic enabled] on Runtime Fabric. 
-* A secret group to store the tokenization table encryption keys. The tokenization service creates and stores its own keys. See xref:asm-secret-group-concept.adoc[Secrets Manager documentation].
-* You must have the following permissions: 
-** API Manager *Manage Policies*
-** Tokenization *Manage Tokenization Services* + 
-See xref:2.x@api-manager::environment-permission-task.adoc[Granting Permission to Access an Environment]
-
-
-////
-== Format-Preserving Encryption
-
-Information anonymization. +
-Analytics without exposing sensitive data
-
-image::index-31d6e.png[index-31d6e]
-
-== Data Masking
-
-Sensitive data obfuscation. +
-One way process: Cannot get original value back
-
-image::index-346fa.png[index-346fa]
-////
 
 == See Also
 
-* xref:tokenization-formats.adoc[Use Tokenization and Detokenization as API Gateway Policies]
+* xref:tokenization-formats.adoc[Apply Tokenization Policies to API Gateway]
 * xref:tokenization-from-a-mule.adoc[Expose Tokenization as a Service Directly to Mule Applications]
