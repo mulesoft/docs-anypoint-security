@@ -37,17 +37,18 @@ For more information, see xref:1.2@runtime-fabric::enable-inbound-traffic.adoc[R
 
 Once you have the information you need to set up a routable tokenization service using an API Gateway, create an API from the tokenization RAML.
 
-. Go to the Anypoint Developer portal at Exchange, and search for "Tokenization API."
-. Download the RAML as a ZIP.
+. Go to the public https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/[Anypoint Platform developer portal], and search for "Tokenization API."
+. Select *Download > As RAML*. The RAML is downloaded as a ZIP file.
 . Go to your Exchange portal, and click *New asset*. 
 . Set the *Name* as `Tokenization API` and the *Type* as `REST API - RAML`.
 . Select the ZIP file you downloaded, and click *Publish*.
 . In Studio or Design Center, create an HTTP outbound connection based on the `Tokenization API` RAML. +
 The tokenization service in Runtime Fabric listens on port 3443 and is available through HTTPS only. +
-The hostname portion is formed by taking the “Service Name” + “-tokenizer” to arrive at the service name. For example, if the tokenization service name is “mytoken1”, the outbound URL will be: `https://mytoken1-­tokenizer:3443`.
+The hostname portion for the outbound URL is formed by taking the service name + `-tokenizer`. For example, if the Tokenization service name is “mytoken1”, the outbound URL will be: `https://mytoken1-­tokenizer:3443`.
 . Before the HTTP outbound, use a Datawave transform step to convert your input data into the `TokenizationServiceRequest` data type defined in the `Tokenization API` RAML. +
 The request is an array of items, and a single example is: `{"format" : "ssnonly", "data" : "333-33-3333"}`.
-The value of `format` matches a tokenization format that is defined on the service.  The `data` value is what is to be tokenized or detokenized.
+The value of `format` matches a tokenization format that is defined on the service.  The `data` value is what to tokenize or detokenize. +
+[NOTE]
 The `array` should be 100 items long at most. If it is any longer than 100 items, break it up into multiple requests to the tokenization service.
 . Set the HTTP Listener in the Mule application to HTTPS. See <<Configure TLS>>. 
 . Export the Mule app.

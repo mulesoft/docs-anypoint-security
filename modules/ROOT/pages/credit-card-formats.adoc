@@ -1,5 +1,7 @@
 = Credit Card Formats
 
+Tokenization replaces original card data with tokenized data according to the way you configure the credit card data domain when you xref:create-tokenization-format.adoc[create a tokenization format]. 
+
 == Customize Credit Card Formats
 
 You can use the built-in credit card formats, or customize them.
