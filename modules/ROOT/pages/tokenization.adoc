@@ -13,7 +13,11 @@ Examples of sensitive information that are suitable for tokenization protection 
 
 Anypoint tokenization can create format-preserving tokens, which means the output tokens will have the same format as the sensitive data input. Format-preserving tokenization ensures that no changes are required to existing enterprise data flows or data stores, as the tokens generated conform to the existing data structure and validations. Changes to existing applications are minimized compared to point-to-point encryption, which requires data protection implementation at each "hop."
 
+image::tokenization-flow.png[]
+
 == See Also
 
+* xref:tokenization-benefits.adoc[Tokenization Benefits]
+* xref:tokenization-example.adoc[Tokenization Configurations]
 * xref:tokenization-formats.adoc[Apply Tokenization Policies to API Gateway]
 * xref:tokenization-from-a-mule.adoc[Expose Tokenization as a Service Directly to Mule Applications]

@@ -10,31 +10,6 @@ The Mule app can also do nothing other than expose the tokenization service as a
 [NOTE]
 Because the tokenization service accepts only TLS traffic, you must enable TLS for the Mule HTTP outbound, and enable Las-tMile security when deploying the Mule app to Runtime Fabric so the edge to Mule app connection uses TLS.
 
-== Prerequisites
-
-To configure the tokenization service, you need the following:
-
-. xref:1.2@runtime-fabric::install-create-rtf-arm.adoc[Install Runtime Fabric].
-. xref:1.2@runtime-fabric::enable-inbound-traffic.adoc[Enable inbound traffic] on Runtime Fabric. 
-* A secret group to store the tokenization table encryption keys. The tokenization service creates and stores its own keys. See xref:asm-secret-group-concept.adoc[Secrets Manager documentation].
-* A tokenization format, which describes the format and how data is tokenized. See xref:tokenization-formats.adoc[Tokenization Formats].
-* A tokenization service. See xref:create-tokenization-service.adoc[Create a Tokenization Service]
-
-//image::tokenization-setup-example-diagram.png[Tokenization Examples]
-
-//In this diagram, a separate zone segregates the tokenization service from the general Runtime Fabric. This segregation is based on security needs.
-
-//For example, if sensitive data is produced from a Mule app serving external traffic (Client -> Edge -> Mule application), this app might be included in the sensitive data zone.
-
-////
-== Runtime Fabric 1.1.153 or Later with Inbound Traffic
-
-This example shows a Runtime Fabric named "rtf231", which has inbound traffic that is using a certificate and private key in the secret group “alphatoken”. If you already have a Runtime Fabric and secret group configured, use those names in places of the ones in the example.
-
-image::tokenization-example-rtf-ingress-config.png[Example Runtime Fabric with Inbound Traffic]
-
-For more information, see xref:1.2@runtime-fabric::enable-inbound-traffic.adoc[Runtime Fabric Inbound Traffic Configuration].
-////
 
 [configure_TLS]
 == Configure TLS
@@ -60,7 +35,8 @@ image::tokenization-example-configure-TLS.png[]
 . In Anypoint Platform, go to the *Runtime Manager* page and click on the name of the API Gateway application.
 . In the *Settings* page, select *Choose File ­> Upload File* to upload the API Gateway application you modified in Anypoint Studio.
 . In *Ingress*, select the *Enable Last­Mile Security* option.
- 
+
+[tokenization_raml]
 == Create an API from the Tokenization RAML
 
 Once you have the information you need to set up a routable tokenization service using an API Gateway, create an API from the tokenization RAML.
