@@ -24,7 +24,7 @@ When you hover over the `i` to the right of each rule, the rule ID range for tha
 +
 image::waf-rule-set.png[]
 +
-. In *Advanced performance options*, select from the following options: +
+. In *Advanced performance options*, select one of the following options: +
 * *Disable body scanner*. By default, the request body is scanned unless the body is larger than 1 MB, in which case the scan is skipped. +
 Check this option if request body scanning isn't needed, or to reduce CPU consumption. +
 [NOTE]
@@ -45,7 +45,7 @@ All the rulesets are disabled by default. For each rule, you can: +
 * *Disable ruleset* - (Default) Ruleset detection is turned off.
 * *Detect and allow violations* - The violation is detected and you will get information, per incident, in your log at the `INFO` level.
 * *Detect and reject violations* - The request is rejected and returns a response status of `HTTP/1.1 400 BAD REQUEST - web application firewall` and information about the violation is also sent to the log at INFO level per incident.
-. In *Advanced Performance Options*, select from the following options: +
+. In *Advanced Performance Options*, select one of the following options: +
 * *Disable body scanner* - By default, the response body is scanned unless the body is larger than 1 MB, in which case the scan is skipped. +
 Check this option if response body scanning isn't needed, or to reduce CPU consumption. +
 This option works the same as it does for the request ruleset with some additional important caveats:
