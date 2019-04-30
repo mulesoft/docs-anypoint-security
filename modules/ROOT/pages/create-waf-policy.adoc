@@ -33,7 +33,7 @@ If a body is larger than 1 MB, the scan is skipped, even if you do not select *D
 * *Detect sensitive information* - If you select this option, the request body is scanned for sensitive information, and when you apply the WAF policy to Runtime Fabric, the log summary (`rtfWafSecurityPolicySummary`) records the count and number (rule ID) of the sensitive information pattern that is detected. +
 [NOTE]
 This option is not allowed if *Disable Body Scanner* is selected.  
-//An `rtfSidSummary` log is also generated, which contains the API, rule, direction, and count for instances of sensitive information.
+An `rtfSidSummary` log is also generated, which contains the API, rule, direction, and count for instances of sensitive information.
 . Click *Save Policy*.
 
 == Configure Response Rulesets
@@ -59,7 +59,7 @@ This option works the same as it does for the request ruleset with some addition
 * *Detect sensitive information* - If you select this option, the response body is scanned for sensitive information, and when you apply the WAF policy to Runtime Fabric, the log summary (`rtfWafSecurityPolicySummary`) records the count and number (rule ID) of the sensitive information pattern that is detected. +
 [NOTE]
 This option is not allowed if *Disable Body Scanner* is selected. 
-//An `rtfSidSummary` log is also generated, which contains the API, rule, direction, and count for instances of sensitive information.
+An `rtfSidSummary` log is also generated, which contains the API, rule, direction, and count for instances of sensitive information.
 . Click *Save Policy*.
 
 [[disable_rules]]
