@@ -17,11 +17,29 @@ In this example, a credit card number is tokenized.
 
 image::tokenization-flow.png[]
 
+== Tokenization Benefits
+
+The Tokenization service provides these benefits:
+
+* *Vaultless operation*:
+** Ensures sensitive data is not stored in the tokenization deployment.
+** No data growth based on the number of transactions processed or tokens issued, thus removing data-vault management issues.
+* *Increased security*:
+** Protection of sensitive information reduces your sensitive data zones.
+** Reduces or removes the number of systems and applications that process, store, or transmit sensitive information from sensitive data scopes.
+** Negates the chances of a data breach from auxiliary applications and data stores, as the sensitive information stored in them is replaced by tokens.
+** Increases defense in depth for sensitive data and least privilege. Authorization is required for the tokenization service to detokenize the sensitive data back to its actual value. Possession of the token alone provides no extrinsic or exploitable meaning or value.
+* *Flexibility*:
+** Ability to choose a tokenization strategy appropriate for your business using inbuilt data domains such as PAN, SSN, email, decimal, ascii and so on.
+** Each domain has configurable options for preserving portions of the original sensitive data and replacing the rest with token data or replacing the entire information with a token.
+** Operates seamlessly across wide area networks and distributed data centers.
+* *Performance*:
+** High-performance operation ensures low-latency processing.
+** Performance scales linearly on each node with vertical and horizontal scaling for vaultless tokenization provided by the Anypoint Platform.
 
 
 == See Also
 
-* xref:tokenization-benefits.adoc[Tokenization Benefits]
 * xref:tokenization-example.adoc[Tokenization Configurations]
 * xref:tokenization-formats.adoc[Apply Tokenization Policies to API Gateway]
 * xref:tokenization-from-a-mule.adoc[Expose Tokenization as a Service Directly to Mule Applications]
