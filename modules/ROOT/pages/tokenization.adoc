@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-The Tokenization service enables you to substitute a sensitive data element with a non-sensitive equivalent.
+Tokenization is a highly effective way to protect sensitive data. When you tokenize data, sensitive data elements are substituted with randomly generated non-sensitive data elements. The Tokenization service enables you to substitute sensitive data elements with non-sensitive equivalent. 
 
 Examples of sensitive information that are suitable for tokenization protection include:
 
@@ -11,9 +11,13 @@ Examples of sensitive information that are suitable for tokenization protection 
 * Personally Identifiable Information (PII)
 * Protected Health Information (PHI), or any information deemed sensitive
 
-Anypoint tokenization can create format-preserving tokens, which means the output tokens will have the same format as the sensitive data input. Format-preserving tokenization ensures that no changes are required to existing enterprise data flows or data stores, as the tokens generated conform to the existing data structure and validations. Changes to existing applications are minimized compared to point-to-point encryption, which requires data protection implementation at each "hop."
+Anypoint tokenization creates format-preserving tokens, which means the output tokens have the same format as the sensitive data input. Format-preserving tokenization ensures that changes are not required for existing enterprise data flows or data stores, as the generated tokens conform to the existing data structure and validations. Changes to existing applications are minimized compared to point-to-point encryption, which requires data protection implementation at each "hop."
+
+In this example, a credit card number is tokenized. 
 
 image::tokenization-flow.png[]
+
+
 
 == See Also
 
