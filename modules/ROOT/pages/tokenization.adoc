@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Tokenization is a highly effective way to protect sensitive data. When you tokenize data, sensitive data elements are substituted with randomly generated non-sensitive data elements. The Tokenization service enables you to substitute sensitive data elements with non-sensitive equivalent. 
+Tokenization is a highly effective way to protect sensitive data. When you tokenize data, sensitive data elements are substituted with randomly generated non-sensitive data elements.  
 
 Examples of sensitive information that are suitable for tokenization protection include:
 
@@ -13,9 +13,19 @@ Examples of sensitive information that are suitable for tokenization protection 
 
 Anypoint tokenization creates format-preserving tokens, which means the output tokens have the same format as the sensitive data input. Format-preserving tokenization ensures that changes are not required for existing enterprise data flows or data stores, as the generated tokens conform to the existing data structure and validations. Changes to existing applications are minimized compared to point-to-point encryption, which requires data protection implementation at each "hop."
 
-In this example, a credit card number is tokenized. 
 
 image::tokenization-flow.png[]
+
+In this example, a tokenization format is created with the credit card data domain and assigned to the tokenization service. A tokenization policy is applied to an app deployed to Runtime Fabric. 
+
+When a payload that contains credit card numbers in the payload is sent, the request is redirected to the application that has the tokenization policy applied. 
+
+Since the tokenization policy is configured to tokenize the credit card information in the payload, it extracts all the tokens from the payload. 
+
+A connection is established with the tokenization service, which receives the tokens, applies the data transformation, and returns the tokenized data to the tokenization policy. 
+
+The tokenization policy replaces the credit card number with tokenized values and the request is sent on to the app. The app processes the request and returns the result. 
+
 
 == Tokenization Benefits
 
