@@ -8,33 +8,7 @@ In some cases, for example, if a lot of complex data processing needs to take pl
 The Mule app can also do nothing other than expose the tokenization service as a pass-through. 
 
 [NOTE]
-Because the tokenization service accepts only TLS traffic, you must enable TLS for the Mule HTTP outbound, and enable Las-tMile security when deploying the Mule app to Runtime Fabric so the edge to Mule app connection uses TLS.
-
-
-[configure_TLS]
-== Configure TLS
-
-This is an example of how to configure TLS for Mule apps in Studio.
-
-. Go to Anypoint Studio, and open the project for your Mule app.
-+
-image::tokenization-example-import-api-gateway-studio.png[]
-. Go to `src/main/resources` and add the keystore. In this example the keystore is named `tester.jks`.
-+
-image::tokenization-example-keystore.png[]
-. Add TLS to the listener side so you can later enable the *Last Mile Security* flag. To do this, first set the HTTPS flag.
-+
-image::tokenization-example-set-https-flag.png[]
-. Set the keystore information. In this example the trust store side is set to *insecure* and the keystore, alias, and password information has been added.
-+
-image::tokenization-example-set-keystore-info.png[]
-. Now set the HTTPS on the *Server* tab, then configure your keystore on the TLS side to configure the client side.
-+
-image::tokenization-example-configure-TLS.png[]
-. Save the application and export it. 
-. In Anypoint Platform, go to the *Runtime Manager* page and click on the name of the API Gateway application.
-. In the *Settings* page, select *Choose File ­> Upload File* to upload the API Gateway application you modified in Anypoint Studio.
-. In *Ingress*, select the *Enable Last­Mile Security* option.
+Because the tokenization service accepts only TLS traffic, you must enable TLS for the Mule HTTP outbound, and enable Las-tMile security when deploying the Mule app to Runtime Fabric so the edge-to-Mule-app connection uses TLS.
 
 [tokenization_raml]
 == Create an API from the Tokenization RAML
@@ -62,129 +36,37 @@ You must select the *Last mile security* checkbox to enable TLS between the edge
 . (Optional) For improved security and protection of the Mule app, you should add some method of authentication.
 
 
+[configure_TLS]
+== Configure TLS
 
+This is an example of how to configure TLS for Mule apps in Studio 7.3.
 
-////
-== Add the TLS Enabled API Gateway
-
-. In Anypoint Platform, go to the *Runtime Manager* page and click on the name of the API Gateway application `token2mule`.
-. In the *Settings* page, select *Choose File ­> Upload File* to upload the API Gateway application you modified in Anypoint Studio.
-. Select the *Enable Last­Mile Security* option. Your settings should look similar to this image.
+. Go to Anypoint Studio, and open the project for your Mule app.
 +
-image::tokenization-example-add-tls-enabled-gateway.png[]
-. Click *Deploy*. +
-Once the application has a status of "Running" you are ready to test.
-
-
-== Test the Tokenization Traffic
-
-Once the application is running, you are ready to send traffic. To fully secure the service, it is a good idea to test the service before you complete the additional steps. You can use POSTMAN or `curl` to test the service.
-
-An example `curl` command is provided below. Replace the IP address with your own IP address. If you have used names that are different from the example for format, tokenization service, or API name, modify the `curl` command accordingly.
-
-To try tokenizing data, send the following `curl` command:
-
-----
-curl ­-k ­­--resolve token2mule.ic.example.com:443:192.168.2.1 https://token2mule.ic.example.com/tb/v1/tokenization -­X POST -­H "Content­type: application/json" ­­--data '[{"data": "683­31­8102", "format": "ssndemo"}]
-----
-
-You should get a response similar to the following:
-
-`HTTP/1.1 200 OK [{"data":"597­74­8102","status":"success"}]`
-
-
-== Add Authorization and JSON Threat Protection
-
-The tokenization service has no authentication or authorization. The only way to protect it is to allow access only through an Api Gateway with some type of authorization policy enabled.
-
-This example shows you how to add a basic authorization policy to provide simple authentication.
-
-. Go to the API Manager page where you created the API Gateway.
-. In the menu on the left, click *Policies*.
-. Create a *Simple security manager* and add a simple username and password.
+image::tokenization-example-import-api-gateway-studio.png[]
+. Go to `src/main/resources` and add the keystore. In this example the keystore is named `tester.jks`.
 +
-image::tokenization-example-apply-simple-security.png[]
-. Click *Apply New Policy* and add the “HTTP Basic Authorization” policy.
-. Add the JSON threat protection policy.
+image::tokenization-example-keystore.png[]
+. Add TLS to the listener side so you can later enable the *Last Mile Security* flag. To do this, first set the HTTPS flag.
 +
-[NOTE]
-A maximum of 100 tokenization or detokenization items can be included in each tokenization or detokenization request.
+image::tokenization-example-set-https-flag.png[]
+. Click the *TLS* tab to set the keystore information, then select the following: +
+ * From the *TLS Configuration* drop-down, select *Edit inline*. 
+ * In *Trust Store Configuration*, check the *Insecure* box.
+ * In *Key Store Configuration*, enter the information for your keystore, and click *OK*. +
+ In this example the trust store side is set to *insecure* and the keystore, alias, and password information has been added.
 +
-The following image shows an example.
+image::tokenization-example-set-keystore-info.png[]
+. Edit the settings for the HTTP endpoint to enable TLS on the HTTP connection from Mule to the tokenization service. 
 +
-image::tokenization-example-json-threat-protection.png[]
-+
-The *Policies* page should look similar to the following example.
-+
-image::tokenization-example-policies-page.png[]
+image::tokenization-example-configure-TLS.png[]
+. Save the application and export it. 
+. In Anypoint Platform, go to *Runtime Manager*, and click *Deploy Application*. 
+. In the *Deploy Application* page:
+.. Enter an *Application Name*.
+.. From the *Deployment Target* drop-down, select the Runtime Fabric to which to deploy the app.
+.. Click *Choose file* to upload the application you exported. 
+.. Select the *Runtime version* for the Mule the app will run on, and configure your *Replicas* and *Resource Allocation*.
+.. Click the *Ingress* tab, and select *Enable Last­Mile Security* option.
+. Click *Deploy Application*. 
 
-
-== Test Runtime Traffic with Basic Authorization
-
-Run the following `curl` command to send traffic with the `--user` flag for basic authorization.
-
-----
-curl ­-k --­­resolve token2mule.ic.example.com:443:192.168.2.1 https://token2mule.ic.example.com/tb/v1/tokenization -­X POST ­-H "Content­type: application/json" ­­data '[{"data": "683­31­8102", "format": "ssndemo"}]' ­-k ­­--user test:test
-----
-
-You should receive a response similar to the following:
-
-`HTTP/1.1 200 OK [{"data":"597­74­8102","status":"success"}]`
-
-You can take the tokenized SSN from above and send it back to the service. The original SSN will be returned. Remember that the token returned always preserves the format of the input data.
-
-----
-curl ­-k ­­--resolve token2mule.ic.example.com:443:192.168.2.1 https://token2mule.ic.example.com/tb/v1/detokenization ­-X POST ­-H "Content­type: application/json" ­­data '[{"data": "597­74­8102", "format": "ssndemo"}]' ­-k ­­--user test:test
-----
-
-You should receive a response similar to the following:
-
-----
-HTTP/1.1 200 OK [{"data":"683­31­8102","status":"success"}][root@openstackvm32 pentest­ca]
-----
-
-The following is an example of bad tokenization:
-
-----
-curl ­v ­-k ­­--resolve token2mule.ic.example.com:443:192.168.2.1 https://token2mule.ic.example.com/tb/v1/tokenization -­X POST ­-H "Content­type: application/json" ­­data '[{"data": "597­74­8102­­­­­­­­sdsdsdsdsdsdsdsds", "format": "ssndemo"}]' ­-k ­­--user test:test
-----
-
-You should receive a response similar to the following:
-
-----
-HTTP/1.1 422 Unprocessable Entity
-[{"data":"","status":"failure","errorcode":1384,"error":"The social security number is invalid.
-It contains [26] characters.
-A social security number must have the format ###-##-#### where # represents a decimal digit."}]
-----
-
-The following is an example of bad detokenization:
-
-----
-curl ­v ­-k ­­--resolve token2mule.ic.example.com:443:192.168.2.1 https://token2mule.ic.example.com/tb/v1/detokenization ­-X POST ­-H "Content­type: application/json" ­­data '[{"data": "597­74­8102­­­­­­­­sdsdsdsdsdsdsdsds", "format": "ssndemo"}]' ­-k ­­--user test:test
-----
-
-You should receive a response similar to the following:
-
-----
-HTTP/1.1 422 Unprocessable Entity
-[{"data":"","status":"failure","errorcode":1380,"error":"The social security number is invalid.
-It contains [26] characters.
-A social security number must have the format ###-##-#### where # represents a decimal digit."}]
-----
-
-
-The following is an example of bad tokenization JSON data stopped by Api Gateway protection:
-
-----
-curl ­v ­-k ­­--resolve token2mule.ic.example.com:443:192.168.2.1 https://token2mule.ic.example.com/tb/v1/detokenization ­-X POST -­H "Content­type: application/json" ­­data '[{{{}{{{}]]"data": "597­74­8102­­­­­­­­sdsdsdsdsdsdsdsds", "format": "ssndemo"}]' ­-k ­­--user test:test
-----
-
-You should receive a response similar to the following:
-
-----
-HTTP/1.1 400 Bad Request
-{ "errorcode": 1140, "message": "Error while parsing json [line 1 char 3, byte-offset 2]:
-Expected member name"}
-----
-////
