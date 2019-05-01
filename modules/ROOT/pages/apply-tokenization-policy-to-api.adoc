@@ -11,8 +11,8 @@ When the tokenization service policy is applied directly to the API gateway, you
 
 To apply a tokenization policy to the API gateway: 
 
-. xref:1.2@runtime-fabric::install-create-rtf-arm.adoc[Install Runtime Fabric].
-. xref:1.2@runtime-fabric::enable-inbound-traffic.adoc[Enable inbound traffic] on Runtime Fabric
+. xref:runtime-fabric::install-create-rtf-arm.adoc[Install Runtime Fabric].
+. xref:runtime-fabric::enable-inbound-traffic.adoc[Enable inbound traffic] on Runtime Fabric
 . xref:tokenization-formats.adoc[Create a tokenization format].
 . xref:create-tokenization-service.adoc[Create a tokenization service].
 . In API Manager, xref:2.x@api-manager::configure-autodiscovery-4-task.adoc[set up the API gateway] for the Mule app to serve as the proxy. +

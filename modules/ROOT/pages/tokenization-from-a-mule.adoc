@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-In some cases, for example, if a lot of complex data processing needs to take place before traffic gets to the tokenization/de-tokenization service, it makes sense to set up a Mule app to which Edge can route the traffic. In this scenario, the Mule app allows the flexibility to process the data and then send the traffic to the tokenization service. 
+If a lot of complex data processing needs to take place before traffic gets to the tokenization/de-tokenization service, it makes sense to set up a Mule app to which Edge can route the traffic. In this scenario, the Mule app allows the flexibility to process the data and then send the traffic to the tokenization service. 
 
 The Mule app can do nothing other than expose the tokenization service as a pass-through. 
 
