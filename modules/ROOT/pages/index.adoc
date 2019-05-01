@@ -21,7 +21,7 @@ Through Secrets Manager, you can store the necessary secrets to set up the TLS c
 
 == Tokenization Service
 
-Anypoint Security's tokenization service allows you to protect sensitive data from unwanted exposure by replacing key values, such as a credit card number, with a token.
+Anypoint Security's tokenization service protects sensitive data from unwanted exposure by replacing key values, such as a credit card number, with a token.
 
 
 == See Also

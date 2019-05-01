@@ -30,7 +30,7 @@ You can update a format anytime.
 
 == Delete a Tokenization Format
 
-Before you delete a tokenization format, you should verify it is not being used 
+Before you delete a tokenization format, verify it is not in use. 
 
 . In Anypoint Security, click *Tokenization Formats* in the menu on the left. 
 . From the list, click the tokenization format to delete.

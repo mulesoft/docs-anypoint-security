@@ -5,7 +5,7 @@ endif::[]
 
 In some cases, for example, if a lot of complex data processing needs to take place before traffic gets to the tokenization/de-tokenization service, it makes sense to set up a Mule app to which Edge can route the traffic. In this scenario, the Mule app allows the flexibility to process the data and then send the traffic to the tokenization service. 
 
-The Mule app can also do nothing other than expose the tokenization service as a pass-through. 
+The Mule app can do nothing other than expose the tokenization service as a pass-through. 
 
 [NOTE]
 Because the tokenization service accepts only TLS traffic, you must enable TLS for the Mule HTTP outbound, and enable Las-tMile security when deploying the Mule app to Runtime Fabric so the edge-to-Mule-app connection uses TLS.
@@ -30,7 +30,7 @@ The value of `format` matches a tokenization format that is defined on the servi
 The `array` should be 100 items long at most. If it is any longer than 100 items, break it up into multiple requests to the tokenization service.
 . Set the HTTP Listener in the Mule application to HTTPS. See <<Configure TLS>>. 
 . Export the Mule app.
-. In Runtime Manager, xref:1.2@runtime-fabric::deploy-to-runtime-fabric.adoc[deploy the application to Runtime Fabric]. +
+. In Runtime Manager, xref:runtime-fabric::deploy-to-runtime-fabric.adoc[deploy the application to Runtime Fabric]. +
 [NOTE]
 You must select the *Last mile security* checkbox to enable TLS between the edge and the Mule app.
 . (Optional) For improved security and protection of the Mule app, you should add some method of authentication.

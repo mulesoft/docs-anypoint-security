@@ -1,10 +1,14 @@
 == Tokenization Service Logs
 
-You can use the tokenization summary message that is returned in the Runtime Fabric logs to determine traffic counts. To retrieve the logs, follow the instructions in the xref:1.2@runtime-fabric::runtime-fabric-logs.adoc[Runtime Fabric documentation] for configuring log forwarding.
+You can use the tokenization summary message that is returned in Runtime Fabric logs to determine traffic counts. To retrieve the logs, follow the instructions in the xref:runtime-fabric::runtime-fabric-logs.adoc[Runtime Fabric documentation] for configuring log forwarding.
 
-The log tag entry is `rtfTokenizationStatistics`, and stats are a JSON string. Logs rendered every one minutes at forced log entry of RTC `INFO` level (not subject to log level settings).
+The log tag entry is `rtfTokenizationStatistics`, and the stats are a JSON string. Logs are rendered every one minute at a forced log entry of RTC `INFO` level (not subject to log level settings).
 
-The following is an example of the tokenization summary message:
+Failure counts are incremented only for actual tokenization and de-tokenization failures. Other failures, such as protocol errors in the requests, do not count towards the failure statistics. An example of a failure is an unknown token string that can't be de-tokenized.
+
+Counts are cumulative from the start of each individual pod (replica) until its death.
+
+Example tokenization summary message:
 
 ----
 <logEntry>
@@ -39,6 +43,3 @@ The following is an example of the tokenization summary message:
  }
 }
 
-Failures are incremented only for actual tokenization and de-tokenization failures. Other failures, such as protocol errors in the requests, do not count towards the failure statistics. An example of a failure is an unknown token string that can't be de-tokenized.
-
-Counts are cumulative from the start of each individual pod (replica) until its death.

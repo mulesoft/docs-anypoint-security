@@ -4,7 +4,7 @@ The tokenization service enables you to substitute a sensitive data element with
 
 == Prerequisites
 
-To configure and use the tokenization service, you need the following:
+To configure and use the tokenization service, you need:
 
 * Runtime Fabric 1.1.153 or later with inbound traffic configured. See xref:1.2@runtime-fabric::index.adoc[the Runtime Fabric documentation].
 * A secret group to store the tokenization table encryption keys. The tokenization service creates and stores its own keys. See xref:asm-secret-group-concept.adoc[Secrets Manager documentation].
@@ -12,7 +12,7 @@ To configure and use the tokenization service, you need the following:
 
 == Create the Tokenization Service
 
-. Go to the *Runtime Manager­>Tokenization Service* page to create the service.
+. Go to the *Runtime Manager­ > Tokenization Service* page to create the service.
 . Click *Create Tokenization Service*. The prerequisites you completed provide the information you need to fill out the form. This example shows the form filled in with the following values: +
   * In the *Runtime fabric* drop-down list, select the Runtime Fabric to deploy the tokenization service to.
   * Select the tokenization format from the *Formats* drop-down list. You can assign more than one, or all, formats to one tokenization service.
@@ -28,7 +28,7 @@ If many, or all, of the formats are selected, it takes much longer, as a table w
 
 === What to Know About Secret Groups and Tokenization
 
-Each tokenization service you create must have a corresponding, dedicated secret group in Secrets Manager. No other tokenization service should use this secret group and no secrets outside of this tokenization service should be stored in that secret group.
+Each tokenization service you create must have a corresponding, dedicated secret group in Secrets Manager. Do not use this secret group with any other tokenization service. Do not store any secrets outside of this tokenization service in another secrets group.
 
 Use Secrets Manager xref:asm-secret-group-creation-task.adoc[to create and manage secret groups]. 
 
