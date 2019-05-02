@@ -1,10 +1,12 @@
 = Sensitive Information Detection
 
-Sensitive Information Detection (SID) allows you to identify where you have potential leakage of sensitive information. To enable sensitive information detection, select the *Detect sensitive information* option in the xref:create-waf-policy.adoc[WAF policy] configuration. 
+Sensitive Information Detection (SID) allows you to identify where you have potential leakage of sensitive information.  
 
 == WAF Security Policy Summary Log
 
-When you apply a WAF policy to Runtime Fabric, a `rtfWafSecurityPolicySummary` log is generated. This log contains the WAF categories and also shows the SID related categories. If any rules within the SID related categories are triggered, you see the rule ID and the count for the number of times the violation was detected per payload during the last collection interval.
+When you apply a WAF policy to Runtime Fabric, and select the *Detect sensitive information* option in the xref:create-waf-policy.adoc[WAF policy] configuration, requests and responses will be inspected for leakage of sensitive information. Using a one minute collection interval the `rtfWafSecurityPolicySummary` message reports a list of SID rules violated and the count of requests and responses violating the rules to the log. 
+
+The `rtfWafSecurityPolicySummary` log contains the WAF categories and also shows the SID related categories. If any rules within the SID related categories are triggered, you see the rule ID and the count for the number of times the violation was detected. The count is a count of the number of requests and responses that violate a particular rule during the collection interval.
 
 This is an example of the log, which shows that SID rule ID `600100` (TAXID) was detected one time in this payload during the collection interval, which triggered the `requestSidPiiCore` category:
 
@@ -92,7 +94,7 @@ This is an example of the log, which shows that SID rule ID `600100` (TAXID) was
 
 == SID Summary Log
 
-When you apply the WAF policy to Runtime Fabric and select the *Detect sensitive information* option, a `rtfSidSummary` log is generated, which contains the offending API, rule description, direction (request or response), and count for the number of times the SID rule was triggered per payload. 
+When you apply the WAF policy to Runtime Fabric and select the *Detect sensitive information* option, a `rtfSidSummary` log is generated, which contains the offending API, rule description, direction (request or response) and count of the requests and responses that violated the SID rules for the collection interval. 
 
 This is an example of the log for a request where sensitive information (tax ID rule) was detected in the payload.
 
@@ -112,7 +114,7 @@ This is an example of the log for a request where sensitive information (tax ID 
 ----
 
 [NOTE]
-SID rules are counted only once per payload. This means that if there are multiple occurrences of the same type of sensitive information detected, for example DOB, the rule is counted only once. 
+SID rules are counted only once per payload. This means that if there are multiple occurrences of the same type of sensitive information detected in a payload, for example DOB, the rule is counted only once. 
 
 == Supported Content Types
 
@@ -138,9 +140,8 @@ Sensitive information detection rules belong to rule categories, which include:
 
 You can view the the SID categories and rule IDs in the Anypoint Security RAML (`security-fabric-policies-api-<version>.raml`). 
 
-. Go to Anypoint Exchange.
-. Search for "Anypoint Security Policies API" and download the RAML.
-. Extract the ZIP files.
+. Go to the public https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/[MuleSoft developer portal], and search for "Anypoint Security Policies API".
+. Download the RAML and extract the ZIP files.
 . Navigate to `<Download_location>/anypoint-security-policies-api-<version>-raml/dataTypes/policies/WafRules/Rulesets.json`.
 
 === See Also
