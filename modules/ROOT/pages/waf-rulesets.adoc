@@ -14,7 +14,7 @@ Request rulesets are divided into ten threat categories, which are called rulese
 * *Disable ruleset* - (Default) Ruleset detection is turned off.
 * *Detect and allow violations* - The violation is detected and you will get information in your logs at the INFO level, per incident. +
 They will also be included at the ERROR (default log level for Edge policies) level in a summary report. +
-See xref:1.0@runtime-fabric::enable-inbound-traffic#logs[the Runtime Fabric documentation].
+See xref:1.2@runtime-fabric::enable-inbound-traffic#logs[the Runtime Fabric documentation].
 * *Detect and reject violations* - The request is rejected and returns a response status of `HTTP/1.1 400 BAD REQUEST - web application firewall`.
 +
 For request rulesets, DoS is notified that a rule was triggered. If xref:escalate-waf-to-dos.adoc[DoS has been configured for WAF Errors], DoS will update its WAF-related counters and take action, if necessary. If DoS isn't configured for WAF Errors, it ignores the notification it receives from WAF. +
@@ -53,13 +53,13 @@ The threat categories for the response ruleset include:
 You can understand the regular expressions that make up each rule by viewing the rules in the Anypoint Security RAML (`security-fabric-policies-api-<version>.raml`). Not all OWASP CRS rules for each category are enabled for the WAF policy. A very small number of rules are not included for various reasons. View the RAML for the exact contents and rule IDs that are included.
 
 . Go to Anypoint Exchange.
-. Search for "Anypoint Security Policies API" and download the RAML.
+. Search for "Security Fabric Policies API" and download the RAML.
 . Extract the ZIP files.
-. Navigate to `<Download_location>/anypoint-security-policies-api-<version>-raml 3/dataTypes/policies/WafRules/Rulesets.json`.
+. Navigate to `<Download_location>/security-fabric-policies-api-<version>-raml/dataTypes/policies/WafRules/Rulesets.json`.
 
 == Runtime Fabric Policy Summary
 
-The Runtime Fabric policy summary includes the WAF summary. A WAF summary log message is generated every five minutes. See xref:1.0@runtime-fabric::configure-log-forwarding[Configure Log Forwarding on Runtime Fabric]. The contents in the raw log message include WAF and DoS summary statistics.
+The Runtime Fabric policy summary includes the WAF summary. A WAF summary log message is generated every minute. See xref:1.2@runtime-fabric::runtime-fabric-logs.adoc[View and Configure Logging in Runtime Fabric]. The contents in the raw log message include WAF and DoS summary statistics.
 
 For example:
 

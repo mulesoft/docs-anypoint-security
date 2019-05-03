@@ -1,0 +1,122 @@
+= Sensitive Information Detection
+
+Sensitive Information Detection (SID) allows you to identify where you have potential leakage of sensitive information.
+
+== WAF Security Policy Summary Log
+
+When you apply a WAF policy to Runtime Fabric, a `rtfWafSecurityPolicySummary` log is generated. This log contains the WAF categories and also shows the SID related categories. For SID, if any rules within the SID related categories are triggered, you see the rule ID and count for how many times the violation was detected during the last collection interval.
+
+This is an example of the log, which shows one violation was detected in the collection interval, which triggered the `requestSidPiiCore` category:
+
+[json]
+----
+{
+	"timeStamp": "2019-04-15T16:13:00.045Z",
+	"collectionIntervalInMinutes": "1",
+	"node": "node-host",
+	"wafSummary": {
+		"requestScannerDetection": [
+
+		],
+		"requestProtocolEnforcement": [
+
+		],
+		"requestProtocolAttack": [
+
+		],
+		"requestApplicationAttackLfi": [
+
+		],
+		"requestApplicationAttackRfi": [
+
+		],
+		"requestApplicationAttackRce": [
+
+		],
+		"requestApplicationAttackPhp": [
+
+		],
+		"requestApplicationAttackXss": [
+
+		],
+		"requestApplicationAttackSqli": [
+
+		],
+		"requestApplicationAttackSessionFixation": [
+
+		],
+		"requestSidPiiCore": [{
+			"ruleId": "600100",
+			"count": 1
+		}],
+		"requestSidPiiEnhanced": [
+
+		],
+		"requestSidPci": [
+
+		],
+		"requestSidPhi": [
+
+		],
+		"responseDataLeakages": [
+
+		],
+		"responseDataLeakagesSql": [
+
+		],
+		"responseDataLeakagesJava": [
+
+		],
+		"responseDataLeakagesPhp": [
+
+		],
+		"responseDataLeakagesIis": [
+
+		],
+		"responseSidPiiCore": [
+
+		],
+		"responseSidPiiEnhanced": [
+
+		],
+		"responseSidPci": [
+
+		],
+		"responseSidPhi": [
+
+		]
+	}
+}
+----
+
+////
+== SID Summary Log
+
+When you apply the WAF policy to Runtime Fabric, a `rtfSidSummary` log is generated, which shows the offending API, rule description, direction, and count for the number of times the SID rule was triggered. 
+This is an example of the log:
+
+[json]
+----
+{
+	"timeStamp": "2019-04-15T16:13:00.045Z",
+	"collectionIntervalInMinutes": "1",
+	"node": "node-host-name",
+	"sidSummary": {
+		"api": "/Post",
+		"rule": "TAXID",
+		"direction": "Request",
+		"count": 1
+	}
+}
+----
+ 
+////
+
+== View Rule Categories and IDs in RAML
+
+You can view the the SID categories and rule IDs in the Anypoint Security RAML (`security-fabric-policies-api-<version>.raml`). 
+
+. Go to Anypoint Exchange.
+. Search for "Security Fabric Policies API" and download the RAML.
+. Extract the ZIP files.
+. Navigate to `<Download_location>/security-fabric-policies-api-<version>-raml/dataTypes/policies/WafRules/Rulesets.json`.
