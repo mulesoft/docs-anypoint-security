@@ -112,7 +112,7 @@ CCN to pay for the application
 
 The summary message would contain three items--one for each rule violated (DOB, SSN, and CCN). In other words, every rule violation in one message is counted only once, even if there are multiple violations of the same rule in one message.  
 
-This is an example of the `rtfSidSummary` log for a request where sensitive information (tax ID rule) was detected in the payload.
+This is an example of the `rtfSidSummary` log for a request where sensitive information (SSN) was detected in the payload.
 
 [json]
 ----
