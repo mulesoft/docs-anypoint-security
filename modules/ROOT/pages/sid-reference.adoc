@@ -1,12 +1,14 @@
 = Sensitive Information Detection
 
-Sensitive Information Detection (SID) allows you to identify where you have potential leakage of sensitive information.
+Sensitive Information Detection (SID) allows you to identify where you have potential leakage of sensitive information.  
 
 == WAF Security Policy Summary Log
 
-When you apply a WAF policy to Runtime Fabric, a `rtfWafSecurityPolicySummary` log is generated. This log contains the WAF categories and also shows the SID related categories. For SID, if any rules within the SID related categories are triggered, you see the rule ID and count for how many times the violation was detected during the last collection interval.
+When you apply a WAF policy to Runtime Fabric, and select the *Detect sensitive information* option in the xref:create-waf-policy.adoc[WAF policy] configuration, requests and responses will be inspected for leakage of sensitive information. Using a one minute collection interval the `rtfWafSecurityPolicySummary` message reports a list of SID rules violated and the count of requests and responses violating the rules to the log. 
 
-This is an example of the log, which shows one violation was detected in the collection interval, which triggered the `requestSidPiiCore` category:
+The `rtfWafSecurityPolicySummary` log contains the WAF categories and also shows the SID related categories. If any rules within the SID related categories are triggered, you see the rule ID and the count for the number of times the violation was detected. The count is a count of the number of requests and responses that violate a particular rule during the collection interval.
+
+This is an example of the log, which shows that SID rule ID `600100` (TAXID) was detected one time in this payload during the collection interval, which triggered the `requestSidPiiCore` category:
 
 [json]
 ----
@@ -89,34 +91,94 @@ This is an example of the log, which shows one violation was detected in the col
 }
 ----
 
-////
+
 == SID Summary Log
 
-When you apply the WAF policy to Runtime Fabric, a `rtfSidSummary` log is generated, which shows the offending API, rule description, direction, and count for the number of times the SID rule was triggered. 
-This is an example of the log:
+When you apply the WAF policy to Runtime Fabric and select the *Detect sensitive information* option, a `rtfSidSummary` log is generated. The summary log contains a list of rule instances (rule ID, API, method, direction, and count) where at least one trigger occurred during the one-minute collection interval. 
+
+The count applies only to messages (request or response) and is how many messages in the collection interval triggered the rule instance. 
+
+For example, if the request is for a birth certificate application, and only one request occurred in the last minute, and the request contained:
+
+----
+DOB of Mother
+SSN of Mother
+DOB of Father
+SSN of Father
+DOB of Father
+DOB of Baby
+CCN to pay for the application
+----
+
+The summary message would contain three items--one for each rule violated (DOB, SSN, and CCN). In other words, every rule violation in one message is counted only once, even if there are multiple violations of the same rule in one message.  
+
+This is an example of the `rtfSidSummary` log for a request where sensitive information (SSN) was detected in the payload.
 
 [json]
 ----
 {
-	"timeStamp": "2019-04-15T16:13:00.045Z",
+	"timeStamp": "2019-05-03T20:28:00.493Z",
 	"collectionIntervalInMinutes": "1",
-	"node": "node-host-name",
-	"sidSummary": {
-		"api": "/Post",
-		"rule": "TAXID",
+	"node": "node-host",
+	"sidSummary": [{
+		"api": "myapi",
+		"envId": "a2f87a26-6ee9-4843-a145-bf258e630aa8",
+		"method": "POST",
+		"rule": "Social Security Number key value pair",
 		"direction": "Request",
 		"count": 1
-	}
+	}]
 }
 ----
- 
-////
 
-== View Rule Categories and IDs in RAML
+== Supported Content Types
 
-You can view the the SID categories and rule IDs in the Anypoint Security RAML (`security-fabric-policies-api-<version>.raml`). 
+SID rules match the following content-types for sensitive data tags and values:
 
-. Go to Anypoint Exchange.
-. Search for "Security Fabric Policies API" and download the RAML.
-. Extract the ZIP files.
-. Navigate to `<Download_location>/security-fabric-policies-api-<version>-raml/dataTypes/policies/WafRules/Rulesets.json`.
+* Request Types: 
+ ** text/plain
+ ** application/json
+ * Response Types:  
+  ** text/plain 
+  ** application/json
+
+== Rule Categories
+
+Sensitive information detection rules belong to rule categories, which include: 
+
+* PII: Personally identifiable information, such as date of birth, social security number, passport number, and so on. 
+* PCI: Payment card information, such as a Visa or Mastercard number. 
+* PHI: Protected health information.
+
+== View SID Rules and Rule IDs in RAML
+
+You can view the the SID rules and rule IDs in the Anypoint Security Policies RAML. 
+
+. Go to the public https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/[MuleSoft developer portal], and search for "Anypoint Security Policies API".
+. Download the RAML and extract the ZIP files.
+. Navigate to `<Download_location>/anypoint-security-policies-api-<version>-raml/dataTypes/policies/WafRules/Rulesets.json`.
+. Search for "MULESOFT_SID", to see the SID rules and their details, including the name (`msg`) and `id`. +
+This is an example of the RAML file content:
+
+----
+{
+	"id": 600780,
+	"ver": "",
+	"rev": "1",
+	"phase": "response",
+	"severity": "WARNING",
+	"accuracy": "5",
+	"maturity": "1",
+	"taglist": ["MULESOFT_SID"],
+	"msg": "VISA CARD",
+	"variables": "RESPONSE_BODY",
+	"operator": "UkVTUE9OU0VfQk9EWSAoPzwhWy5cdy1dKTRbMC05XXszfShbIC1dPylbMC05XXs0fVwxWzAtOV17NH1cMVswLTldezR9KD8hWy5cdy1dKQo=",
+	"paranoia": 1,
+	"chain": "no"
+}
+----
+
+=== See Also
+
+* xref:runtime-fabric::runtime-fabric-logs.adoc[View and Configure Logging in Runtime Fabric]
+* xref:create-waf-policy.adoc[Create a Web Application Firewall Policy]
