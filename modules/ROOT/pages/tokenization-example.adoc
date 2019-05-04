@@ -1,323 +1,60 @@
-= Configure and Use Tokenization
 
-== Set up Tokenization with API Gateway
+= Tokenization Service Configurations
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
 
-To configure the tokenization service, you need the following:
+The way you configure and use the tokenization service depends on your Mule implementation:
 
-* Runtime Fabric 1.1.153 or later with inbound traffic configured. See xref:1.2@runtime-fabric::index.adoc[the Runtime Fabric documentation].
-* A secret group to store the tokenization table encryption keys. The tokenization service creates and stores its own keys. See xref:asm-secret-group-concept.adoc[Secrets Manager documentation].
-* A tokenization format, which describes the format and how data is tokenized. See xref:tokenization-formats.adoc[Tokenization Formats].
-* A tokenization service that handles the actual tokenization requests and also tokenizes and detokenizes the data. For security purposes, an API Gateway must protect this service.
-* API Gateway, which proxies requests to the tokenization service, provides authorization and authentication, and provides JSON protection for the tokenization service.
+* <<tokenize_api_policy,The API gateway>> capability of Mule 4 with a tokenization policy applied.
+* <<tokenize_mule_app,A Mule runtime engine with a Mule app>> that calls the tokenization service.
 
-
-image::tokenization-setup-example-diagram.png[Tokenization Examples]
-
-In this diagram, a separate zone segregates the tokenization service from the general Runtime Fabric. This segregation is based on security needs.
-
-For example, if sensitive data is produced from a Mule application serving external traffic (Client -> Edge -> Mule application), this application might be included in the sensitive data zone.
-
+[[prerequisites]]
 == Prerequisites
 
-=== Runtime Fabric 1.1.153 or Later with Inbound Traffic
+To configure and use the tokenization service, you must:
 
-This example shows a Runtime Fabric named "rtf231", which has inbound traffic that is using a certificate and private key in the secret group “alphatoken”. If you already have a Runtime Fabric and secret group configured, use those names in places of the ones in the example.
+. Have these permissions: 
+ ** API Manager *Manage Policies*
+ ** Tokenization *Manage Tokenization Services* 
++ 
+See xref:2.x@api-manager::environment-permission-task.adoc[Granting Permission to Access an Environment]
+. xref:runtime-fabric::install-create-rtf-arm.adoc[Install Runtime Fabric]. Anypoint Runtime Fabric is a container service that automates the deployment and orchestration of Mule applications and API gateways.
+. To allow Mule applications or API gateways to listen on inbound connections, enable inbound traffic, you must xref:runtime-fabric::enable-inbound-traffic.adoc[Enable inbound traffic] on Runtime Fabric.
 
-image::tokenization-example-rtf-ingress-config.png[Example Runtime Fabric with Inbound Traffic]
 
-For more information, see xref:1.2@runtime-fabric::enable-inbound-traffic.adoc[Runtime Fabric Inbound Traffic Configuration].
+[[tokenize_api_policy]]
+== Configure Tokenization Using Policies
 
-=== Secret Group
+You can configure the API Gateway and use the tokenization service as the core engine for the tokenization and detokenization policies provided in API Manager. 
 
-Use Secrets Manager xref:asm-secret-group-creation-task.adoc[to create and manage secret groups]. For each tokenization service you create, you must also create a corresponding, dedicated secret group in Secrets Manager. No other tokenization service should use this secret group and no secrets outside of this tokenization service should be stored in that secret group.
+To use tokenizatin and detokenization policies to configure the tokenization service:
 
-When you delete a tokenization service, you can delete the corresponding secret group.
+. Ensure you have completed the <<prerequisites,required prerequisites>>. 
+. xref:create-tokenization-format.adoc[Create a tokenization format].
+. xref:create-tokenization-service.adoc[Create a tokenization service].
+. In API Manager, xref:2.x@api-manager::getting-started-proxy.adoc[set up the API gateway] for the Mule app to serve as the proxy. 
+. Apply xref:2.x@api-manager::policy-mule4-tokenization.adoc[the tokenization policy] to the API gateway.
 
-This is the recommended approach for several reasons:
+For more information, see xref:apply-tokenization-policy-to-api.adoc[Apply a Tokenization Policy to the API Gateway].
 
-. Using a dedicated secret group for the tokenization service helps avoid other secret from being deleted accidentally when you delete a secret group. 
-. You can create as many formats as needed and change the set of formats assigned to the tokenization service, and the secret group will never be exhausted.
-. This unique association between the tokenization service and its dedicated secret group prevents running out of the secrets of the VDP Context type in a secret group. In the worst case, there will be 10 secrets created of the VDP Context type--one for each VDP domain.
+[[tokenize_mule_app]]
+== Configure Tokenization Using a Mule App
 
-Normally, you can view, edit, or create secrets in Secrets Manager. However, the tokenization table keys are a non-editable part of the secret group. You can see the tokenization secrets under shared secrets, but you are not allowed to modify them. Actions such as edit, cancel edit, and finish do not apply.
+When extra data processing is required, you can expose the tokenization endpoint through a Mule app. 
 
-image::tokenization-example-shared-secret.png[]
+To use a Mule app to expose the tokenization endpoint:
 
-Click *View* to see the name, type, and expiration of the secret group.
+. Ensure you have completed the <<prerequisites,required prerequisites>>. 
+. xref:create-tokenization-format.adoc[Create a tokenization format].
+. xref:create-tokenization-service.adoc[Create a tokenization service].
+. Configure TLS. See xref:tokenization-from-a-mule.adoc#configure_tls[Configure TLS]
+. xref:tokenization-from-a-mule.adoc#create_an_api_from_the_tokenization_raml[Create an API from the tokenization RAML].
+. Deploy the app to Runtime Fabric. See xref:runtime-fabric::deploy-index.adoc[Deploy Applications and API Proxies to Runtime Fabric].
 
-For more information about secret groups, see xref:asm-secret-group-concept.adoc[Secrets Manager documentation].
+For more information, see xref:tokenization-example.adoc[Expose Tokenization as a Service Directly to Mule Applications].
 
-== Create the Tokenization Format
 
-The tokenization format defines the way incoming data is converted. In this example, the domain type used is social security number (SSN). For more information about the supported tokenization formats see xref:tokenization-formats.adoc[Tokenization Formats].
 
-To create the tokenization format:
 
-. Sign into Anypoint Platform with the Organization Administrators role.
-. Under *Management Center*, click *Anypoint Security*.
-. In the menu on the left, click *Tokenization Format*.
-. Click *Create Format*. +
-The example below shows a social security data domain format named "sssnonly" with none of the options selected.
 
-image::tokenization-example-format.png[]
-
-== Create the Tokenization Service
-
-[NOTE]
-You must download the automatically generated API Gateway Mule application and manually add TLS to the API Gateway Mule application connectors before you can make this service work. Tokenization involves sensitive data, and therefore, works only with TLS.
-
-. Go to the *Runtime Manager­>Tokenization Service* page to create the service.
-. Click *Create Tokenization Service*. The “Mule Cloud” means “Runtime Fabric Target”. The prerequisites you completed provide the information you need to fill out the form. This example shows the form filled in with the following values: +
-* The Runtime Fabric named `rtf231` is in the *Mule Cloud* drop-down list.
-* The tokenization format `sssnonly` you created appears in the *Format* drop-down list. You can assign more than one, or all, formats to one tokenization service.
-* The secret group `alphatoken` appears in the *Secrets Group* drop-down list.
-* Select the number of tokenization service replicas to run. The tokenization service will run on worker nodes in Runtime Fabric.
-* Optionally, you can adjust the logging level for the tokenization service.
-. Click *Deploy* to create the tokenization table. +
-A mapping table, which contains a large table of randomizations that are used at the core of tokenizing and detokenizing pre-builds. This is not a one-to-one table of mappings--it is used during internal steps to swap in and swap out randomizations in place of the actual data. The actual algorithm consists of these three steps:
-** First stage transformation: Perform AES­FFX[radix] specific domain encryption using first stage symmetric key and tweak. This will redistribute the information contained within the data to be tokenized across all characters of the extracted data.
-** Second stage transformation: Look­up and replace chunks of the clear­text data with the appropriate precomputed randomization in the mapping table.
-** Third stage transformation: Perform AES­FFX[radix] specific domain encryption using third stage symmetric key and tweak. This will redistribute the information mapped by the multiple table look­ups of the preceding step across all of the extracted.
-
-The tokenization mapping table build is a one-time action and can take as little as two minutes to build, or up to twenty minutes, depending on the size of the tokenization format. For example, an SSN-only table less than 200 MB in size can build in two minutes, but a larger format such as “lax alphanumeric” can take up to 20 minutes to build.
-
-If many, or all, of the formats are selected, it can take about 70 minutes to build the table for the service, as a table with all formats is approximately 2 GB in size.
-
-image::tokenization-example-create-tokenization-service.png[]
-
-Once you create the tokenization service, you need to create an API Gateway to route requests to the tokenization service.
-
-== Create an API Gateway for the Tokenization Service
-
-Go to the *Tokenization Service* page in Runtime Manager to get the information you need for the implementation URL.
-
-. In Runtime Manager, click *Tokenization Service* in the menu on the left.
-. Click *Edit* for the tokenization service for which to create the API Gateway.
-+
-image::tokenization-example-edit-token-service.png[]
-. Confirm the Runtime Fabric assignment. +
-The tokenization service name is “mytoken1” and the implementation URL will be: “https://mytoken1­tokenizer:3443”.
-
-The tokenization service listens on port 3443 and is available through HTTPS only. The hostname portion is formed by taking the “Service Name” + “tokenizer” to arrive at the Kubernetes service name. The service name in this example is “mytoken1”, so the hostname is "mytoken1tokenizer".
-
-image::tokenization-example-create-tokenization-service.png[]
-
-== Create an API from the Tokenization RAML
-
-Once you have the information you need to set up a routable tokenization service using an Api Gateway, create an API from the tokenization RAML.
-
-. In Anypoint Platform, go to Exchange, and search for "Tokenization Service API."
-. Download the `AMC Tokenizer.zip` file.
-. Go to *Design Center* and select *Create > API Specification*. For this example, the API specification is named "AMC Tokenizer". If you choose a different name, use that one in the below steps.
-+
-image::tokenization-example-create-api-spec.png[]
-. Next to *File*, select *Import* and upload the `AMC Tokenizer.zip` file you downloaded from Exchange in Step 1.
-+
-image::tokenization-example-upload-amc-tokenizer.png[]
-. Publish the asset to Anypoint Exchange.
-. Navigate to *API Manager* from the top level Anypoint Platform menu.
-. Select *Manage API > Manage API from Exchange*.
-+
-image::tokenization-example-manage-api-from-exchange.png[]
-. Enter the API configuration information, and click *Save*. The following image shows example values.
-+
-image::tokenization-example-api-configuration.png[]
-+
-[NOTE]
-Do not use *Advanced* options, as HTTPS is not supported on Runtime Fabric.
-. Go to the *Deployment Configuration*, select your Runtime Fabric and Mule version, then enter a name for the API Gateway. The following example shows information for an API Gateway named "token2mule".
-+
-image::tokenization-example-deploy-config.png[]
-. Click *Deploy*. The button changes to *Redeploy* after the first deployment finishes. This deploys the API Gateway application.
-. Download the API Gateway application to configure SSL within it:
-.. In API Manager, go to the *Settings* page for your API.
-.. Select *Actions > Download Proxy*.
-+
-image::tokenization-example-download-proxy.png[]
-+
-[NOTE]
-This last step is necessary to configure TLS.
-
-== Configure TLS
-
-. Go to Anypoint Studio, and import the API Gateway.
-+
-image::tokenization-example-import-api-gateway-studio.png[]
-. Go to `src/main/resources` and add the keystore. In this example the keystore is named “tester.jks”.
-+
-image::tokenization-example-keystore.png[]
-. Add TLS to the listener side so you can later enable the `Last Mile Security` flag. To do this, first set the HTTPS flag.
-+
-image::tokenization-example-set-https-flag.png[]
-. Set the keystore information. In this example the trust store side is set to *insecure* and the keystore, alias, and password information has been added.
-+
-image::tokenization-example-set-keystore-info.png[]
-. Now set the HTTPS on the *Server* tab, then configure your keystore on the TLS side to configure the client side.
-+
-image::tokenization-example-configure-TLS.png[]
-. Save the application and export it. Remember where it is saved so you can upload it in the next step.
-
-== Add the TLS Enabled API Gateway
-
-. In Anypoint Platform, go to the *Runtime Manager* page and click on the name of the API Gateway application `token2mule`.
-. In the *Settings* page, select *Choose File ­> Upload File* to upload the API Gateway application you modified in Anypoint Studio.
-. Select the *Enable Last­Mile Security* option. Your settings should look similar to this image.
-+
-image::tokenization-example-add-tls-enabled-gateway.png[]
-. Click *Deploy*. +
-Once the application has a status of "Running" you are ready to test.
-
-== Test the Tokenization Traffic
-
-Once the application is running, you are ready to send traffic. To fully secure the service, it is a good idea to test the service before you complete the additional steps. You can use POSTMAN or `curl` to test the service.
-
-An example `curl` command is provided below. Replace the IP address with your own IP address. If you have used names that are different from the example for format, tokenization service, or API name, modify the `curl` command accordingly.
-
-To try tokenizing data, send the following `curl` command:
-
-----
-curl ­-k ­­--resolve token2mule.ic.example.com:443:192.168.2.1 https://token2mule.ic.example.com/tb/v1/tokenization -­X POST -­H "Content­type: application/json" ­­--data '[{"data": "683­31­8102", "format": "ssndemo"}]
-----
-
-You should get a response similar to the following:
-
-`HTTP/1.1 200 OK [{"data":"597­74­8102","status":"success"}]`
-
-== Add Authorization and JSON Threat Protection
-
-The tokenization service has no authentication or authorization. The only way to protect it is to allow access only through an Api Gateway with some type of authorization policy enabled.
-
-This example shows you how to add a basic authorization policy to provide simple authentication.
-
-. Go to the API Manager page where you created the API Gateway.
-. In the menu on the left, click *Policies*.
-. Create a *Simple security manager* and add a simple username and password.
-+
-image::tokenization-example-apply-simple-security.png[]
-. Click *Apply New Policy* and add the “HTTP Basic Authorization” policy.
-. Add the JSON threat protection policy.
-+
-[NOTE]
-A maximum of 100 tokenization or detokenization items can be included in each tokenization or detokenization request.
-+
-The following image shows an example.
-+
-image::tokenization-example-json-threat-protection.png[]
-+
-The Policies page should look similar to the following example.
-+
-image::tokenization-example-policies-page.png[]
-
-== Test Runtime Traffic with Basic Authorization
-
-Run the following `curl` command to send traffic with the `--user` flag for basic authorization.
-
-----
-curl ­-k --­­resolve token2mule.ic.example.com:443:192.168.2.1 https://token2mule.ic.example.com/tb/v1/tokenization -­X POST ­-H "Content­type: application/json" ­­data '[{"data": "683­31­8102", "format": "ssndemo"}]' ­-k ­­--user test:test
-----
-
-You should receive a response similar to the following:
-
-`HTTP/1.1 200 OK [{"data":"597­74­8102","status":"success"}]`
-
-You can take the tokenized SSN from above and send it back to the service. The original SSN will be returned. Remember that the token returned always preserves the format of the input data.
-
-----
-curl ­-k ­­--resolve token2mule.ic.example.com:443:192.168.2.1 https://token2mule.ic.example.com/tb/v1/detokenization ­-X POST ­-H "Content­type: application/json" ­­data '[{"data": "597­74­8102", "format": "ssndemo"}]' ­-k ­­--user test:test
-----
-
-You should receive a response similar to the following:
-
-----
-HTTP/1.1 200 OK [{"data":"683­31­8102","status":"success"}][root@openstackvm32 pentest­ca]
-----
-
-The following is an example of bad tokenization:
-
-----
-curl ­v ­-k ­­--resolve token2mule.ic.example.com:443:192.168.2.1 https://token2mule.ic.example.com/tb/v1/tokenization -­X POST ­-H "Content­type: application/json" ­­data '[{"data": "597­74­8102­­­­­­­­sdsdsdsdsdsdsdsds", "format": "ssndemo"}]' ­-k ­­--user test:test
-----
-
-You should receive a response similar to the following:
-
-----
-HTTP/1.1 422 Unprocessable Entity
-[{"data":"","status":"failure","errorcode":1384,"error":"The social security number is invalid.
-It contains [26] characters.
-A social security number must have the format ###-##-#### where # represents a decimal digit."}]
-----
-
-The following is an example of bad detokenization:
-
-----
-curl ­v ­-k ­­--resolve token2mule.ic.example.com:443:192.168.2.1 https://token2mule.ic.example.com/tb/v1/detokenization ­-X POST ­-H "Content­type: application/json" ­­data '[{"data": "597­74­8102­­­­­­­­sdsdsdsdsdsdsdsds", "format": "ssndemo"}]' ­-k ­­--user test:test
-----
-
-You should receive a response similar to the following:
-
-----
-HTTP/1.1 422 Unprocessable Entity
-[{"data":"","status":"failure","errorcode":1380,"error":"The social security number is invalid.
-It contains [26] characters.
-A social security number must have the format ###-##-#### where # represents a decimal digit."}]
-----
-
-
-The following is an example of bad tokenization JSON data stopped by Api Gateway protection:
-
-----
-curl ­v ­-k ­­--resolve token2mule.ic.example.com:443:192.168.2.1 https://token2mule.ic.example.com/tb/v1/detokenization ­-X POST -­H "Content­type: application/json" ­­data '[{{{}{{{}]]"data": "597­74­8102­­­­­­­­sdsdsdsdsdsdsdsds", "format": "ssndemo"}]' ­-k ­­--user test:test
-----
-
-You should receive a response similar to the following:
-
-----
-HTTP/1.1 400 Bad Request
-{ "errorcode": 1140, "message": "Error while parsing json [line 1 char 3, byte-offset 2]:
-Expected member name"}
-----
-
-== Logs
-
-You can use the tokenization summary message that is returned in the logs to determine traffic counts. To retrieve the logs, follow the instructions in the xref:1.2@runtime-fabric::runtime-fabric-logs.adoc[Runtime Fabric documentation] for configuring log forwarding.
-
-The log tag entry is `rtfTokenizationStatistics`, stats are a JSON string and rendered every 5 minutes at forced log entry of RTC `INFO` level (not subject to log level settings).
-
-The following is an example of the tokenization summary message:
-
-----
-<logEntry>
-<header>
-<time>2018-11-12T14:55:00.009667</time>
-<node>icvlab11401</node>
-<logType>RTC_BASE_MGMT</logType>
-<logLevel>INFO</logLevel>
-<process>WorkflowTest</process>
-<pid>16766</pid>
-<tid>16775</tid>
-<file>cbrsrc/cbrcore/src/rtc/embedded/wfp/WfpTokenizationStatistics.cpp</file>
-<line>98</line>
-</header>
-<body><rtfTokenizationStatistics>{"tokenizationStatistics":{"node":"icvlab11401","timestamp":"2018-11-12T20:55:00.009Z","tokenizeSuccess":2,"deTokenizeSuccess":6,"tokenizedBytes":6,"deTokenizedBytes":32,"tokenizeFailure":2,"deTokenizeFailure":2,"tokenizeFailedBytes":5,"deTokenizeFailedBytes":0}}</rtfTokenizationStatistics></body>+
-</logEntry>
-----
-
-[source,json,linenums]
-{
- "tokenizationStatistics":{
-   "node":"icvlab11401",
-   "timestamp":"2018-11-12T20:55:00.009Z",
-   "tokenizeSuccess":2,
-   "deTokenizeSuccess":6,
-   "tokenizedBytes":6,
-   "deTokenizedBytes":32,
-   "tokenizeFailure":2,
-   "deTokenizeFailure":2,
-   "tokenizeFailedBytes":5,
-   "deTokenizeFailedBytes":0
- }
-}
-
-Failures are incremented only for actual tokenization and detokenization failures. Other failures, such as protocol errors in the requests, do not count towards the failure statistics. An example of a failure is an unknown token string that can't be detokenized.
-
-Counts are cumulative from the start of each individual pod (replica) until its death.

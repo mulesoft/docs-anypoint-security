@@ -1,0 +1,51 @@
+= Create a Tokenization Service
+
+The tokenization service enables you to substitute a sensitive data element with a non-sensitive equivalent.
+
+== Prerequisites
+
+To configure and use the tokenization service, you need:
+
+* Runtime Fabric 1.1.153 or later with inbound traffic configured. See xref:runtime-fabric::index.adoc[the Runtime Fabric documentation].
+* A secret group to store the tokenization table encryption keys. The tokenization service creates and stores its own keys. See xref:asm-secret-group-concept.adoc[Secrets Manager documentation].
+* A tokenization format, which describes the format and how data is tokenized. See xref:tokenization-formats.adoc[Tokenization Formats].
+
+== Create the Tokenization Service
+
+. Go to the *Runtime Manager­ > Tokenization Service* page to create the service.
+. Click *Create Tokenization Service*. The prerequisites you completed provide the information you need to fill out the form. 
+  * In the *Runtime fabric* drop-down list, select the Runtime Fabric where you will deploy the tokenization service. 
+  * Select the tokenization format from the *Formats* drop-down list. You can assign more than one, or all, formats to one tokenization service.
+  * Select the secret group from the *Secret Group* drop-down list.
+  * Select the number of tokenization service replicas to run. The tokenization service runs on worker nodes in Runtime Fabric.
+  * Optionally, you can adjust the logging level for the tokenization service.
+. Click *Build and Deploy* to create the tokenization table. +
+A mapping table, which contains a large table of randomizations that are used at the core of tokenizing and detokenizing pre-builds. This is not a one-to-one table of mappings--it is used during internal steps to swap in and swap out randomizations in place of the actual data. 
+
+The tokenization mapping table build is a one-time action and can take awhile to build, depending on the size of the tokenization format. For example, an SSN-only table less than 200 MB in size can build in two minutes, but a larger format such as “lax alphanumeric” might take up to 20 minutes to build.
+
+If many, or all, of the formats are selected, it takes much longer, as a table with all formats is approximately 2 GB in size.
+
+=== What to Know About Secret Groups and Tokenization
+
+Each tokenization service you create must have a corresponding, dedicated secret group in Secrets Manager. Do not use this secret group with any other tokenization service. Do not store any secrets outside of this tokenization service in another secrets group.
+
+Use Secrets Manager xref:asm-secret-group-creation-task.adoc[to create and manage secret groups]. 
+
+When you delete a tokenization service, you can delete the corresponding secret group.
+
+This is the recommended approach for several reasons:
+
+. Using a dedicated secret group for the tokenization service helps avoid other secret groups from being deleted accidentally when you delete a secret group. 
+. You can create as many formats as needed and change the set of formats assigned to the tokenization service, and the secret group will never be exhausted.
+. This unique association between the tokenization service and its dedicated secret group prevents running out of the secrets of the VDP Context type in a secret group. In the worst case, there will be 10 secrets created of the VDP Context type--one for each VDP domain.
+
+Normally, you can view, edit, or create secrets in Secrets Manager. However, the tokenization table keys are a non-editable part of the secret group. You can see the tokenization secrets under shared secrets, but you are not allowed to modify them. Actions such as edit, cancel edit, and finish do not apply.
+
+image::tokenization-example-shared-secret.png[]
+
+Click *View* to see the name, type, and expiration of the secret group.
+
+For more information about secret groups, see xref:asm-secret-group-concept.adoc[Secrets Manager documentation].
+
+

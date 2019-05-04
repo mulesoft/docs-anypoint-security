@@ -1,1 +1,37 @@
-= Creating the Tokenization Service
+= Create, Update, and Delete a Tokenization Format
+
+The tokenization format defines the way incoming data is converted. Ensure that the token matches the format of the original data when you define the tokenization format. For example, if you use a credit card format, the number of digits defined for the format should match the number of digits for the original credit card.  
+
+For more information about the supported tokenization formats see xref:tokenization-formats.adoc[Tokenization Formats].
+
+
+== Create a Tokenization Format
+
+. Sign into Anypoint Platform.
+. Under *Management Center*, click *Anypoint Security*.
+. In the menu on the left, click *Tokenization Format*.
+. Click *Create Format*.
+. In the *Create Format* dialog box, enter the following information: +
+* *Name*: Name for the tokenization format.
+* *Description*: Optionally, enter a short description for the tokenization format.
+* *Data Domain*: When you select the data domain, configuration options appear. The options vary depending on the type of data domain you selected. For information about the supported data domains and configuration options, see xref:tokenization-formats.adoc[Tokenization Formats]
+. Click *Save*.
+
+image::tokenization-example-format.png[]
+
+== Update a Tokenization Format
+
+You can update a format anytime. 
+
+. In Anypoint Security, click *Tokenization Formats* in the menu on the left. 
+. From the list, click the tokenization format to update. 
+. Make your changes, and click *Save*.
+
+== Delete a Tokenization Format
+
+Before you delete a tokenization format, verify it is not in use. 
+
+. In Anypoint Security, click *Tokenization Formats* in the menu on the left. 
+. From the list, click the tokenization format to delete.
+. Click *Delete* in the upper right corner.
+. In the *Confirm Delete* confirmation dialog, click *Delete*.

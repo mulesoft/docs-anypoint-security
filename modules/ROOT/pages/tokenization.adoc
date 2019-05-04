@@ -1,9 +1,9 @@
-= Tokenization Service
+= Tokenization
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-The Tokenization service enables you to substitute a sensitive data element with a non-sensitive equivalent.
+Tokenization is a highly effective way to protect sensitive data. When you tokenize data, sensitive data elements are substituted with randomly generated non-sensitive data elements.  
 
 Examples of sensitive information that are suitable for tokenization protection include:
 
@@ -11,41 +11,42 @@ Examples of sensitive information that are suitable for tokenization protection 
 * Personally Identifiable Information (PII)
 * Protected Health Information (PHI), or any information deemed sensitive
 
-The Tokenization service provides the following benefits:
+Anypoint tokenization creates format-preserving tokens, which means the output tokens have the same format as the sensitive data input. Format-preserving tokenization ensures that changes are not required for existing enterprise data flows or data stores, as the generated tokens conform to the existing data structure and validations. Changes to existing applications are minimized compared to point-to-point encryption, which requires data protection implementation at each "hop."
+
+
+image::tokenization-flow.png[]
+
+In this example, a tokenization format is created with the credit card data domain and assigned to the tokenization service. A tokenization policy is applied to the API gateway.
+
+When a payload that contains credit card numbers in the payload is sent, the request is redirected to the API gateway that has the tokenization policy applied.
+
+A connection is established between the API gateway and the tokenization service. The tokenization service receives the credit card information, transforms the data into tokens, and returns the tokenized data to the API gateway.
+
+The API gateway replaces the credit card number with the tokenized data and the request is sent to the app. 
+
+== Tokenization Benefits
+
+The Tokenization service provides many benefits:
 
 * *Vaultless operation*:
-** Ensures sensitive data is not stored in the tokenization deployment.
-** No data growth based on the number of transactions processed or tokens issued, thus removing data-vault management issues.
+** Sensitive data is not stored in the tokenization deployment.
+** Data growth is not based on the number of transactions processed or tokens issued, which removes data-vault management issues.
 * *Increased security*:
-** Protection of sensitive information reduces your sensitive data zones.
-** Reduces or removes the number of systems and applications that process, store, or transmit sensitive information from sensitive data scopes.
-** Negates the chances of a data breach from auxiliary applications and data stores, as the sensitive information stored in them is replaced by tokens.
-** Increases defense in depth for sensitive data and least privilege. Authorization is required to the tokenization service to detokenize the sensitive data back to its actual value. Possession of the token alone provides no extrinsic or exploitable meaning or value.
+** Sensitive information is protected to reduces your sensitive data zones.
+** The number of systems and applications that process, store, or transmit sensitive information are reduced or removed from sensitive data scopes.
+** The chances of a data breach from auxiliary applications and data stores are negated, as the sensitive information stored in them is replaced by tokens.
+** Defense in depth is increased for sensitive data and least privilege. Authorization is required for the tokenization service to detokenize the sensitive data back to its actual value. Possession of the token alone provides no extrinsic or exploitable meaning or value.
 * *Flexibility*:
-** Ability to choose a tokenization “scheme” appropriate for your business using inbuilt data domains (PAN, SSN, email, decimal, ascii and so on).
-** Each domain has “configurable” options for preserving portions of the original sensitive data and replacing the rest with token data or replacing the entire information with a token.
-** Operates seamlessly across wide area networks and distributed data centers.
+** You can choose a tokenization strategy appropriate for your business using inbuilt data domains such as PAN, SSN, email, decimal, ascii and so on.
+** Each domain has configurable options for preserving portions of the original sensitive data and replacing the rest with token data, or replacing the entire information with a token.
+** Tokenization operates seamlessly across wide area networks and distributed data centers.
 * *Performance*:
 ** High-performance operation ensures low-latency processing.
 ** Performance scales linearly on each node with vertical and horizontal scaling for vaultless tokenization provided by the Anypoint Platform.
 
-////
-== Format-Preserving Encryption
-
-Information anonymization. +
-Analytics without exposing sensitive data
-
-image::index-31d6e.png[index-31d6e]
-
-== Data Masking
-
-Sensitive data obfuscation. +
-One way process: Cannot get original value back
-
-image::index-346fa.png[index-346fa]
-////
 
 == See Also
 
-* xref:tokenization-formats.adoc[Tokenization Formats]
-* xref:tokenization-example.adoc[Configure and use Tokenization]
+* xref:tokenization-example.adoc[Tokenization Configurations]
+* xref:tokenization-formats.adoc[Apply Tokenization Policies to API Gateway]
+* xref:tokenization-from-a-mule.adoc[Expose Tokenization as a Service Directly to Mule Applications]

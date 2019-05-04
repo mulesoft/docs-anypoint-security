@@ -1,0 +1,32 @@
+= Credit Card Formats
+
+Tokenization replaces original card data with tokenized data according to the way you configure the credit card data domain when you xref:create-tokenization-format.adoc[create a tokenization format]. 
+
+== Customize Credit Card Formats
+
+You can use the built-in credit card formats, or customize them.
+
+. Select *Use custom credit card formats*, and click *Add Format*.  +
+You can also click *Edit* next to an existing credit card format to change the format. 
+. In the *Add Credit Card Format* dialog, enter the information for the customized fields, then click *Done*. +
+|===
+|Field |Description
+
+|Name |Name of the card customization.
+|Start Prefix |Digits the card prefix starts with, for example `51`.
+|End Prefix | Digits the card number prefix range ends with, for example, `55`.
+
+Using the example values of 51 for the start prefix and 55 for the end prefix means that cards beginning with 51 through 55 are valid.
+|Luhn Check Digit | Select the *Include* checkbox if you want to verify the card conforms to the Luhn standard. +
+All formats must have *Check Digit* set to *Luhn* or *None*. A separate format is required if you need some for luhn and some for none.
+|Number of Digits |Enter the total number of digits the card number should have.
+|===
+. Click *Save*.
+
+=== Customize the Fields
+
+. Click *Credit Card Formats*.
+. Select *Use custom credit card formats*.
+. Click *Edit*.
+. In the *Edit Credit Card Format* dialog, make your changes, then click *Done*.
+. Click *Save* in the *Create Format* page.

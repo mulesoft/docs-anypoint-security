@@ -1,0 +1,48 @@
+== Tokenization Service Logs
+
+To determine traffic counts (what are traffic counts?), use the tokenization summary message that is returned in Runtime Fabric logs. To retrieve the logs, configure log forwarding in Runtime Fabric. 
+
+The log tag entry is `rtfTokenizationStatistics`, and the stats are a JSON string. Logs are rendered every one minute at a forced log entry of RTC `INFO` level, which is not subject to log level settings.
+
+Failure counts are incremented only for actual tokenization and de-tokenization failures. Other failures, such as protocol errors in the requests, do not count towards the failure statistics. An example of a failure is an unknown token string that can't be de-tokenized.
+
+Counts are cumulative from the start of each individual pod (replica) until its death.
+
+Example tokenization summary message:
+
+----
+<logEntry>
+<header>
+<time>2018-11-12T14:55:00.009667</time>
+<node>icvlab11401</node>
+<logType>RTC_BASE_MGMT</logType>
+<logLevel>INFO</logLevel>
+<process>WorkflowTest</process>
+<pid>16766</pid>
+<tid>16775</tid>
+<file>cbrsrc/cbrcore/src/rtc/embedded/wfp/WfpTokenizationStatistics.cpp</file>
+<line>98</line>
+</header>
+<body><rtfTokenizationStatistics>{"tokenizationStatistics":{"node":"icvlab11401","timestamp":"2018-11-12T20:55:00.009Z","tokenizeSuccess":2,"deTokenizeSuccess":6,"tokenizedBytes":6,"deTokenizedBytes":32,"tokenizeFailure":2,"deTokenizeFailure":2,"tokenizeFailedBytes":5,"deTokenizeFailedBytes":0}}</rtfTokenizationStatistics></body>+
+</logEntry>
+----
+
+[source,json,linenums]
+{
+ "tokenizationStatistics":{
+   "node":"icvlab11401",
+   "timestamp":"2018-11-12T20:55:00.009Z",
+   "tokenizeSuccess":2,
+   "deTokenizeSuccess":6,
+   "tokenizedBytes":6,
+   "deTokenizedBytes":32,
+   "tokenizeFailure":2,
+   "deTokenizeFailure":2,
+   "tokenizeFailedBytes":5,
+   "deTokenizeFailedBytes":0
+ }
+}
+
+== See Also
+
+xref:runtime-fabric::runtime-fabric-logs.adoc[Runtime Fabric documentation]
