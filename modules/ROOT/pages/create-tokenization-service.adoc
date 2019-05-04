@@ -13,8 +13,8 @@ To configure and use the tokenization service, you need:
 == Create the Tokenization Service
 
 . Go to the *Runtime Manager­ > Tokenization Service* page to create the service.
-. Click *Create Tokenization Service*. The prerequisites you completed provide the information you need to fill out the form. This example shows the form filled in with the following values: +
-  * In the *Runtime fabric* drop-down list, select the Runtime Fabric to deploy the tokenization service to.
+. Click *Create Tokenization Service*. The prerequisites you completed provide the information you need to fill out the form. 
+  * In the *Runtime fabric* drop-down list, select the Runtime Fabric where you will deploy the tokenization service. 
   * Select the tokenization format from the *Formats* drop-down list. You can assign more than one, or all, formats to one tokenization service.
   * Select the secret group from the *Secret Group* drop-down list.
   * Select the number of tokenization service replicas to run. The tokenization service runs on worker nodes in Runtime Fabric.

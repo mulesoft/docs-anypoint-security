@@ -16,16 +16,13 @@ Anypoint tokenization creates format-preserving tokens, which means the output t
 
 image::tokenization-flow.png[]
 
-In this example, a tokenization format is created with the credit card data domain and assigned to the tokenization service. A tokenization policy is applied to an app deployed to Runtime Fabric. 
+In this example, a tokenization format is created with the credit card data domain and assigned to the tokenization service. A tokenization policy is applied to the API gateway. 
 
-When a payload that contains credit card numbers in the payload is sent, the request is redirected to the application that has the tokenization policy applied. 
+When a payload that contains credit card numbers in the payload is sent, the request is redirected to the API gateway that has the tokenization policy applied. 
 
-Since the tokenization policy is configured to tokenize the credit card information in the payload, it extracts all the tokens from the payload. 
+A connection is established between the API gateway and the tokenization service. The tokenization service receives the credit card information and transforms the data into tokens, and returns the tokenized data to the API gateway. 
 
-A connection is established with the tokenization service, which receives the tokens, applies the data transformation, and returns the tokenized data to the tokenization policy. 
-
-The tokenization policy replaces the credit card number with tokenized values and the request is sent on to the app. The app processes the request and returns the result. 
-
+The API gateway replaces the credit card number with the tokenized data and returns the tokenized data to the app. 
 
 == Tokenization Benefits
 

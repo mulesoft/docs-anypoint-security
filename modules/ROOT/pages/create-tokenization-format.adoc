@@ -1,7 +1,6 @@
 = Create, Update, and Delete a Tokenization Format
 
-
-The tokenization format defines the way incoming data is converted. The format of the token needs to match the format of the original data. For example, if you are using a credit card format, the number of digits defined for the format should match the number of digits for the original credit card.  
+The tokenization format defines the way incoming data is converted. Ensure that the token matches the format of the original data when you define the tokenization format. For example, if you use a credit card format, the number of digits defined for the format should match the number of digits for the original credit card.  
 
 For more information about the supported tokenization formats see xref:tokenization-formats.adoc[Tokenization Formats].
 

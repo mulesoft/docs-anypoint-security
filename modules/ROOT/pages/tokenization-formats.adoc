@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Tokenization formats define how the original format of data coming in is converted to the format you configure when the token is created.  For example, you can define whether to preserve certain digits, if the token should look like the original data source, or whether to tokenize the whole or partial string.
+Tokenization formats define how the original format of data coming in is converted to the format you configure when the token is created.  For example, you can specify that the token look like the original data source, or whether to tokenize the whole or partial string.
 
 When you xref:create-tokenization-format.adoc[create a tokenization format] and select the data domain, you are given <<data_domain_config_options,configuration options>>. 
 
@@ -91,7 +91,7 @@ a| * Credit card number
 * Social security number
 
 |*Luhn digit test* 
-a|This option is for the Credit card number data domain only. Use the Luhn checksum formula to validate the digits contained in the original data. The options are: +
+a|This option is for the credit card number data domain only. Use the Luhn checksum formula to validate the digits contained in the original data. The options are: +
 
 * *Disabled*
 * *Generated token must pass Luhn test*

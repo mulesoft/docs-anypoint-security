@@ -3,12 +3,12 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-If a lot of complex data processing needs to take place before traffic gets to the tokenization/de-tokenization service, it makes sense to set up a Mule app to which Edge can route the traffic. In this scenario, the Mule app allows the flexibility to process the data and then send the traffic to the tokenization service. 
+If a lot of complex data processing needs to take place before traffic gets to the tokenization/de-tokenization service, it makes sense to set up a Mule app to which Edge can route the traffic. In this scenario, the Mule app processes the data and sends the traffic to the tokenization service. 
 
-The Mule app can do nothing other than expose the tokenization service as a pass-through. 
+If you don't need the Mule app to do any data processing, it can also do nothing other than expose the tokenization service as a pass-through. 
 
 [NOTE]
-Because the tokenization service accepts only TLS traffic, you must enable TLS for the Mule HTTP outbound, and enable Las-tMile security when deploying the Mule app to Runtime Fabric so the edge-to-Mule-app connection uses TLS.
+Because the tokenization service accepts only TLS traffic, you must enable TLS for the Mule HTTP outbound connection, and enable Las-tMile security when deploying the Mule app to Runtime Fabric so the edge-to-Mule-app connection uses TLS.
 
 [tokenization_raml]
 == Create an API from the Tokenization RAML
@@ -22,13 +22,13 @@ Once you have the information you need to set up a routable tokenization service
 . Select the ZIP file you downloaded, and click *Publish*.
 . In Studio or Design Center, create an HTTP outbound connection based on the `Tokenization API` RAML. +
 The tokenization service in Runtime Fabric listens on port 3443 and is available through HTTPS only. +
-The hostname portion for the outbound URL is formed by taking the service name + `-tokenizer`. For example, if the Tokenization service name is “mytoken1”, the outbound URL will be: `https://mytoken1-­tokenizer:3443`.
-. Before the HTTP outbound, use a Datawave transform step to convert your input data into the `TokenizationServiceRequest` data type defined in the `Tokenization API` RAML. +
+The hostname portion for the outbound URL is formed by taking the service name + `-tokenizer`. For example, if the tokenization service name is “mytoken1”, the outbound URL is: `https://mytoken1-­tokenizer:3443`.
+. Use a Dataweave transform step before the HTTP outbound connection to convert your input data into the `TokenizationServiceRequest` data type defined in the `Tokenization API` RAML. +
 The request is an array of items, and a single example is: `{"format" : "ssnonly", "data" : "333-33-3333"}`.
 The value of `format` matches a tokenization format that is defined on the service.  The `data` value is what to tokenize or detokenize. +
 [NOTE]
-The `array` should be 100 items long at most. If it is any longer than 100 items, break it up into multiple requests to the tokenization service.
-. Set the HTTP Listener in the Mule application to HTTPS. See <<Configure TLS>>. 
+The array should be 100 items long at most. If it is any longer than 100 items, break it up into multiple requests to the tokenization service.
+. Set the HTTP Listener in the Mule application to HTTPS. 
 . Export the Mule app.
 . In Runtime Manager, xref:runtime-fabric::deploy-to-runtime-fabric.adoc[deploy the application to Runtime Fabric]. +
 [NOTE]
