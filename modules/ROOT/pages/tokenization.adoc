@@ -16,13 +16,13 @@ Anypoint tokenization creates format-preserving tokens, which means the output t
 
 image::tokenization-flow.png[]
 
-In this example, a tokenization format is created with the credit card data domain and assigned to the tokenization service. A tokenization policy is applied to the API gateway. 
+In this example, a tokenization format is created with the credit card data domain and assigned to the tokenization service. A tokenization policy is applied to the API gateway.
 
-When a payload that contains credit card numbers in the payload is sent, the request is redirected to the API gateway that has the tokenization policy applied. 
+When a payload that contains credit card numbers in the payload is sent, the request is redirected to the API gateway that has the tokenization policy applied.
 
-A connection is established between the API gateway and the tokenization service. The tokenization service receives the credit card information and transforms the data into tokens, and returns the tokenized data to the API gateway. 
+A connection is established between the API gateway and the tokenization service. The tokenization service receives the credit card information, transforms the data into tokens, and returns the tokenized data to the API gateway.
 
-The API gateway replaces the credit card number with the tokenized data and returns the tokenized data to the app. 
+The API gateway replaces the credit card number with the tokenized data and the request is sent to the app. 
 
 == Tokenization Benefits
 
