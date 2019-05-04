@@ -150,13 +150,33 @@ Sensitive information detection rules belong to rule categories, which include:
 * PCI: Payment card information, such as a Visa or Mastercard number. 
 * PHI: Protected health information.
 
-== View Rule Categories and IDs in RAML
+== View SID Rules and Rule IDs in RAML
 
-You can view the the SID categories and rule IDs in the Anypoint Security Policies RAML. 
+You can view the the SID rules and rule IDs in the Anypoint Security Policies RAML. 
 
 . Go to the public https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/[MuleSoft developer portal], and search for "Anypoint Security Policies API".
 . Download the RAML and extract the ZIP files.
 . Navigate to `<Download_location>/anypoint-security-policies-api-<version>-raml/dataTypes/policies/WafRules/Rulesets.json`.
+. Search for "MULESOFT_SID", to see the SID rules and their details, including the name (`msg`) and `id`. +
+This is an example of the RAML file content:
+
+----
+{
+	"id": 600780,
+	"ver": "",
+	"rev": "1",
+	"phase": "response",
+	"severity": "WARNING",
+	"accuracy": "5",
+	"maturity": "1",
+	"taglist": ["MULESOFT_SID"],
+	"msg": "VISA CARD",
+	"variables": "RESPONSE_BODY",
+	"operator": "UkVTUE9OU0VfQk9EWSAoPzwhWy5cdy1dKTRbMC05XXszfShbIC1dPylbMC05XXs0fVwxWzAtOV17NH1cMVswLTldezR9KD8hWy5cdy1dKQo=",
+	"paranoia": 1,
+	"chain": "no"
+}
+----
 
 === See Also
 
