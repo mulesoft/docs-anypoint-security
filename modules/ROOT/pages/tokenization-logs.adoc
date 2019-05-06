@@ -1,6 +1,6 @@
 == Tokenization Service Logs
 
-To determine traffic counts (what are traffic counts?), use the tokenization summary message that is returned in Runtime Fabric logs. To retrieve the logs, configure log forwarding in Runtime Fabric. 
+To determine traffic counts, use the tokenization summary message that is returned in Runtime Fabric logs. To retrieve the logs, configure log forwarding in Runtime Fabric. 
 
 The log tag entry is `rtfTokenizationStatistics`, and the stats are a JSON string. Logs are rendered every one minute at a forced log entry of RTC `INFO` level, which is not subject to log level settings.
 
