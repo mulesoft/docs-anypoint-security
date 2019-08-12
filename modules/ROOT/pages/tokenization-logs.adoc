@@ -47,14 +47,14 @@ Example tokenization summary message:
 
 Audit logs are generated when a tokenization or detokenization request is initiated. To enable audit logs, select the *Enable Audit Logs* setting.
 
-An audit log will contain:
+Audit logs contain:
 
 * Client IP address
 * Operation (tokenization or detokenization)
 * Format used
 * Timestamp
 * Correlation_id
-* Success/failure status
+* Success or failure status
 
 Example tokenization audit log:
 
