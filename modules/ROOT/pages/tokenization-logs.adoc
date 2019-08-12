@@ -1,6 +1,6 @@
 == Tokenization Service Logs
 
-To determine traffic counts, use the tokenization summary message that is returned in Runtime Fabric logs. To retrieve the logs, configure log forwarding in Runtime Fabric. 
+To determine traffic counts, use the tokenization summary message that is returned in Runtime Fabric logs. To retrieve the logs, configure log forwarding in Runtime Fabric.
 
 The log tag entry is `rtfTokenizationStatistics`, and the stats are a JSON string. Logs are rendered every one minute at a forced log entry of RTC `INFO` level, which is not subject to log level settings.
 
@@ -42,6 +42,32 @@ Example tokenization summary message:
    "deTokenizeFailedBytes":0
  }
 }
+
+== Tokenization Audit Logging
+
+When you configure your tokenization services, you can select the `Enable Audit Logs`
+setting to generate audit logs when a tokenization or detokenization request is initiated. Tokenization audit logs are enabled by default.
+
+
+The audit log will contain:
+
+* Client IP address
+* Operation (tokenization or detokenization)
+* Format used
+* Timestamp
+* Correlation_id
+* Success/failure status
+
+An audit log can appear as follows:
+
+----
+<logEntry><header><time>2019-06-21T00:29:29.187995</time><node>defaulttokservice-tokenizer-55546c57f9-f8t7h</node><process>securityfabric-tokenizer-runtime</process><pid>34</pid><transId>657988989747200</transId></header><body><anypointSecurityTokenizationAuditing>{"client":"10.244.60.9","correlation_id": "bf4d3684-9ada-4931-9815-7c36ef98fdf4","operation": "detokenization", "details": [
+
+{"format":"socialSecurityNumber","success":1,"failure":0}
+]}</anypointSecurityTokenizationAuditing></body></logEntry>
+----
+
+For security reasons, neither the confidential data nor the token are logged.
 
 == See Also
 
