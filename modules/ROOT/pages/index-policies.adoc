@@ -13,7 +13,7 @@ Learn more about the xref:acl-policy.adoc[IP Whitelist].
 * HTTP Limits +
 These policies prevent attacks from clients that send large messages that can consume all of your processing bandwidth. +
 Learn more about the xref:cap-policy.adoc[HTTP Limits policy].
-* WAF (Web Application Firewall Policy) +
+* WAF (Web Application Firewall) Policy +
 These policies provide the Open Web Application Security Project (OWASP) Core Rule Set (CRS) for checking requests and responses to detect common Web application attacks. +
 Learn more about the xref:waf-policy.adoc[WAF policy]
 
