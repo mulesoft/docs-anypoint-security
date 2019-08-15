@@ -24,6 +24,6 @@ You can now use the tokenization service to tokenize and de-tokenize request and
 
 == See Also
 
-xref:api-manager::policy-mule4-tokenization.adoc[Tokenization Policy]
-xref:tokenization.adoc[Tokenization]
-xref:tokenization-example.adoc[Tokenization Service Configurations]
+* xref:api-manager::policy-mule4-tokenization.adoc[Tokenization Policy]
+* xref:tokenization.adoc[Tokenization]
+* xref:tokenization-example.adoc[Tokenization Service Configurations]
