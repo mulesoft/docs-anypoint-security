@@ -28,7 +28,7 @@ Then, API-1 (`/api1`) uses an API Whitelist policy that allows `x.x.x.x`, and AP
 [[anypoint_security_prereqs]]
 == Prerequisites
 
-include::partials$/anypoint-security-policies-prereqs.adoc[]
+include::{partialsdir}/anypoint-security-policies-prereqs.adoc[]
 
 == Configure IP Whitelist Policy
 
