@@ -14,9 +14,7 @@ The way you configure and use the tokenization service depends on your Mule impl
 
 To configure and use the tokenization service, you must:
 
-. Have these permissions: 
- ** API Manager *Manage Policies*
- ** Tokenization *Manage Tokenization Services* 
+* Have permission to manage policies in API Manager and manage tokenization services in Tokenization.
 + 
 See xref:2.x@api-manager::environment-permission-task.adoc[Granting Permission to Access an Environment]
 . xref:runtime-fabric::install-create-rtf-arm.adoc[Install Runtime Fabric]. Anypoint Runtime Fabric is a container service that automates the deployment and orchestration of Mule apps and API gateways.

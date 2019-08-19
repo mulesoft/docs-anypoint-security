@@ -9,6 +9,11 @@ IP Whitelist policy violations escalate to authentication errors for the DoS pol
 [NOTE]
 This source is IP based. If an attacker can spoof his source IP address, these measures cannot prevent the attack.
 
+[[anypoint_security_prereqs]]
+== Prerequisites
+
+include::{partialsdir}/anypoint-security-policies-prereqs.adoc[]
+
 == Differences with API Gateway Policies
 
 The IP Whitelist policy is a list of all IP addresses allowed to connect to your endpoint, and this whitelist applies to all applications. You can set up an API Gateway Whitelist policy per API list.

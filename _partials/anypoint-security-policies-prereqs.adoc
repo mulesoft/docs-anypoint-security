@@ -1,0 +1,12 @@
+= Anypoint Security Policies Prereq
+
+//Included in security policies topics
+
+
+To configure and use the security policies, you must:
+
+. Have permission to manage policies in API Manager.
++ 
+See xref:2.x@api-manager::environment-permission-task.adoc[Granting Permission to Access an Environment]
+. xref:runtime-fabric::install-create-rtf-arm.adoc[Install Runtime Fabric]. Anypoint Runtime Fabric is a container service that automates the deployment and orchestration of Mule apps and API gateways.
+. xref:runtime-fabric::enable-inbound-traffic.adoc[Enable inbound traffic] on Runtime Fabric to allow Mule apps or API gateways to listen on inbound connections.

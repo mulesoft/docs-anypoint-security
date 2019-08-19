@@ -3,36 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Anypoint Security features a high-performance, reliable, and scalable service to enforce security policies that apply to all nodes deployed to your Runtime Fabric. 
-
-== Prerequisites
-
-To configure and use the security policies, you must:
-
-. Have these permissions: 
- ** API Manager *Manage Policies*
- ** Tokenization *Manage Runtime Fabrics* 
-+ 
-See xref:2.x@api-manager::environment-permission-task.adoc[Granting Permission to Access an Environment]
-. xref:runtime-fabric::install-create-rtf-arm.adoc[Install Runtime Fabric]. Anypoint Runtime Fabric is a container service that automates the deployment and orchestration of Mule apps and API gateways.
-. To allow Mule apps or API gateways to listen on inbound connections, you must xref:runtime-fabric::enable-inbound-traffic.adoc[enable inbound traffic] on Runtime Fabric.
-
-== Security Policies for the Edge 
-
-You can protect your APIs using these security policies:
-
-* DoS (Denial of service) Policy +
-These policies are designed to protect your network nodes against malicious clients trying to flood your network to prevent legitimate traffic to your APIs. +
-Learn more about the xref:dos-policy.adoc[DoS policy].
-* IP Whitelist +
-Create an explicit list of IP addresses that can access your deployed endpoints. +
-Learn more about the xref:acl-policy.adoc[IP Whitelist].
-* HTTP Limits +
-These policies prevent attacks from clients that send large messages that can consume all of your processing bandwidth. +
-Learn more about the xref:cap-policy.adoc[HTTP Limits policy].
-* WAF (Web Application Firewall) Policy +
-These policies provide the Open Web Application Security Project (OWASP) Core Rule Set (CRS) for checking requests and responses to detect common Web application attacks. +
-Learn more about the xref:waf-policy.adoc[WAF policy]
+Anypoint Security features a high-performance, reliable, and scalable service to enforce security policies that apply to all nodes deployed to your Anypoint Runtime Fabric. 
 
 You can use these security policies to manage all traffic to your Runtime Fabric, and leverage API Manager policies to apply specific behaviors to specific APIs.
 
@@ -59,15 +30,32 @@ This layer of security provides the same control as any API Manager policy offer
 
 == Prerequisites
 
-To configure and use the tokenization service, you must:
+To configure and use the security policies, you must:
 
-. Have these permissions: 
- ** API Manager *Manage Policies*
- ** Tokenization *Manage Tokenization Services* 
+. Have permission to manage policies in API Manager.
 + 
 See xref:2.x@api-manager::environment-permission-task.adoc[Granting Permission to Access an Environment]
-. xref:runtime-fabric::install-create-rtf-arm.adoc[Install Runtime Fabric]. Anypoint Runtime Fabric is a container service that automates the deployment and orchestration of Mule applications and API gateways.
-. To allow Mule applications or API gateways to listen on inbound connections, enable inbound traffic, you must xref:runtime-fabric::enable-inbound-traffic.adoc[Enable inbound traffic] on Runtime Fabric.
+. xref:runtime-fabric::install-create-rtf-arm.adoc[Install Runtime Fabric]. Anypoint Runtime Fabric is a container service that automates the deployment and orchestration of Mule apps and API gateways.
+. xref:runtime-fabric::enable-inbound-traffic.adoc[Enable inbound traffic] on Runtime Fabric to allow Mule apps or API gateways to listen on inbound connections.
+
+== Security Policies for the Edge 
+
+You can protect your APIs using these security policies:
+
+* DoS (Denial of service) Policy +
+These policies are designed to protect your network nodes against malicious clients trying to flood your network to prevent legitimate traffic to your APIs. +
+Learn more about the xref:dos-policy.adoc[DoS policy].
+* IP Whitelist +
+Create an explicit list of IP addresses that can access your deployed endpoints. +
+Learn more about the xref:acl-policy.adoc[IP Whitelist].
+* HTTP Limits +
+These policies prevent attacks from clients that send large messages that can consume all of your processing bandwidth. +
+Learn more about the xref:cap-policy.adoc[HTTP Limits policy].
+* WAF (Web Application Firewall) Policy +
+These policies provide the Open Web Application Security Project (OWASP) Core Rule Set (CRS) for checking requests and responses to detect common web application attacks. +
+Learn more about the xref:waf-policy.adoc[WAF policy]
+
+
 
 == See Also
 
