@@ -1,6 +1,16 @@
 = Create a Web Application Firewall Policy
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
 
 You can create a Web Application (WAF) policy in *Anypoint Security > Security Policies* to implement firewall security policy enforcement between your web application and client endpoint. WAF violation detection policies can also be escalated to Denial of Service (DoS) so that IPs and connections can be blocked.
+
+[[anypoint_security_prereqs]]
+== Prerequisites
+
+include::partials$/anypoint-security-policies-prereqs.adoc[]
+
+== Create the Policy
 
 . Sign into Anypoint Platform and navigate to *Anypoint Security*.
 . In the *Security Policies* page, click *Create Policy* and select *Web Application Firewall (WAF)*.
