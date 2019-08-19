@@ -17,7 +17,7 @@ This policy applies to all your APIs behind your Edge/Inbound endpoint. You can 
 [[anypoint_security_prereqs]]
 == Prerequisites
 
-include::partials$/anypoint-security-policies-prereqs.adoc[]
+include::{partialsdir}/anypoint-security-policies-prereqs.adoc[]
 
 == Configure an HTTP Limit Policy
 

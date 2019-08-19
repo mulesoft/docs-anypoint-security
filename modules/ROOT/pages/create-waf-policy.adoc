@@ -8,7 +8,7 @@ You can create a Web Application (WAF) policy in *Anypoint Security > Security P
 [[anypoint_security_prereqs]]
 == Prerequisites
 
-include::partials$/anypoint-security-policies-prereqs.adoc[]
+include::{partialsdir}/anypoint-security-policies-prereqs.adoc[]
 
 == Create the Policy
 
