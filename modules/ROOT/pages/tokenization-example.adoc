@@ -19,8 +19,8 @@ To configure and use the tokenization service, you must:
  ** Tokenization *Manage Tokenization Services* 
 + 
 See xref:2.x@api-manager::environment-permission-task.adoc[Granting Permission to Access an Environment]
-. xref:runtime-fabric::install-create-rtf-arm.adoc[Install Runtime Fabric]. Anypoint Runtime Fabric is a container service that automates the deployment and orchestration of Mule applications and API gateways.
-. To allow Mule applications or API gateways to listen on inbound connections, enable inbound traffic, you must xref:runtime-fabric::enable-inbound-traffic.adoc[Enable inbound traffic] on Runtime Fabric.
+. xref:runtime-fabric::install-create-rtf-arm.adoc[Install Runtime Fabric]. Anypoint Runtime Fabric is a container service that automates the deployment and orchestration of Mule apps and API gateways.
+. To allow Mule apps or API gateways to listen on inbound connections, you must xref:runtime-fabric::enable-inbound-traffic.adoc[enable inbound traffic] on Runtime Fabric.
 
 
 [[tokenize_api_policy]]
@@ -28,7 +28,7 @@ See xref:2.x@api-manager::environment-permission-task.adoc[Granting Permission t
 
 You can configure the API Gateway and use the tokenization service as the core engine for the tokenization and detokenization policies provided in API Manager. 
 
-To use tokenizatin and detokenization policies to configure the tokenization service:
+To use tokenization and detokenization policies to configure the tokenization service:
 
 . Ensure you have completed the <<prerequisites,required prerequisites>>. 
 . xref:create-tokenization-format.adoc[Create a tokenization format].
