@@ -29,22 +29,22 @@ This layer of security provides the same control as any API Manager policy offer
 
 == DoS Policy
 
-These policies are designed to protect your network nodes against malicious clients trying to flood your network to prevent legitimate traffic to your APIs. +
+DoS policies are designed to protect your network nodes against malicious clients trying to flood your network to prevent legitimate traffic to your APIs. +
 Learn more about the xref:dos-policy.adoc[DoS policy].
 
 == IP Whitelist Policy
 
-Create an explicit list of IP addresses that can access your deployed endpoints. +
+Create an IP address whitelist policy to configure an explicit list of IP addresses that can access your deployed endpoints. +
 Learn more about the xref:acl-policy.adoc[IP Whitelist].
 
 == HTTP Limits Policy
 
-These policies prevent attacks from clients that send large messages that can consume all of your processing bandwidth. +
+HTTP limits policies prevent attacks from clients that send large messages that can consume all of your processing bandwidth. +
 Learn more about the xref:cap-policy.adoc[HTTP Limits policy].
 
 == WAF Policy
 
-These policies provide the Open Web Application Security Project (OWASP) Core Rule Set (CRS) for checking requests and responses to detect common web application attacks. +
+WAF policies provide the Open Web Application Security Project (OWASP) Core Rule Set (CRS) for checking requests and responses to detect common web application attacks. +
 Learn more about the xref:waf-policy.adoc[WAF policy].
 
 
