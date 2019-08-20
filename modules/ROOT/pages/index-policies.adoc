@@ -50,5 +50,5 @@ Learn more about the xref:waf-policy.adoc[WAF policy].
 
 == See Also
 
-. xref:runtime-fabric::install-create-rtf-arm.adoc[Install Runtime Fabric]
-. xref:runtime-fabric::enable-inbound-traffic.adoc[Enable Inbound Traffic] 
+* xref:runtime-fabric::install-create-rtf-arm.adoc[Install Runtime Fabric]
+* xref:runtime-fabric::enable-inbound-traffic.adoc[Enable Inbound Traffic on Anypoint Runtime Fabric] 
