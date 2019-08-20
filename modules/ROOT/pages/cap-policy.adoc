@@ -1,4 +1,7 @@
 = HTTP Limits Policy
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
 
 The HTTP Limits policy prevents an attacker from sending large messages that consume all your bandwidth. +
 This policy checks TCP protocol message sizes and headers. This policy does not check content.
@@ -10,6 +13,11 @@ Set the size limits to what all of your APIs can handle.
 Violations to this policy escalate as *protocol errors* when configuring a DoS policy.
 
 This policy applies to all your APIs behind your Edge/Inbound endpoint. You can apply API Gateway policies to each API to enforce other API specific policies, such as throttling and JSON Threat Protection.
+
+[[anypoint_security_prereqs]]
+== Prerequisites
+
+include::partial$anypoint-security-policies-prereqs.adoc[]
 
 == Configure an HTTP Limit Policy
 
