@@ -6,13 +6,24 @@ endif::[]
 The HTTP Limits policy prevents an attacker from sending large messages that consume all your bandwidth. +
 This policy checks TCP protocol message sizes and headers. This policy does not check content.
 
-The default allowed message size is large. You need to tune the message size allowed by your policy based on your application needs. +
-[NOTE]
-Set the size limits to what all of your APIs can handle.
-
-Violations to this policy escalate as *protocol errors* when configuring a DoS policy.
-
 This policy applies to all your APIs behind your Edge/Inbound endpoint. You can apply API Gateway policies to each API to enforce other API specific policies, such as throttling and JSON Threat Protection.
+
+When you configure a DoS policy, violations to the HTTP Limits policy escalate as *protocol errors*.
+
+== Default HTTP Limits for Edge
+
+You can configure and apply an HTTP Limits policy to increase or decrease default HTTP limits. 
+
+The default HTTP limits are: 
+
+----
+<maxRequestLineLength>4096</maxRequestLineLength>
+<maxHeaderLength>16384</maxHeaderLength>
+<maxTrailerLength>16384</maxTrailerLength>
+<maxBodyLength>104857600</maxBodyLength>
+<maxNumberHeadersTrailers>32</maxNumberHeadersTrailers>
+----
+
 
 [[anypoint_security_prereqs]]
 == Prerequisites
@@ -28,7 +39,11 @@ include::partial$anypoint-security-policies-prereqs.adoc[]
 [%header%autowidth.spread,cols="a,a"]
 |===
 |Value |Description
-|*Maximum Message Size* | Maximum tolerated message size, in bytes, for your policy. If request body scanning is enabled, this value should be set no larger than required to prevent attackers from abusing request body checking and exhausting resources
+|*Maximum Message Size* a| Maximum tolerated message size, in bytes, for your policy. If request body scanning is enabled, this value should be set no larger than required to prevent attackers from abusing request body checking and exhausting resources. +
+The default allowed message size is large. You need to tune the message size allowed by your policy based on your application needs. +
+[NOTE]
+Set the size limits to what all of your APIs can handle.
+
 |*Maximum Path Length* | Maximum tolerated path size, in bytes, for your policy.
 |*Maximum Length Of a Single Header* | The maximum tolerated length of a header for your policy.
 |*Maximum Length Of a Single Trailer* | The maximum tolerated length of a trailer for your policy.
