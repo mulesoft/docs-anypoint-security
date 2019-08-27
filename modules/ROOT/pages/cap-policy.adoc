@@ -6,9 +6,9 @@ endif::[]
 The HTTP Limits policy prevents an attacker from sending large messages that consume all your bandwidth. +
 This policy checks TCP protocol message sizes and headers. This policy does not check content.
 
-This policy applies to all your APIs behind your Edge/Inbound endpoint. You can apply API Gateway policies to each API to enforce other API specific policies, such as throttling and JSON Threat Protection.
+This policy applies to all the APIs behind your Edge inbound endpoint. You can apply API Gateway policies to each API to enforce other API specific policies, such as throttling and JSON Threat Protection.
 
-When you configure a DoS policy, violations to the HTTP Limits policy escalate as *protocol errors*.
+When you configure a DoS policy, violations to the HTTP Limits policy escalate as protocol errors.
 
 == Default HTTP Limits for Edge
 
