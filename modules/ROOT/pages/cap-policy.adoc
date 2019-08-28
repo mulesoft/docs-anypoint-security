@@ -10,20 +10,6 @@ This policy applies to all the APIs behind your Edge inbound endpoint. You can a
 
 When you configure a DoS policy, violations to the HTTP Limits policy escalate as protocol errors.
 
-== Default HTTP Limits for Edge
-
-You can configure and apply an HTTP Limits policy to increase or decrease default HTTP limits. 
-
-The default HTTP limits are: 
-
-----
-<maxRequestLineLength>4096</maxRequestLineLength>
-<maxHeaderLength>16384</maxHeaderLength>
-<maxTrailerLength>16384</maxTrailerLength>
-<maxBodyLength>104857600</maxBodyLength>
-<maxNumberHeadersTrailers>32</maxNumberHeadersTrailers>
-----
-
 
 [[anypoint_security_prereqs]]
 == Prerequisites
@@ -32,6 +18,8 @@ include::partial$anypoint-security-policies-prereqs.adoc[]
 
 == Configure an HTTP Limit Policy
 
+You can configure and apply an HTTP Limits policy to increase or decrease default HTTP limits. 
+
 . Navigate to *Anypoint Security*, click the *Create Policy* icon, and select *Content Attack Prevention*.
 . Add a name for your policy in the *Name* field.
 . Configure the maximum sizes for message, path header and trailers in the fields below:
@@ -39,15 +27,15 @@ include::partial$anypoint-security-policies-prereqs.adoc[]
 [%header%autowidth.spread,cols="a,a"]
 |===
 |Value |Description
-|*Maximum Message Size* a| Maximum tolerated message size, in bytes, for your policy. If request body scanning is enabled, this value should be set no larger than required to prevent attackers from abusing request body checking and exhausting resources. +
+|*Maximum Message Size* a| The default maximum message size allowed is 104857600. If request body scanning is enabled, this value should be set no larger than required to prevent attackers from abusing request body checking and exhausting resources. +
 The default allowed message size is large. You need to tune the message size allowed by your policy based on your application needs. +
 [NOTE]
 Set the size limits to what all of your APIs can handle.
 
-|*Maximum Path Length* | Maximum tolerated path size, in bytes, for your policy.
-|*Maximum Length Of a Single Header* | The maximum tolerated length of a header for your policy.
-|*Maximum Length Of a Single Trailer* | The maximum tolerated length of a trailer for your policy.
-|*Maximum Number Of Headers and Trailers* | The maximum number of headers and trailers allowed by your policy.
+|*Maximum Path Length* | The default maximum path size allowed for your policy is 4096 bytes.
+|*Maximum Length Of a Single Header* | The default maximum header length allowed for your policy is 16384 bytes.
+|*Maximum Length Of a Single Trailer* | The default maximum trailer length allowed for your policy is 16384 bytes.
+|*Maximum Number Of Headers and Trailers* | The default maximum number of headers and trailers allowed by your policy is 32 kB.
 |===
 . If you want to filter specific HTTP methods, configure them in the *Allowed HTTP Request Methods* field. +
 Allowed methods are: GET, POST, PATCH, HEAD, TRACE, OPTIONS, DELETE, and PUT.
