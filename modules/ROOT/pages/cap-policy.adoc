@@ -6,7 +6,7 @@ endif::[]
 The HTTP Limits policy prevents an attacker from sending large messages that consume all your bandwidth. +
 This policy checks TCP protocol message sizes and headers. This policy does not check content.
 
-This policy applies to all the APIs behind your Edge inbound endpoint. You can apply API Gateway policies to each API to enforce other API specific policies, such as throttling and JSON Threat Protection.
+This policy applies to all the APIs behind your Edge inbound endpoint. You can apply API Gateway policies to each API to enforce other API specific policies, such as throttling and JSON threat protection.
 
 When you configure a DoS policy, violations to the HTTP Limits policy escalate as protocol errors.
 
@@ -28,10 +28,7 @@ You can configure and apply an HTTP Limits policy to increase or decrease defaul
 |===
 |Value |Description
 |*Maximum Message Size* a| The default maximum message size allowed is 104857600. If request body scanning is enabled, this value should be set no larger than required to prevent attackers from abusing request body checking and exhausting resources. +
-The default allowed message size is large. You need to tune the message size allowed by your policy based on your application needs. +
-[NOTE]
-Set the size limits to what all of your APIs can handle.
-
+Modify the message size allowed by your policy based on your application needs, and base the size limits on what all of your APIs can handle. 
 |*Maximum Path Length* | The default maximum path size allowed for your policy is 4096 bytes.
 |*Maximum Length Of a Single Header* | The default maximum header length allowed for your policy is 16384 bytes.
 |*Maximum Length Of a Single Trailer* | The default maximum trailer length allowed for your policy is 16384 bytes.
