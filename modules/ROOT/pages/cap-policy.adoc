@@ -28,11 +28,11 @@ You can configure and apply an HTTP Limits policy to increase or decrease defaul
 |===
 |Value |Description
 |*Maximum Message Size* a| The default maximum message size allowed is 104857600. If request body scanning is enabled, this value should be set no larger than required to prevent attackers from abusing request body checking and exhausting resources. +
-Modify the message size allowed by your policy based on your application needs, and base the size limits on what all of your APIs can handle. 
-|*Maximum Path Length* | The default maximum path size allowed for your policy is 4096 bytes.
-|*Maximum Length Of a Single Header* | The default maximum header length allowed for your policy is 16384 bytes.
-|*Maximum Length Of a Single Trailer* | The default maximum trailer length allowed for your policy is 16384 bytes.
-|*Maximum Number Of Headers and Trailers* | The default maximum number of headers and trailers allowed by your policy is 32 kB.
+Modify the message size based on your application needs, and base the size limits on what all of your APIs can handle. 
+|*Maximum Path Length* | The default maximum path size allowed is 4096 bytes.
+|*Maximum Length Of a Single Header* | The default maximum header length allowed for is 16384 bytes.
+|*Maximum Length Of a Single Trailer* | The default maximum trailer length allowed is 16384 bytes.
+|*Maximum Number Of Headers and Trailers* | The default maximum number of headers and trailers allowed is 32 kB.
 |===
 . If you want to filter specific HTTP methods, configure them in the *Allowed HTTP Request Methods* field. +
 Allowed methods are: GET, POST, PATCH, HEAD, TRACE, OPTIONS, DELETE, and PUT.
