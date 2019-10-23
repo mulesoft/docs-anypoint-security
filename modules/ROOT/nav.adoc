@@ -26,3 +26,4 @@
  ** xref:asm-permission-concept.adoc[Permissions]
  ** xref:asm-secret-group-concept.adoc[Secret Groups]
  *** xref:asm-secret-group-creation-task.adoc[Create a Secret Group]
+ *** xref:secrets-manager-add-tls-context.adoc[Add a TLS Context]
