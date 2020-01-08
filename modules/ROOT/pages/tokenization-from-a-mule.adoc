@@ -10,6 +10,18 @@ If you don't need the Mule app to do any data processing, it can also do nothing
 [NOTE]
 Because the tokenization service accepts only TLS traffic, you must enable TLS for the Mule HTTP outbound connection, and enable Last-mile security when deploying the Mule app to Runtime Fabric so the edge-to-Mule-app connection uses TLS.
 
+== Prerequisites
+
+To configure and use the tokenization service, you must:
+
+* Have permission to manage policies in API Manager and manage tokenization services in Tokenization.
++ 
+See xref:2.x@api-manager::environment-permission-task.adoc[Granting Permission to Access an Environment]
+. xref:runtime-fabric::install-create-rtf-arm.adoc[Install Runtime Fabric]. Anypoint Runtime Fabric is a container service that automates the deployment and orchestration of Mule apps and API gateways.
+. To allow Mule apps or API gateways to listen on inbound connections, you must xref:runtime-fabric::enable-inbound-traffic.adoc[enable inbound traffic] on Runtime Fabric.
+. xref:create-tokenization-format.adoc[Create a tokenization format].
+. xref:create-tokenization-service.adoc[Create a tokenization service].
+
 [tokenization_raml]
 == Create an API from the Tokenization RAML
 
@@ -60,6 +72,9 @@ image::tokenization-example-set-keystore-info.png[]
 . Edit the settings for the HTTP endpoint to enable TLS on the HTTP connection from Mule to the tokenization service. 
 +
 image::tokenization-example-configure-TLS.png[]
+
+== Deploy the App to Runtime Fabric
+
 . Save the application and export it. 
 . In Anypoint Platform, go to *Runtime Manager*, and click *Deploy Application*. 
 . In the *Deploy Application* page:
@@ -70,3 +85,6 @@ image::tokenization-example-configure-TLS.png[]
 .. Click the *Ingress* tab, and select *Enable Last­Mile Security* option.
 . Click *Deploy Application*. 
 
+== See Also
+
+* xref:runtime-fabric::deploy-index.adoc[Deploy Applications and API Proxies to Runtime Fabric]
