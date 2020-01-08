@@ -1,0 +1,28 @@
+= Grant Tokenization Permissions
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+An administrator for your organization can grant these permissions to any user from Access Management.
+
+== Tokenization Permissions
+
+A user needs to have a set of predefined permissions to create and manage tokenization formats and services:
+
+[%header%autowidth.spread,cols="a,a"]
+|===
+| Name | Description
+| Manage Tokenization Formats
+| Provides the ability to create, modify, and delete tokenization formats to use with the tokenization service in a specific environment.
+
+| Manage Tokenization Services
+| Provides the ability to create and deploy a tokenization service as well as modify and delete a tokenization service in a specific environment.
+|===
+
+== Grant a User Tokenization Permissions
+
+. In Access Management, from the left navigation menu, click *Users*.
+. To grant permissions click the name of the user. 
+. In the *Permissions* tab, click *Tokenization*. 
+. Select *Manage Tokenization Formats* from the Permissions drop-down, and click the image:blue-plus-security.png[blue plus icon]. 
+. Select the environment from the Environment drop-down, then select the *Manage Tokenization Services* permission from the Permissions drop-down, and click the image:blue-plus-security.png[blue plus icon].

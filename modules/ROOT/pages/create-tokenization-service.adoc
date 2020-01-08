@@ -7,6 +7,7 @@ The tokenization service enables you to substitute a sensitive data element with
 To configure and use the tokenization service, you need:
 
 * Runtime Fabric, Anypoint Security Edge Policies, and Security Tokenization entitlements for your Anypoint Platform account. If you do not see the *Tokenization Service* tab in Runtime Manager, contact your customer success manager to enable the tokenization service for your account. 
+* Have the correct permissions to manage tokenization. 
 * Runtime Fabric 1.1.153 or later with inbound traffic configured. See xref:runtime-fabric::index.adoc[the Runtime Fabric documentation].
 * A secret group to store the tokenization table encryption keys that are created by the tokenization service. See xref:asm-secret-group-concept.adoc[Secrets Manager documentation].
 * A tokenization format, which describes the format and how data is tokenized. See xref:tokenization-formats.adoc[Tokenization Formats].
