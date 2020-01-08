@@ -50,7 +50,7 @@ To use a Mule app to expose the tokenization endpoint:
 . xref:tokenization-from-a-mule.adoc#create_an_api_from_the_tokenization_raml[Create an API from the tokenization RAML].
 . Deploy the app to Runtime Fabric. See xref:runtime-fabric::deploy-index.adoc[Deploy Applications and API Proxies to Runtime Fabric].
 
-For more information, see xref:tokenization-example.adoc[Expose Tokenization as a Service Directly to Mule Applications].
+For more information, see xref:tokenization-from-a-mule.adoc[Expose Tokenization as a Service Directly to Mule Applications].
 
 
 

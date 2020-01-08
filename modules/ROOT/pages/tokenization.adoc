@@ -47,6 +47,7 @@ The Tokenization service provides many benefits:
 
 == See Also
 
+* xref:create-tokenization-service.adoc[Create a Tokenization Service]
 * xref:tokenization-example.adoc[Tokenization Configurations]
-* xref:tokenization-formats.adoc[Apply Tokenization Policies to API Gateway]
+* xref:apply-tokenization-policy-to-api.adoc[Apply Tokenization Policies to API Gateway]
 * xref:tokenization-from-a-mule.adoc[Expose Tokenization as a Service Directly to Mule Applications]
