@@ -47,6 +47,7 @@ The Tokenization service provides many benefits:
 
 == See Also
 
+* xref:grant-tokenization-permissions.adoc[Grant Tokenization Permissions]
 * xref:create-tokenization-service.adoc[Create a Tokenization Service]
 * xref:tokenization-example.adoc[Tokenization Configurations]
 * xref:apply-tokenization-policy-to-api.adoc[Apply Tokenization Policies to API Gateway]

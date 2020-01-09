@@ -16,7 +16,7 @@ A user needs to have a set of predefined permissions to create and manage tokeni
 | Provides the ability to create, modify, and delete tokenization formats to use with the tokenization service in a specific environment.
 
 | Manage Tokenization Services
-| Provides the ability to create and deploy a tokenization service as well as modify and delete a tokenization service in a specific environment.
+| Provides the ability to create and deploy a tokenization service, as well as modify and delete a tokenization service in a specific environment.
 |===
 
 == Grant a User Tokenization Permissions

@@ -12,7 +12,7 @@ To configure and use this implementation of the tokenization service, you must:
 * Have permission to manage policies in API Manager.
 + 
 See xref:2.x@api-manager::environment-permission-task.adoc[Granting Permission to Access an Environment]
-* Have permission to manage tokenization services. If you do not see the *Tokenization Service* tab in Runtime Manager, contact your customer success manager to enable the tokenization service for your account. 
+* Have permission to manage tokenization services. See xref:grant-tokenization-permissions.adoc[Grant Tokenization Permissions].
 
 == Apply the Tokenization Policy
 

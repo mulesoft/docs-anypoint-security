@@ -14,7 +14,7 @@ Because the tokenization service accepts only TLS traffic, you must enable TLS f
 
 To configure and use the tokenization service, you must:
 
-* Have permission to manage tokenization services. If you do not see the *Tokenization Service* tab in Runtime Manager, contact your customer success manager to enable the tokenization service for your account.
+* Have permission to manage tokenization services. See xref:grant-tokenization-permissions.adoc[Grant Tokenization Permissions].
 * xref:runtime-fabric::install-create-rtf-arm.adoc[Install Runtime Fabric]. Anypoint Runtime Fabric is a container service that automates the deployment and orchestration of Mule apps and API gateways.
 * xref:runtime-fabric::enable-inbound-traffic.adoc[Enable inbound traffic] on Runtime Fabric.
 * xref:create-tokenization-format.adoc[Create a tokenization format].
