@@ -1,4 +1,7 @@
 = Credit Card Formats
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
 
 Tokenization replaces original card data with tokenized data according to the way you configure the credit card data domain when you xref:create-tokenization-format.adoc[create a tokenization format]. 
 

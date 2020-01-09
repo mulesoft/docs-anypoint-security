@@ -1,16 +1,19 @@
 = Create a Tokenization Service
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
 
 The tokenization service enables you to substitute a sensitive data element with a non-sensitive equivalent.
 
 == Prerequisites
 
-To configure and use the tokenization service, you need:
+To configure and use the tokenization service, you must:
 
-* Runtime Fabric, Anypoint Security Edge Policies, and Security Tokenization entitlements for your Anypoint Platform account. If you do not see the *Tokenization Service* tab in Runtime Manager, contact your customer success manager to enable the tokenization service for your account. 
-* Have the correct permissions to manage tokenization. 
-* Runtime Fabric 1.1.153 or later with inbound traffic configured. See xref:runtime-fabric::index.adoc[the Runtime Fabric documentation].
-* A secret group to store the tokenization table encryption keys that are created by the tokenization service. See xref:asm-secret-group-concept.adoc[Secrets Manager documentation].
-* A tokenization format, which describes the format and how data is tokenized. See xref:tokenization-formats.adoc[Tokenization Formats].
+* Have Runtime Fabric, Anypoint Security Edge Policies, and Security Tokenization entitlements for your Anypoint Platform account. If you do not see the *Tokenization Service* tab in Runtime Manager, contact your customer success manager to enable the tokenization service for your account. 
+* Have the correct permissions to manage tokenization. See xref:grant-tokenization-permissions.adoc[Granting Tokenization Permissions]
+* Have Runtime Fabric 1.1.153 or later with inbound traffic configured. See xref:runtime-fabric::index.adoc[the Runtime Fabric documentation].
+* Have a secret group to store the tokenization table encryption keys that are created by the tokenization service. See xref:asm-secret-group-concept.adoc[Secrets Manager documentation].
+* Have a tokenization format, which describes the format and how data is tokenized. See xref:tokenization-formats.adoc[Tokenization Formats].
 
 == What to Know About Secret Groups and Tokenization
 
@@ -24,8 +27,6 @@ This is the recommended approach for several reasons:
 one for each VDP domain.
 
 Use Secrets Manager xref:asm-secret-group-creation-task.adoc[to create and manage secret groups]. 
-
-When you delete a tokenization service, delete the corresponding secret group.
 
 Tokenization table keys appear in in the *Shared Secret* tab in the secret group that is associated with the tokenization service. Normally, you can view and edit shared secrets in Secrets Manager, however, the tokenization table keys are a view-only, non-editable part of the secret group. 
 
@@ -42,11 +43,11 @@ The prerequisites you completed provide the information you need for the followi
   .. Select the tokenization format from the *Formats* drop-down list. You can assign one, more, or all, formats to one tokenization service.
   .. Select the secret group from the *Secret Group* drop-down list.
   .. Select the number of tokenization service replicas to run. The tokenization service runs on worker nodes in Runtime Fabric.
-  .. Select the log level for the tokenization service, or keep the default *ERROR*. 
+  .. Select the log level for the tokenization service, or keep the default, *ERROR*. 
 . Click *Build and Deploy* to create the tokenization table. +
 A mapping table that contains a large table of randomizations, which are used at the core of tokenizing and detokenizing, pre-builds. This pre-build is not a one-to-one table of mappings&#8212;it is used during internal steps to swap in and swap out randomizations in place of the actual data. 
 
-The tokenization mapping table build is a one-time action and takes some time to complete, depending on the size of the tokenization format. For example, a table with only an SSN format with a size that is less than 200 MB might build in two minutes; but a table that uses a larger format, such as “lax alphanumeric” might take up to 20 minutes to build.
+The tokenization mapping table build is a one-time action and takes some time to complete, depending on the size of the tokenization format. For example, a table that contains only an SSN format with a size that is less than 200 MB might build in two minutes; but a table that uses a larger format, such as “lax alphanumeric” might take up to 20 minutes to build.
 
 If many, or all, of the formats are selected, it takes much longer to build the table, as a table with all formats is approximately 2 GB in size.
 
@@ -54,4 +55,6 @@ If many, or all, of the formats are selected, it takes much longer to build the 
 == See Also
 
 * xref:tokenization.adoc[Tokenization]
+* xref:tokenization-formats.adoc[Tokenization Formats]
+* xref:tokenization-example.adoc[Tokenization Service Configurations]
 * xref:asm-secret-group-concept.adoc[Secrets Manager documentation]

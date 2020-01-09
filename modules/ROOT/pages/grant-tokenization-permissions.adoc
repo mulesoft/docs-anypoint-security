@@ -24,5 +24,5 @@ A user needs to have a set of predefined permissions to create and manage tokeni
 . In Access Management, from the left navigation menu, click *Users*.
 . To grant permissions click the name of the user. 
 . In the *Permissions* tab, click *Tokenization*. 
-. Select *Manage Tokenization Formats* from the Permissions drop-down, and click the image:blue-plus-security.png[blue plus icon]. 
-. Select the environment from the Environment drop-down, then select the *Manage Tokenization Services* permission from the Permissions drop-down, and click the image:blue-plus-security.png[blue plus icon].
+. Select *Manage Tokenization Formats* from the Permissions drop-down, and click the blue plus icon image:blue-plus-security.png[]. 
+. Select the environment from the Environment drop-down, then select the *Manage Tokenization Services* permission from the Permissions drop-down, and click the blue plus icon image:blue-plus-security.png[].
