@@ -3,12 +3,9 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-If a lot of complex data processing needs to take place before traffic gets to the tokenization/de-tokenization service, it makes sense to set up a Mule app to which Edge can route the traffic. In this scenario, the Mule app processes the data and sends the traffic to the tokenization service. 
+If a lot of complex data processing must take place before traffic gets to the tokenization/detokenization service, it makes sense to set up a Mule app to which the Edge can route traffic. In this scenario, the Mule app processes the data and sends the traffic to the tokenization service. 
 
-If you don't need the Mule app to do any data processing, it can also do nothing other than expose the tokenization service as a pass-through. 
-
-[NOTE]
-Because the tokenization service accepts only TLS traffic, you must enable TLS for the Mule HTTP outbound connection, and enable Last-mile security when deploying the Mule app to Runtime Fabric so the edge-to-Mule-app connection uses TLS.
+If you don't need the Mule app to perform any data processing, it can also do nothing other than act to expose the tokenization service as a pass-through. 
 
 == Prerequisites
 
@@ -38,19 +35,21 @@ The hostname portion for the outbound URL is formed by taking the service name +
 The request is an array of items, and a single example is: `{"format" : "ssnonly", "data" : "333-33-3333"}`.
 The value of `format` matches a tokenization format that is defined on the service.  The `data` value is what to tokenize or detokenize. +
 [NOTE]
-The array should be 100 items long at most. If it is any longer than 100 items, break it up into multiple requests to the tokenization service.
+The maximum number of items allowed in the array is 100. If the array contains more than 100 items, you must separate it into multiple requests to the tokenization service.
 . Set the HTTP Listener in the Mule app to HTTPS. 
 . Export the Mule app.
 . In Runtime Manager, xref:runtime-fabric::deploy-to-runtime-fabric.adoc[deploy the application to Runtime Fabric]. +
 [NOTE]
 You must select the *Last mile security* checkbox to enable TLS between the edge and the Mule app.
-. (Optional) For improved security and protection of the Mule app, you should add some method of authentication.
+. (Optional) For improved security and protection of the Mule app, you should add an authentication method. 
 
 
 [configure_TLS]
 == Configure TLS
 
-This is an example of how to configure TLS for Mule apps in Studio 7.3.
+Because the tokenization service accepts only TLS traffic, you must enable TLS for the Mule HTTP outbound connection, and enable last-mile security when deploying the Mule app to Runtime Fabric so the Edge-to-Mule-app connection uses TLS.
+
+The following is an example of how to configure TLS for Mule apps in Studio 7.3:
 
 . Go to Anypoint Studio, and open the project for your Mule app.
 +
