@@ -21,7 +21,7 @@ To configure and use the tokenization service, you must:
 [tokenization_raml]
 == Create an API from the Tokenization RAML
 
-Once you have the information you need to set up a routable tokenization service using an API Gateway, create an API from the tokenization RAML.
+After you have the information you need to set up a routable tokenization service using an API Gateway, create an API from the tokenization RAML.
 
 . Go to the public https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/[Anypoint Platform developer portal], and search for "Tokenization API."
 . Select *Download > As RAML*. The RAML is downloaded as a ZIP file.
