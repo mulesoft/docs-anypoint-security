@@ -9,26 +9,32 @@ The tokenization service enables you to substitute a sensitive data element with
 
 To configure and use the tokenization service, you must:
 
-* Have Runtime Fabric, Anypoint Security Edge Policies, and Security Tokenization entitlements for your Anypoint Platform account. If you do not see the *Tokenization Service* tab in Runtime Manager, contact your customer success manager to enable the tokenization service for your account. 
-* Have the correct permissions to manage tokenization. See xref:grant-tokenization-permissions.adoc[Granting Tokenization Permissions]
-* Have Runtime Fabric 1.1.153 or later with inbound traffic configured. See xref:runtime-fabric::index.adoc[the Runtime Fabric documentation].
-* Have a secret group to store the tokenization table encryption keys that are created by the tokenization service. See xref:asm-secret-group-concept.adoc[Secrets Manager documentation].
-* Have a tokenization format, which describes the format and how data is tokenized. See xref:tokenization-formats.adoc[Tokenization Formats].
+* Have Runtime Fabric, Anypoint Security Edge Policies, and Security Tokenization entitlements for your Anypoint Platform account. +
+If you do not see the *Tokenization Service* tab in Runtime Manager, contact your customer success manager to enable the tokenization service for your account. 
+* Have the correct permissions to manage tokenization. +
+See xref:grant-tokenization-permissions.adoc[Granting Tokenization Permissions]
+* Have Runtime Fabric 1.1.153 or later with inbound traffic configured. +
+See xref:runtime-fabric::index.adoc[the Runtime Fabric documentation].
+* Have a secret group to store the tokenization table encryption keys that are created by the tokenization service. +
+See xref:asm-secret-group-concept.adoc[Secrets Manager documentation].
+* Have a tokenization format, which describes the format and how data is tokenized. +
+See xref:tokenization-formats.adoc[Tokenization Formats].
 
-== What to Know About Secret Groups and Tokenization
+== Best Practices for Secret Groups and Tokenization
 
 Each tokenization service you create must have a corresponding, dedicated secret group in Secrets Manager. Do not use this secret group with any other tokenization service. Do not store any secrets outside of this tokenization service in another secret group.
 
 This is the recommended approach for several reasons:
 
-. Use a dedicated secret group for the tokenization service to help prevent accidentally deleting other secret groups when you delete a secret group.
-. You can create and change as many formats as you need for the tokenization service, and the secret group will not be exhausted.
-. The unique association between the tokenization service and its dedicated secret group prevents vaultless data protection (VDP) type secrets from running out in a secret group. In the worst case, there will be 10 secrets created of the VDP Context type&#8212;
+* Using a dedicated secret group for the tokenization service helps prevent accidentally deleting other secret groups when you delete a secret group.
+* You can create and change as many formats as you need for the tokenization service, and the secret group will not be exhausted.
+* The unique association between the tokenization service and its dedicated secret group prevents exceeding the allowed number of vaultless data protection (VDP) secrets in a secret group. +
+In the worst case, there will be 10 secrets created of the VDP Context type&#8212;
 one for each VDP domain.
 
 Use Secrets Manager xref:asm-secret-group-creation-task.adoc[to create and manage secret groups]. 
 
-Tokenization table keys appear in in the *Shared Secret* tab in the secret group that is associated with the tokenization service. Normally, you can view and edit shared secrets in Secrets Manager, however, the tokenization table keys are a view-only, non-editable part of the secret group. 
+Tokenization table keys appear in the *Shared Secret* tab in the secret group that is associated with the tokenization service. Normally, you can view and edit shared secrets in Secrets Manager; however, the tokenization table keys are a view-only, noneditable part of the secret group. 
 
 image::tokenization-example-shared-secret.png[]
 
@@ -36,20 +42,22 @@ Click *View* to see the name, type, and expiration of the shared secret.
 
 == Create the Tokenization Service
 
-. Go to the *Runtime Manager­ > Tokenization Service* page to create the service.
+. Go to the *Runtime Manager­ > Tokenization Service* page.
 . Click *Create Tokenization Service*. +
-The prerequisites you completed provide the information you need for the following information: 
-  .. In the *Runtime fabric* drop-down list, select the Runtime Fabric to which to deploy the tokenization service. 
-  .. Select the tokenization format from the *Formats* drop-down list. You can assign one, more, or all, formats to one tokenization service.
-  .. Select the secret group from the *Secret Group* drop-down list.
-  .. Select the number of tokenization service replicas to run. The tokenization service runs on worker nodes in Runtime Fabric.
-  .. Select the log level for the tokenization service, or keep the default, *ERROR*. 
+The prerequisites you completed provide the information you need to make the following selections: 
+. Select the Runtime Fabric to which to deploy the tokenization service. 
+. Select the tokenization format. +
+You can assign one or more formats or all formats to one tokenization service.
+. Select the secret group that corresponds with this tokenization service.
+. Select the number of tokenization service replicas to run. +
+The tokenization service runs on worker nodes in Runtime Fabric.
+. Select the log level for the tokenization service or keep the default (*ERROR*). 
 . Click *Build and Deploy* to create the tokenization table. +
-A mapping table that contains a large table of randomizations, which are used at the core of tokenizing and detokenizing, pre-builds. This pre-build is not a one-to-one table of mappings&#8212;it is used during internal steps to swap in and swap out randomizations in place of the actual data. 
+A mapping table prebuilds, containing a large number of randomizations that are used at the core of tokenizing and detokenizing. This prebuilt table is not a table of one-to-one mappings; it is used during internal steps to swap in and swap out randomizations in place of the actual data. 
 
-The tokenization mapping table build is a one-time action and takes some time to complete, depending on the size of the tokenization format. For example, a table that contains only an SSN format with a size that is less than 200 MB might build in two minutes; but a table that uses a larger format, such as “lax alphanumeric” might take up to 20 minutes to build.
+The tokenization mapping table build is a one-time action and takes some time to complete, depending on the size of the tokenization format. For example, a table that contains only an SSN format with a size that is less than 200 MB might build in 2 minutes, but a table that uses a larger format, such as lax alphanumeric, might take up to 20 minutes to build.
 
-If many, or all, of the formats are selected, it takes much longer to build the table, as a table with all formats is approximately 2 GB in size.
+If many or all of the formats are selected, it takes much longer to build the table, because a table with all formats is approximately 2 GB in size.
 
 
 == See Also

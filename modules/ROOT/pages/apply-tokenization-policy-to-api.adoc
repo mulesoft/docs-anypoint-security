@@ -9,10 +9,10 @@ In this tokenization implementation, you apply the tokenization policy to the AP
 
 To configure and use this implementation of the tokenization service, you must:
 
-* Have permission to manage policies in API Manager.
-+ 
+* Have permission to manage policies in API Manager + 
 See xref:2.x@api-manager::environment-permission-task.adoc[Granting Permission to Access an Environment]
-* Have permission to manage tokenization services. See xref:grant-tokenization-permissions.adoc[Grant Tokenization Permissions].
+* Have permission to manage tokenization services. +
+See xref:grant-tokenization-permissions.adoc[Grant Tokenization Permissions]
 
 == Apply the Tokenization Policy
 
@@ -21,7 +21,7 @@ When the tokenization service policy is applied directly to the API gateway, you
 To apply a tokenization policy to the API gateway: 
 
 . xref:runtime-fabric::install-create-rtf-arm.adoc[Install Runtime Fabric].
-. xref:runtime-fabric::enable-inbound-traffic.adoc[Enable inbound traffic] on Runtime Fabric
+. xref:runtime-fabric::enable-inbound-traffic.adoc[Enable inbound traffic] on Runtime Fabric.
 . xref:tokenization-formats.adoc[Create a tokenization format].
 . xref:asm-secret-group-creation-task.adoc[Create a dedicated secret group in Secrets Manager].
 . xref:create-tokenization-service.adoc[Create a tokenization service].
