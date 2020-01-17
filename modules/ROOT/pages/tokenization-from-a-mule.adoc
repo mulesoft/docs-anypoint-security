@@ -3,43 +3,54 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-If a lot of complex data processing needs to take place before traffic gets to the tokenization/de-tokenization service, it makes sense to set up a Mule app to which Edge can route the traffic. In this scenario, the Mule app processes the data and sends the traffic to the tokenization service. 
+If a lot of complex data processing must take place before traffic gets to the tokenization service, it makes sense to set up a Mule app to which the edge can route traffic. In this scenario, the Mule app processes the data and sends the traffic to the tokenization service. 
 
-If you don't need the Mule app to do any data processing, it can also do nothing other than expose the tokenization service as a pass-through. 
+If you don't need the Mule app to perform data processing, it can still expose the tokenization service as a passthrough. 
 
-[NOTE]
-Because the tokenization service accepts only TLS traffic, you must enable TLS for the Mule HTTP outbound connection, and enable Las-tMile security when deploying the Mule app to Runtime Fabric so the edge-to-Mule-app connection uses TLS.
+== Prerequisites
+
+To configure and use the tokenization service, you must:
+
+* xref:grant-tokenization-permissions.adoc[Grant tokenization permissions] to have permission to manage tokenization services.
+* xref:runtime-fabric::install-create-rtf-arm.adoc[Install Runtime Fabric]. +
+Anypoint Runtime Fabric is a container service that automates the deployment and orchestration of Mule apps and API gateways.
+* xref:runtime-fabric::enable-inbound-traffic.adoc[Enable inbound traffic] on Runtime Fabric.
+* xref:create-tokenization-format.adoc[Create a tokenization format].
+* xref:asm-secret-group-creation-task.adoc[Create a dedicated secret group in Secrets Manager].
+* xref:create-tokenization-service.adoc[Create a tokenization service].
 
 [tokenization_raml]
 == Create an API from the Tokenization RAML
 
-Once you have the information you need to set up a routable tokenization service using an API Gateway, create an API from the tokenization RAML.
+After you have the information you need to set up a routable tokenization service using an API gateway, create an API from the tokenization RAML.
 
 . Go to the public https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/[Anypoint Platform developer portal], and search for "Tokenization API."
 . Select *Download > As RAML*. The RAML is downloaded as a ZIP file.
 . Go to your Exchange portal, and click *New asset*. 
 . Set the *Name* as `Tokenization API` and the *Type* as `REST API - RAML`.
 . Select the ZIP file you downloaded, and click *Publish*.
-. In Studio or Design Center, create an HTTP outbound connection based on the `Tokenization API` RAML. +
+. In Anypoint Studio or Design Center, create an HTTP outbound connection based on the `Tokenization API` RAML. +
 The tokenization service in Runtime Fabric listens on port 3443 and is available through HTTPS only. +
 The hostname portion for the outbound URL is formed by taking the service name + `-tokenizer`. For example, if the tokenization service name is “mytoken1”, the outbound URL is: `https://mytoken1-­tokenizer:3443`.
 . Use a Dataweave transform step before the HTTP outbound connection to convert your input data into the `TokenizationServiceRequest` data type defined in the `Tokenization API` RAML. +
 The request is an array of items, and a single example is: `{"format" : "ssnonly", "data" : "333-33-3333"}`.
 The value of `format` matches a tokenization format that is defined on the service.  The `data` value is what to tokenize or detokenize. +
 [NOTE]
-The array should be 100 items long at most. If it is any longer than 100 items, break it up into multiple requests to the tokenization service.
-. Set the HTTP Listener in the Mule application to HTTPS. 
+The maximum number of items allowed in the array is 100. If the array contains more than 100 items, you must separate it into multiple requests to the tokenization service.
+. Set the HTTP Listener in the Mule app to HTTPS. 
 . Export the Mule app.
 . In Runtime Manager, xref:runtime-fabric::deploy-to-runtime-fabric.adoc[deploy the application to Runtime Fabric]. +
 [NOTE]
 You must select the *Last mile security* checkbox to enable TLS between the edge and the Mule app.
-. (Optional) For improved security and protection of the Mule app, you should add some method of authentication.
+. (Optional) For improved security and protection of the Mule app, add an authentication method. 
 
 
 [configure_TLS]
 == Configure TLS
 
-This is an example of how to configure TLS for Mule apps in Studio 7.3.
+Because the tokenization service accepts only TLS traffic, you must enable TLS for the Mule HTTP outbound connection, and enable last-mile security when deploying the Mule app to Runtime Fabric so the edge-to-Mule-app connection uses TLS.
+
+The following is an example of how to configure TLS for Mule apps in Studio 7.3:
 
 . Go to Anypoint Studio, and open the project for your Mule app.
 +
@@ -60,6 +71,9 @@ image::tokenization-example-set-keystore-info.png[]
 . Edit the settings for the HTTP endpoint to enable TLS on the HTTP connection from Mule to the tokenization service. 
 +
 image::tokenization-example-configure-TLS.png[]
+
+== Deploy the App to Runtime Fabric
+
 . Save the application and export it. 
 . In Anypoint Platform, go to *Runtime Manager*, and click *Deploy Application*. 
 . In the *Deploy Application* page:
@@ -70,3 +84,6 @@ image::tokenization-example-configure-TLS.png[]
 .. Click the *Ingress* tab, and select *Enable Last­Mile Security* option.
 . Click *Deploy Application*. 
 
+== See Also
+
+* xref:runtime-fabric::deploy-index.adoc[Deploy Applications and API Proxies to Runtime Fabric]

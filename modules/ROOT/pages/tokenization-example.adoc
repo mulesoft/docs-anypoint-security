@@ -4,53 +4,21 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-The way you configure and use the tokenization service depends on your Mule implementation:
+The way you configure and use the tokenization service depends on your Mule implementation. 
 
-* <<tokenize_api_policy,The API gateway>> capability of Mule 4 with a tokenization policy applied.
-* <<tokenize_mule_app,A Mule runtime engine with a Mule app>> that calls the tokenization service.
+== Apply a Tokenization Policy to the API Gateway
 
-[[prerequisites]]
-== Prerequisites
+You can apply a tokenization policy to the API gateway capability of Mule 4 to serve as the intermediary between Anypoint Security's edge and the Mule app. 
 
-To configure and use the tokenization service, you must:
+See xref:apply-tokenization-policy-to-api.adoc[Apply a Tokenization Policy to the API Gateway]
+ 
 
-* Have permission to manage policies in API Manager and manage tokenization services in Tokenization.
-+ 
-See xref:2.x@api-manager::environment-permission-task.adoc[Granting Permission to Access an Environment]
-. xref:runtime-fabric::install-create-rtf-arm.adoc[Install Runtime Fabric]. Anypoint Runtime Fabric is a container service that automates the deployment and orchestration of Mule apps and API gateways.
-. To allow Mule apps or API gateways to listen on inbound connections, you must xref:runtime-fabric::enable-inbound-traffic.adoc[enable inbound traffic] on Runtime Fabric.
+== Expose Tokenization as a Service to Mule Apps
 
+When extra data processing is required, you can configure the tokenization service so that the Mule app processes the data and send the traffic to the tokenization service. 
 
-[[tokenize_api_policy]]
-== Configure Tokenization Using Policies
+See xref:tokenization-from-a-mule.adoc[Expose Tokenization as a Service Directly to Mule Applications]
 
-You can configure the API Gateway and use the tokenization service as the core engine for the tokenization and detokenization policies provided in API Manager. 
-
-To use tokenization and detokenization policies to configure the tokenization service:
-
-. Ensure you have completed the <<prerequisites,required prerequisites>>. 
-. xref:create-tokenization-format.adoc[Create a tokenization format].
-. xref:create-tokenization-service.adoc[Create a tokenization service].
-. In API Manager, xref:2.x@api-manager::getting-started-proxy.adoc[set up the API gateway] for the Mule app to serve as the proxy. 
-. Apply xref:2.x@api-manager::policy-mule4-tokenization.adoc[the tokenization policy] to the API gateway.
-
-For more information, see xref:apply-tokenization-policy-to-api.adoc[Apply a Tokenization Policy to the API Gateway].
-
-[[tokenize_mule_app]]
-== Configure Tokenization Using a Mule App
-
-When extra data processing is required, you can expose the tokenization endpoint through a Mule app. 
-
-To use a Mule app to expose the tokenization endpoint:
-
-. Ensure you have completed the <<prerequisites,required prerequisites>>. 
-. xref:create-tokenization-format.adoc[Create a tokenization format].
-. xref:create-tokenization-service.adoc[Create a tokenization service].
-. Configure TLS. See xref:tokenization-from-a-mule.adoc#configure_tls[Configure TLS]
-. xref:tokenization-from-a-mule.adoc#create_an_api_from_the_tokenization_raml[Create an API from the tokenization RAML].
-. Deploy the app to Runtime Fabric. See xref:runtime-fabric::deploy-index.adoc[Deploy Applications and API Proxies to Runtime Fabric].
-
-For more information, see xref:tokenization-example.adoc[Expose Tokenization as a Service Directly to Mule Applications].
 
 
 

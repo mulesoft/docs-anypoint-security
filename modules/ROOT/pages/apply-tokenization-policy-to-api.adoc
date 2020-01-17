@@ -5,6 +5,15 @@ endif::[]
 
 In this tokenization implementation, you apply the tokenization policy to the API gateway capability of Mule 4, which serves as the intermediary between the Edge and the Mule app. The tokenization service in this case is implicit and made available through internal integration with the API gateway. 
 
+== Prerequisites
+
+To configure and use this implementation of the tokenization service, you must:
+
+* Have permission to manage policies in API Manager + 
+See xref:2.x@api-manager::environment-permission-task.adoc[Granting Permission to Access an Environment]
+* Have permission to manage tokenization services. +
+See xref:grant-tokenization-permissions.adoc[Grant Tokenization Permissions]
+
 == Apply the Tokenization Policy
 
 When the tokenization service policy is applied directly to the API gateway, you don't need to use the tokenization RAML to expose the tokenization service. You only need to set up the API gateway for the Mule app to serve as the proxy.
@@ -12,15 +21,16 @@ When the tokenization service policy is applied directly to the API gateway, you
 To apply a tokenization policy to the API gateway: 
 
 . xref:runtime-fabric::install-create-rtf-arm.adoc[Install Runtime Fabric].
-. xref:runtime-fabric::enable-inbound-traffic.adoc[Enable inbound traffic] on Runtime Fabric
+. xref:runtime-fabric::enable-inbound-traffic.adoc[Enable inbound traffic] on Runtime Fabric.
 . xref:tokenization-formats.adoc[Create a tokenization format].
+. xref:asm-secret-group-creation-task.adoc[Create a dedicated secret group in Secrets Manager].
 . xref:create-tokenization-service.adoc[Create a tokenization service].
 . In API Manager, xref:2.x@api-manager::configure-autodiscovery-4-task.adoc[set up the API gateway] for the Mule app to serve as the proxy. +
 [NOTE]
 You must use the API gateway version 4.0 or later. The Mule app that implements the API can be any version. 
-. Once you have the API gateway configured, in API Manager, click *Apply New Policy* and select the tokenization service policy to apply. +
+. After you configure the API gateway, in API Manager, click *Apply New Policy* and select the tokenization service policy to apply. +
 Available xref:api-manager::policy-mule4-tokenization.adoc[tokenization service policies] appear in *Policies > Tokenization*. +
-You can now use the tokenization service to tokenize and de-tokenize request and response payloads. 
+You can now use the tokenization service to tokenize and detokenize request and response payloads. 
 
 == See Also
 
