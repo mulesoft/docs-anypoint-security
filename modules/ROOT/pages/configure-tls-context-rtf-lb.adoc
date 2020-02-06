@@ -1,4 +1,4 @@
-= Configure a TLS Context for Runtime Fabric Load Balancer
+= Configure a TLS Context for Anypoint Runtime Fabric
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -38,6 +38,7 @@ Optionally select the expiration date for the certificate.
 . Optionally xref:cipher-suites.adoc[select ciphers]. 
 . Click *Save*.
 
+[[import_tls_rtf]]
 == Import a TLS Context to Runtime Fabric
 
 . In *Runtime Manager > Runtime Fabrics > Inbound Traffic*, select *Import from Secrets Manager*. 
@@ -50,3 +51,4 @@ You can click *View Details* to see details of the TLS context you are importing
 
 * xref:enable-client-authentication.adoc[Enable Client Authentication]
 * xref:cipher-suites.adoc[Cipher Suites]
+* xref:runtime-fabric::enable-inbound-traffic.adoc[Enable Inbound Traffic on Anypoint Runtime Fabric]
