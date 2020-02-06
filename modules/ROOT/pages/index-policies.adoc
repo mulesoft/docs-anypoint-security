@@ -27,6 +27,11 @@ This layer of security provides the same control as any API Manager policy offer
 * OAuth
 * Authorization and Accounting (AAA)
 
+[[anypoint_security_prereqs]]
+== Prerequisites
+
+include::{partialsdir}/anypoint-security-policies-prereqs.adoc[]
+
 == DoS Policy
 
 DoS policies are designed to protect your network nodes against malicious clients trying to flood your network to prevent legitimate traffic to your APIs. +
