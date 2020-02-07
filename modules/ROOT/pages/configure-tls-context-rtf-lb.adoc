@@ -3,15 +3,15 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-All inbound traffic entering Anypoint Runtime Fabric is encrypted using TLS. When enabling inbound traffic, you must provide a valid TLS certificate. When you configure inbound traffic for Runtime Fabric, you can configure the TLS-server by importing a Privacy-Enhance Mail (PEM) or Java Keystore (JKS), or by importing a TLS context from secrets manager (advanced use case).
+All inbound traffic entering Anypoint Runtime Fabric is encrypted using TLS. When enabling inbound traffic, you must provide a valid TLS certificate. When you configure inbound traffic for Runtime Fabric, you can configure the TLS server by importing a Privacy-Enhanced Mail (PEM) or Java Keystore (JKS) file, or by importing a TLS context from the secrets manager (advanced use case).
 
-Before you can import the TLS Context from secrets manager, you need to add the TLS Context. 
+Before you can import the TLS Context from the secrets manager, you must add the TLS context. 
 
 == Add the TLS Context to a Secret Group
 
 Adding a TLS context to your secret group involves supplying a name, target, security information, version, keystore and, optionally, truststore. 
 
-. In the *Secret Groups* list view, select the secret group to which to add a TLS context. 
+. In the *Secret Groups* list view, select the secret group to which you want to add a TLS context. 
 . Select *TLS Context* in the menu on the left, and click *Add TLS Context*. 
 . In the Create TLS Context screen, add the required information:
 +
@@ -21,15 +21,13 @@ Enter a name for your TLS context.
 Select *Anypoint Security* to validate the SSL handshake for Runtime Fabric. 
 * *TLS Version* +
 By default, TLS 1.2 and TLS 1.3 are selected. +
-** TLS 1.1
-** TLS 1.2
-** TLS 1.3  
+For information about the advantages of TLS 1.3, see xref:asm-secret-type-support-reference.adoc[Supported Secret Types].
 * *Keystore* +
 From the drop-down list, select the keystore to store the TLS context. +
 You can select keystores and truststores that are either PEM or non-PEM types. Supported types include: +
-*** JKS
-*** PKCS #12
-*** JCEKS 
+** JKS
+** PKCS #12
+** JCEKS 
 * *Truststore* +
 Optionally select a truststore to which to add the TLS context if you are using a truststore to store certificates trusted by the client. +
 * *Expiration Date* +
@@ -44,11 +42,12 @@ Optionally select the expiration date for the certificate.
 . In *Runtime Manager > Runtime Fabrics > Inbound Traffic*, select *Import from Secrets Manager*. 
 . Select the environment the secret group that contains the TLS context is associated with.
 . Select the secret group where the TLS context is configured.
-. Select the TLS context to use for the Runtime Fabric. +
+. Select the TLS context to use for Runtime Fabric. +
 You can click *View Details* to see details of the TLS context you are importing. 
 
 == See Also
 
 * xref:enable-client-authentication.adoc[Enable Client Authentication]
 * xref:cipher-suites.adoc[Cipher Suites]
+* xref:asm-secret-type-support-reference.adoc[Supported Secret Types]
 * xref:runtime-fabric::enable-inbound-traffic.adoc[Enable Inbound Traffic on Anypoint Runtime Fabric]
