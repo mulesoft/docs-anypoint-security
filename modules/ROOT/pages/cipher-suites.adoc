@@ -4,7 +4,7 @@ include::_attributes.adoc[]
 endif::[]
 
 
-When you configure a TLS Context, default ciphers are applied with the TLS context based on the TLS version you selected. If you don't use the defaults, you can select ciphers that match the configured keystore to ensure that TLS can set up a connection: 
+When you configure a TLS context, default ciphers are applied to it based on the TLS version you selected. If you don't use the defaults, you can select ciphers that match the configured keystore to ensure that TLS can set up a connection: 
 
 * For a keystore with an RSA key (the most common type), select ciphers that contain the string `RSA`. 
 * If you are using ECC ciphers, select ciphers that contain the string `ECDSA`. +

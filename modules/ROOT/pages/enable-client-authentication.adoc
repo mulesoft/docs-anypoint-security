@@ -9,7 +9,7 @@ A truststore to store certificates trusted by the client is required if you are 
 
 To enable client authentication:
 
-. In the Create TLS Context page for the secret group, select *Enable Client Authentication* and provide the following information: +
+. In the Create TLS Context page for the secrets group, select *Enable Client Authentication* and provide the following information: +
 * *Verification Depth* +
 Select the maximum depth to allow for the certificate chain verification.
 * *Revocation Method* +
@@ -23,7 +23,7 @@ Select this option if you want to allow access only for client certificates that
 Allows the application to control whether strict or lax certificate checking is performed during chain-of-trust processing.
 * *Certificate Policy Checking* +
 Controls certificate policy processing as defined in RFC 3280 and 5280.
-A certificate can contain zero or more policies. A policy is represented as an object identifier (OID). In an end entity certificate, this policy information indicates the policy under which the certificate has been issued and the purposes for which the certificate can be used. +
+A certificate can contain zero or more policies. A policy is represented as an object identifier (OID). In an end-entity certificate, this policy information indicates the policy under which the certificate has been issued and the purposes for which the certificate can be used. +
 In a CA certificate, this policy information limits the set of policies for certification paths that include this certificate. Applications with specific policy requirements are expected to have a list of those policies that they will accept and to compare the policy OIDs in the certificate to that list. If this extension is critical, the path validation software must be able to interpret this extension (including the optional qualifier), or must reject the certificate.
 * *OID* +
 Select the object identifier options, which include: +
