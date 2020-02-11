@@ -5,17 +5,19 @@ endif::[]
 
 If you choose a target value of *Anypoint Security* when adding your TLS context, you can optionally enable client authentication. TLS-enabled clients verify that they trust the server by validating the public certificate against their own set of trusted certificates.
 
+A truststore to store certificates trusted by the client is required if you are enabling client authentication for the TLS context.  
+
 To enable client authentication:
 
-. Select *Enable Client Authentication* and provide the following information: +
+. In the Create TLS Context page for the secret group, select *Enable Client Authentication* and provide the following information: +
 * *Verification Depth* +
 Select the maximum depth to allow for the certificate chain verification.
 * *Revocation Method* +
 // Select *CRL* to use a certificate revocation list. 
 * *Send Trust Store* +
-Select this option if you want the edge to send the truststore to the far-end client for mutual TLS.
+Select this option if you want the inbound load balancer to send the truststore to the far-end client for mutual TLS. Clients use the truststore to select the correct certificate and path to use in cases where a client has multiple certificates and paths provisioned.
 * *Perform Certificate Pinning* +
-Select this option if you want the client to authenticate the server by validating the server's certificate. 
+Select this option if you want to allow access only for client certificates that are present in the selected certificate pinning list. In this case, a client certificate must have a chain of trust to a certificate (usually a CA) that appears in the truststore but also must be explicitly present (pinned) in the selected certificate pinning list. 
 . Click *Advanced Options* to expand the available options, and select the options to enable: +
 * *Certificate Checking Strength* +
 Allows the application to control whether strict or lax certificate checking is performed during chain-of-trust processing.
