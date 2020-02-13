@@ -8,14 +8,14 @@ The way you configure and use the tokenization service depends on your Mule impl
 
 == Apply a Tokenization Policy to the API Gateway
 
-You can apply a tokenization policy to the API gateway capability of Mule 4 to serve as the intermediary between Anypoint Security's edge and the Mule app. 
+You can apply a tokenization policy to configure the API gateway capability of Mule 4 to tokenize or detokenize request and response data sent between the Anypoint Runtime Fabric inbound load balancer and the Mule app. 
 
 See xref:apply-tokenization-policy-to-api.adoc[Apply a Tokenization Policy to the API Gateway]
  
 
 == Expose Tokenization as a Service to Mule Apps
 
-When extra data processing is required, you can configure the tokenization service so that the Mule app processes the data and send the traffic to the tokenization service. 
+When extra data processing is required, a Mule application can add business logic to send tokenization and detokenization requests directly to the tokenization service as part of its processing. 
 
 See xref:tokenization-from-a-mule.adoc[Expose Tokenization as a Service Directly to Mule Applications]
 
