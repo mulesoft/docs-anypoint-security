@@ -30,7 +30,7 @@ This layer of security provides the same control as any API Manager policy offer
 [[anypoint_security_prereqs]]
 == Prerequisites
 
-include::{partialsdir}/anypoint-security-policies-prereqs.adoc[]
+include::partial$anypoint-security-policies-prereqs.adoc[]
 
 == DoS Policy
 

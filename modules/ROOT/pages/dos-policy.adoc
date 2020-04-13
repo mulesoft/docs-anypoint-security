@@ -18,7 +18,7 @@ Since the source of the request is based on the IP address, if an an attacker sp
 [[anypoint_security_prereqs]]
 == Prerequisites
 
-include::{partialsdir}/anypoint-security-policies-prereqs.adoc[]
+include::partial$anypoint-security-policies-prereqs.adoc[]
 
 
 [[dos_thresholds_and_escalations]]
