@@ -28,7 +28,6 @@ The prerequisites you completed provide the information you need to make the fol
 . Select the Runtime Fabric to which to deploy the tokenization service. 
 . Select the tokenization format. +
 You can assign one or more formats or all formats to one tokenization service.
-. Select the secrets group that corresponds with this tokenization service.
 . Select the number of tokenization service replicas to run. +
 The tokenization service runs on worker nodes in Runtime Fabric.
 . Select the log level for the tokenization service or keep the default (*ERROR*). 
