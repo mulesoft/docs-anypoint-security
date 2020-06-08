@@ -44,4 +44,3 @@ If many or all of the formats are selected, it takes much longer to build the ta
 * xref:tokenization.adoc[Tokenization]
 * xref:tokenization-formats.adoc[Tokenization Formats]
 * xref:tokenization-example.adoc[Tokenization Service Configurations]
-* xref:asm-secret-group-concept.adoc[Secrets Manager documentation]
