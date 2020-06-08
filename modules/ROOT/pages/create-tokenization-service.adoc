@@ -20,26 +20,6 @@ Runtime Fabric requires an Anypoint Platform Platinum or higher-level subscripti
 * Have a tokenization format, which describes the format and how data is tokenized. +
 See xref:tokenization-formats.adoc[Tokenization Formats].
 
-== Best Practices for Secrets Groups and Tokenization
-
-Each tokenization service you create must have a corresponding, dedicated secrets group in Secrets Manager. Do not use this secrets group with any other tokenization service. Do not store any secrets outside of this tokenization service in another secrets group.
-
-This is the recommended approach for several reasons:
-
-* Using a dedicated secrets group for the tokenization service helps prevent accidentally deleting other secrets groups when you delete a secrets group.
-* You can create and change as many formats as you need for the tokenization service, and the secrets group will not be exhausted.
-* The unique association between the tokenization service and its dedicated secrets group prevents exceeding the allowed number of vaultless data protection (VDP) secrets in a secrets group. +
-In the worst case, there will be 10 secrets created of the VDP Context type&#8212;
-one for each VDP domain.
-
-Use Secrets Manager xref:asm-secret-group-creation-task.adoc[to create and manage secrets groups]. 
-
-Tokenization table keys appear in the *Shared Secret* tab in the secrets group that is associated with the tokenization service. Normally, you can view and edit shared secrets in Secrets Manager; however, the tokenization table keys are a view-only, noneditable part of the secrets group. 
-
-image::tokenization-example-shared-secret.png[]
-
-Click *View* to see the name, type, and expiration of the shared secret.
-
 == Create the Tokenization Service
 
 . Go to the *Runtime Manager­ > Tokenization Service* page.
