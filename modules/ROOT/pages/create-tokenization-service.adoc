@@ -17,7 +17,6 @@ See xref:grant-tokenization-permissions.adoc[Granting Tokenization Permissions]
 See xref:runtime-fabric::index.adoc[the Runtime Fabric documentation]. +
 Runtime Fabric requires an Anypoint Platform Platinum or higher-level subscription.
 * Have a secrets group to store the tokenization table encryption keys that are created by the tokenization service. +
-See xref:asm-secret-group-concept.adoc[Secrets Manager documentation].
 * Have a tokenization format, which describes the format and how data is tokenized. +
 See xref:tokenization-formats.adoc[Tokenization Formats].
 
