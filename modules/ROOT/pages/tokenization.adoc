@@ -24,6 +24,23 @@ A connection is established between the API gateway and the tokenization service
 
 The API gateway replaces the credit card number with the tokenized data and the request is sent to the app. 
 
+
+== Prerequisites
+
+To configure and use the tokenization service, you must:
+
+* Meet all the prerequisites and requirements for running Anypoint Runtime Fabric. +
+If you don't see *Security* in *Management Center* or the *Tokenization Service* tab in Runtime Manager, contact your customer success manager to enable the tokenization service for your account. +
+If you do not see the *Tokenization Service* tab in Runtime Manager, contact your customer success manager to enable the tokenization service for your account. 
+* Have the correct permissions to manage tokenization. +
+See xref:grant-tokenization-permissions.adoc[Granting Tokenization Permissions].
+* Have Runtime Fabric with inbound traffic configured. +
+See xref:runtime-fabric::index.adoc[the Runtime Fabric documentation]. +
+Runtime Fabric requires an Anypoint Platform Platinum or higher-level subscription.
+* Have a tokenization format, which describes the format and how data is tokenized. +
+See xref:tokenization-formats.adoc[Tokenization Formats].
+
+
 == Tokenization Benefits
 
 The Tokenization service provides many benefits:
@@ -43,23 +60,6 @@ The Tokenization service provides many benefits:
 * *Performance*:
 ** High-performance operation ensures low-latency processing.
 ** Performance scales linearly on each node with vertical and horizontal scaling for vaultless tokenization provided by the Anypoint Platform.
-
-== Prerequisites
-
-To configure and use the tokenization service, you must:
-
-* Have the Anypoint Security - Edge entitlement for your Anypoint Platform account. +
-If you don't see *Security* in *Management Center* or the *Tokenization Service* tab in Runtime Manager, contact your customer success manager to enable the tokenization service for your account. +
-If you do not see the *Tokenization Service* tab in Runtime Manager, contact your customer success manager to enable the tokenization service for your account. 
-* Have the correct permissions to manage tokenization. +
-See xref:grant-tokenization-permissions.adoc[Granting Tokenization Permissions]
-* Have Runtime Fabric 1.1.153 or later with inbound traffic configured. +
-See xref:runtime-fabric::index.adoc[the Runtime Fabric documentation]. +
-Runtime Fabric requires an Anypoint Platform Platinum or higher-level subscription.
-* Have a secrets group to store the tokenization table encryption keys that are created by the tokenization service. +
-See xref:asm-secret-group-concept.adoc[Secrets Manager documentation].
-* Have a tokenization format, which describes the format and how data is tokenized. +
-See xref:tokenization-formats.adoc[Tokenization Formats].
 
 
 == See Also
