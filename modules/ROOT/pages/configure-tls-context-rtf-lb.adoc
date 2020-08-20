@@ -5,9 +5,23 @@ endif::[]
 
 All inbound traffic entering Anypoint Runtime Fabric is encrypted using TLS. When enabling inbound traffic, you must provide a valid TLS certificate. When you configure inbound traffic for Runtime Fabric, you can configure the TLS server by importing a Privacy-Enhanced Mail (PEM) or Java Keystore (JKS) file, or by importing a TLS context from the secrets manager (advanced use case).
 
-Before you can import the TLS context from the secrets manager, you must add the TLS context. 
+== Before You Begin
+
+Ensure you have the necessary permissions for the Runtime Fabric environment you want to use for applications:
+
+. From Anypoint Platform, select *Access Management*.
++
+If you do not have access to *Access Management*, ask your organization admin (system administrator) to provide the "Manage Runtime Fabrics" permission to your user. If you have access, execute the following steps to add the permission:
+. Select *Users*.
+. Locate the row containing your username and then select the blue link in the *Username* column.
+. In the *Runtime Manager* tab, enable the *Manage Runtime Fabrics* permission for your Runtime Fabric environment.
++
+[NOTE]
+It can take up to five minutes for any permissions you add to propagate.
 
 == Add the TLS Context to a Secrets Group
+
+Before you can import the TLS context from the secrets manager, you must add the TLS context.
 
 Adding a TLS context to your secrets group involves supplying a name, target, security information, version, keystore, and, optionally, truststore. 
 
