@@ -7,7 +7,14 @@ All inbound traffic entering Anypoint Runtime Fabric is encrypted using TLS. Whe
 
 == Before You Begin
 
-Ensure you have the necessary permissions for the Runtime Fabric environment you want to use for applications:
+You must have the following permissions to enable inbound traffic to Runtime Fabric:
+
+* Grant access to secrets
+* Manage Secret Groups
+* Read secrets metadata
+* Write secrets
+
+These permissions are available from the Secrets Manager tab in Anypoint Access Management.
 
 . From Anypoint Platform, select *Access Management*.
 +
