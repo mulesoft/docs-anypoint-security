@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-All inbound traffic entering Anypoint Runtime Fabric is encrypted using TLS. When enabling inbound traffic, you must provide a valid TLS certificate. When you configure inbound traffic for Runtime Fabric, you can configure the TLS server by importing a Privacy-Enhanced Mail (PEM) or Java Keystore (JKS) file, or by importing a TLS context from the secrets manager (advanced use case).
+For HTTPS requests, all inbound traffic entering Runtime Fabric is encrypted using TLS. When enabling inbound traffic, you must provide a valid TLS certificate. When you configure inbound traffic for Runtime Fabric, you can configure the TLS server by importing a Privacy-Enhanced Mail (PEM) or Java Keystore (JKS) file, or by importing a TLS context from the secrets manager (advanced use case).
 
 == Before You Begin
 
