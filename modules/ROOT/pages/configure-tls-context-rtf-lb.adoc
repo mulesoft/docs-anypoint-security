@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-If your environment requires advanced configuration such as creating a TLS context, mutual authentication, selecting ciphers, and selecting TLS versions, you can import a TLS context from the secrets manager. Refer to xref:runtime-fabric::configure-adv-tls-context.adoc[Import a TLS Context from Secrets Manager (Advanced)].
+If your environment requires advanced configuration such as mutual authentication, selecting ciphers, and selecting TLS versions, you can import a TLS context from the secrets manager. Refer to xref:runtime-fabric::configure-adv-tls-context.adoc[Import a TLS Context from Secrets Manager (Advanced)].
 
 == See Also
 
