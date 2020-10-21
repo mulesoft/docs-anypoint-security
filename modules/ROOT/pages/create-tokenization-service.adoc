@@ -35,7 +35,7 @@ The tokenization service runs on worker nodes in Runtime Fabric. You can select 
 +
 * Reserved vCPU
 +
-The amount of vCPU guaranteed to the application and reserved for its use.
+The amount of vCPU guaranteed and reserved for the application's use. 
 +
 * vCPU Limit
 +
