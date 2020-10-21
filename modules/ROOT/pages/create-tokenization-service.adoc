@@ -28,8 +28,21 @@ The prerequisites you completed provide the information you need to make the fol
 . Select the Runtime Fabric to which to deploy the tokenization service. 
 . Select the tokenization format. +
 You can assign one or more formats or all formats to one tokenization service.
-. Select the number of tokenization service replicas to run. +
-The tokenization service runs on worker nodes in Runtime Fabric.
+
+. Select the number of cores to use for the tokenization service replicas.
++
+The tokenization service runs on worker nodes in Runtime Fabric. You can select a minimum and maximum number of cores, defined as:
++
+* Reserved vCPU
++
+The amount of vCPU guaranteed and reserved for the application's use. 
++
+* vCPU Limit
++
+The maximum amount of vCPU the application can use (the level to which it can burst). This is shared CPU on the worker node.
+
+
+
 . Select the log level for the tokenization service or keep the default (*ERROR*). 
 . Click *Build and Deploy* to create the tokenization table. +
 A mapping table prebuilds, containing a large number of randomizations that are used at the core of tokenizing and detokenizing. This prebuilt table is not a table of one-to-one mappings; it is used during internal steps to swap in and swap out randomizations in place of the actual data. 
