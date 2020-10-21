@@ -31,7 +31,7 @@ You can assign one or more formats or all formats to one tokenization service.
 
 . Select the number of cores to use for the tokenization service replicas.
 +
-The tokenization service runs on worker nodes in Runtime Fabric. You can select a minimum and maximum number of cores defined as:
+The tokenization service runs on worker nodes in Runtime Fabric. You can select a minimum and maximum number of cores, defined as:
 +
 * Reserved vCPU
 +
