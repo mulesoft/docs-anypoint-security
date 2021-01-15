@@ -35,7 +35,7 @@ In the above example, using a masking format that preserves the last four charac
 
 [WARNING]
 ====
-If you configure a policy in API Manager to detokenize and you select a masking format, the API gateway returnsd a `400 Bad Request` response to the API. The API gateway returns this response because the masking format only masks data based on the original value. It cannot unmask data and return original value.
+If you configure a policy in API Manager to detokenize and you select a masking format, the API gateway returns a `400 Bad Request` response to the API. The API gateway returns this response because the masking format only masks data based on the original value. It cannot unmask data and return original value.
 ====
 
 == Prerequisites
