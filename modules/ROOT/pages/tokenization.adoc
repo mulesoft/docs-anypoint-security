@@ -11,8 +11,11 @@ Examples of sensitive information that are suitable for tokenization protection 
 * Personally Identifiable Information (PII)
 * Protected Health Information (PHI), or any information deemed sensitive
 
-Anypoint tokenization creates format-preserving tokens, which means the output tokens have the same format as the sensitive data input. Format-preserving tokenization ensures that changes are not required for existing enterprise data flows or data stores, as the generated tokens conform to the existing data structure and validations. Changes to existing applications are minimized compared to point-to-point encryption, which requires data protection implementation at each "hop."
+== Format Preserving Tokens
 
+Anypoint tokenization creates format-preserving tokens, which means the output tokens have the same format as the sensitive data input. Format-preserving tokenization ensures that changes are not required for existing enterprise data flows or data stores becaise the generated tokens conform to the existing data structure and validations. Changes to existing applications are minimized compared to point-to-point encryption, which requires data protection implementation at each point.
+
+Making a detokenization call to the tokenization service returns the identity of a tokenized value.
 
 image::tokenization-flow.png[]
 
@@ -24,6 +27,16 @@ A connection is established between the API gateway and the tokenization service
 
 The API gateway replaces the credit card number with the tokenized data and the request is sent to the app. 
 
+== Masking
+
+Anypoint Security also provides masking which is another tokenization option that can be used to hide or mask identity. When using masking, a configurable mask character is returned which hides the identity of the sensitive data. 
+
+In the above example, using a masking format that preserves the last four characters option would return the token: `\####\##########--4567`. The identity of a masked token cannot be returned via a detokenization call to the tokenization service.
+
+[WARNING]
+====
+If you configure a policy in API Manager to detokenize and you select a masking format, the API gateway returnsd a `400 Bad Request` response to the API. The API gateway returns this response because the masking format only masks data based on the original value. It cannot unmask data and return original value.
+====
 
 == Prerequisites
 
