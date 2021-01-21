@@ -118,8 +118,13 @@ a| * Decimal
 |This option is for the social security data domain only.
 |Social security number
 
+|*Ignore characters*
+|Used by the masking domain to specify which characters are not masked. For example, if `Ignore characters` is set to `-` and the masking character is set to `#` then masking applied to the number `123-45-6789` would return `###-###-####`.
+|Masking
+
 |*Masking character*
-|This option
+|Used by the masking domain to specify the character that is used to hide sensitive data. For example, the `#` character.
+|Masking
 |===
 
 
