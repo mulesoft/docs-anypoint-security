@@ -29,9 +29,11 @@ The API gateway replaces the credit card number with the tokenized data and the 
 
 == Masking
 
-Anypoint Security also provides masking which is another tokenization option that can be used to hide or mask identity. When using masking, a configurable mask character is returned which hides the identity of the sensitive data. 
+Anypoint Security also provides _masking_ which is another tokenization option that can be used to hide or mask identity. When using masking, the tokenization service returns a configurable mask character which hides the identity of the sensitive data. 
 
-In the above example, using a masking format that preserves the last four characters returns the token  `\####\##########--4567`. You can't return the identity of a masked token via a detokenization call to the tokenization service.
+For example, using a masking format that preserves the last four characters would returns the token  `\####\##########--4567`. 
+
+You can't return the identity of a masked token via a detokenization call to the tokenization service.
 
 [WARNING]
 ====
