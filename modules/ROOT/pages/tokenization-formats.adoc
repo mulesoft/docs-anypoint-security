@@ -123,7 +123,7 @@ a| * Decimal
 |Masking
 
 |*Masking character*
-|Used by the masking domain to specify the character that is used to hide sensitive data. For example, the `#` character.
+|Used by the masking domain to specify the character used to hide sensitive data. For example, the `#` character.
 |Masking
 |===
 
