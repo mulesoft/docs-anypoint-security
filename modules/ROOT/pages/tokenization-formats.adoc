@@ -48,7 +48,7 @@ When you xref:create-tokenization-format.adoc[create a tokenization format] and 
 |Lowercase Latin characters in the clear­text remain lowercase Latin in the obfuscated­ text. Decimal digits in the clear­text remain decimal digits in the obfuscated­ text. All other characters are handled as lax characters. Preserve first and last "n" characters.
 
 |*Masking*
-|Replaces characters with a specified masking character, for example `#. The input is all printable ASCII characters. Printable ASCII characters in the optional *Ignore Characters* configurable field are ignored. The character specified in the *Masking Character* configurable option is used to mask character identities.
+|Replaces characters with a specified masking character, for example `#`. The input is all printable ASCII characters. Printable ASCII characters in the optional *Ignore Characters* configurable field are ignored. The character specified in the *Masking Character* configurable option is used to mask character identities.
 
 |===
 
