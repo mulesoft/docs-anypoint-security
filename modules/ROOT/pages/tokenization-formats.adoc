@@ -85,7 +85,7 @@ a| * Credit card number
 |*Force token characters in illegal range* 
 a|For example, if you have the CCN `1234567890123456` and you set the *Preserve characters* option to preserve the last four digits, then force an invalid one digit with an offset of two from left, the generated token would look similar to: `54D3210987653456`.
 
-A decimal digit is be mapped into the Latin alphabet character range.
+A decimal digit is mapped to the Latin alphabet-character range.
 
 You are limited to two illegal characters because you need only one to make the data invalid (such as adding a letter A to a social security number). Adding additional invalid characters results in reducing the number of digits that can be used to randomize the tokenized data.
 
@@ -126,5 +126,4 @@ a| * Decimal
 |Used by the masking domain to specify the character that is used to hide sensitive data. For example, the `#` character.
 |Masking
 |===
-
 
