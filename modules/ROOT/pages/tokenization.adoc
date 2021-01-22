@@ -13,7 +13,7 @@ Examples of sensitive information that are suitable for tokenization protection 
 
 == Format-Preserving Tokens
 
-Anypoint tokenization creates format-preserving tokens, which means the output tokens have the same format as the sensitive data input. Format-preserving tokenization ensures that changes are not required for existing enterprise data flows or data stores becaise the generated tokens conform to the existing data structure and validations. Changes to existing applications are minimized compared to point-to-point encryption, which requires data protection implementation at each point.
+Anypoint tokenization creates format-preserving tokens, which means the output tokens have the same format as the sensitive data input. Format-preserving tokenization ensures that changes are not required for existing enterprise data flows or data stores because the generated tokens conform to the existing data structure and validations. This method minimizes changes to existing applications compared to point-to-point encryption, which requires data protection implementation at each point.
 
 Making a detokenization call to the tokenization service returns the identity of a tokenized value.
 
