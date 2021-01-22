@@ -46,10 +46,6 @@ When you xref:create-tokenization-format.adoc[create a tokenization format] and 
 
 |*Lax lowercase/decimal - Preserving* 
 |Lowercase Latin characters in the clear­text remain lowercase Latin in the obfuscated­ text. Decimal digits in the clear­text remain decimal digits in the obfuscated­ text. All other characters are handled as lax characters. Preserve first and last "n" characters.
-
-|*Masking*
-|Replaces characters with a specified masking character, for example `#`. The input is all printable ASCII characters. Printable ASCII characters in the optional *Ignore Characters* configurable field are ignored. The character specified in the *Masking Character* configurable option is used to mask character identities.
-
 |===
 
 [data_domain_config_options]
@@ -85,8 +81,9 @@ a| * Credit card number
 |*Force token characters in illegal range* 
 a|For example, if you have the CCN `1234567890123456` and you set the *Preserve characters* option to preserve the last four digits, then force an invalid one digit with an offset of two from left, the generated token would look similar to: `54D3210987653456`.
 
-A decimal digit is mapped to the Latin alphabet-character range.
+A decimal digit will be mapped into the Latin alphabet character range.
 
+[NOTE]
 You are limited to two illegal characters because you need only one to make the data invalid (such as adding a letter A to a social security number). Adding additional invalid characters results in reducing the number of digits that can be used to randomize the tokenized data.
 
 a| * Credit card number
@@ -117,13 +114,6 @@ a| * Decimal
 |*Preserve serial number sub-component* 
 |This option is for the social security data domain only.
 |Social security number
-
-|*Ignore characters*
-|Used by the masking domain to specify which characters are not masked. For example, if *Ignore Characters* is set to `-` and *Masking Character* is set to `\#`, masking applied to the number `123-45-6789` returns `\##\##-\##\#-####`.
-|Masking
-
-|*Masking character*
-|Used by the masking domain to specify the character used to hide sensitive data. For example, the `#` character.
-|Masking
 |===
+
 
