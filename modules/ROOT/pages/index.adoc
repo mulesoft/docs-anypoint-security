@@ -6,7 +6,7 @@ endif::[]
 Anypoint Security provides a layered approach to secure your application network. These layers work together to protect both the application network and the network's individual nodes by controlling access to APIs, enforcing policies, and proxying all inbound or outbound traffic to mitigate external threats and attacks. 
 Anypoint Security also provides you with a dedicated endpoint to detect attacks and validate traffic without taxing your network implementations.
 
-image::index-1c19d.png[]
+image::index-1c19d.png[Anypoint Security diagram: Mule apps in Runtime Fabric protected by the request endpoint with policies and TLS validation.]
 
 == Policies
 
