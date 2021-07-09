@@ -11,8 +11,11 @@ Examples of sensitive information that are suitable for tokenization protection 
 * Personally Identifiable Information (PII)
 * Protected Health Information (PHI), or any information deemed sensitive
 
-Anypoint tokenization creates format-preserving tokens, which means the output tokens have the same format as the sensitive data input. Format-preserving tokenization ensures that changes are not required for existing enterprise data flows or data stores, as the generated tokens conform to the existing data structure and validations. Changes to existing applications are minimized compared to point-to-point encryption, which requires data protection implementation at each "hop."
+== Format-Preserving Tokens
 
+Anypoint tokenization creates format-preserving tokens, which means the output tokens have the same format as the sensitive data input. Format-preserving tokenization ensures that changes are not required for existing enterprise data flows or data stores because the generated tokens conform to the existing data structure and validations. This method minimizes changes to existing applications compared to point-to-point encryption, which requires data protection implementation at each point.
+
+Making a detokenization call to the tokenization service returns the identity of a tokenized value.
 
 image::tokenization-flow.png[]
 
@@ -23,6 +26,32 @@ When a payload that contains credit card numbers in the payload is sent, the req
 A connection is established between the API gateway and the tokenization service. The tokenization service receives the credit card information, transforms the data into tokens, and returns the tokenized data to the API gateway.
 
 The API gateway replaces the credit card number with the tokenized data and the request is sent to the app. 
+
+== Masking
+
+Anypoint Security also provides masking which is another tokenization option that can be used to hide or mask identity. When using masking, a configurable mask character is returned which hides the identity of the sensitive data. 
+
+In the above example, using a masking format that preserves the last four characters returns the token  `\####\##########--4567`. You can't return the identity of a masked token via a detokenization call to the tokenization service.
+
+[WARNING]
+====
+If you configure a policy in API Manager to detokenize and you select a masking format, the API gateway returns a `400 Bad Request` response to the API. The API gateway returns this response because the masking format only masks data based on the original value. It cannot unmask data and return the original value.
+====
+
+== Prerequisites
+
+To configure and use the tokenization service, you must:
+
+* Meet all the prerequisites and requirements for running Anypoint Runtime Fabric. +
+If you don't see *Security* in *Management Center* or the *Tokenization Service* tab in Runtime Manager, contact your customer success manager to enable the tokenization service for your account.
+* Have the correct permissions to manage tokenization. +
+See xref:grant-tokenization-permissions.adoc[Granting Tokenization Permissions].
+* Have Runtime Fabric with inbound traffic configured. +
+See xref:runtime-fabric::index.adoc[the Runtime Fabric documentation]. +
+Runtime Fabric requires an Anypoint Platform Platinum or higher-level subscription.
+* Have a tokenization format, which describes the format and how data is tokenized. +
+See xref:tokenization-formats.adoc[Tokenization Formats].
+
 
 == Tokenization Benefits
 
@@ -43,23 +72,6 @@ The Tokenization service provides many benefits:
 * *Performance*:
 ** High-performance operation ensures low-latency processing.
 ** Performance scales linearly on each node with vertical and horizontal scaling for vaultless tokenization provided by the Anypoint Platform.
-
-== Prerequisites
-
-To configure and use the tokenization service, you must:
-
-* Have the Anypoint Security - Edge entitlement for your Anypoint Platform account. +
-If you don't see *Security* in *Management Center* or the *Tokenization Service* tab in Runtime Manager, contact your customer success manager to enable the tokenization service for your account. +
-* Have the correct permissions to manage tokenization. +
-See xref:grant-tokenization-permissions.adoc[Granting Tokenization Permissions]
-* Have Runtime Fabric 1.1.153 or later with inbound traffic configured. +
-See xref:runtime-fabric::index.adoc[the Runtime Fabric documentation]. +
-Runtime Fabric requires an Anypoint Platform Platinum or higher-level subscription.
-* Have a secrets group to store the tokenization table encryption keys that are created by the tokenization service. +
-See xref:asm-secret-group-concept.adoc[Secrets Manager documentation].
-* Have a tokenization format, which describes the format and how data is tokenized. +
-See xref:tokenization-formats.adoc[Tokenization Formats].
-
 
 == See Also
 

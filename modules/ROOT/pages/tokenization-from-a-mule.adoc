@@ -16,7 +16,6 @@ To configure and use the tokenization service, you must:
 Anypoint Runtime Fabric is a container service that automates the deployment and orchestration of Mule apps and API gateways.
 * xref:runtime-fabric::enable-inbound-traffic.adoc[Enable inbound traffic] on Runtime Fabric.
 * xref:create-tokenization-format.adoc[Create a tokenization format].
-* xref:asm-secret-group-creation-task.adoc[Create a dedicated secret group in Secrets Manager].
 * xref:create-tokenization-service.adoc[Create a tokenization service].
 
 [tokenization_raml]
