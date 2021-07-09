@@ -3,15 +3,14 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Anypoint Security provides a layered approach to secure your application network. These layers work together to protect both the application network and the network's individual nodes by controlling access to APIs, enforcing policies, and proxying all inbound or outbound traffic to mitigate external threats and attacks. +
-Anypoint Security provides you with a dedicated endpoint to detect attacks and validate traffic without taxing your network implementations.
+Anypoint Security provides a layered approach to secure your application network. These layers work together to protect both the application network and the network's individual nodes by controlling access to APIs, enforcing policies, and proxying all inbound or outbound traffic to mitigate external threats and attacks. 
+Anypoint Security also provides you with a dedicated endpoint to detect attacks and validate traffic without taxing your network implementations.
 
 image::index-1c19d.png[]
 
 == Policies
 
-Anypoint Security features a high-performance, reliable, and scalable service to enforce policies that apply to all nodes deployed to your Runtime Fabric. +
-Anypoint Security policies then act as a default firewall/router capability through which all traffic traverses.
+Anypoint Security features a high-performance, reliable, and scalable service to enforce policies that apply to all nodes deployed to your Runtime Fabric. These policies then act as a default firewall/router capability through which all traffic traverses.
 
 
 == Secrets Manager
