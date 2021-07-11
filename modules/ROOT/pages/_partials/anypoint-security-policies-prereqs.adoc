@@ -1,14 +1,13 @@
-
-
 //Included in security policies topics
-
 
 To configure and use the security policies, you must:
 
 * Have the Anypoint Security - Edge entitlement for your Anypoint Platform account. +
 If you don't see *Security* in *Management Center*, contact your customer success manager to enable Anypoint Security for your account.
-* Have Runtime Fabric with inbound traffic configured. +
-Anypoint Runtime Fabric is a container service that automates the deployment and orchestration of Mule apps and API gateways. +
-See xref:runtime-fabric::index.adoc[the Runtime Fabric documentation]. +
+* Have Runtime Fabric with inbound traffic configured. Anypoint Runtime Fabric is a container service that automates the deployment and orchestration of Mule apps and API gateways.
++
 Runtime Fabric requires an Anypoint Platform Platinum or higher-level subscription.
++
+See xref:runtime-fabric::index.adoc[the Runtime Fabric documentation]. +
+
 * xref:runtime-fabric::enable-inbound-traffic.adoc[Enable inbound traffic] on Runtime Fabric to allow Mule apps and API gateways to listen on inbound connections.
