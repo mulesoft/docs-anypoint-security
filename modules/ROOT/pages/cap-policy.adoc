@@ -3,12 +3,11 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-The HTTP Limits policy prevents an attacker from sending large messages that consume all your bandwidth. +
-This policy checks TCP protocol message sizes and headers. This policy does not check content.
+Anypoint Security uses the HTTP Limits policy to prevent an attacker from sending large messages that can consume bandwidth and potentially cause performance degradation or denial of service. This policy applies to all the APIs behind your Edge inbound endpoint. You can apply API Gateway policies to each API to enforce other API-specific policies, such as throttling and JSON threat protection.
 
-This policy applies to all the APIs behind your Edge inbound endpoint. You can apply API Gateway policies to each API to enforce other API specific policies, such as throttling and JSON threat protection.
+The HTTP Limits policy limits the size of TCP protocol messages, paths, headers, and footers. This policy does not perform checks on the content of a message.
 
-When you configure a DoS policy, violations to the HTTP Limits policy escalate as protocol errors.
+When you configure a DoS Policy, violations to the HTTP Limits policy escalate as protocol errors.
 
 
 [[anypoint_security_prereqs]]
@@ -16,26 +15,28 @@ When you configure a DoS policy, violations to the HTTP Limits policy escalate a
 
 include::partial$anypoint-security-policies-prereqs.adoc[]
 
-== Configure an HTTP Limit Policy
+== Configure an HTTP Limits Policy
 
 You can configure and apply an HTTP Limits policy to increase or decrease default HTTP limits. 
 
 . Navigate to *Anypoint Security*, click the *Create Policy* icon, and select *Content Attack Prevention*.
 . Add a name for your policy in the *Name* field.
-. Configure the maximum sizes for message, path header and trailers in the fields below:
+. Configure the following parameters for your policy:
 +
 [%header%autowidth.spread,cols="a,a"]
 |===
 |Value |Description
-|*Maximum Message Size* a| The default maximum message size allowed is 104857600. If request body scanning is enabled, this value should be set no larger than required to prevent attackers from abusing request body checking and exhausting resources. +
-Modify the message size based on your application needs, and base the size limits on what all of your APIs can handle. 
+|*Maximum Message Size* a| The default maximum message size allowed is 104857600 bytes. Modify this value based on the requirements of your application by setting the maximum size to a value based on a size your APIs can handle. 
+
+Do not set this value to a value larger than required to prevent attackers from abusing request body checking and exhausting resources. 
 |*Maximum Path Length* | The default maximum path size allowed is 4096 bytes.
 |*Maximum Length Of a Single Header* | The default maximum header length allowed for is 16384 bytes.
 |*Maximum Length Of a Single Trailer* | The default maximum trailer length allowed is 16384 bytes.
 |*Maximum Number Of Headers and Trailers* | The default maximum number of headers and trailers allowed is 32 kB.
 |===
-. If you want to filter specific HTTP methods, configure them in the *Allowed HTTP Request Methods* field. +
-Allowed methods are: GET, POST, PATCH, HEAD, TRACE, OPTIONS, DELETE, and PUT.
+. To allow only specific HTTP methods, add them in the *Allowed HTTP Request Methods* field.
++
+Valid HTTP methods are: GET, POST, PATCH, HEAD, TRACE, OPTIONS, DELETE, and PUT.
 . Click *Save Policy*.
 
 == See Also
