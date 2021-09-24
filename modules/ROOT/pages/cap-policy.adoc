@@ -40,6 +40,6 @@ Allowed methods are: GET, POST, PATCH, HEAD, TRACE, OPTIONS, DELETE, and PUT.
 
 == See Also
 
-* xref:acl-policy.adoc[IP Whitelist Policy]
+* xref:acl-policy.adoc[IP Allowlist Policy]
 * xref:dos-policy.adoc[DoS Policy]
 * xref:create-waf-policy.adoc[Create a WAF Policy]

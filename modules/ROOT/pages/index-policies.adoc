@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Anypoint Security features a high-performance, reliable, and scalable service that works with Anypoint Runtime Fabric to enforce security policies on nodes deployed to your Anypoint Runtime Fabric. Anypoint Security provides denial-of-service (DoS), IP whitelist, HTTP limits, and Web Application Firewall (WAF) policies to protect your APIs.
+Anypoint Security features a high-performance, reliable, and scalable service that works with Anypoint Runtime Fabric to enforce security policies on nodes deployed to your Anypoint Runtime Fabric. Anypoint Security provides denial-of-service (DoS), IP allowlists, HTTP limits, and Web Application Firewall (WAF) policies to protect your APIs.
 
 You can use the Anypoint Security policies to manage all traffic to your Runtime Fabric, and leverage API Manager policies to apply specific behaviors to specific APIs.
 
@@ -14,7 +14,7 @@ Anypoint Security policies then act as a default router capability through which
 * Threat detection and prevention
 ** Content attack prevention (HTTP header and message limits checks)
 ** Denial of Service
-** IP whitelists
+** IP allowlists
 * Advanced TLS  (for example, certificate pinning, CRL)
 * Basic TLS  (for example, Mutual TLS, SSL Termination)
 
@@ -37,10 +37,10 @@ include::partial$anypoint-security-policies-prereqs.adoc[]
 DoS policies are designed to protect your network nodes against malicious clients trying to flood your network to prevent legitimate traffic to your APIs. +
 Learn more about the xref:dos-policy.adoc[DoS policy].
 
-== IP Whitelist Policy
+== IP Allowlist Policy
 
-Create an IP address whitelist policy to configure an explicit list of IP addresses that can access your deployed endpoints. +
-Learn more about the xref:acl-policy.adoc[IP Whitelist].
+Create an IP address allowlist policy to configure an explicit list of IP addresses that can access your deployed endpoints. +
+Learn more about the xref:acl-policy.adoc[IP Allowlist].
 
 == HTTP Limits Policy
 
