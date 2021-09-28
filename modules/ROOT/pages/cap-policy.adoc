@@ -28,7 +28,7 @@ You can configure and apply an HTTP Limits policy to increase or decrease defaul
 |Value |Description
 |*Maximum Message Size* a| The default maximum message size allowed is 104857600 bytes. Modify this value based on the requirements of your application by setting the maximum size to a value based on a size your APIs can handle. 
 
-Do not set this value to a value larger than required to prevent attackers from abusing request body checking and exhausting resources. 
+To prevent attackers from abusing request body checking and exhausting resources, choose the smallest value that satisfies your requirements.
 |*Maximum Path Length* | The default maximum path size allowed is 4096 bytes.
 |*Maximum Length Of a Single Header* | The default maximum header length allowed for is 16384 bytes.
 |*Maximum Length Of a Single Trailer* | The default maximum trailer length allowed is 16384 bytes.
