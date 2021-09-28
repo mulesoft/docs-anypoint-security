@@ -1,7 +1,7 @@
 .xref:index.adoc[Anypoint Security]
 * xref:index.adoc[Anypoint Security]
 * xref:index-policies.adoc[Edge Policies]
-** xref:acl-policy.adoc[IP Whitelist Policy]
+** xref:acl-policy.adoc[IP Allowlist Policy]
 ** xref:dos-policy.adoc[Denial of Service Policy]
 ** xref:cap-policy.adoc[HTTP Limits Policy]
 ** xref:waf-policy.adoc[Web Application Firewall Policy]
