@@ -128,7 +128,7 @@ An HTTP Limits policy violation is escalated to the DoS policy as *Protocol Erro
 | *Routing Errors*
 | When a client sends a message request which cannot be successfully routed to an application.
 
-Violations to IP blacklist/allowlist or RAML validation policies in API Manager are escalated to the DoS policy as *Routing Errors*.
+Violations to IP blocklist/allowlist or RAML validation policies in API Manager are escalated to the DoS policy as *Routing Errors*.
 
 | *Authentication Errors*
 | Anytime an authentication or authorization failure occurs. +
