@@ -56,13 +56,13 @@ Based on this, window escalation occurs when a DoS threshold is violated.
 
 == Escalate Policy Violations as Errors
 
-If you have a DoS policy configured, HTTP protocol errors (malicious protocol violation attempts), IP Whitelist, WAF, and HTTP Limits policy violations escalate to DoS. Some policies provided by API Gateway escalate to DoS as well. See the table below for a specific mapping of violations and error escalations:
+If you have a DoS policy configured, HTTP protocol errors (malicious protocol violation attempts), IP Allowlist, WAF, and HTTP Limits policy violations escalate to DoS. Some policies provided by API Gateway escalate to DoS as well. See the table below for a specific mapping of violations and error escalations:
 
 [%header%autowidth.spread,cols="a,a"]
 |===
 | *Violation* | *Escalates as*
 2+^.^| *Anypoint Security Policy*
-| IP Whitelist Policy | Authentication Error
+| IP Allowlist Policy | Authentication Error
 | HTTP Limits Policy | Protocol Error
 2+^.^| *Errors at the Endpoint Level*
 | HTTP Protocol Errors at endpoint | Protocol Errors
@@ -77,7 +77,7 @@ If you have a DoS policy configured, HTTP protocol errors (malicious protocol vi
 | Basic Authentication: Simple | Authentication Error
 | Basic Authentication: LDAP | Authentication Error
 | IP Blacklist | Content Error
-| IP Whitelist | Content Error
+| IP Allowlist | Content Error
 | JSON Threat Protection | Content Error
 | XML Threat Protection | Content Error
 | Rate Limiting and Throttling - SLA-Based Policies concepts | QoS Error
@@ -128,7 +128,7 @@ An HTTP Limits policy violation is escalated to the DoS policy as *Protocol Erro
 | *Routing Errors*
 | When a client sends a message request which cannot be successfully routed to an application.
 
-Violations to IP blacklist/whitelist or RAML validation policies in API Manager are escalated to the DoS policy as *Routing Errors*.
+Violations to IP blocklist/allowlist or RAML validation policies in API Manager are escalated to the DoS policy as *Routing Errors*.
 
 | *Authentication Errors*
 | Anytime an authentication or authorization failure occurs. +
@@ -138,7 +138,7 @@ This includes when the client sends a bad certificate during an SSL handshake, a
 // The same would apply for credit card attacks. An attacker might have a full credit card number, and may be trying to brut force credit card's CVC. You can block these malicious attempts before the attacker gets a significant number of correct values.
 
 Violations to LDAP, HTTP, OAuth, OpenAM, or Ping Federate authentication policies in API Manager are escalated to the DoS policy as *Authentication Errors*. +
-IP Whitelist policy violations also escalate as authentication errors.
+IP Allowlist policy violations also escalate as authentication errors.
 
 | *QoS Errors*
 | Whenever a Quality of Service (QoS) error occurs. +
@@ -161,7 +161,7 @@ Violations to response or request rulesets are escalated to DoS as *WAF Errors*.
 
 == See Also
 
-* xref:acl-policy.adoc[IP Whitelist Policy]
+* xref:acl-policy.adoc[IP Allowlist Policy]
 * xref:cap-policy.adoc[HTTP Limits Policy]
 * xref:waf-policy.adoc[WAF Policy]
 * xref:escalate-waf-to-dos.adoc[Enable DoS for a WAF Policy]

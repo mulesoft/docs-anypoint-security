@@ -1,39 +1,39 @@
-= IP Whitelist Policy
+= IP Allowlist Policy
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-The IP Whitelist policy allows you to create an explicit list of IP addresses that can access your deployed endpoints. IP addresses that aren't on this list are rejected.
+The IP Allowlist policy allows you to create an explicit list of IP addresses that can access your deployed endpoints. IP addresses that aren't on this list are rejected.
 
-If you have an IP Whitelist policy assigned, you need to add all IP addresses that are coming through your exposed endpoint to the list.
+If you have an IP Allowlist policy assigned, you need to add all IP addresses that are coming through your exposed endpoint to the list.
 
-IP Whitelist policy violations escalate to authentication errors for the DoS policy. You can configure the way protocol errors are handled in a xref:dos-policy.adoc[DoS policy].
+IP Allowlist policy violations escalate to authentication errors for the DoS policy. You can configure the way protocol errors are handled in a xref:dos-policy.adoc[DoS policy].
 
 [NOTE]
 This source is IP address based. If an attacker can spoof the source IP address, these measures cannot prevent the attack.
 
 == Differences with API Gateway Policies
 
-The IP Whitelist policy is a list of all IP addresses allowed to connect to your endpoint, and this list applies to all applications. You can set up an API Gateway Whitelist policy per API list.
+The IP Allowlist policy is a list of all IP addresses allowed to connect to your endpoint, and this list applies to all applications. You can set up an API Gateway Allowlist policy per API list.
 
 === Example
 
-You can set up an IP Whitelist policy to allow `a.a.a.a`, `y.y.y.y`, and `z.z.z.z`. +
-Then, API-1 (`/api1`) uses an API Whitelist policy that allows `x.x.x.x`, and API-2 (`/api2`) uses another policy that allows `y.y.y.y` and `z.z.z.z`.
+You can set up an IP Allowlist policy to allow `a.a.a.a`, `y.y.y.y`, and `z.z.z.z`. +
+Then, API-1 (`/api1`) uses an API Allowlist policy that allows `x.x.x.x`, and API-2 (`/api2`) uses another policy that allows `y.y.y.y` and `z.z.z.z`.
 
-* IP Address `w.w.w.w` is rejected by both APIs, because it's not listed in the IP Whitelist policy.
-* IP Address `y.y.y.y` requesting `/api1`, is allowed at the IP Whitelist policy level, and rejected by the API Whitelist policy at `/api1`.
-* IP Address `y.y.y.y` requesting `/api2`, is allowed at the IP Whitelist policy level, and allowed by the API Whitelist policy at `/api2`.
+* IP Address `w.w.w.w` is rejected by both APIs, because it's not listed in the IP Allowlist policy.
+* IP Address `y.y.y.y` requesting `/api1`, is allowed at the IP Allowlist policy level, and rejected by the API Allowlist policy at `/api1`.
+* IP Address `y.y.y.y` requesting `/api2`, is allowed at the IP Allowlist policy level, and allowed by the API Allowlist policy at `/api2`.
 
 [[anypoint_security_prereqs]]
 == Prerequisites
 
 include::partial$anypoint-security-policies-prereqs.adoc[]
 
-== Configure IP Whitelist Policy
+== Configure IP Allowlist Policy
 
 . Navigate to *Anypoint Security*.
-. Click *Create Policy*, and select *IP Whitelist*.
+. Click *Create Policy*, and select *IP Allowlist*.
 . Add a name for your policy in the *Name* field.
 . Under *IP White List*, click *Add IP*.
 . Insert the range of IP addresses to the list. You must use the CIDR format for a range of IP addresses. +
