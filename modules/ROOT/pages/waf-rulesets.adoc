@@ -53,7 +53,7 @@ The threat categories for the response ruleset include:
 You can understand the regular expressions that make up each rule by viewing the rules in the Anypoint Security RAML (`security-fabric-policies-api-<version>.raml`). Not all OWASP CRS rules for each category are enabled for the WAF policy. A very small number of rules are not included for various reasons. View the RAML for the exact contents and rule IDs that are included.
 
 . Go to Anypoint Exchange.
-. Search for "Security Fabric Policies API" and download the RAML.
+. Search for "Anypoint Security Policy and Runtime Fabric Inbound Traffic API" and download the RAML.
 . Extract the ZIP files.
 . Navigate to `<Download_location>/security-fabric-policies-api-<version>-raml/dataTypes/policies/WafRules/Rulesets.json`.
 
