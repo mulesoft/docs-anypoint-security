@@ -1,5 +1,5 @@
 name: anypoint-security
-title: Anypoint Security
+title: Security
 version: 'master'
 nav:
 - modules/ROOT/nav.adoc
