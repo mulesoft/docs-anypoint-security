@@ -42,11 +42,11 @@ If you configure a policy in API Manager to detokenize and you select a masking 
 
 To configure and use the tokenization service, you must:
 
-* Meet all the prerequisites and requirements for running Anypoint Runtime Fabric. +
+* Meet all the prerequisites and requirements for running Anypoint Runtime Fabric on VMs/Bare Metal. Runtime Fabric on Self-Managed Kubernetes does not support Tokenization.+
 If you don't see *Security* in *Management Center* or the *Tokenization Service* tab in Runtime Manager, contact your customer success manager to enable the tokenization service for your account.
 * Have the correct permissions to manage tokenization. +
 See xref:grant-tokenization-permissions.adoc[Granting Tokenization Permissions].
-* Have Runtime Fabric with inbound traffic configured. +
+* Have Runtime Fabric on VMs/Bare Metal with inbound traffic configured. +
 See xref:runtime-fabric::index.adoc[the Runtime Fabric documentation]. +
 Runtime Fabric requires an Anypoint Platform Platinum or higher-level subscription.
 * Have a tokenization format, which describes the format and how data is tokenized. +
