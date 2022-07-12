@@ -14,7 +14,7 @@ Request rulesets are divided into ten threat categories, which are called rulese
 * *Disable ruleset* - (Default) Ruleset detection is turned off.
 * *Detect and allow violations* - The violation is detected and you will get information in your logs at the INFO level, per incident. +
 They will also be included at the ERROR (default log level for Edge policies) level in a summary report. +
-See xref:1.2@runtime-fabric::enable-inbound-traffic#logs[the Runtime Fabric documentation].
+See xref:1.13@runtime-fabric::enable-inbound-traffic.adoc#logs[the Runtime Fabric documentation].
 * *Detect and reject violations* - The request is rejected and returns a response status of `HTTP/1.1 400 BAD REQUEST - web application firewall`.
 +
 For request rulesets, DoS is notified that a rule was triggered. If xref:escalate-waf-to-dos.adoc[DoS has been configured for WAF Errors], DoS will update its WAF-related counters and take action, if necessary. If DoS isn't configured for WAF Errors, it ignores the notification it receives from WAF. +
