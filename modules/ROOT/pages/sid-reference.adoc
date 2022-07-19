@@ -10,7 +10,7 @@ The `rtfWafSecurityPolicySummary` log contains the WAF categories and also shows
 
 This is an example of the log, which shows that SID rule ID `600100` (TAXID) was detected one time in this payload during the collection interval, which triggered the `requestSidPiiCore` category:
 
-[json]
+[source,json]
 ----
 {
 	"timeStamp": "2019-04-15T16:13:00.045Z",
@@ -114,7 +114,7 @@ The summary message would contain three items--one for each rule violated (DOB, 
 
 This is an example of the `rtfSidSummary` log for a request where sensitive information (SSN) was detected in the payload.
 
-[json]
+[source,json]
 ----
 {
 	"timeStamp": "2019-05-03T20:28:00.493Z",
