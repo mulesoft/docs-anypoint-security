@@ -4,7 +4,6 @@ The tokenization format defines the way incoming data is converted. Ensure that 
 
 For more information about the supported tokenization formats see xref:tokenization-formats.adoc[Tokenization Formats].
 
-
 == Create a Tokenization Format
 
 . Sign into Anypoint Platform.
