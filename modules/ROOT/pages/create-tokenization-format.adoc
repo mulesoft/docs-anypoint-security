@@ -17,8 +17,6 @@ For more information about the supported tokenization formats see xref:tokenizat
 * *Data Domain*: When you select the data domain, configuration options appear. The options vary depending on the type of data domain you selected. For information about the supported data domains and configuration options, see xref:tokenization-formats.adoc[Tokenization Formats]
 . Click *Save*.
 
-image::tokenization-example-format.png[]
-
 == Update a Tokenization Format
 
 You can update a format anytime. 

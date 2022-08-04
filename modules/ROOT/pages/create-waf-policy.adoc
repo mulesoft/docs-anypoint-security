@@ -17,7 +17,7 @@ include::partial$anypoint-security-policies-prereqs.adoc[]
 . Enter a *Name* for the policy and click *Save Policy*. +
 The policy appears in the *Security Policies* list, where you can edit and delete policies.
 
-image::security-policy-list.png[]
+image::security-policy-list.png[Create Policy button located above a table containing the name, type, and potential action for 5 security policies.]
 
 == Configure Request Rulesets
 
@@ -32,7 +32,8 @@ Information about the violation is also sent to the log, per incident, at `INFO`
 +
 When you hover over the `i` to the right of each rule, the rule ID range for that ruleset is displayed. You can use this information for testing rulesets.
 +
-image::waf-rule-set.png[]
+image::waf-rule-set.png[Rule ID range displayed for Scanner detection]
+// not sure if this one is necessary; it adds something for a seeing user I guess but the alt text wouldn't really add anything new 
 +
 . In *Advanced performance options*, select one of the following options: +
 * *Disable body scanner*. By default, the request body is scanned unless the body is larger than 1 MB, in which case the scan is skipped. +
