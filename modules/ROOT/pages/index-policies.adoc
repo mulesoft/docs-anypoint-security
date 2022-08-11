@@ -7,7 +7,7 @@ Anypoint Security features a high-performance, reliable, and scalable service th
 
 You can use the Anypoint Security policies to manage all traffic to your Runtime Fabric, and leverage API Manager policies to apply specific behaviors to specific APIs.
 
-image::index-e9021.png[Flow Chart connecting Anypoint Platform services Anypoint Security, DoS Policy, IP Whitelist Policy, and HTTP Limits Policy with various Runtime Fabric API Policies and then to respective Mule applications.]
+image::index-e9021.png[Flow Chart connecting Anypoint Platform services with various Runtime Fabric API Policies and then to respective Mule applications.]
 //too long
 
 Anypoint Security policies then act as a default router capability through which all traffic traverses. +
