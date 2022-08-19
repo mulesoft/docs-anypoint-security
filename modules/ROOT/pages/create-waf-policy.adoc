@@ -17,7 +17,7 @@ include::partial$anypoint-security-policies-prereqs.adoc[]
 . Enter a *Name* for the policy and click *Save Policy*. +
 The policy appears in the *Security Policies* list, where you can edit and delete policies.
 
-image::security-policy-list.png[Blue Create Policy button located above the table of security policies which lists the name, type, and action.]
+image::security-policy-list.png["Blue Create Policy button located above the table of security policies, which lists the name, type, and action."]
 
 == Configure Request Rulesets
 
