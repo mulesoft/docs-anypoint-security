@@ -63,7 +63,7 @@ The Runtime Fabric policy summary includes the WAF summary. A WAF summary log me
 
 For example:
 
-image::waf-summary-log-raw.png[]
+image::waf-summary-log-raw.png[Unformatted raw data from WAF summary log message.]
 
 If you format the raw data in JSON, from this example, you can see that rule 920210 has fired 63,193 times and that rule 920310 has fired one time, which indicates that rule 920210 is causing false positives.
 

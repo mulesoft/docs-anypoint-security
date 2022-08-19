@@ -240,8 +240,6 @@ Notice that in `wafSummary`, the rule IDs and counts are broken down by the rule
 
 You can enable the TRACE logs for your testing source IP address by modifying the Log rules and clicking *Deploy* for the Runtime Fabric inbound traffic. In this case, an IP filter was added for source IP address `192.168.0.1`. Do not add a filter for all IP addresses and do not do this for an IP address with a high volume of requests.
 
-image::test-waf-rtf-advanced.png[]
-
 If you send the `curl` message again, you can find the WAF detection log message:
 
 ----
