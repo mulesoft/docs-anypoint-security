@@ -17,7 +17,7 @@ Anypoint tokenization creates format-preserving tokens, which means the output t
 
 Making a detokenization call to the tokenization service returns the identity of a tokenized value.
 
-image::tokenization-flow.png[]
+image::tokenization-flow.png[Diagram showing how the client payload interacts with the tokenization policy and service to return a tokenized value to the Mule app.]
 
 In this example, a tokenization format is created with the credit card data domain and assigned to the tokenization service. A tokenization policy is applied to the API gateway.
 

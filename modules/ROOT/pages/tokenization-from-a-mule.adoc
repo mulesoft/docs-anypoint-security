@@ -53,23 +53,20 @@ The following is an example of how to configure TLS for Mule apps in Studio 7.3:
 
 . Go to Anypoint Studio, and open the project for your Mule app.
 +
-image::tokenization-example-import-api-gateway-studio.png[]
 . Go to `src/main/resources` and add the keystore. In this example the keystore is named `tester.jks`.
 +
-image::tokenization-example-keystore.png[]
 . Add TLS to the listener side so you can later enable the *Last Mile Security* flag. To do this, first set the HTTPS flag.
 +
-image::tokenization-example-set-https-flag.png[]
+image::tokenization-example-set-https-flag.png[Global Element Properties window for HTTP Listener config with protocol set to HTTPS.]
 . Click the *TLS* tab to set the keystore information, then select the following: +
  * From the *TLS Configuration* drop-down, select *Edit inline*. 
  * In *Trust Store Configuration*, check the *Insecure* box.
  * In *Key Store Configuration*, enter the information for your keystore, and click *OK*. +
  In this example the trust store side is set to *insecure* and the keystore, alias, and password information has been added.
 +
-image::tokenization-example-set-keystore-info.png[]
+image::tokenization-example-set-keystore-info.png[TLS tab in Global Elements window for HTTP Listener with empty fields for Trust Store Configuration section.]
 . Edit the settings for the HTTP endpoint to enable TLS on the HTTP connection from Mule to the tokenization service. 
 +
-image::tokenization-example-configure-TLS.png[]
 
 == Deploy the App to Runtime Fabric
 
