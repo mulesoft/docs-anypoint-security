@@ -36,7 +36,7 @@ When the blocked IP addresses are successfully logged, a `Logged` message appear
 . To view the logs, follow the instructions in the xref:runtime-fabric::runtime-fabric-logs.adoc[View and Configure Logging] for configuring log forwarding. +
 The logs look similar to this: +
 
-[json]
+[source,json]
 ----
 {
 	"body": [{
