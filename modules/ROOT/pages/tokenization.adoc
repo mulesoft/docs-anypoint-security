@@ -47,7 +47,7 @@ If you don't see *Security* in *Management Center* or the *Tokenization Service*
 * Have the correct permissions to manage tokenization. +
 See xref:grant-tokenization-permissions.adoc[Granting Tokenization Permissions].
 * Have Runtime Fabric on VMs/Bare Metal with inbound traffic configured. +
-See xref:runtime-fabric::index.adoc[the Runtime Fabric documentation]. +
+See xref:1.13@runtime-fabric::index-vm-bare-metal.adoc[the Runtime Fabric documentation]. +
 Runtime Fabric requires an Anypoint Platform Platinum or higher-level subscription.
 * Have a tokenization format, which describes the format and how data is tokenized. +
 See xref:tokenization-formats.adoc[Tokenization Formats].
