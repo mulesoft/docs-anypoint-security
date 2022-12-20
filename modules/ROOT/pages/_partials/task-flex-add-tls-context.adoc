@@ -12,7 +12,7 @@ You can use the TLS context you store in the secrets manager when you configure 
 
 Flex Gateway supports inbound and outbound TLS and mutual authentication TLS (mTLS) for the outbound connection.
 
-TLS context configuration for a Flex Gateway Connected Mode is the same whether it is running in a Docker container, as a Linux Service, or as a Kubernetes Ingress controller.
+
 
 //end::intro3[]
 
@@ -32,6 +32,8 @@ Before adding the TLS context to Flex Gateway, you must complete the following t
 
 //tag::addContext[]
 Adding a TLS context to your secret group requires supplying a name, target, security information, version, and keystore. You can optionally add, a truststore, context experation date, ALPN Protocols, inbound settings, and outbound settings. 
+
+TLS context configuration for a Flex Gateway Connected Mode is the same whether it is running in a Docker container, as a Linux Service, or as a Kubernetes Ingress controller.
 
 
 To add a TLS Context:
