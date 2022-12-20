@@ -1,8 +1,12 @@
 //tag::intro1[]
+
 After you xref:asm-secret-group-creation-task.adoc[create a secret group], you can add a Transport Layer Security (TLS) context to encrypt inbound and outbound traffic to Flex Gateway. When you add the TLS context, you can select the ciphers to use with the TLS context and you can configure different inbound and outbound validation settings.
+
 //end::intro1[]
 //tag::intro2[]
-You can use the TLS context you store in the secrets manager when you configure an HTTPS API in FLex Gateway Connected Mode.
+
+You can use the TLS context you store in the secrets manager when you configure an HTTPS API in Flex Gateway Connected Mode.
+
 //end::intro2[]
 //tag::intro3[]
 
@@ -16,7 +20,7 @@ TLS context configuration for a Flex Gateway Connected Mode is the same whether 
 
 == Before You Begin
 
-Before adding the TLS context for a Flex Gateway, you must complete the following tasks:
+Before adding the TLS context to Flex Gateway, you must complete the following tasks:
 
 * xref:asm-secret-group-creation-task.adoc[Create a Secret Group] 
 
