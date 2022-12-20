@@ -30,9 +30,6 @@ Before adding the TLS context to Flex Gateway, you must complete the following t
 //tag::addContext[]
 Adding a TLS context to your secret group requires supplying a name, target, security information, version, and keystore. Optionally, you can add a truststore, context experation date, ALPN Protocols, inbound settings, and outbound settings. 
 
-
-
-
 To add a TLS Context:
 
 . In the *Secret Groups* list view, select the secret group to which to add a TLS context. 
