@@ -5,14 +5,12 @@ After you xref:asm-secret-group-creation-task.adoc[create a secret group], you c
 //end::intro1[]
 //tag::intro2[]
 
-You can use the TLS context you store in the secrets manager when you configure an HTTPS API in Flex Gateway Connected Mode.
+Flex Gateway supports inbound and outbound TLS and mutual authentication TLS (mTLS) for the outbound connection.
 
 //end::intro2[]
 //tag::intro3[]
 
-Flex Gateway supports inbound and outbound TLS and mutual authentication TLS (mTLS) for the outbound connection.
-
-
+You can use the TLS context you store in the secrets manager when you configure an HTTPS API in Flex Gateway Connected Mode.
 
 //end::intro3[]
 
