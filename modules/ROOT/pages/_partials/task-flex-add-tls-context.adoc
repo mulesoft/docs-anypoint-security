@@ -1,5 +1,5 @@
 //tag::intro1[]
-After you xref:asm-secret-group-creation-task.adoc[create a secret group] and you xref:asm-secret-group-creation-task#add_keystore.adoc[add a keystore] tp the secret group, you can add a Transport Layer Security (TLS) context and apply the TLS context to API Instances to encrypt their inbound and outbound traffic. When you add the TLS context, you can select the ciphers to use with the TLS context and you can configure different inbound and outbound validation settings.
+After you xref:asm-secret-group-creation-task.adoc[create a secret group] and you xref:asm-secret-group-creation-task.adoc#add_keystore[add a keystore] to the secret group, you can add a Transport Layer Security (TLS) context and apply the TLS context to API Instances to encrypt their inbound and outbound traffic. When you add the TLS context, you can select the ciphers to use with the TLS context and you can configure different inbound and outbound validation settings.
 
 //end::intro1[]
 //tag::intro2[]
@@ -19,7 +19,7 @@ You can use the TLS context you store in the secrets manager when you configure 
 Before adding the TLS context to Flex Gateway, you must complete the following tasks:
 
 * xref:asm-secret-group-creation-task.adoc[Create a Secret Group]
-* xref:asm-secret-group-creation-task#add_keystore.adoc[Add a Keystore]
+* xref:asm-secret-group-creation-task.adoc#add-keystore[Add a Keystore]
 
 //end::byb[]
 
