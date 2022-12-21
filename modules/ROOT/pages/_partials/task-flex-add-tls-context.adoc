@@ -1,10 +1,11 @@
 //tag::intro1[]
-After you xref:asm-secret-group-creation-task.adoc[create a secret group] and you xref:asm-secret-group-creation-task.adoc#add_keystore[add a keystore] to the secret group, you can add a Transport Layer Security (TLS) context and apply the TLS context to API Instances to encrypt their inbound and outbound traffic. When you add the TLS context, you can select the ciphers to use with the TLS context and you can configure different inbound and outbound validation settings.
+After you xref:asm-secret-group-creation-task.adoc[create a secret group] and xref:asm-secret-group-creation-task.adoc#add_keystore[add a keystore], you can add a Transport Layer Security (TLS) context and apply the TLS context to API Instances to encrypt their inbound and outbound traffic. 
 
 //end::intro1[]
 //tag::intro2[]
 Flex Gateway supports inbound and outbound TLS and mutual authentication TLS (mTLS) for the outbound connection.
 
+When you add the TLS context, you can also select the ciphers to use with the TLS context and you can configure different inbound and outbound validation settings.
 //end::intro2[]
 
 //tag::intro3[]
@@ -29,7 +30,7 @@ Before adding the TLS context to Flex Gateway, you must complete the following t
 //end::addContextTitle[]
 
 //tag::addContext[]
-Adding a TLS context to your secret group requires supplying a name, target, version, and keystore. Optionally, you can add a truststore, context experation date, ALPN Protocols, inbound settings, and outbound settings. 
+Adding a TLS context to your secret group requires supplying a name, target, version, and keystore. Optionally, you can add a truststore, context experation date, ALPN Protocols, and configure the inbound and outbound settings. 
 
 To add a TLS Context:
 
