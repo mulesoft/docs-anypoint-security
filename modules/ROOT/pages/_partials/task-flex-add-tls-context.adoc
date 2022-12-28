@@ -8,10 +8,16 @@ Flex Gateway supports inbound and outbound TLS and mutual authentication TLS (mT
 When you add the TLS context, you can also select the ciphers to use with the TLS context and you can configure different inbound and outbound validation settings.
 //end::intro2[]
 
+
 //tag::intro3[]
-You can use the TLS context you store in the secrets manager when you configure an HTTPS API in Flex Gateway Connected Mode.
+You can use the TLS context you store in secrets manager when you configure an HTTPS API in Flex Gateway Connected Mode.
 
 //end::intro3[]
+
+//tag::important[]
+[important]
+If you edit a secret group, including editing a TLS context, that is currently applied to an API Instance, you must redploy the API Instance to apply the changes.
+//end::important[]
 
 //tag::byb[]
 
@@ -31,6 +37,8 @@ Before adding the TLS context to Flex Gateway, you must complete the following t
 
 //tag::addContext[]
 Adding a TLS context to your secret group requires supplying a name, target, version, and keystore. Optionally, you can add a truststore, context experation date, ALPN Protocols, and configure the inbound and outbound settings. 
+
+
 
 To add a TLS Context:
 
