@@ -15,7 +15,13 @@ You can use the TLS context you store in secrets manager when you configure an H
 //end::intro3[]
 
 //tag::important[]
-IMPORTANT: If you edit a secret group, including editing a TLS context, that is currently applied to an API Instance, you must redploy the API Instance to apply the changes.
+IMPORTANT: If you edit a secret group, including a TLS context, that is currently applied to an API Instance, you must redploy the API Instance to apply the changes. You must individual redeploy all instances affected by the change.
+
+To redeploy an API Instance:
+. Go to *Anypoint Platform > API Manager*.
+. Click the name of the API Instance to redploy
+. Click *Runtime & Endpoint Configuration > Save & Apply*
+
 //end::important[]
 
 //tag::byb[]
