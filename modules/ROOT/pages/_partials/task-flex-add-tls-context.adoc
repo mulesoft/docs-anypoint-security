@@ -33,13 +33,16 @@ Before adding the TLS context to Flex Gateway, you must complete the following t
 //tag::addContext[]
 Adding a TLS context to your secret group requires supplying a name, target, version, and keystore. Optionally, you can add a truststore, context experation date, ALPN Protocols, and configure the inbound and outbound settings. 
 
-WARNING: If you edit a secret group, including a TLS context, that is currently applied to an API Instance, you must redploy the API Instance to apply the changes. You must individual redeploy all instances affected by the change.
-+
+[WARNING]
+====
+If you edit a secret group, including a TLS context, that is currently applied to an API Instance, you must redploy the API Instance to apply the changes. You must individual redeploy all instances affected by the change.
+
 To redeploy an API Instance:
 
 . Go to *Anypoint Platform > API Manager*.
 . Click the name of the API Instance to redploy.
 . Click *Runtime & Endpoint Configuration > Save & Apply*.
+====
 
 To add a TLS Context:
 
