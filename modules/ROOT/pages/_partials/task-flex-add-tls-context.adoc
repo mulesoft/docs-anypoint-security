@@ -3,9 +3,9 @@ After you xref:asm-secret-group-creation-task.adoc[create a secret group] and xr
 
 //end::intro1[]
 //tag::intro2[]
-Flex Gateway supports inbound and outbound TLS and mutual authentication TLS (mTLS) for the outbound connection.
+Flex Gateway supports inbound and outbound TLS and mutual authentication TLS (mTLS) for both connection directions.
 
-When you add the TLS context, you can also select the ciphers to use with the TLS context and you can configure different inbound and outbound validation settings.
+When you add a TLS context, you can also select the ciphers to use with the TLS context and configure different inbound and outbound validation settings.
 //end::intro2[]
 
 
