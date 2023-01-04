@@ -76,7 +76,7 @@ If you have a DoS policy configured, HTTP protocol errors (malicious protocol vi
 | PingFederate OAuth 2.0 Token Enforcement | Authentication Error
 | Basic Authentication: Simple | Authentication Error
 | Basic Authentication: LDAP | Authentication Error
-| IP Blacklist | Content Error
+| IP Blocklist | Content Error
 | IP Allowlist | Content Error
 | JSON Threat Protection | Content Error
 | XML Threat Protection | Content Error
