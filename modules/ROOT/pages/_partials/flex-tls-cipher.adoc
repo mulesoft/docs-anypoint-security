@@ -27,8 +27,9 @@ IMPORTANT: Ensure that your API upstream supports the selected ciphers and versi
 
 //end::cipherSupport[]
 
-//tag::addContext[]
-== Flex Gateway Supported Ciphers
+//tag::ciphers[]
+
+=== Flex Gateway Supported Ciphers
 
 Flex Gateway supports the following TLS Ciphers in connected and local mode:
 
@@ -62,4 +63,4 @@ Flex Gateway supports the following TLS Ciphers in connected and local mode:
 |===
 
 
-//end::addContext[]
+//end::ciphers[]
