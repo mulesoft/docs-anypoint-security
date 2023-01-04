@@ -1,7 +1,21 @@
-//tag::intro1[]
+//tag::connectedSelect[]
+== Select Ciphers
+
+When you configure a TLS context, default ciphers are applied to it based on the TLS version you selected. In addition to the defaults, you can select other ciphers to use with the selected TLS version. Each TLS context can have multiple ciphers.
+
+To select ciphers:
+
+. Click *Ciphers* to select available ciphers. 
++
+If you select a *TLS Version* value of *TLS 1.3*, the default selection is not customizable.
+. Click *Save*
+
+//end::connectedSelect[]
+
+//tag::cipherSupport[]
 == TLS Support on Flex Gateway
 
-Flex can support a range of TLS Ciphers from TLS 1.1 to TLS 1.3. You cannot support both TLS 1.1 and TLS 1.3 without also supporting TLS 1.2. The default minimum and maximum values for Flex Gateway connected mode are both 1.3. 
+Flex can support a range of TLS Versions from TLS 1.1 to TLS 1.3, and you can also customize some of the ciphers to support.
 
 You cannot customize the list of TLS 1.3 Ciphers. If you support TLS 1.3, you must support the TLS 1.3 default ciphers.
 
@@ -11,7 +25,7 @@ There are no default ciphers for TLS 1.1. If you choose to support TLS 1.1, you 
 
 IMPORTANT: Ensure that your API upstream supports the selected ciphers and versions.
 
-//end::intro1[]
+//end::cipherSupport[]
 
 //tag::addContext[]
 == Flex Gateway Supported Ciphers
