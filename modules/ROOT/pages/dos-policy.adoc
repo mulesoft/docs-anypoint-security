@@ -2,6 +2,7 @@
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
+include::reuse::partial$non-inclusive-banner.adoc[]
 
 The Denial of Service (DoS) policy prevents attackers from flooding your network to prevent legitimate network traffic to your APIs. For example, malicious clients could send huge payloads designed to consume resources and bandwidth to your network.
 
