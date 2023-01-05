@@ -29,6 +29,7 @@
  *** xref:asm-secret-group-creation-task.adoc[Create a Secret Group]
  *** xref:secret-group-add-certificate.adoc[Add a Certificate]
  *** xref:secret-group-add-tls-context.adoc[Add a TLS Context for Mule]
+ *** xref:secret-group-add-tls-context-flex.adoc[Add a TLS Context for Flex Gateway]
  *** xref:configure-tls-context-rtf-lb.adoc[Add a TLS Context for Runtime Fabric Load Balancer]
  *** xref:enable-client-authentication.adoc[Enable Client Authentication]
  *** xref:cipher-suites.adoc[Cipher Suites]
