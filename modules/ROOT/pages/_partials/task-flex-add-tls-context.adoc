@@ -36,7 +36,7 @@ Adding a TLS context to your secret group requires supplying a name, target, ver
 
 [WARNING]
 ====
-If you edit a secret group, including a TLS context, that is currently applied to an API Instance, you must redeploy the API Instance to apply the changes. You must individually redeploy all instances affected by the change. To redeploy API Instances, see <<redeploy-api-instance, Redploy an API Instance>>.
+If you edit a secret group, including a TLS context, that is currently applied to an API Instance, you must redeploy the API Instance to apply the changes. You must individually redeploy all instances affected by the change. To redeploy API Instances, see <<redeploy-api-instance, Redeploy an API Instance>>.
 ====
 
 To add a TLS Context:
@@ -73,14 +73,14 @@ Optionally, select *Skip server certificate validation* to skip the validation o
 //tag::redeploy[]
 
 [[redeploy-api-instance]]
-== Redploy an API Instance
+== Redeploy an API Instance
 
 If you edit a secret group currently applied to an API Instance, you must redeploy the instance. Redeploy all affected instances.
 
 To redeploy an API Instance:
 
 . Go to *Anypoint Platform > API Manager*.
-. Click the name of the API Instance to redploy.
+. Click the name of the API Instance to redeploy.
 . Click *Runtime & Endpoint Configuration > Save & Apply*.
 
-//end::redploy[]
+//end::redeploy[]
