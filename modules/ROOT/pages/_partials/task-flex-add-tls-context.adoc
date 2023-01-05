@@ -18,7 +18,7 @@ You can use the TLS context you store in secrets manager when you configure an H
 
 == Before You Begin
 
-Before adding the TLS context to Flex Gateway, you must complete the following tasks:
+Before adding the TLS context to Flex Gateway, complete the following tasks:
 
 * xref:anypoint-security::asm-secret-group-creation-task.adoc[Create a Secret Group]
 * xref:anypoint-security::asm-secret-group-creation-task.adoc#adding-a-keystore[Add a Keystore]
@@ -31,11 +31,11 @@ Before adding the TLS context to Flex Gateway, you must complete the following t
 //end::addContextTitle[]
 
 //tag::addContext[]
-Adding a TLS context to your secret group requires supplying a name, target, version, and keystore. Optionally, you can add a truststore, context experation date, ALPN Protocols, and configure the inbound and outbound settings. 
+Adding a TLS context to your secret group requires supplying a name, target, version, and keystore. Optionally, you can add a truststore, context expiration date, ALPN Protocols, and configure the inbound and outbound settings. 
 
 [WARNING]
 ====
-If you edit a secret group, including a TLS context, that is currently applied to an API Instance, you must redploy the API Instance to apply the changes. You must individual redeploy all instances affected by the change.
+If you edit a secret group, including a TLS context, that is currently applied to an API Instance, you must redeploy the API Instance to apply the changes. You must individually redeploy all instances affected by the change.
 
 To redeploy an API Instance:
 
