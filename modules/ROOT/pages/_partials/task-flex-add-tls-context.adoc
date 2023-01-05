@@ -71,7 +71,8 @@ Optionally, select *Skip server certificate validation* to skip the validation o
 //end::addContext[]
 
 //tag::redeploy[]
-[redeploy-api-instance]
+
+[[redeploy-api-instance]]
 == Redploy an API Instance
 
 If you edit a secret group currently applied to an API Instance, you must redeploy the instance. Redeploy all affected instances.
