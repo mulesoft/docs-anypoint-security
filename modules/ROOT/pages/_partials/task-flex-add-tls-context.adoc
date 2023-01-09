@@ -21,7 +21,7 @@ You can use the TLS context you store in secrets manager when you configure an H
 Before adding the TLS context to Flex Gateway, complete the following tasks:
 
 * xref:anypoint-security::asm-secret-group-creation-task.adoc[Create a Secret Group]
-* xref:anypoint-security::asm-secret-group-creation-task.adoc#adding-a-keystore[Add a PEM type Keystore]
+* xref:anypoint-security::asm-secret-group-creation-task.adoc#adding-a-keystore[Add a PEM Type Keystore]
 
 //end::byb[]
 
