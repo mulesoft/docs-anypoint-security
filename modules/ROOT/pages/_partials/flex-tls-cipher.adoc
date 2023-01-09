@@ -6,10 +6,10 @@ When you configure a TLS context, Secrets Manager applies default ciphers based 
 
 To select ciphers:
 
-. Click *Ciphers* to see avaliable ciphers. 
+. Click *Ciphers* to see available ciphers. 
 . Select ciphers.
 +
-Cipher selection is not avaliable if only supporting TLS version 1.3.
+Cipher selection is not available if only supporting TLS version 1.3.
 . Click *Save*
 
 //end::connectedSelect[]

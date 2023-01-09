@@ -67,7 +67,7 @@ Optionally, select *Skip server certificate validation* to skip the validation o
 
 . Optionally, xref:anypoint-security::cipher-suites.adoc[select ciphers] for the TLS context.
 +
-Cipher selection is not avaliable if only supporting TLS version 1.3.
+Cipher selection is not available if only supporting TLS version 1.3.
 . Click *Save*.
 
 //end::addContext[]
