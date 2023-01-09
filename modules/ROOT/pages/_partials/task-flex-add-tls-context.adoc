@@ -1,5 +1,5 @@
 //tag::intro1[]
-After you xref:asm-secret-group-creation-task.adoc[create a secret group] and xref:asm-secret-group-creation-task.adoc#adding-a-keystore[add a keystore], you can add a Transport Layer Security (TLS) context and apply the TLS context to API Instances to encrypt their inbound and outbound traffic. 
+After you xref:asm-secret-group-creation-task.adoc[create a secret group] and xref:asm-secret-group-creation-task.adoc#adding-a-keystore[add a Privacy-Enhanced Mail (PEM) type keystore], you can add a Transport Layer Security (TLS) context and apply the TLS context to API Instances to encrypt their inbound and outbound traffic. You must use a PEM type keystore.
 
 //end::intro1[]
 //tag::intro2[]
@@ -21,7 +21,7 @@ You can use the TLS context you store in secrets manager when you configure an H
 Before adding the TLS context to Flex Gateway, complete the following tasks:
 
 * xref:anypoint-security::asm-secret-group-creation-task.adoc[Create a Secret Group]
-* xref:anypoint-security::asm-secret-group-creation-task.adoc#adding-a-keystore[Add a Keystore]
+* xref:anypoint-security::asm-secret-group-creation-task.adoc#adding-a-keystore[Add a PEM Type Keystore]
 
 //end::byb[]
 
@@ -53,7 +53,7 @@ Select *Flex Gateway* to use the TLS context as the SSL validation for Flex Gate
 * *Min TLS Version* and *Max TLS Version* +
 By default, TLS 1.3 and TLS 1.3 are selected as the minimum and maximum supported versions. You can select to support a different minimum and maximum or select to support a single version by selecting the same version for both the minimum and maximum.  
 * *Keystore* +
-From the drop-down list, select the keystore to store the TLS context.
+From the drop-down list, select the keystore to store the TLS context. Only PEM type keystores are visible.
 * *Truststore* +
 Optionally, select a truststore to which to add the TLS context if you are using a truststore to store certificates trusted by the client. +
 * *Expiration Date* +
@@ -66,6 +66,8 @@ Optionally, select *Validate Client certificate* to support mTLS for inbound tra
 Optionally, select *Skip server certificate validation* to skip the validation of the outbound server.
 
 . Optionally, xref:anypoint-security::cipher-suites.adoc[select ciphers] for the TLS context.
++
+Cipher selection is not available if only supporting TLS version 1.3.
 . Click *Save*.
 
 //end::addContext[]
