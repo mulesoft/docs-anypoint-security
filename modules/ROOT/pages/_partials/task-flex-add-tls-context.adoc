@@ -1,5 +1,5 @@
 //tag::intro1[]
-Using encryption, TLS policies protect communication between clients, API Instances, and upstream services. After you xref:asm-secret-group-creation-task.adoc[create a secret group] and xref:asm-secret-group-creation-task.adoc#adding-a-keystore[add a Privacy-Enhanced Mail (PEM) type keystore], you can add a Transport Layer Security (TLS) context and apply the TLS context to API Instances to encrypt their inbound and outbound traffic.
+Using encryption, Transport Layer Security (TLS) protects communication between clients, API Instances, and upstream services. After you xref:asm-secret-group-creation-task.adoc[create a secret group] and xref:asm-secret-group-creation-task.adoc#adding-a-keystore[add a Privacy-Enhanced Mail (PEM) type keystore], you can add a TLS context and apply the TLS context to API Instances in API Manager to encrypt their inbound and outbound traffic.
 
 //end::intro1[]
 //tag::intro2[]
