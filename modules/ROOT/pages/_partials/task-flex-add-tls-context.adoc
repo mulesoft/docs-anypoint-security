@@ -28,7 +28,7 @@ Before adding the TLS context to Flex Gateway, complete the following tasks:
 //end::addContextTitle[]
 
 //tag::addContext[]
-Adding a TLS context to your secret group requires supplying a name, target, version, and keystore. Optionally, you can add a truststore, context expiration date, ALPN Protocols, and configure the inbound and outbound settings. 
+Adding a TLS context to your secret group requires supplying a name, target, version, and keystore. Optionally, you can xref:anypoint-security::asm-secret-group-creation-task.adoc#add-a-truststore[add a truststore], context expiration date, ALPN Protocols, and configure the inbound and outbound settings. To 
 
 [WARNING]
 ====
