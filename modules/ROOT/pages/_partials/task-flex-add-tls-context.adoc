@@ -59,7 +59,7 @@ By default, *H2 - HTTP/1.1* are the selected ALPN protocols. Change this value t
 * *Inbound Settings* +
 Optionally, select *Validate Client certificate* to support mTLS for inbound traffic.
 * *Outbound Settings* +
-Optionally, select *Skip server certificate validation* to skip the validation of the outbound server.
+Optionally, select *Skip server certificate validation* to skip the validation of the outbound server and not support mTLS for outbound traffic.
 
 . Optionally, <<select-ciphers, Select Ciphers>> for the TLS context.
 +
@@ -82,3 +82,23 @@ To redeploy an API Instance:
 . Click *Runtime & Endpoint Configuration > Save & Apply*.
 
 //end::redeploy[]
+
+//tag::mTLS[]
+
+[[mTLS-context]]
+== mTLS Context
+Flex Gateway supports mutual authentication TLS (mTLS) for the inbound and outbound direction.
+
+In mTLS both the server and the client validates the others TLS certification. In normal TLS only the client validates the server's certificate. For Flex Gateway outbound traffic, the API upstream is the server and Flex Gateway is the client. For Flex Gateway inbound traffic, Flex Gateway is the server and the client is the client making requests to Flex Gateway. 
+
+Enable mTLS using the following UI:
+
+* *Validate Client certificate* 
++
+For inbound traffic, because the server is Flex Gateway you can choose to validate the clients certificate enabling inbound mTLS. However, you cannot require the client to validate Flex Gateway's certificate.
+
+* *Skip server certificate validation* 
++
+For outbound traffic, because the client is Flex Gateway you can choose to skip server certification validation disabling outbound mTLS. However, you cannot require the upstream to validate Flex Gateway's certificate. 
+
+//end::mTLS[]
