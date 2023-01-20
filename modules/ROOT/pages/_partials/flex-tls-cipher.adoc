@@ -26,7 +26,7 @@ If you support TLS 1.2, the TLS 1.2 default Ciphers are selected. However, unlik
 
 There are no default ciphers for TLS 1.1. If you choose to support TLS 1.1, you must select the ciphers you want to support.
 
-IMPORTANT: Ensure that your API upstream supports the selected ciphers and versions.
+IMPORTANT: For outbound TLS Context, ensure that your API upstream supports the selected ciphers and versions.
 
 //end::cipherSupport[]
 
@@ -42,8 +42,13 @@ For TLS 1.2, listing any ciphers overides the TLS 1.2 default ciphers. If you wa
 
 There are no default ciphers for TLS 1.1. To support TLS 1.1, you must list the ciphers to support. If you support TLS 1.1 and TLS 1.2, listing TLS 1.1 ciphers overides the TLS 1.2 defaults. To support both these versions, list all ciphers you want to support.
 
-IMPORTANT: Ensure that your API upstream supports the selected ciphers and versions.
 //end::cipherSupportLocal[]
+
+//tag::outboundImportant[]
+
+IMPORTANT: For outbound TLS Context, ensure that your API upstream supports the selected ciphers and versions.
+
+//end::outboundImportant[]
 
 //tag::ciphers[]
 
