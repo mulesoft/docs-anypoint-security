@@ -44,11 +44,11 @@ There are no default ciphers for TLS 1.1. To support TLS 1.1, you must list the 
 
 //end::cipherSupportLocal[]
 
-//tag::outboundImportant[]
+//tag::outboundImportantLocal[]
 
 IMPORTANT: For outbound TLS Context, ensure that your API upstream supports the selected ciphers and versions.
 
-//end::outboundImportant[]
+//end::outboundImportantLocal[]
 
 //tag::ciphers[]
 
