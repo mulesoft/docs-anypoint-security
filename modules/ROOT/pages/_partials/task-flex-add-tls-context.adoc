@@ -34,7 +34,7 @@ When refering to inbound and outbound traffic, for outbound traffic, the API ups
 
 In regular TLS only the client validates the server's certificate. However, in mTLS both the server and the client validates the others TLS certification.
 
-Refer to the following cross reference table for the required TLS Context configuration settings you need in the <<add-a-tls-context, Add a TLS Context>> step:
+Refer to the following cross reference table for the required TLS context configuration settings you need in the <<add-a-tls-context, Add a TLS Context>> step:
 
 [%header%autowidth.spread,cols="a,a,a,a,a"]
 |===
@@ -50,6 +50,7 @@ To simplify your configurations, you can create different TLS Contexts for the d
 //end::configurationOptions[]
 
 //tag::addContext[]
+
 [[add-a-tls-context]]
 == Add a TLS Context for Flex Gateway
 
