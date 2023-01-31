@@ -21,7 +21,7 @@ Before adding a TLS context to Flex Gateway, complete the following tasks:
 When adding a secret group, refer to the <<tls-configuration-options, TLS Configuration Options>>. Depending on your desired configuration, either:
 +
 ** xref:asm-secret-group-creation-task.adoc#adding-a-keystore[Add a Keystore]
-** xref:asm-secret-group-creation-task.adoc#adding-a-truststore[Add a Trustore]
+** xref:asm-secret-group-creation-task.adoc#adding-a-truststore[Add a Truststore]
 +
 NOTE: Privacy Enhanced Mail (PEM) type is required for your Keystore or Truststore.
 
@@ -46,7 +46,7 @@ Refer to the following cross reference table for the required TLS context config
 
 A parameter that is "Not Used" for a configuration implies its status does not affect configuration.
 
-To simplify your configurations, you can create different TLS Contexts for the different traffic directions of you API Instance. However, you can also use the same TLS Context to support different traffic directions, but you cannot support TLS and mTLS for the same direction using the same context. If you use the same TLS context for different directions, ensure you include the required parameters for both directions.
+To simplify your configurations, you can create different TLS Contexts for the different traffic directions of your API Instance. However, you can also use the same TLS Context to support different traffic directions, but you cannot support TLS and mTLS for the same direction using the same context. If you use the same TLS context for different directions, ensure you include the required parameters for both directions.
 
 //end::configurationOptions[]
 
