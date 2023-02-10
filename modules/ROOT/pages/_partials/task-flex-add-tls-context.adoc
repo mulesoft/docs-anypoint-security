@@ -76,19 +76,19 @@ Select *Flex Gateway* to use the TLS context as the SSL validation for Flex Gate
 * *Min TLS Version* and *Max TLS Version* +
 By default, TLS 1.3 and TLS 1.3 are selected as the minimum and maximum supported versions. You can select to support a different minimum and maximum or select to support a single version by selecting the same version for both the minimum and maximum.  
 * *Keystore* +
-From the drop-down list, select the keystore to store the TLS context. Only PEM type keystores are visible.
+Configuration dependent, from the drop-down list, select the keystore to store in the TLS context. Only PEM type keystores are visible. The keystore contains the certificate Flex Gateway presents to the remote party for both inbound and outbound TLS. If present, Flex gateway ignores the PEM keystore CA path.
 * *Truststore* +
-From the drop-down list, select a truststore to store certificates trusted by the client. Only PEM type truststores are visible.
+Configuration dependent, from the drop-down list, select a truststore to store certificates trusted by the client. Only PEM type truststores are visible. The truststore contains the certificates or CA path that Flex uses to validate the remote party certificate for both inbound and outbound TLS
 * *Expiration Date* +
-Optionally, select the expiration date for the certificate.
+Optionally, select the expiration date for the TLS Context.
 * *ALPN Protocols* +
 By default, *H2 - HTTP/1.1* are the selected ALPN protocols. Change this value to support different protocols. 
 * *Inbound Settings* +
-Optionally, select *Validate Client certificate* to support mTLS for inbound traffic.
+If you want to support mTLS for inbound traffic, select *Validate Client certificate* .
 * *Outbound Settings* +
-Optionally, select *Skip server certificate validation* to not support outbound mTLS.
+If you do not want select support outbound mTLS, select *Skip server certificate validation*.
 
-. Optionally, <<select-ciphers, Select Ciphers>> for the TLS context.
+. If you want to customize cipher support for your TLS context., <<select-ciphers, Select Ciphers>>. 
 +
 Cipher selection is not available if only supporting TLS version 1.3.
 . Click *Save*.
