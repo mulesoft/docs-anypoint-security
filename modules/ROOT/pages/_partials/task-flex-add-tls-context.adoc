@@ -31,7 +31,7 @@ NOTE: Privacy Enhanced Mail (PEM) type is required for your Keystore or Truststo
 
 [[tls-configuration-options]]
 == TLS Configuration Options
-You can configure your TLS Context to support regular TLS and mTLS in both the inbound and outbound direction. Depending on the desired configuration, you must add different configuration files to your secret group and select different TLS context configuration options.
+You can configure your TLS Context to support regular TLS and mTLS in both the inbound and outbound direction. Depending on the desired configuration, you must add different certificate files to your secret group and select different TLS context configuration options.
 
 Refer to the following cross reference table for the required TLS context configuration settings you need in the <<add-a-tls-context, Add a TLS Context>> step:
 
@@ -39,7 +39,7 @@ Refer to the following cross reference table for the required TLS context config
 |===
 | Parameter | Inbound TLS | Inbound mTLS | Outbound TLS | Outbound mTLS
 | *Keystore* | Required | Required | Not Used | Required
-| *Truststore* | Not Used | Required | Required, unless skip server cert validation is Selected | Required to validate upstream certificate
+| *Truststore* | Not Used | Required | Required, unless skip server cert validation is selected | Required to validate upstream certificate
 | *Validate Client certificate* | Not Selected | Selected | Not Used | Not Used
 | *Skip server certificate validation* | Not Used | Not Used | Selected | Not Selected 
 |===
@@ -80,7 +80,7 @@ Configuration dependent, from the drop-down list, select the keystore to store i
 * *Truststore* +
 Configuration dependent, from the drop-down list, select a truststore to store certificates trusted by the client. Only PEM type truststores are visible. The truststore contains the certificates or CA path that Flex uses to validate the remote party certificate for both inbound and outbound TLS
 * *Expiration Date* +
-Optionally, select the expiration date for the TLS Context.
+Optionally, enter an expiration date for the TLS Context.
 * *ALPN Protocols* +
 By default, *H2 - HTTP/1.1* are the selected ALPN protocols. Change this value to support different protocols. 
 * *Inbound Settings* +
