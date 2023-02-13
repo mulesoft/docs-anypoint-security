@@ -88,7 +88,7 @@ Flex Gateway supports the following TLS Ciphers in Connected Mode and Local Mode
 
 //end::ciphers[]
 
-//tag::local-ciphers[]
+//tag::localCiphers[]
 
 === Flex Gateway Supported Ciphers
 
@@ -124,4 +124,4 @@ Flex Gateway supports the following TLS Ciphers in Connected Mode and Local Mode
 |===
 
 
-//end::local-ciphers[]
+//end::localCiphers[]
