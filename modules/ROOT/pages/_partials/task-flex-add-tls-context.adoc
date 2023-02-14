@@ -55,7 +55,7 @@ To simplify your configurations, you can create different TLS Contexts for the d
 [[add-a-tls-context]]
 == Add a TLS Context for Flex Gateway
 
-Adding a TLS context to your secret group requires supplying a name, target, version, and a keystore or truststore. Optionally, you can add context expiration date, ALPN Protocols, and configure the inbound and outbound settings. 
+Adding a TLS context to your secret group requires supplying a name, target, version, and a keystore or truststore. Optionally, you can add context expiration date and ALPN Protocols and configure the inbound and outbound settings. 
 
 [WARNING]
 ====
@@ -88,7 +88,7 @@ If you want to support mTLS for inbound traffic, select *Validate Client certifi
 * *Outbound Settings* +
 If you do not want support mTLS for outbound traffic, select *Skip server certificate validation*.
 
-. If you want to customize cipher support for your TLS context., <<select-ciphers, Select Ciphers>>. 
+. If you want to customize cipher support for your TLS context, <<select-ciphers, Select Ciphers>>. 
 +
 Cipher selection is not available if only supporting TLS version 1.3.
 . Click *Save*.
