@@ -65,6 +65,13 @@ If you edit a secret group, including a TLS context, that is currently applied t
 To add a TLS Context:
 
 . Go to *Anypoint Platform > Secrets Manager*.
+. Ensure your secret group is downloadable. This enables you to apply your TLS context to API instances.
++
+To ensure your secret group is downloadable:
+
+.. Click the pencil icon next to the name of your secret group.
+.. If *Secret Group Downloadable* is selected, click *Cancel*
+.. If *Secret Group Downloadable* is not selected, select it, then click *Save*.
 . In the *Secret Groups* list view, click the *Edit* button of the secret group to add a TLS context. 
 . Select *TLS Context* in the menu on the left, and click *Add TLS Context*. 
 . In the Create TLS Context screen, add the required information:
