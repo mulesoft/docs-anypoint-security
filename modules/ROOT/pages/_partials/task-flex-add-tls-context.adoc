@@ -68,6 +68,7 @@ To add a TLS Context:
 . Ensure your secret group is downloadable. This enables you to apply your TLS context to API instances.
 +
 To ensure you secret group is downloadable:
+
 .. Click the pencil icon next to the name of your secret group.
 .. If *Secret Group Downloadable* is selected, click *Cancel*
 .. If *Secret Group Downloadable* is not selected, select it, then click *Save*.
