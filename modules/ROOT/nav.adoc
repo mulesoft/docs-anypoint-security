@@ -1,5 +1,6 @@
 .xref:index.adoc[Anypoint Security]
-* xref:index.adoc[Anypoint Security]
+* xref:index.adoc[Anypoint Security Overview]
+* xref:anypoint-security-release-notes.adoc[]
 * xref:index-policies.adoc[Edge Policies]
 ** xref:acl-policy.adoc[IP Allowlist Policy]
 ** xref:dos-policy.adoc[Denial of Service Policy]
