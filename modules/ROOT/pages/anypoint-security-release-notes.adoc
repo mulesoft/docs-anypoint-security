@@ -1,0 +1,1 @@
+include::partial$anypoint-security/anypoint-security-rn-landing-page.adoc[]
