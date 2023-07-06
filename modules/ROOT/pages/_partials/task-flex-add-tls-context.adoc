@@ -31,7 +31,7 @@ NOTE: Privacy Enhanced Mail (PEM) type is required for your Keystore or Truststo
 
 [[tls-configuration-options]]
 == TLS Configuration Options
-You can configure your TLS Context to support regular TLS and mTLS in both the inbound and outbound direction. Depending on the desired configuration, you must add different certificate files to your secret group and select different TLS context configuration options.
+You can configure your TLS context to support regular TLS and mTLS in both the inbound and outbound direction. Depending on the desired configuration, you must add different certificate files to your secret group and select different TLS context configuration options.
 
 Refer to the following cross reference table for the required TLS context configuration settings you need in the <<add-a-tls-context, Add a TLS Context>> step:
 
@@ -46,7 +46,7 @@ Refer to the following cross reference table for the required TLS context config
 
 A parameter that is "Not Used" for a configuration implies its status does not affect configuration.
 
-To simplify your configurations, you can create different TLS Contexts for the different traffic directions of your API instance. However, you can also use the same TLS Context to support different traffic directions, but you cannot support TLS and mTLS for the same direction using the same context. If you use the same TLS context for different directions, ensure you include the required parameters for both directions.
+To simplify your configurations, you can create different TLS contexts for the different traffic directions of your API instance. However, you can also use the same TLS context to support different traffic directions, but you cannot support TLS and mTLS for the same direction using the same context. If you use the same TLS context for different directions, ensure you include the required parameters for both directions.
 
 //end::configurationOptions[]
 
@@ -62,7 +62,7 @@ Adding a TLS context to your secret group requires supplying a name, target, ver
 If you edit a secret group, including a TLS context, that is currently applied to an API instance, you must redeploy the API instance to apply the changes. You must individually redeploy all instances affected by the change. To redeploy API instances, see <<redeploy-api-instance, Redeploy an API Instance>>.
 ====
 
-To add a TLS Context:
+To add a TLS context:
 
 . Go to *Anypoint Platform > Secrets Manager*.
 . Ensure your secret group is downloadable. This enables you to apply your TLS context to API instances.
@@ -74,7 +74,7 @@ To ensure your secret group is downloadable:
 .. If *Secret Group Downloadable* is not selected, select it, then click *Save*.
 . In the *Secret Groups* list view, click the *Edit* button of the secret group to add a TLS context. 
 . Select *TLS Context* in the menu on the left, and click *Add TLS Context*. 
-. In the Create TLS Context screen, add the required information:
+. In the Create TLS context screen, add the required information:
 +
 * *Name* +
 Enter a name for your TLS context. 
@@ -87,7 +87,7 @@ If necessary for your configuration, from the drop-down list, select the keystor
 * *Truststore* +
 If necessary for your configuration, from the drop-down list, select a truststore to store certificates trusted by the client. Only PEM type truststores are visible. The truststore contains the certificates or CA path that Flex uses to validate the remote party certificate for both inbound and outbound TLS.
 * *Expiration Date* +
-Optionally, enter an expiration date for the TLS Context.
+Optionally, enter an expiration date for the TLS context.
 * *ALPN Protocols* +
 By default, *H2 - HTTP/1.1* are the selected ALPN protocols. Change this value to support different protocols. 
 * *Inbound Settings* +
