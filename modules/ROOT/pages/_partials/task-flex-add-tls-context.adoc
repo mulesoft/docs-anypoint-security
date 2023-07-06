@@ -41,7 +41,7 @@ Refer to the following cross reference table for the required TLS context config
 | *Keystore* | Required | Required | Not Used | Required
 | *Truststore* | Not Used | Required | Required, unless skip server cert validation is selected | Required to validate upstream certificate
 | *Validate Client certificate* | Not Selected | Selected | Not Used | Not Used
-| *Skip server certificate validation* | Not Used | Not Used | Selected | Not Selected 
+| *Skip server certificate validation* | Not Used | Not Used | Either | Not Selected 
 |===
 
 A parameter that is "Not Used" for a configuration implies its status does not affect configuration.
