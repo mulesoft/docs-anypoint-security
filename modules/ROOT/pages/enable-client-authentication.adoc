@@ -20,7 +20,9 @@ Select this option if you want the inbound load balancer to send the truststore 
 Select this option if you want to allow access only for client certificates that are present in the selected certificate pinning list. In this case, a client certificate must have a chain of trust to a certificate (usually a CA) that appears in the truststore but also must be explicitly present (pinned) in the selected certificate pinning list. 
 . Click *Advanced Options* to expand the available options, and select the options to enable: +
 * *Certificate Checking Strength* +
-Allows the application to control whether strict or lax certificate checking is performed during chain-of-trust processing.
+This option allows the application to control whether strict or lax certificate checking is performed during chain-of-trust processing.
++
+Lax certificate checking offers more flexibility because of its less rigorous verification process, but it comes with a higher risk of accepting potentially compromised or fraudulent certificates. Strict certificate checking has more rigorous requirements for certificate validity and revocation checking, which demands more computational resources. 
 * *Certificate Policy Checking* +
 Controls certificate policy processing as defined in RFC 3280 and 5280.
 A certificate can contain zero or more policies. A policy is represented as an object identifier (OID). In an end-entity certificate, this policy information indicates the policy under which the certificate has been issued and the purposes for which the certificate can be used. +
