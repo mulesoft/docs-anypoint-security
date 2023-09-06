@@ -50,5 +50,4 @@ See xref:release-notes::anypoint-security/anypoint-security-rtf-edge.adoc[Anypoi
 == See Also
 
 * xref:secret-group-add-tls-context.adoc[Add a TLS Context for Mule]
-* xref:secret-group-add-tls-context-flex.adoc[Add a TLS Context to Flex Gateway Connected Mode]
 * xref:configure-tls-context-rtf-lb.adoc[Configure a TLS Context for Runtime Fabric Load Balancer]
