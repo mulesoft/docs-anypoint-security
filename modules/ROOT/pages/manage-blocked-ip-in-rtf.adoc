@@ -33,7 +33,7 @@ When the IP addresses are successfully unblocked, an `Unblocked` message appears
 
 . To generate a list of blocked IP addresses, click *Log blocked IPs*. +
 When the blocked IP addresses are successfully logged, a `Logged` message appears. 
-. To view the logs, follow the instructions in the xref:runtime-fabric::runtime-fabric-logs.adoc[View and Configure Logging] for configuring log forwarding. +
+. To view the logs, follow the instructions in the xref:1.13@runtime-fabric::runtime-fabric-logs.adoc[View and Configure Logging] for configuring log forwarding. +
 The logs look similar to this: +
 
 [source,json]
@@ -82,7 +82,7 @@ The logs look similar to this: +
 
 == See Also
 
-* xref:1.x@api-manager::ip-whitelist.adoc[]
+* xref:1.5@gateway::policies-included-ip-allowlist.adoc[]
 * xref:cap-policy.adoc[]
 * xref:dos-policy.adoc[]
-* xref:runtime-fabric::runtime-fabric-logs.adoc[]
+* xref:1.13@runtime-fabric::runtime-fabric-logs.adoc[]

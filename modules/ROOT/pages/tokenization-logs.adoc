@@ -69,4 +69,4 @@ For security reasons, neither the confidential data nor the token are logged.
 
 == See Also
 
-xref:runtime-fabric::runtime-fabric-logs.adoc[Runtime Fabric documentation]
+xref:1.13@runtime-fabric::runtime-fabric-logs.adoc[Runtime Fabric documentation]

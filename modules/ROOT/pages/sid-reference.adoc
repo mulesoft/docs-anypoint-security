@@ -154,7 +154,7 @@ Sensitive information detection rules belong to rule categories, which include:
 
 You can view the the SID rules and rule IDs in the Anypoint Security Policies RAML. 
 
-. Go to the public https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/[MuleSoft developer portal], and search for "Anypoint Security Policies API".
+. Go to the public https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/[MuleSoft developer portal^], and search for "Anypoint Security Policies API".
 . Download the RAML and extract the ZIP files.
 . Navigate to `<Download_location>/anypoint-security-policies-api-<version>-raml/dataTypes/policies/WafRules/Rulesets.json`.
 . Search for "MULESOFT_SID", to see the SID rules and their details, including the name (`msg`) and `id`. +
@@ -180,5 +180,5 @@ This is an example of the RAML file content:
 
 === See Also
 
-* xref:runtime-fabric::runtime-fabric-logs.adoc[View and Configure Logging in Runtime Fabric]
+* xref:1.13@runtime-fabric::runtime-fabric-logs.adoc[View and Configure Logging in Runtime Fabric]
 * xref:create-waf-policy.adoc[Create a Web Application Firewall Policy]

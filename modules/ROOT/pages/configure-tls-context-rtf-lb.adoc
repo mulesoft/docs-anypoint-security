@@ -3,11 +3,11 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-If your environment requires advanced configuration such as client authentication (mutual authentication), selecting ciphers, and selecting TLS versions, you can import a TLS context from the secrets manager. Refer to xref:runtime-fabric::configure-adv-tls-context.adoc[Import a TLS Context from Secrets Manager (Advanced)].
+If your environment requires advanced configuration such as client authentication (mutual authentication), selecting ciphers, and selecting TLS versions, you can import a TLS context from the secrets manager. Refer to xref:1.13@runtime-fabric::configure-adv-tls-context.adoc[Import a TLS Context from Secrets Manager (Advanced)].
 
 == See Also
 
 * xref:enable-client-authentication.adoc[Enable Client Authentication]
 * xref:cipher-suites.adoc[Cipher Suites]
 * xref:asm-secret-type-support-reference.adoc[Supported Secret Types]
-* xref:runtime-fabric::enable-inbound-traffic.adoc[Enable Inbound Traffic on Anypoint Runtime Fabric]
+* xref:1.13@runtime-fabric::enable-inbound-traffic.adoc[Enable Inbound Traffic on Anypoint Runtime Fabric]
