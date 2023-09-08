@@ -82,7 +82,7 @@ The logs look similar to this: +
 
 == See Also
 
-* xref:api-manager::ip-whitelist.adoc[IP Whitelist]
-* xref:cap-policy.adoc[HTTP Limits Policy]
-* xref:dos-policy.adoc[DoS Policy]
-* xref:runtime-fabric::runtime-fabric-logs.adoc[View and Configure Logging]
+* xref:1.x@api-manager::ip-whitelist.adoc[]
+* xref:cap-policy.adoc[]
+* xref:dos-policy.adoc[]
+* xref:runtime-fabric::runtime-fabric-logs.adoc[]

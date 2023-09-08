@@ -35,7 +35,7 @@ include::partial$anypoint-security-policies-prereqs.adoc[]
 . Navigate to *Anypoint Security*.
 . Click *Create Policy*, and select *IP Allowlist*.
 . Add a name for your policy in the *Name* field.
-. Under *IP White List*, click *Add IP*.
+. Under *IP Allowlist*, click *Add IP*.
 . Insert the range of IP addresses to the list. You must use the CIDR format for a range of IP addresses. +
 For example, using the IP address `10.111.0.0/24` lists the addresses from `10.111.0.0` to `10.111.0.254`. +
 To add more IP address ranges, click *Add IP* again.
@@ -44,6 +44,6 @@ To add more IP address ranges, click *Add IP* again.
 
 == See Also
 
-* xref:api-manager::ip-whitelist.adoc[IP Whitelist]
-* xref:cap-policy.adoc[HTTP Limits Policy]
-* xref:dos-policy.adoc[DoS Policy]
+* xref:1.x@api-manager::ip-whitelist.adoc[]
+* xref:cap-policy.adoc[]
+* xref:dos-policy.adoc[]
