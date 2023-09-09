@@ -38,7 +38,8 @@ The value of `format` matches a tokenization format that is defined on the servi
 The maximum number of items allowed in the array is 100. If the array contains more than 100 items, you must separate it into multiple requests to the tokenization service.
 . Set the HTTP Listener in the Mule app to HTTPS. 
 . Export the Mule app.
-. In Runtime Manager, xref:runtime-manager::deploy-to-runtime-fabric.adoc[deploy the application to Runtime Fabric]. +
+. In Runtime Manager, xref:2.4@runtime-fabric::deploy-to-runtime-fabric.adoc[deploy the application to Runtime Fabric]. 
++
 [NOTE]
 You must select the *Last mile security* checkbox to enable TLS between the Runtime Fabric inbound load balancer and the Mule app.
 . (Optional) For improved security and protection of the Mule app, add an authentication method. 
@@ -82,4 +83,4 @@ image::tokenization-example-set-keystore-info.png[TLS tab in Global Elements win
 
 == See Also
 
-* xref:1.13@runtime-fabric::deploy-index.adoc[Deploy Applications and API Proxies to Runtime Fabric]
+* xref:2.4@runtime-fabric::deploy-index.adoc[Deploy Applications and API Proxies to Runtime Fabric]
