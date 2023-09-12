@@ -12,9 +12,9 @@ If you don't need the Mule app to perform data processing, it can still expose t
 To configure and use the tokenization service, you must:
 
 * xref:grant-tokenization-permissions.adoc[Grant tokenization permissions] to have permission to manage tokenization services.
-* xref:runtime-fabric::install-create-rtf-arm.adoc[Install Runtime Fabric]. +
+* xref:1.13@runtime-fabric::install-create-rtf-arm.adoc[Install Runtime Fabric]. +
 Anypoint Runtime Fabric is a container service that automates the deployment and orchestration of Mule apps and API gateways.
-* xref:runtime-fabric::enable-inbound-traffic.adoc[Enable inbound traffic] on Runtime Fabric.
+* xref:1.13@runtime-fabric::enable-inbound-traffic.adoc[Enable inbound traffic] on Runtime Fabric.
 * xref:create-tokenization-format.adoc[Create a tokenization format].
 * xref:create-tokenization-service.adoc[Create a tokenization service].
 
@@ -23,7 +23,7 @@ Anypoint Runtime Fabric is a container service that automates the deployment and
 
 After you have the information you need to set up a routable tokenization service using an API gateway, create an API from the tokenization RAML.
 
-. Go to the public https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/[Anypoint Platform developer portal], and search for "Tokenization API."
+. Go to the public https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/[Anypoint Platform developer portal^], and search for "Tokenization API."
 . Select *Download > As RAML*. The RAML is downloaded as a ZIP file.
 . Go to your Exchange portal, and click *New asset*. 
 . Set the *Name* as `Tokenization API` and the *Type* as `REST API - RAML`.
@@ -38,7 +38,8 @@ The value of `format` matches a tokenization format that is defined on the servi
 The maximum number of items allowed in the array is 100. If the array contains more than 100 items, you must separate it into multiple requests to the tokenization service.
 . Set the HTTP Listener in the Mule app to HTTPS. 
 . Export the Mule app.
-. In Runtime Manager, xref:runtime-fabric::deploy-to-runtime-fabric.adoc[deploy the application to Runtime Fabric]. +
+. In Runtime Manager, xref:2.4@runtime-fabric::deploy-to-runtime-fabric.adoc[deploy the application to Runtime Fabric]. 
++
 [NOTE]
 You must select the *Last mile security* checkbox to enable TLS between the Runtime Fabric inbound load balancer and the Mule app.
 . (Optional) For improved security and protection of the Mule app, add an authentication method. 
@@ -82,4 +83,4 @@ image::tokenization-example-set-keystore-info.png[TLS tab in Global Elements win
 
 == See Also
 
-* xref:runtime-fabric::deploy-index.adoc[Deploy Applications and API Proxies to Runtime Fabric]
+* xref:2.4@runtime-fabric::deploy-index.adoc[Deploy Applications and API Proxies to Runtime Fabric]

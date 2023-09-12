@@ -15,7 +15,8 @@ Anypoint Security features a high-performance, reliable, and scalable service to
 
 == Secrets Manager
 
-Anypoint Security provides a secure vault for you to store the TLS certificates and keystores used by your deployments. +
+Anypoint Security provides a secure vault for you to store the TLS certificates and keystores used by your deployments. 
+
 Through Secrets Manager, you can store the necessary secrets to set up the TLS context that encrypts inbound traffic to your Runtime Fabric.
 
 == Tokenization Service
