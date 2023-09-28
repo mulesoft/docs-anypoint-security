@@ -5,7 +5,7 @@ endif::[]
 
 Tokenization formats define how the original format of data coming in is converted to the format you configure when the token is created.  For example, you can specify that the token look like the original data source, or whether to tokenize the whole or partial string.
 
-When you xref:create-tokenization-format.adoc[create a tokenization format] and select the data domain, you are given <<data_domain_config_options,configuration options>>. 
+When you xref:create-tokenization-format.adoc[create a tokenization format] and select the data domain, you are given <<data-domain-configuration-options,configuration options>>. 
 
 == Supported Data Domains
 
@@ -52,7 +52,6 @@ When you xref:create-tokenization-format.adoc[create a tokenization format] and 
 
 |===
 
-[data_domain_config_options]
 == Data Domain Configuration Options
 
 [%header%autowidth.spread,cols="a,a,a"]
