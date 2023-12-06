@@ -1,4 +1,4 @@
-== Tokenization Service Logs
+= Tokenization Service Logs
 
 To determine traffic counts, use the tokenization summary message that is returned in Runtime Fabric logs. To retrieve the logs, configure log forwarding in Runtime Fabric.
 
