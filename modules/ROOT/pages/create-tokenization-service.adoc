@@ -15,7 +15,7 @@ If you do not see the *Tokenization Service* tab in Runtime Manager, contact you
 See xref:grant-tokenization-permissions.adoc[Granting Tokenization Permissions]
 * Have Runtime Fabric 1.1.153 or later with inbound traffic configured. +
 See xref:runtime-fabric::index.adoc[the Runtime Fabric documentation]. +
-Runtime Fabric requires an Anypoint Platform Platinum or higher-level subscription.
+include::reuse::partial$billing/pricing.adoc[tag=securityPrereq]
 * Have a secrets group to store the tokenization table encryption keys that are created by the tokenization service. +
 * Have a tokenization format, which describes the format and how data is tokenized. +
 See xref:tokenization-formats.adoc[Tokenization Formats].

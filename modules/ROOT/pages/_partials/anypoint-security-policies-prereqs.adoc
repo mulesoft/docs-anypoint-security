@@ -12,5 +12,5 @@ If you don't see *Security* in *Management Center*, contact your customer succes
 +
 Refer to xref:1.13@runtime-fabric::index-vm-bare-metal.adoc[the Runtime Fabric documentation]. 
 +
-Runtime Fabric requires an Anypoint Platform Platinum or higher-level subscription.
+include::reuse::partial$billing/pricing.adoc[tag=securityPrereq]
 * xref:1.13@runtime-fabric::enable-inbound-traffic.adoc[Enable inbound traffic] on Runtime Fabric to allow Mule apps and API gateways to listen on inbound connections.
