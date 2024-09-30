@@ -152,7 +152,7 @@ Sensitive information detection rules belong to rule categories, which include:
 
 == View SID Rules and Rule IDs in RAML
 
-You can view the the SID rules and rule IDs in the Anypoint Security Policies RAML. 
+You can view the SID rules and rule IDs in the Anypoint Security Policies RAML. 
 
 . Go to the public https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/[MuleSoft developer portal^], and search for "Anypoint Security Policies API".
 . Download the RAML and extract the ZIP files.

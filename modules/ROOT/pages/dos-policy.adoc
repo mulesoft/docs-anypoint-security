@@ -13,7 +13,7 @@ The DoS policy determines the source of the request in the following three ways:
 * Source IP address header field
 * Proxy Protocol IP address
 
-Since the source of the request is based on the IP address, if an an attacker spoofs the source IP address, the DoS Policy cannot prevent the attack.
+Since the source of the request is based on the IP address, if an attacker spoofs the source IP address, the DoS Policy cannot prevent the attack.
 
 [[anypoint_security_prereqs]]
 == Prerequisites
