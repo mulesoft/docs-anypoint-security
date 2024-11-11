@@ -1,8 +1,8 @@
 name: anypoint-security
 title: Security
 version: 'latest'
+nav:
+- modules/ROOT/nav.adoc
 asciidoc:
   attributes:
     page-notice-banner-message: Anypoint Security is available only for Runtime Fabric deployments.
-nav:
-- modules/ROOT/nav.adoc
