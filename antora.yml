@@ -1,6 +1,6 @@
 name: anypoint-security
 title: Security
-version: 'latest'
+version: 'master'
 nav:
 - modules/ROOT/nav.adoc
 asciidoc:
