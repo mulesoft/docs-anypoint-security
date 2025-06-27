@@ -82,7 +82,7 @@ The logs look similar to this: +
 
 == See Also
 
-* xref:1.5@gateway::policies-included-ip-allowlist.adoc[]
+* xref:gateway::policies-included-ip-allowlist.adoc[]
 * xref:cap-policy.adoc[]
 * xref:dos-policy.adoc[]
 * xref:1.13@runtime-fabric::runtime-fabric-logs.adoc[]

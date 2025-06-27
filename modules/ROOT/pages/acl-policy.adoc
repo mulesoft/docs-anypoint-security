@@ -44,6 +44,6 @@ To add more IP address ranges, click *Add IP* again.
 
 == See Also
 
-* xref:1.5@gateway::policies-included-ip-allowlist.adoc[]
+* xref:gateway::policies-included-ip-allowlist.adoc[]
 * xref:cap-policy.adoc[]
 * xref:dos-policy.adoc[]
