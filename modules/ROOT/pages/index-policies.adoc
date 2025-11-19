@@ -56,7 +56,3 @@ WAF policies provide the Open Web Application Security Project (OWASP) Core Rule
 Learn more about the xref:waf-policy.adoc[WAF policy].
 
 
-== See Also
-
-* xref:1.13@runtime-fabric::install-create-rtf-arm.adoc[Install Runtime Fabric]
-* xref:1.13@runtime-fabric::enable-inbound-traffic.adoc[Enable Inbound Traffic on Anypoint Runtime Fabric] 

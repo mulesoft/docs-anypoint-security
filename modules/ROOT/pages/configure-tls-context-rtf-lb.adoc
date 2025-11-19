@@ -10,4 +10,3 @@ If your environment requires advanced configuration such as client authenticatio
 * xref:enable-client-authentication.adoc[Enable Client Authentication]
 * xref:cipher-suites.adoc[Cipher Suites]
 * xref:asm-secret-type-support-reference.adoc[Supported Secret Types]
-* xref:1.13@runtime-fabric::enable-inbound-traffic.adoc[Enable Inbound Traffic on Anypoint Runtime Fabric]
