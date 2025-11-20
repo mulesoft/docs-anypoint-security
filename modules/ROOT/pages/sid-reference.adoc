@@ -180,5 +180,4 @@ This is an example of the RAML file content:
 
 === See Also
 
-* xref:1.13@runtime-fabric::runtime-fabric-logs.adoc[View and Configure Logging in Runtime Fabric]
 * xref:create-waf-policy.adoc[Create a Web Application Firewall Policy]

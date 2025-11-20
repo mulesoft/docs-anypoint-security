@@ -85,4 +85,3 @@ The logs look similar to this: +
 * xref:gateway::policies-included-ip-allowlist.adoc[]
 * xref:cap-policy.adoc[]
 * xref:dos-policy.adoc[]
-* xref:1.13@runtime-fabric::runtime-fabric-logs.adoc[]
