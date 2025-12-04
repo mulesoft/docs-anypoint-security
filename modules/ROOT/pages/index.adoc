@@ -4,12 +4,10 @@
 Anypoint Security for Anypoint Runtime Fabric provides a layered approach to secure your application network. These layers work together to protect both the application network and the network's individual nodes by controlling access to APIs, enforcing policies, and proxying all inbound or outbound traffic to mitigate external threats and attacks.
 Anypoint Security also provides you with a dedicated endpoint to detect attacks and validate traffic without taxing your network implementations.
 
-image::index-1c19d.png[Anypoint Security diagram: Mule apps in Runtime Fabric protected by the request endpoint with policies and TLS validation.]
+image::index-1c19d.png[Mule apps in Runtime Fabric protected by the request endpoint with TLS validation]
 
-== Policies
-
-Anypoint Security features a high-performance, reliable, and scalable service to enforce policies that apply to all nodes deployed to your Runtime Fabric instance. These policies then act as a default firewall or router capability through which all traffic traverses.
-
+[NOTE]
+Anypoint Security requires a separate license. Contact your MuleSoft account representative for more information.
 
 == Secrets Manager
 
@@ -17,15 +15,9 @@ Anypoint Security provides a secure vault for you to store the TLS certificates 
 
 Through Secrets Manager, you can store the necessary secrets to set up the TLS context that encrypts inbound traffic to your Runtime Fabric.
 
-== Tokenization Service
 
-Anypoint Security's tokenization service protects sensitive data from unwanted exposure by replacing key values, such as a credit card number, with a token.
 
-[NOTE]
-Anypoint Security requires a separate license. Contact your MuleSoft account representative for more information.
 
 == See Also
 
 * xref:index-secrets-manager.adoc[Secrets Manager]
-* xref:index-policies.adoc[Policies]
-* xref:tokenization.adoc[Tokenization Service]
