@@ -1,4 +1,4 @@
-= Anypoint PlatformSecrets Manager Permissions
+= Anypoint Platform Secrets Manager Permissions
 
 Organization administrators assign Secrets Manager permissions in Access Management. Each permission applies to a specific Anypoint environment.
 
