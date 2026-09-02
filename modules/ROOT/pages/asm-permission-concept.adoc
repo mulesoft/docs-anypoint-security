@@ -1,29 +1,12 @@
 = Secrets Manager Permissions
-ifndef::env-site,env-github[]
-include::_attributes.adoc[]
-endif::[]
 
-An administrator for your organization can grant these permissions to any user from Access Management.
+Organization administrators assign Secrets Manager permissions in Access Management. Each permission applies to a specific Anypoint environment.
 
 == User Permissions
 
-A user needs to have a set of predefined permissions to operate with Secrets Manager:
+Grant these permissions to control who can create secret groups, manage secrets, and connect external vaults.
 
-[%header%autowidth.spread,cols="a,a"]
-|===
-| Name | Description
-| Write secrets
-| Provides the ability to upload, create, and modify secrets in a specific environment.
-
-| Read secrets metadata
-| Provides the ability to browse and read metadata of secrets in a specific environment.
-
-| Grant access to secrets
-| Provides the ability to browse, read metadata, and grant access to secrets in a specific environment.
-
-| Manage secret groups
-| Provides the ability to create, modify and delete secret groups in a specific environment.
-|===
+include::access-management::partial$include-permissions-secrets-manager.adoc[tag=secretsManagerPermissionsTable]
 
 == See Also
 
